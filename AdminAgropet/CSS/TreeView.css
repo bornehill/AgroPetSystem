@@ -1,0 +1,43 @@
+﻿.treeNode
+{
+	color: #585858;
+	font: 10px Arial, Sans-Serif;
+	text-align:left;
+	text-transform:uppercase;
+}
+.rootNode
+{
+	font-size: 12px;
+	width: 100%;
+	border-bottom: Solid 1px black;
+	font-weight: bold;
+	color: Black;
+	
+}
+.leafNode
+{
+	padding: 4px;
+}
+.selectedNode
+{
+	color: White;
+	text-indent: 2px;
+	font-weight: bold;
+	background-color: Black;
+	background-image: none;
+}
+.hoverNode
+{
+	color: Black;
+	background-color: White;
+	font-size: 12px;
+}
+
+
+.scroll 
+{
+	text-align:left;
+     width:400px;
+     height:515px;     
+     overflow:auto;
+}

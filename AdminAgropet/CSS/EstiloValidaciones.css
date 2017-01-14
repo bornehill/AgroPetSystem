@@ -1,0 +1,14 @@
+﻿.MyMsgHighlight
+{
+	background-color:#4dff4d;
+}
+        
+.CustomValidatorCalloutStyle div, 
+
+.CustomValidatorCalloutStyle td 
+{ 
+	border:solid 1px red; 
+	background-color:Silver; 
+	vertical-align:middle;
+}
+
