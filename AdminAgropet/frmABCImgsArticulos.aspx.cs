@@ -15,7 +15,7 @@ namespace AdminAgropet
     {
         //private const string cgs_ScriptsMensajes = "Mensaje_Seguridad_";
         private const string cgs_EncabezadoModulo = " Imagenes Modulo";
-        //private const string cgs_MensajeError = "Error al intentar ";
+        private const string repositorio = @"C:\Temporal\Repositorio\ImagenesArticulos\";
 
         private static bool _bEdicion;
         public static bool BEdicion
