@@ -15,7 +15,7 @@ namespace AdminAgropet
     {
         //private const string cgs_ScriptsMensajes = "Mensaje_Seguridad_";
         private const string cgs_EncabezadoModulo = " Imagenes Modulo";
-        private const string repositorio = @"C:\Temporal\Repositorio\ImagenesArticulos\";
+        private static string repositorio = System.Web.Configuration.WebConfigurationManager.AppSettings["rutaImagenesArticulos"];// @"C:\Temporal\Repositorio\ImagenesArticulos\";
 
         private static bool _bEdicion;
         public static bool BEdicion
@@ -54,7 +54,7 @@ namespace AdminAgropet
 
         protected void gvwConsulta_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int nFila = int.Parse(e.CommandArgument.ToString());
+            int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsulta.PageSize;
             if (e.CommandName.Equals("Detalles"))
             {
                 hfIdImagenArticulo.Value = gvwConsulta.DataKeys[nFila].Values[0].ToString();
@@ -80,11 +80,11 @@ namespace AdminAgropet
 
         protected void gvwConsultaDetalle_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int nFila = int.Parse(e.CommandArgument.ToString());
+            int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsultaDetalle.PageSize;
             if (e.CommandName.Equals("Editar"))
             {
                 hfIdImagenArticuloDetalle.Value = gvwConsultaDetalle.DataKeys[nFila].Values[0].ToString();
-                txtImagenArticulo.Text = gvwConsultaDetalle.Rows[nFila].Cells[4].Text;
+                txtImagenArticulo.Value = gvwConsultaDetalle.Rows[nFila].Cells[4].Text;
                 BEdicion = true;
 
                 mvwArticulos.SetActiveView(vwDetalleNuevo);
@@ -106,7 +106,22 @@ namespace AdminAgropet
 
         protected void btnGuardarDetalle_Click(object sender, EventArgs e)
         {
-            InsertarDetalle();
+            if (inputfile.PostedFile != null && !string.IsNullOrEmpty(txtImagenArticulo.Value))
+            {
+                // File was sent
+                var postedFile = inputfile.PostedFile;
+                //int dataLength = postedFile.ContentLength;
+                //byte[] myData = new byte[dataLength];
+                //postedFile.InputStream.Read(myData, 0, dataLength);
+                postedFile.SaveAs(@"" + repositorio + txtImagenArticulo.Value);
+
+                InsertarDetalle();
+            }
+            else
+            {
+                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+                 "Es Necesario ingresar todos los datos: ", 2);
+            }
         }
 
 
@@ -187,37 +202,39 @@ namespace AdminAgropet
 
         public void LimpiarDatos()
         {
-            txtImagenArticulo.Text = string.Empty;
+            txtImagenArticulo.Value = string.Empty;
         }
 
         public void InsertarDetalle()
         {
-            int idImagenArticulo = Convert.ToInt32(hfIdImagenArticulo.Value);
-            int idUsuario = Convert.ToInt32(UsuarioLogeado.idusuario);
-
-            bool correcto;
-            if (BEdicion)
+            if (!string.IsNullOrEmpty(txtImagenArticulo.Value))
             {
-                //ACTUALIZA
-                int idImagenArticuloDetalle = Convert.ToInt32(hfIdImagenArticuloDetalle.Value);
-                correcto = new CatalogoImagenesArticulos().ActualizarImagenesArticulosDetalle(idImagenArticulo, idUsuario, txtImagenArticulo.Text, idImagenArticuloDetalle);
-            }
-            else
-            {
-                //INSERTA 
-                correcto = new CatalogoImagenesArticulos().InsertaImagenesArticulosDetalle(idImagenArticulo, idUsuario, txtImagenArticulo.Text);
-            }
+                int idImagenArticulo = Convert.ToInt32(hfIdImagenArticulo.Value);
+                int idUsuario = Convert.ToInt32(UsuarioLogeado.idusuario);
+
+                bool correcto;
+                if (BEdicion)
+                {
+                    //ACTUALIZA
+                    int idImagenArticuloDetalle = Convert.ToInt32(hfIdImagenArticuloDetalle.Value);
+                    correcto = new CatalogoImagenesArticulos().ActualizarImagenesArticulosDetalle(idImagenArticulo, idUsuario, txtImagenArticulo.Value, idImagenArticuloDetalle);
+                }
+                else
+                {
+                    //INSERTA 
+                    correcto = new CatalogoImagenesArticulos().InsertaImagenesArticulosDetalle(idImagenArticulo, idUsuario, txtImagenArticulo.Value);
+                }
 
 
-            if (!correcto)
-            {
-                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                "Ocurrio un error al intentar guardar la información: ", 2);
-            }
-          
-            BuscarDetalle(idImagenArticulo);
-            mvwArticulos.SetActiveView(vwDetalle);
+                if (!correcto)
+                {
+                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+                    "Ocurrio un error al intentar guardar la información: ", 2);
+                }
 
+                BuscarDetalle(idImagenArticulo);
+                mvwArticulos.SetActiveView(vwDetalle);
+            }
         }
 
         public bool BorrarDetalle(int IdDetImagenArticulo, int IdImagenArticulo)
@@ -226,8 +243,19 @@ namespace AdminAgropet
             return new CatalogoImagenesArticulos().EliminaImagenesArticulosDetalle(IdDetImagenArticulo, IdImagenArticulo, idUsuario);
         }
 
+
         #endregion Metdos
 
+        protected void gvwConsulta_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvwConsulta.PageIndex = e.NewPageIndex;
+            Buscar();
+        }
 
+        protected void gvwConsultaDetalle_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvwConsultaDetalle.PageIndex = e.NewPageIndex;
+            BuscarDetalle(Convert.ToInt32(hfIdImagenArticulo.Value));
+        }
     }
 }

@@ -211,6 +211,24 @@ namespace AdminAgropet {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txtRutaBannerDetalle;
         
         /// <summary>
+        /// txtTiltulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtTiltulo;
+        
+        /// <summary>
+        /// txtSubtitulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtSubtitulo;
+        
+        /// <summary>
         /// btnGuardarDetalle control.
         /// </summary>
         /// <remarks>

@@ -116,7 +116,7 @@ namespace AgroPET.Datos.Catalogos
             return lstInfo;
         }
 
-        public bool InsertaImagenesBannerDetalle(int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle)
+        public bool InsertaImagenesBannerDetalle(int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle, string titulo, string subtitulo)
         {
             try
             {
@@ -138,6 +138,14 @@ namespace AgroPET.Datos.Catalogos
                 p_OrdenDetalle.Value = OrdenDetalle;
                 ejecuta.AgregarParametro(p_OrdenDetalle);
 
+                MySqlParameter p_titulo = new MySqlParameter("p_titulo", MySqlDbType.VarChar);
+                p_titulo.Value = titulo;
+                ejecuta.AgregarParametro(p_titulo);
+
+                MySqlParameter p_subtitulo = new MySqlParameter("p_subtitulo", MySqlDbType.VarChar);
+                p_subtitulo.Value = subtitulo;
+                ejecuta.AgregarParametro(p_subtitulo);
+
                 ejecuta.EjecutaSinResultado();
             }
             catch (MySqlException ex)
@@ -148,7 +156,7 @@ namespace AgroPET.Datos.Catalogos
             return true;
         }
 
-        public bool ActualizarImagenesBannerDetalle(int idBannerDetalle, int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle)
+        public bool ActualizarImagenesBannerDetalle(int idBannerDetalle, int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle, string titulo, string subtitulo)
         {
             try
             {
@@ -173,6 +181,14 @@ namespace AgroPET.Datos.Catalogos
                 MySqlParameter p_OrdenDetalle = new MySqlParameter("p_orden", MySqlDbType.VarChar);
                 p_OrdenDetalle.Value = OrdenDetalle;
                 ejecuta.AgregarParametro(p_OrdenDetalle);
+
+                MySqlParameter p_titulo = new MySqlParameter("p_titulo", MySqlDbType.VarChar);
+                p_titulo.Value = titulo;
+                ejecuta.AgregarParametro(p_titulo);
+
+                MySqlParameter p_subtitulo = new MySqlParameter("p_subtitulo", MySqlDbType.VarChar);
+                p_subtitulo.Value = subtitulo;
+                ejecuta.AgregarParametro(p_subtitulo);
 
                 ejecuta.EjecutaSinResultado();
             }

@@ -22,5 +22,11 @@ namespace Agropet.Entidades.CatABCs
 
         [Campo("orden", EsParametroSP = false, EsCampoRetornoConsulta = true)]
         public int? Orden { get; set; }
+
+        [Campo("titulo", EsParametroSP = false, EsCampoRetornoConsulta = true)]
+        public string titulo { get; set; }
+
+        [Campo("subtitulo", EsParametroSP = false, EsCampoRetornoConsulta = true)]
+        public string subtitulo { get; set; }
     }
 }

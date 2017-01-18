@@ -35,14 +35,14 @@ namespace AgropPET.Negocio.Catalogos
             return lstImagBanners;
         }
 
-        public bool InsertaImagenesBannerDetalle(int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle)
+        public bool InsertaImagenesBannerDetalle(int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle, string titulo, string subtitulo)
         {
-            return new DatosImagenesBanners().InsertaImagenesBannerDetalle(idBanner, idUsuarioModifico, RutaBannerDetalle, OrdenDetalle);
+            return new DatosImagenesBanners().InsertaImagenesBannerDetalle(idBanner, idUsuarioModifico, RutaBannerDetalle, OrdenDetalle, titulo, subtitulo);
         }
 
-        public bool ActualizarImagenesBannerDetalle(int idBannerDetalle, int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle)
+        public bool ActualizarImagenesBannerDetalle(int idBannerDetalle, int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle, string titulo, string subtitulo)
         {
-            return new DatosImagenesBanners().ActualizarImagenesBannerDetalle(idBannerDetalle, idBanner, idUsuarioModifico, RutaBannerDetalle, OrdenDetalle);
+            return new DatosImagenesBanners().ActualizarImagenesBannerDetalle(idBannerDetalle, idBanner, idUsuarioModifico, RutaBannerDetalle, OrdenDetalle, titulo, subtitulo);
         }
 
         public bool EliminaImagenesBannerDetalle(int idBanner, int idBannerDetalle, int idUsuarioModifico)

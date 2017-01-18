@@ -16,6 +16,7 @@
     <link rel="Stylesheet" type="text/css" href="<%# ResolveUrl("~/CSS/jquery.ui.core.css") %>" />
     <link rel="stylesheet" type="text/css" href="<%# ResolveUrl("~/CSS/jquery-ui.min.css") %>" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/CSS/Paginacion.css" rel="stylesheet" />
     <%--<link href="~/CSS/DateTimePicker/StyleDateTimePicker.css" rel="stylesheet" />--%>
     <title>--> Módulo de administración de Agropet <-- </title>
 

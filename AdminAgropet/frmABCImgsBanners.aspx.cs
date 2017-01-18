@@ -14,7 +14,7 @@ namespace AdminAgropet
     public partial class ABCImgsBanners : BaseCatalogo
     {
         private const string cgs_EncabezadoModulo = " Imagenes Banners";
-        private const string repositorio = @"C:\Temporal\Repositorio\ImagenesBanner\";
+        private static string repositorio = System.Web.Configuration.WebConfigurationManager.AppSettings["rutaImagenesBanners"]; // @"C:\Temporal\Repositorio\ImagenesBanner\";
         private static bool _bEdicion;
         public static bool BEdicion
         {
@@ -39,6 +39,8 @@ namespace AdminAgropet
             txtDescripcionBanner.Value = string.Empty;
             txtRutaBannerDetalle.Value = string.Empty;
             txtOrdenDetalle.Text = string.Empty;
+            txtTiltulo.Text = string.Empty;
+            txtSubtitulo.Text = string.Empty;
         }
 
         #endregion MetodosGenerales
@@ -59,7 +61,7 @@ namespace AdminAgropet
 
         protected void gvwConsulta_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int nFila = int.Parse(e.CommandArgument.ToString());
+            int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsulta.PageSize;
             if (e.CommandName.Equals("Detalles"))
             {
                 hfIdBanner.Value = gvwConsulta.DataKeys[nFila].Values[0].ToString();
@@ -86,6 +88,12 @@ namespace AdminAgropet
                 if(e.Row.Cells[7].Text == DateTime.MinValue.ToString())
                     e.Row.Cells[7].Text = string.Empty;
             }
+        }
+
+        protected void gvwConsulta_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvwConsulta.PageIndex = e.NewPageIndex;
+            Buscar();
         }
 
         public void Buscar()
@@ -168,7 +176,7 @@ namespace AdminAgropet
 
         protected void gvwConsultaDetalle_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            int nFila = int.Parse(e.CommandArgument.ToString());
+            int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsultaDetalle.PageSize;
             if (e.CommandName.Equals("Editar"))
             {
                 hfIdBannerDetalle.Value = gvwConsultaDetalle.DataKeys[nFila].Values[0].ToString();
@@ -198,6 +206,12 @@ namespace AdminAgropet
 
         }
 
+        protected void gvwConsultaDetalle_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvwConsultaDetalle.PageIndex = e.NewPageIndex;
+            BuscarDetalle(Convert.ToInt32(hfIdBanner.Value));
+        }
+
         private void BuscarDetalle(int idBanner)
         {
             List<EntImagenesBannersDetalle> lstBannersConsultaDetalle = new CatalogoImagenesBanners().ObtenerImagenesBannersDetalle(idBanner);
@@ -224,7 +238,7 @@ namespace AdminAgropet
 
         protected void btnGuardarDetalle_Click(object sender, EventArgs e)
         {
-            if (inputfile.PostedFile != null && !string.IsNullOrEmpty(txtOrdenDetalle.Text))
+            if (inputfile.PostedFile != null && !string.IsNullOrEmpty(txtOrdenDetalle.Text) && !string.IsNullOrEmpty(txtRutaBannerDetalle.Value))
             {
                 // File was sent
                 var postedFile = inputfile.PostedFile;
@@ -258,12 +272,12 @@ namespace AdminAgropet
             {
                 //ACTUALIZA
                 int idBannerDetalle = Convert.ToInt32(hfIdBannerDetalle.Value);
-                correcto = new CatalogoImagenesBanners().ActualizarImagenesBannerDetalle(idBannerDetalle, idBanner, idUsuario, txtRutaBannerDetalle.Value, txtOrdenDetalle.Text);
+                correcto = new CatalogoImagenesBanners().ActualizarImagenesBannerDetalle(idBannerDetalle, idBanner, idUsuario, txtRutaBannerDetalle.Value, txtOrdenDetalle.Text, txtTiltulo.Text, txtSubtitulo.Text);
             }
             else
             {
                 //INSERTA 
-                correcto = new CatalogoImagenesBanners().InsertaImagenesBannerDetalle(idBanner, idUsuario, txtRutaBannerDetalle.Value, txtOrdenDetalle.Text);
+                correcto = new CatalogoImagenesBanners().InsertaImagenesBannerDetalle(idBanner, idUsuario, txtRutaBannerDetalle.Value, txtOrdenDetalle.Text, txtTiltulo.Text, txtSubtitulo.Text);
             }
 
             if (!correcto)
@@ -277,8 +291,7 @@ namespace AdminAgropet
         }
 
 
-        #endregion VistaNuevoDetalle
 
-       
+        #endregion VistaNuevoDetalle
     }
 }

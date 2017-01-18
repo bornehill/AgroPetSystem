@@ -35,7 +35,8 @@
                             <div class="panel-body">
                                 <asp:GridView ID="gvwConsulta" runat="server" AutoGenerateColumns="false" DataKeyNames="IdImagenArticulo"
                                     OnRowCommand="gvwConsulta_RowCommand" OnRowDataBound="gvwConsulta_RowDataBound"
-                                    CssClass="table table-bordered bs-table">
+                                    CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvwConsulta_PageIndexChanging"
+                                    >
                                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                     <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
@@ -110,7 +111,8 @@
                                         <center>
                                             <br />
                                             <asp:GridView ID="gvwConsultaDetalle" runat="server" AutoGenerateColumns="false" DataKeyNames="IdDetImagenArticulo, IdImagenArticulo"
-                                                CssClass="table table-bordered bs-table" OnRowCommand="gvwConsultaDetalle_RowCommand" OnRowDataBound="gvwConsultaDetalle_RowDataBound">
+                                                AllowPaging="true" PageSize="10" OnPageIndexChanging="gvwConsultaDetalle_PageIndexChanging" CssClass="table table-striped table-bordered table-hover"
+                                                OnRowCommand="gvwConsultaDetalle_RowCommand" OnRowDataBound="gvwConsultaDetalle_RowDataBound">
                                                 <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                                 <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                                 <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
@@ -153,14 +155,21 @@
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group col-lg-6">
-                                            <label style="text-align: left; width: 100%;">Ruta Imagen</label>
-                                            <asp:TextBox ID="txtImagenArticulo" runat="server" class="form-control" placeholder="Ingrese Articulo"></asp:TextBox>
+                                            <label style="text-align: left; width: 100%;">Imagen</label>
+                                            <div class="input-group">
+                                                <label class="input-group-btn">
+                                                    <span class="btn btn-primary">Buscar
+                                                         <input type="file" name="file" id="inputfile" class="file" runat="server" accept=".jpg,.jpeg,.png,.gif" style="display: none;" />
+                                                    </span>
+                                                </label>
+                                                <input id="txtImagenArticulo" runat="server" type="text" class="form-control" style="width: 300px;" readonly placeholder="Selecciona archivo..." />
+                                            </div>
                                         </div>
-                                        <center>
+                                        <div class="form-group col-lg-6">
                                             <br />
                                             <asp:Button ID="btnGuardarDetalle" runat="server" class="btn btn-success" Text="Guardar" OnClick="btnGuardarDetalle_Click" ValidationGroup="guarda"></asp:Button>
                                             <asp:Button ID="btnRegresarDetalleNuevo" runat="server" class="btn btn-info" Text="Regresar" OnClick="btnRegresarDetalleNuevo_Click"></asp:Button>
-                                        </center>
+                                        </div>
                                         <asp:HiddenField ID="hfIdImagenArticulo" runat="server" />
                                         <asp:HiddenField ID="hfIdImagenArticuloDetalle" runat="server" />
                                     </div>
@@ -174,6 +183,40 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnNuevo" />
+            <asp:PostBackTrigger ControlID="btnGuardar" />
+            <asp:PostBackTrigger ControlID="gvwConsulta" />
+            <asp:PostBackTrigger ControlID="btnNuevoDetalle" />
+            <asp:PostBackTrigger ControlID="btnGuardarDetalle" />
+            <asp:PostBackTrigger ControlID="gvwConsultaDetalle" />
         </Triggers>
     </asp:UpdatePanel>
+
+    <script type="text/javascript">
+        $(function () {
+
+            // We can attach the `fileselect` event to all file inputs on the page
+            $(document).on('change', ':file', function () {
+                var input = $(this),
+                    numFiles = input.get(0).files ? input.get(0).files.length : 1,
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [numFiles, label]);
+            });
+
+            // We can watch for our custom `fileselect` event like this
+            $(document).ready(function () {
+                $(':file').on('fileselect', function (event, numFiles, label) {
+
+                    var input = $(this).parents('.input-group').find(':text'),
+                        log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+                    if (input.length) {
+                        input.val(log);
+                    } else {
+                        if (log) alert(log);
+                    }
+                });
+            });
+        });
+
+    </script>
 </asp:Content>

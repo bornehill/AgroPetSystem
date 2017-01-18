@@ -4,7 +4,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <br />
-
     <asp:UpdatePanel ID="UpdatePanel1" runat="server">
         <ContentTemplate>
             <asp:MultiView ID="mvwBanners" runat="server">
@@ -33,7 +32,8 @@
                             <div class="panel-body">
                                 <asp:GridView ID="gvwConsulta" runat="server" AutoGenerateColumns="false" DataKeyNames="idbanner"
                                     OnRowCommand="gvwConsulta_RowCommand" OnRowDataBound="gvwConsulta_RowDataBound"
-                                    CssClass="table table-bordered bs-table">
+                                    CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvwConsulta_PageIndexChanging"
+                                    >
                                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                     <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
@@ -122,7 +122,8 @@
                                         <center>
                                             <br />
                                             <asp:GridView ID="gvwConsultaDetalle" runat="server" AutoGenerateColumns="false" DataKeyNames="IdDetBanners, IdBanner"
-                                                CssClass="table table-bordered bs-table" OnRowCommand="gvwConsultaDetalle_RowCommand" OnRowDataBound="gvwConsultaDetalle_RowDataBound">
+                                                CssClass="table table-striped table-bordered table-hover" OnRowCommand="gvwConsultaDetalle_RowCommand" OnRowDataBound="gvwConsultaDetalle_RowDataBound"
+                                                AllowPaging="true" PageSize="10" OnPageIndexChanging="gvwConsultaDetalle_PageIndexChanging">
                                                 <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                                 <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                                 <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
@@ -144,6 +145,8 @@
                                                     <asp:BoundField DataField="IdBanner" HeaderText="IdBanner" Visible="false" />
                                                     <asp:BoundField DataField="Orden" HeaderText="Orden" ItemStyle-Width="50px" />
                                                     <asp:BoundField DataField="PathImagen" HeaderText="Imagen" />
+                                                    <asp:BoundField DataField="Titulo" HeaderText="Titulo" />
+                                                    <asp:BoundField DataField="Subtitulo" HeaderText="Subtitulo" />
                                                 </Columns>
                                                 <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
                                             </asp:GridView>
@@ -166,23 +169,35 @@
                                     <div class="col-lg-12">
                                         <div class="form-group col-lg-2">
                                             <label style="text-align: left; width: 100%;">Orden</label>
-                                            <asp:TextBox ID="txtOrdenDetalle" runat="server" class="form-control" placeholder="Ingrese Orden de la imagen" Width="200px"></asp:TextBox>
+                                            <asp:TextBox ID="txtOrdenDetalle" runat="server" class="form-control" placeholder="Ingrese Orden..." Width="130px"></asp:TextBox>
                                         </div>
-                                        <div class="form-group col-lg-10">
-                                            <div class="btnera col-lg-12 col-md-12 col-xs-12">
-                                                <div class="col-xs-6 col-md-2">
-                                                     <label style="text-align: left; width: 100%;">Ruta Imagen</label>
-                                                    <div class="input-group">
-                                                        <label class="input-group-btn">
-                                                            <span class="btn btn-primary">Buscar
+                                        <div class="form-group col-lg-4">
+                                            <%-- <div class="btnera col-lg-12 col-md-12 col-xs-12">
+                                                <div class="col-xs-6 col-md-2">--%>
+                                            <label style="text-align: left; width: 100%;">Imagen</label>
+                                            <div class="input-group">
+                                                <label class="input-group-btn">
+                                                    <span class="btn btn-primary">Buscar
                                                                 <input type="file" name="file" id="inputfile" class="file" runat="server" accept=".jpg,.jpeg,.png,.gif" style="display: none;" />
-                                                            </span>
-                                                        </label>
-                                                        <input id="txtRutaBannerDetalle" runat="server" type="text" class="form-control" style="width: 367px;" readonly placeholder="Selecciona archivo..." />
-                                                    </div>
-                                                </div>
+                                                    </span>
+                                                </label>
+                                                <input id="txtRutaBannerDetalle" runat="server" type="text" class="form-control" style="width: 300px;" readonly placeholder="Selecciona archivo..." />
                                             </div>
+                                            <%--    </div>
+                                           </div>--%>
                                         </div>
+                                        <div class="form-group col-lg-3">
+                                            <label style="text-align: left; width: 100%;">Titulo</label>
+                                            <asp:TextBox ID="txtTiltulo" runat="server" class="form-control" placeholder="Ingrese Titulo..."></asp:TextBox>
+                                        </div>
+                                        <div class="form-group col-lg-3">
+                                            <label style="text-align: left; width: 100%;">Subtitulo</label>
+                                            <asp:TextBox ID="txtSubtitulo" runat="server" class="form-control" placeholder="Ingrese Subtitulo.."></asp:TextBox>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
                                         <center>
                                             <asp:Button ID="btnGuardarDetalle" runat="server" class="btn btn-success" Text="Guardar" OnClick="btnGuardarDetalle_Click"></asp:Button>
                                             <asp:Button ID="btnRegresarDetalleNuevo" runat="server" class="btn btn-info" Text="Regresar" OnClick="btnRegresarDetalleNuevo_Click"></asp:Button>
@@ -212,7 +227,7 @@
         $('#ContentPlaceHolder1_dtpFechaFinApp').datepicker();
     </script>
 
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(function () {
 
             // We can attach the `fileselect` event to all file inputs on the page
