@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.MySqlClient;
 using System.Reflection;
-
+using Agropet.Entidades.Base;
+using Agropet.Entidades.Especial;
+using Agropet.Entidades.Seguridad;
 using AgroPET.Datos.Comun;
 using AgroPET.Datos.Excepciones;
 using Utilidades;
@@ -112,5 +114,79 @@ namespace AgroPET.Datos.Catalogos
                 espActualizaDetalleAccesos.Dispose();
             }
         }
+
+    public List<EntidadMenuWeb> ObtenerMenuWeb(EntidadMenuWeb tEntidadNegocio)
+    {
+      List<EntidadMenuWeb> listResultado = new List<EntidadMenuWeb>();
+      EjecutaSP espSP = new EjecutaSP("usp_MenuWebObtener");
+
+      #region Asignacion de parametros
+
+      foreach (PropertyInfo piPropiedadEntidad in tEntidadNegocio.GetType().GetProperties())
+      {
+        CampoAttribute caAtributoEntidadNegocio = null;
+        object[] oAtributos = piPropiedadEntidad.GetCustomAttributes(true);
+        if (oAtributos.Length > 0)
+        {
+          caAtributoEntidadNegocio = (CampoAttribute)oAtributos.ToList().Find(x => x.GetType() == typeof(CampoAttribute));
+        }
+
+        if (caAtributoEntidadNegocio == null || caAtributoEntidadNegocio.EsParametroSP)
+        {
+          object oValor = piPropiedadEntidad.GetValue(tEntidadNegocio, null);
+          if (oValor != null)
+          {
+            string sNombreParametro = string.Format("{0}", piPropiedadEntidad.Name);
+            espSP.AgregarParametro(new MySqlParameter(sNombreParametro, oValor));
+          }
+        }
+      }
+
+      #endregion
+
+      MySqlDataReader drEntidad = espSP.ObtenerReader();
+      listResultado = ConversionesEntidadesNegocio<EntidadMenuWeb>.ConvertirAListadoEntidadNegocio(drEntidad);
+
+      espSP.Dispose();    //Cierra los accesos a la base de datos.
+
+      return listResultado;
     }
+
+    public List<EntidadBannersWeb> ObtenerBannersWeb(EntidadBannersWeb tEntidadNegocio)
+    {
+      List<EntidadBannersWeb> listResultado = new List<EntidadBannersWeb>();
+      EjecutaSP espSP = new EjecutaSP("usp_GetBannersWeb");
+
+      #region Asignacion de parametros
+
+      foreach (PropertyInfo piPropiedadEntidad in tEntidadNegocio.GetType().GetProperties())
+      {
+        CampoAttribute caAtributoEntidadNegocio = null;
+        object[] oAtributos = piPropiedadEntidad.GetCustomAttributes(true);
+        if (oAtributos.Length > 0)
+        {
+          caAtributoEntidadNegocio = (CampoAttribute)oAtributos.ToList().Find(x => x.GetType() == typeof(CampoAttribute));
+        }
+
+        if (caAtributoEntidadNegocio == null || caAtributoEntidadNegocio.EsParametroSP)
+        {
+          object oValor = piPropiedadEntidad.GetValue(tEntidadNegocio, null);
+          if (oValor != null)
+          {
+            string sNombreParametro = string.Format("{0}", piPropiedadEntidad.Name);
+            espSP.AgregarParametro(new MySqlParameter(sNombreParametro, oValor));
+          }
+        }
+      }
+
+      #endregion
+
+      MySqlDataReader drEntidad = espSP.ObtenerReader();
+      listResultado = ConversionesEntidadesNegocio<EntidadBannersWeb>.ConvertirAListadoEntidadNegocio(drEntidad);
+
+      espSP.Dispose();    //Cierra los accesos a la base de datos.
+
+      return listResultado;
+    }
+  }
 }

@@ -42,6 +42,8 @@
     <Compile Include="Base\Campos.cs" />
     <Compile Include="Base\Tabla.cs" />
     <Compile Include="CatABCs\DetAccesosPerfil.cs" />
+    <Compile Include="CatABCs\EntidadBanners.cs" />
+    <Compile Include="CatABCs\EntidadBannersDetail.cs" />
     <Compile Include="CatABCs\EntImagenesBannersDetalle.cs" />
     <Compile Include="CatABCs\EntImgenesBanners.cs" />
     <Compile Include="CatABCs\EntImagenesArticulosDetalle.cs" />
@@ -54,6 +56,7 @@
     <Compile Include="Consultas\ConsultaLineasArticulos.cs" />
     <Compile Include="Consultas\ConsultaPerfiles.cs" />
     <Compile Include="Consultas\ConsultaUsuarios.cs" />
+    <Compile Include="Especial\EntidadBannersWeb.cs" />
     <Compile Include="Especial\EntidadDDLUC.cs" />
     <Compile Include="Especial\EntidadResultProceso.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
