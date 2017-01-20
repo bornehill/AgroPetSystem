@@ -1,8 +1,0 @@
-.mGrid td { padding: 2px; border: solid 1px #c1c1c1; color: #717171; }
-.mGrid th { padding: 4px 2px; color: #fff; background: #00b300 url('../Imagenes/GridView/grd_head.png') repeat-x top; border-left: solid 1px #525252; font-size: 11px; }
-.mGrid .alt { background: #fcfcfc url('../Imagenes/GridView/grd_alt.png') repeat-x top; }
-.mGrid .pgr {background: #424242 url('../Imagenes/GridView/grd_pgr.png') repeat-x top; }
-.mGrid .pgr table { margin: 5px 0; }
-.mGrid .pgr td { border-width: 0; padding: 0 6px; border-left: solid 1px #666; color: #fff; line-height: 10px; }
-.mGrid .pgr a { color: #666; text-decoration: none; }
-.mGrid .pgr a:hover { color: #000; text-decoration: none; }
