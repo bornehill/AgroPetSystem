@@ -50,7 +50,6 @@ namespace AdminAgropet
         }
         #endregion
 
-        #region Eventos
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -68,51 +67,49 @@ namespace AdminAgropet
             }
         }
 
+        #region VistaBuscar
+
         protected void btn_Buscar_Click(object sender, EventArgs e)
         {
+            Buscar();
+        }
+
+        public void Buscar()
+        {
             //Se carga la información del grid con los filtros
-            string sBuscar = string.IsNullOrEmpty(txt_Menu_Buscar.Text) ? string.Empty : txt_Menu_Buscar.Text;
-
+            string sBuscar = string.IsNullOrEmpty(txt_Menu_Buscar.Value) ? string.Empty : txt_Menu_Buscar.Value;
             grd_Consultas.DataSource = ObtenerMenus(sBuscar);
-
             grd_Consultas.DataBind();
         }
 
-        protected void btn_Nuevo_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Obtiene una lista de menus filtradas
+        /// </summary>
+        /// <param name="sBuscar">Nombre del menu</param>
+        /// <returns>Lista con la información de los menus</returns>
+        private List<EntidadMenuWeb> ObtenerMenus(string sBuscar)
         {
-            txt_Comando.Value = string.Empty;
-
-            txt_Menu_Editar.Text = string.Empty;
-
-            txt_MenuUrl_Editar.Text = string.Empty;
-
-            chk_Estado_Editar.Checked = true;
-
-            LlenalListaMenusBuscar(0);
-
-            CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
-
-            div_Editar.Visible = true;
-            div_Principal.Visible = false;
-        }
-
-        protected void btn_Guardar_Click(object sender, EventArgs e)
-        {
-            // Se verifica que acción se realiza, si es inserción o modificación
-            bool bAccion = string.IsNullOrEmpty(txt_Comando.Value);
-            InsertarEditar(bAccion);
-
-            LlenalListaMenusBuscar(0);
-
-            btn_Cancelar_Click(sender, e);
-        }
-
-        protected void btn_Cancelar_Click(object sender, EventArgs e)
-        {
-            txt_Comando.Value = string.Empty;
-
-            div_Principal.Visible = true;
-            div_Editar.Visible = false;
+            List<EntidadMenuWeb> lstObjs;
+            try
+            {
+                using (var ObjMenus = new NegocioMenuWeb())
+                {
+                    if (string.IsNullOrEmpty(sBuscar))
+                    {
+                        lstObjs = ObjMenus.ObtenerMenus().ToList<EntidadMenuWeb>();
+                    }
+                    else
+                    {
+                        lstObjs = ObjMenus.ObtenerMenus(sBuscar).ToList<EntidadMenuWeb>();
+                    }
+                }
+                return lstObjs;
+            }
+            catch (Exception ex)
+            {
+                //MostrarMensaje(ex.Message, 0);
+                return null;
+            }
         }
 
         protected void grd_Consultas_RowCommand(object sender, GridViewCommandEventArgs e)
@@ -125,9 +122,9 @@ namespace AdminAgropet
 
                     txt_Comando.Value = Convert.ToString(grd_Consultas.DataKeys[iFila].Values[GrdDkId]);
 
-                    txt_Menu_Editar.Text = grd_Consultas.Rows[iFila].Cells[GrdMenu].Text;
+                    txt_Menu_Editar.Value = grd_Consultas.Rows[iFila].Cells[GrdMenu].Text;
 
-                    txt_MenuUrl_Editar.Text = string.IsNullOrEmpty(grd_Consultas.Rows[iFila].Cells[GrdUrl].Text)
+                    txt_MenuUrl_Editar.Value = string.IsNullOrEmpty(grd_Consultas.Rows[iFila].Cells[GrdUrl].Text)
                                                         ? "#" : grd_Consultas.Rows[iFila].Cells[GrdUrl].Text;
 
                     chk_Estado_Editar.Checked = Convert.ToBoolean(grd_Consultas.DataKeys[iFila].Values[GrdDkActivo]);
@@ -159,7 +156,71 @@ namespace AdminAgropet
         protected void grd_Consultas_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
             grd_Consultas.PageIndex = e.NewPageIndex;
-            btn_Buscar_Click(sender, new EventArgs());
+            Buscar();
+            //btn_Buscar_Click(sender, new EventArgs());
+        }
+
+        protected void btn_Nuevo_Click(object sender, EventArgs e)
+        {
+            txt_Comando.Value = string.Empty;
+
+            txt_Menu_Editar.Value = string.Empty;
+
+            txt_MenuUrl_Editar.Value = string.Empty;
+
+            chk_Estado_Editar.Checked = true;
+
+            LlenalListaMenusBuscar(0);
+
+            CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
+
+            div_Editar.Visible = true;
+            div_Principal.Visible = false;
+        }
+
+        #endregion VistaBuscar
+
+        #region VistaEditar
+
+
+
+        #endregion VistaEditar
+
+        #region Eventos
+
+
+
+        protected void btn_Guardar_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value) && !string.IsNullOrEmpty(txt_MenuUrl_Editar.Value) && ddl_ListaMenus_Editar.SelectedIndex!=0)
+            {
+                // Se verifica que acción se realiza, si es inserción o modificación
+                bool bAccion = string.IsNullOrEmpty(txt_Comando.Value);
+                InsertarEditar(bAccion);
+
+                LlenalListaMenusBuscar(0);
+
+                Cancelar();
+
+            }
+            else
+            {
+                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+                 "Es Necesario ingresar todos los datos: ", 2);
+            }
+        }
+
+        protected void btn_Cancelar_Click(object sender, EventArgs e)
+        {
+            Cancelar();
+        }
+
+        private void Cancelar()
+        {
+            txt_Comando.Value = string.Empty;
+            div_Principal.Visible = true;
+            div_Editar.Visible = false;
+
         }
 
         protected void tvw_Editar_SelectedNodeChanged(object sender, EventArgs e)
@@ -171,7 +232,7 @@ namespace AdminAgropet
         {
             if (hdnIdSeleccionado.Value != null)
             {
-                rblFiltro.ClearSelection();
+                // rblFiltro.ClearSelection();
                 divGpoLinArt.Visible = false;
 
             }
@@ -188,7 +249,8 @@ namespace AdminAgropet
             {
                 if (hdnIdSeleccionado != null)
                 {
-                    if (rblFiltro.SelectedIndex == 0)
+                    //if (rblFiltro.SelectedIndex == 0)
+                    if (rdGrupoLineaArticulo.Checked)
                     {
 
                         NegocioMenuWeb negMenuWeb = new NegocioMenuWeb();
@@ -286,14 +348,16 @@ namespace AdminAgropet
 
         protected void rblFiltro_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (rblFiltro.SelectedValue == "0")
+            //if (rblFiltro.SelectedValue == "0")
+            if (rdGrupoLineaArticulo.Checked)
             {
                 divGpoLinArt.Visible = true;
                 divLibresArt.Visible = false;
                 grdGposLin.Visible = true;
                 CargarGruposLineas();
             }
-            else
+
+            else if (rdLibreArticulo.Checked)
             {
                 divGpoLinArt.Visible = false;
                 divLibresArt.Visible = true;
@@ -308,35 +372,7 @@ namespace AdminAgropet
         #endregion
 
         #region Métodos Locales
-        /// <summary>
-        /// Obtiene una lista de menus filtradas
-        /// </summary>
-        /// <param name="sBuscar">Nombre del menu</param>
-        /// <returns>Lista con la información de los menus</returns>
-        private List<EntidadMenuWeb> ObtenerMenus(string sBuscar)
-        {
-            List<EntidadMenuWeb> lstObjs;
-            try
-            {
-                using (var ObjMenus = new NegocioMenuWeb())
-                {
-                    if (string.IsNullOrEmpty(sBuscar))
-                    {
-                        lstObjs = ObjMenus.ObtenerMenus().ToList<EntidadMenuWeb>();
-                    }
-                    else
-                    {
-                        lstObjs = ObjMenus.ObtenerMenus(sBuscar).ToList<EntidadMenuWeb>();
-                    }
-                }
-                return lstObjs;
-            }
-            catch (Exception ex)
-            {
-                //MostrarMensaje(ex.Message, 0);
-                return null;
-            }
-        }
+
 
         /// <summary>
         /// Llena la lista de menus(Editar)
@@ -391,9 +427,9 @@ namespace AdminAgropet
         {
             //// Obtener las subopciones que dependenden de esta misma opcion
             List<EntidadMenuWeb> lstSubOpciones = (from opcion in lstOpciones
-                                                where opcion.Padre == Convert.ToInt32(tnNodoPadre.Value)
-                                                orderby opcion.Orden ascending
-                                                select opcion).ToList<EntidadMenuWeb>();
+                                                   where opcion.Padre == Convert.ToInt32(tnNodoPadre.Value)
+                                                   orderby opcion.Orden ascending
+                                                   select opcion).ToList<EntidadMenuWeb>();
 
             foreach (EntidadMenuWeb objSubopcion in lstSubOpciones)
             {
@@ -464,8 +500,8 @@ namespace AdminAgropet
                 var oObj = new EntidadMenuWeb
                 {
                     MenuId = string.IsNullOrEmpty(txt_Comando.Value) ? 0 : Convert.ToInt32(txt_Comando.Value),
-                    Menu = txt_Menu_Editar.Text,
-                    MenuUrl = txt_MenuUrl_Editar.Text,
+                    Menu = txt_Menu_Editar.Value,
+                    MenuUrl = txt_MenuUrl_Editar.Value,
                     Padre = Convert.ToInt32(ddl_ListaMenus_Editar.SelectedItem.Value),
                     Activo = chk_Estado_Editar.Checked,
                     CreacionUsuarioId = GetUserLoggedID(),
@@ -522,8 +558,14 @@ namespace AdminAgropet
                 CheckBox chk = (CheckBox)grdLinArt.Rows[index].Cells[0].FindControl("chkSelItem");
                 if (chk.Checked)
                 {
-                    lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos { Id_Linea_Art = Convert.ToInt32(grdLinArt.DataKeys[index].Value),
-                    Familia = "", Categoria="", Marca="", Nombre=""},0));
+                    lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
+                    {
+                        Id_Linea_Art = Convert.ToInt32(grdLinArt.DataKeys[index].Value),
+                        Familia = "",
+                        Categoria = "",
+                        Marca = "",
+                        Nombre = ""
+                    }, 0));
                 }
             }
 
@@ -540,13 +582,13 @@ namespace AdminAgropet
             List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
 
             lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
-                    {
-                        Id_Linea_Art = 0,
-                        Familia = trvLibArt.SelectedNode.ValuePath.Split('/')[0] ,
-                        Categoria = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 1 ? trvLibArt.SelectedNode.ValuePath.Split('/')[1] : "",
-                        Marca = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 2 ? trvLibArt.SelectedNode.ValuePath.Split('/')[2] : "",
-                        Nombre = ""
-                    }, 1));
+            {
+                Id_Linea_Art = 0,
+                Familia = trvLibArt.SelectedNode.ValuePath.Split('/')[0],
+                Categoria = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 1 ? trvLibArt.SelectedNode.ValuePath.Split('/')[1] : "",
+                Marca = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 2 ? trvLibArt.SelectedNode.ValuePath.Split('/')[2] : "",
+                Nombre = ""
+            }, 1));
 
             grdLibArt.DataSource = lstArt;
             grdLibArt.DataBind();
@@ -615,8 +657,8 @@ namespace AdminAgropet
         {
             //// Obtener las subopciones que dependenden de esta misma opcion
             List<ConsultaLibresArticulos> lstSubOpciones = (from opcion in lstOpciones
-                                                   where opcion.Familia == tnNodoPadre.Value
-                                                   orderby opcion.Familia ascending
+                                                            where opcion.Familia == tnNodoPadre.Value
+                                                            orderby opcion.Familia ascending
                                                             select opcion).ToList<ConsultaLibresArticulos>();
 
             var lstSM = lstOpciones.Where(s => s.Familia == tnNodoPadre.Value).Select(s => s.Categoria).Distinct();
