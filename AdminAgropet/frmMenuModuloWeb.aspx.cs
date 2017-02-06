@@ -118,7 +118,7 @@ namespace AdminAgropet
             {
                 if (e.CommandName == ComandoEditar)
                 {
-                    int iFila = int.Parse(e.CommandArgument.ToString());
+                    int iFila = int.Parse(e.CommandArgument.ToString()) % grd_Consultas.PageSize;
 
                     txt_Comando.Value = Convert.ToString(grd_Consultas.DataKeys[iFila].Values[GrdDkId]);
 
@@ -157,7 +157,6 @@ namespace AdminAgropet
         {
             grd_Consultas.PageIndex = e.NewPageIndex;
             Buscar();
-            //btn_Buscar_Click(sender, new EventArgs());
         }
 
         protected void btn_Nuevo_Click(object sender, EventArgs e)
@@ -183,6 +182,11 @@ namespace AdminAgropet
         #region VistaEditar
 
 
+        protected void tvw_Editar_SelectedNodeChanged(object sender, EventArgs e)
+        {
+            hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
+        }
+
 
         #endregion VistaEditar
 
@@ -192,7 +196,7 @@ namespace AdminAgropet
 
         protected void btn_Guardar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value) && !string.IsNullOrEmpty(txt_MenuUrl_Editar.Value) && ddl_ListaMenus_Editar.SelectedIndex!=0)
+            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value) && !string.IsNullOrEmpty(txt_MenuUrl_Editar.Value) ) //&& ddl_ListaMenus_Editar.SelectedIndex!=0)
             {
                 // Se verifica que acción se realiza, si es inserción o modificación
                 bool bAccion = string.IsNullOrEmpty(txt_Comando.Value);
@@ -223,10 +227,7 @@ namespace AdminAgropet
 
         }
 
-        protected void tvw_Editar_SelectedNodeChanged(object sender, EventArgs e)
-        {
-            hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
-        }
+       
 
         protected void btnMostrarArt_Click(object sender, EventArgs e)
         {

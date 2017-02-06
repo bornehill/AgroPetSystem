@@ -5,7 +5,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-     <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function () {
             $("input[type='radio']").click(function () {
                 __doPostBack();
@@ -13,8 +13,8 @@
         });
     </script>
     <br />
-    <asp:UpdatePanel ID="udpMain" runat="server">
-        <ContentTemplate>
+  <%--  <asp:UpdatePanel ID="udpMain" runat="server">
+        <ContentTemplate>--%>
 
             <div id="div_Principal" runat="server" class="col-lg-12">
                 <div class="panel panel-default">
@@ -59,13 +59,16 @@
                                                         CommandArgument="<%# ((GridViewRow)Container).RowIndex %>" />
                                             </ItemTemplate>
                                         </asp:TemplateField>--%>
-                                <asp:TemplateField>
+                                <asp:TemplateField Visible="false">
                                     <HeaderTemplate>
                                         <asp:CheckBox ID="chkSelTodoHdr" runat="server"
                                             ToolTip="Seleccionar / Des-seleccionar todos" />
                                     </HeaderTemplate>
                                     <ItemTemplate>
-                                        <asp:CheckBox ID="chkSelItem" runat="server" />
+                                        <div class="squaredOne">
+                                            <asp:CheckBox ID="chkSelItem" runat="server" />
+                                            <label for="ContentPlaceHolder1_grd_Consultas_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                        </div>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderText="ID" DataField="MenuId" Visible="False" />
@@ -73,6 +76,7 @@
                                 <asp:BoundField HeaderText="Url" DataField="MenuUrl" />
                                 <asp:BoundField HeaderText="Padre" DataField="PadreNom" />
                             </Columns>
+                            <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
                         </asp:GridView>
                     </div>
                 </div>
@@ -100,13 +104,13 @@
                                 <label style="text-align: left; width: 100%; font-size: small">Padre:</label>
                                 <asp:DropDownList ID="ddl_ListaMenus_Editar" class="form-control" runat="server" ValidationGroup="guarda" Width="100%"></asp:DropDownList>
                                 <asp:ListSearchExtender ID="lseMenus" runat="server" TargetControlID="ddl_ListaMenus_Editar"
-                                            PromptText="Busqueda por.." QueryPattern="Contains">
+                                    PromptText="Busqueda por.." QueryPattern="Contains">
                                 </asp:ListSearchExtender>
                             </div>
-                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="text-align: left">
                                 <label style="text-align: left; width: 100%; font-size: small">Activo:</label>
-                                <div class="btn btn-default">
-                                    <div class="material-switch pull-right">
+                                <div class="btn btn-default" style="height: 34px">
+                                    <div class="material-switch pull-right" style="padding-top: 10px">
                                         <input id="chk_Estado_Editar" runat="server" type="checkbox" />
                                         <label for="ContentPlaceHolder1_chk_Estado_Editar" style="text-align: left" class="label-success"></label>
                                     </div>
@@ -169,94 +173,84 @@
                             <%--<div class="panel-heading">Asignar Articulos</div>--%>
                             <div class="panel-body">
                                 <div class="row">
-                                    <asp:GridView ID="grdGposLin" runat="server" SkinID="NoPaginacion" AutoGenerateColumns="False"
-                                        AllowPaging="True" HorizontalAlign="Center"
-                                        DataKeyNames="Id_Gpo_Lin" OnPageIndexChanging="grdGposLin_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None">
-                                        <AlternatingRowStyle BackColor="White" />
-                                        <Columns>
-                                            <asp:TemplateField>
-                                                <HeaderTemplate>
-                                                    <asp:CheckBox ID="chkSelTodoHdr" runat="server"
-                                                        ToolTip="Seleccionar / Des-seleccionar todos" />
-                                                </HeaderTemplate>
-                                                <ItemTemplate>
-                                                    <asp:CheckBox ID="chkSelItem" runat="server" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="Nombre" HeaderText="Grupos Lineas" />
-                                        </Columns>
-                                        <EditRowStyle BackColor="#7C6F57" />
-                                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                                        <RowStyle BackColor="#E3EAEB" />
-                                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                                        <SortedAscendingHeaderStyle BackColor="#246B61" />
-                                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                                        <SortedDescendingHeaderStyle BackColor="#15524A" />
-                                    </asp:GridView>
-
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <asp:GridView ID="grdGposLin" runat="server" AutoGenerateColumns="False"
+                                            DataKeyNames="Id_Gpo_Lin" OnPageIndexChanging="grdGposLin_PageIndexChanging"
+                                            CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
+                                            <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                            <EditRowStyle BackColor="#ffffcc" Height="10px" />
+                                            <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                                            <Columns>
+                                                <asp:TemplateField>
+                                                    <%-- <HeaderTemplate>
+                                                        <div class="squaredOne">
+                                                            <asp:CheckBox ID="chkSelTodoHdr" runat="server" AutoPostBack="True" />
+                                                            <label for="ContentPlaceHolder1_grdGposLin_chkSelTodoHdr"></label>
+                                                        </div>
+                                                    </HeaderTemplate>--%>
+                                                    <ItemTemplate>
+                                                        <div class="squaredOne">
+                                                            <asp:CheckBox ID="chkSelItem" runat="server" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged" />
+                                                            <label for="ContentPlaceHolder1_grdGposLin_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="Nombre" HeaderText="Grupos Lineas" />
+                                            </Columns>
+                                            <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
+                                        </asp:GridView>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <asp:GridView ID="grdLinArt" runat="server" AutoGenerateColumns="False" DataKeyNames="Id_Lin_Art" OnPageIndexChanging="grdLinArt_PageIndexChanging"
+                                            CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
+                                            <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                            <EditRowStyle BackColor="#ffffcc" Height="10px" />
+                                            <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                                            <AlternatingRowStyle BackColor="White" />
+                                            <Columns>
+                                                <asp:TemplateField>
+                                                    <%--<HeaderTemplate>
+                                                        <asp:CheckBox ID="chkSelTodoHdr" runat="server"
+                                                            ToolTip="Seleccionar / Des-seleccionar todos" />
+                                                    </HeaderTemplate>--%>
+                                                    <ItemTemplate>
+                                                        <div class="squaredOne">
+                                                            <asp:CheckBox ID="chkSelItem" runat="server" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged1" />
+                                                            <label for="ContentPlaceHolder1_grdLinArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="Nombre" HeaderText="Lineas Articulos" />
+                                            </Columns>
+                                            <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
+                                        </asp:GridView>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                        <asp:GridView ID="grdArt" runat="server" DataKeyNames="Id_Art" OnDataBound="grdArt_DataBound" OnPageIndexChanging="grdArt_PageIndexChanging"
+                                            CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
+                                            <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                            <EditRowStyle BackColor="#ffffcc" Height="10px" />
+                                            <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                                            <AlternatingRowStyle BackColor="White" />
+                                            <Columns>
+                                                <asp:TemplateField>
+                                                    <%-- <HeaderTemplate>
+                                                        <asp:CheckBox ID="chkSelTodoHdr" runat="server"
+                                                            ToolTip="Seleccionar / Des-seleccionar todos" />
+                                                    </HeaderTemplate>--%>
+                                                    <ItemTemplate>
+                                                        <div class="squaredOne">
+                                                            <asp:CheckBox ID="chkSelItem" runat="server" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged2" />
+                                                            <label for="ContentPlaceHolder1_grdArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                                        </div>
+                                                    </ItemTemplate>
+                                                </asp:TemplateField>
+                                                <asp:BoundField DataField="Nombre" HeaderText="Articulos" />
+                                            </Columns>
+                                            <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
+                                        </asp:GridView>
+                                    </div>
                                 </div>
-                                <div class="row">
-                                    <asp:GridView ID="grdLinArt" runat="server" SkinID="NoPaginacion" AutoGenerateColumns="False"
-                                        AllowPaging="True" HorizontalAlign="Center" DataKeyNames="Id_Lin_Art" OnPageIndexChanging="grdLinArt_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None">
-                                        <AlternatingRowStyle BackColor="White" />
-                                        <Columns>
-                                            <asp:TemplateField>
-                                                <HeaderTemplate>
-                                                    <asp:CheckBox ID="chkSelTodoHdr" runat="server"
-                                                        ToolTip="Seleccionar / Des-seleccionar todos" />
-                                                </HeaderTemplate>
-                                                <ItemTemplate>
-                                                    <asp:CheckBox ID="chkSelItem" runat="server" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged1" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="Nombre" HeaderText="Lineas Articulos" />
-                                        </Columns>
-                                        <EditRowStyle BackColor="#7C6F57" />
-                                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                                        <RowStyle BackColor="#E3EAEB" />
-                                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                                        <SortedAscendingHeaderStyle BackColor="#246B61" />
-                                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                                        <SortedDescendingHeaderStyle BackColor="#15524A" />
-                                    </asp:GridView>
-
-                                </div>
-
-                                <div class="row">
-                                    <asp:GridView ID="grdArt" runat="server" SkinID="NoPaginacion" AutoGenerateColumns="False"
-                                        AllowPaging="True" HorizontalAlign="Center" DataKeyNames="Id_Art" OnDataBound="grdArt_DataBound" OnPageIndexChanging="grdArt_PageIndexChanging" CellPadding="4" ForeColor="#333333" GridLines="None">
-                                        <AlternatingRowStyle BackColor="White" />
-                                        <Columns>
-                                            <asp:TemplateField>
-                                                <HeaderTemplate>
-                                                    <asp:CheckBox ID="chkSelTodoHdr" runat="server"
-                                                        ToolTip="Seleccionar / Des-seleccionar todos" />
-                                                </HeaderTemplate>
-                                                <ItemTemplate>
-                                                    <asp:CheckBox ID="chkSelItem" runat="server" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged2" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="Nombre" HeaderText="Articulos" />
-                                        </Columns>
-                                        <EditRowStyle BackColor="#7C6F57" />
-                                        <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                        <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                        <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                                        <RowStyle BackColor="#E3EAEB" />
-                                        <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                                        <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                                        <SortedAscendingHeaderStyle BackColor="#246B61" />
-                                        <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                                        <SortedDescendingHeaderStyle BackColor="#15524A" />
-                                    </asp:GridView>
-                                </div>
-
                             </div>
                         </div>
 
@@ -269,31 +263,29 @@
                                 </asp:TreeView>
                             </div>
                             <div class="panel-body">
-                                <asp:GridView ID="grdLibArt" runat="server" SkinID="NoPaginacion" AutoGenerateColumns="False"
-                                    AllowPaging="True" HorizontalAlign="Center" DataKeyNames="Id_Art" CellPadding="4" ForeColor="#333333" GridLines="None">
+                                <asp:GridView ID="grdLibArt" runat="server" AutoGenerateColumns="False" DataKeyNames="Id_Art"
+                                    CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
+                                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                    <EditRowStyle BackColor="#ffffcc" Height="10px" />
+                                    <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                     <AlternatingRowStyle BackColor="White" />
                                     <Columns>
                                         <asp:TemplateField>
-                                            <HeaderTemplate>
-                                                <asp:CheckBox ID="chkSelTodoHdr" runat="server"
+                                             <%-- <HeaderTemplate>
+                                                 
+                                               <asp:CheckBox ID="chkSelTodoHdr" runat="server"
                                                     ToolTip="Seleccionar / Des-seleccionar todos" />
-                                            </HeaderTemplate>
+                                            </HeaderTemplate>--%>
                                             <ItemTemplate>
-                                                <asp:CheckBox ID="chkSelItem" runat="server" AutoPostBack="True" />
+                                                <div class="squaredOne">
+                                                    <asp:CheckBox ID="chkSelItem" runat="server" AutoPostBack="True" />
+                                                    <label for="ContentPlaceHolder1_grdLibArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                                </div>
                                             </ItemTemplate>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="Nombre" HeaderText="Articulos" />
                                     </Columns>
-                                    <EditRowStyle BackColor="#7C6F57" />
-                                    <FooterStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                    <HeaderStyle BackColor="#1C5E55" Font-Bold="True" ForeColor="White" />
-                                    <PagerStyle BackColor="#666666" ForeColor="White" HorizontalAlign="Center" />
-                                    <RowStyle BackColor="#E3EAEB" />
-                                    <SelectedRowStyle BackColor="#C5BBAF" Font-Bold="True" ForeColor="#333333" />
-                                    <SortedAscendingCellStyle BackColor="#F8FAFA" />
-                                    <SortedAscendingHeaderStyle BackColor="#246B61" />
-                                    <SortedDescendingCellStyle BackColor="#D4DFE1" />
-                                    <SortedDescendingHeaderStyle BackColor="#15524A" />
+                                    <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
                                 </asp:GridView>
                             </div>
                             <div class="panel-body">
@@ -307,12 +299,19 @@
 
             <asp:HiddenField ID="hdnFlag" runat="server" />
             <asp:HiddenField ID="hdnIdSeleccionado" runat="server" />
-        </ContentTemplate>
+       <%-- </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btn_Buscar" />
             <asp:PostBackTrigger ControlID="btn_Nuevo" />
             <asp:PostBackTrigger ControlID="btn_Guardar" />
+            <asp:PostBackTrigger ControlID="btn_Cancelar" />
             <asp:PostBackTrigger ControlID="grd_Consultas" />
+            <asp:PostBackTrigger ControlID="tvw_Editar" />
+            <asp:PostBackTrigger ControlID="grdGposLin" />
+            <asp:PostBackTrigger ControlID="grdLinArt" />
+            <asp:PostBackTrigger ControlID="grdArt" />
+            <asp:PostBackTrigger ControlID="grdLibArt" />
+            <asp:PostBackTrigger ControlID="btnAsignar" />
         </Triggers>
-    </asp:UpdatePanel>
+    </asp:UpdatePanel>--%>
 </asp:Content>
