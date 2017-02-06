@@ -1,4 +1,22 @@
-﻿ .material-switch > input[type="checkbox"] {
+﻿.Visible > input[type="checkbox"]  {
+    visibility:visible!important;
+	width: 18px;
+	height: 18px;
+	background: #fcfff4;
+	background: -webkit-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -moz-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -o-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: -ms-linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	background: linear-gradient(top, #fcfff4 0%, #dfe5d7 40%, #b3bead 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fcfff4', endColorstr='#b3bead',GradientType=0 );
+	margin: 0px auto;
+	-webkit-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	box-shadow: inset 0px 1px 1px white, 0px 1px 3px rgba(0,0,0,0.5);
+	position: relative;
+}
+
+.material-switch > input[type="checkbox"] {
     display: none;   
 }
 
@@ -42,21 +60,6 @@
     background: inherit;
     left: 20px;
 }
-
-
-
-/*body {
-	background: #555;
-}
-
-h1 {
-	color: #eee;
-	font: 30px Arial, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	text-shadow: 0px 1px black;
-	text-align: center;
-	margin-bottom: 50px;
-}*/
 
 input[type=checkbox] {
 	visibility: hidden;
