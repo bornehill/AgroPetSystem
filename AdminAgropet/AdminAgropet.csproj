@@ -113,10 +113,12 @@
     <Content Include="CSS\TreeView.css" />
     <Content Include="frmAccesosPerfiles.aspx" />
     <Content Include="frmDsctosPromos.aspx" />
+    <Content Include="frmError.aspx" />
     <Content Include="frmListasPrecios.aspx" />
     <Content Include="frmLoginModuloAdmin.aspx" />
     <Content Include="frmMenuModuloAdmin.aspx" />
     <Content Include="frmMenuModuloWeb.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Imagenes\action_check.png" />
     <Content Include="Imagenes\action_remove.png" />
     <Content Include="Imagenes\Add-32.png" />
@@ -170,6 +172,8 @@
     <Content Include="Imagenes\Menu\fdMenuActivo_Small.jpg" />
     <Content Include="Imagenes\Menu\fdMenuPasivo.jpg" />
     <Content Include="Imagenes\Menu\fdMenuPasivo_Small.jpg" />
+    <Content Include="Imagenes\PaginaMantenimiento.jpg" />
+    <Content Include="Imagenes\PaginaMantenimiento.png" />
     <Content Include="Imagenes\pdf16.png" />
     <Content Include="Imagenes\petceterablanco.jpg" />
     <Content Include="Imagenes\petceterablanco_small.jpg" />
@@ -300,6 +304,13 @@
     <Compile Include="frmDsctosPromos.aspx.designer.cs">
       <DependentUpon>frmDsctosPromos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmError.aspx.cs">
+      <DependentUpon>frmError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmError.aspx.designer.cs">
+      <DependentUpon>frmError.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmListasPrecios.aspx.cs">
       <DependentUpon>frmListasPrecios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -327,6 +338,9 @@
     </Compile>
     <Compile Include="frmMenuModuloWeb.aspx.designer.cs">
       <DependentUpon>frmMenuModuloWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
