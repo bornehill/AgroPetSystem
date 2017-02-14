@@ -11,7 +11,12 @@ namespace AdminAgropet
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                mvwArticulos.SetActiveView(vwConsulta);
+                //LLenaDropDown();
+                //Buscar();
+            }
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -19,6 +24,11 @@ namespace AdminAgropet
             this.DivClientesABC.Visible = true;
             this.divAlta.Visible = true;
             this.divCambio.Visible = false;
+
+            //mvwArticulos.SetActiveView(vwNuevo);
+            //BEdicion = false;
+            //LimpiarDatos();
+            //ddlArticulos.SelectedIndex = 0;
         }
     }
 }

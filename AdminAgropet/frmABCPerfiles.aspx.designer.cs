@@ -22,58 +22,22 @@ namespace AdminAgropet {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// FiltroBusqueda control.
+        /// mvwPerfiles control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroBusqueda;
+        protected global::System.Web.UI.WebControls.MultiView mvwPerfiles;
         
         /// <summary>
-        /// btnNuevo control.
+        /// vwConsulta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnNuevo;
-        
-        /// <summary>
-        /// btnBuscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnBuscar;
-        
-        /// <summary>
-        /// Busqueda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Busqueda;
-        
-        /// <summary>
-        /// lbletiq control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbletiq;
-        
-        /// <summary>
-        /// label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label2;
+        protected global::System.Web.UI.WebControls.View vwConsulta;
         
         /// <summary>
         /// ddluc_Perfil control.
@@ -85,15 +49,6 @@ namespace AdminAgropet {
         protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddluc_Perfil;
         
         /// <summary>
-        /// label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label3;
-        
-        /// <summary>
         /// SelEstatus control.
         /// </summary>
         /// <remarks>
@@ -103,22 +58,22 @@ namespace AdminAgropet {
         protected global::System.Web.UI.WebControls.DropDownList SelEstatus;
         
         /// <summary>
-        /// divResulBusqueda control.
+        /// btnBuscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResulBusqueda;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnBuscar;
         
         /// <summary>
-        /// pnlGrid control.
+        /// btnNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGrid;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnNuevo;
         
         /// <summary>
         /// grdPerfiles control.
@@ -130,58 +85,22 @@ namespace AdminAgropet {
         protected global::System.Web.UI.WebControls.GridView grdPerfiles;
         
         /// <summary>
-        /// btnCambiaEstatus control.
+        /// vwNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCambiaEstatus;
+        protected global::System.Web.UI.WebControls.View vwNuevo;
         
         /// <summary>
-        /// DivPerfilesABC control.
+        /// lblTituloNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivPerfilesABC;
-        
-        /// <summary>
-        /// pnlPerfilesABC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlPerfilesABC;
-        
-        /// <summary>
-        /// divAlta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlta;
-        
-        /// <summary>
-        /// divCambio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCambio;
-        
-        /// <summary>
-        /// lblIdPerfil control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIdPerfil;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTituloNuevo;
         
         /// <summary>
         /// txtIdPerfil control.
@@ -190,16 +109,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdPerfil;
-        
-        /// <summary>
-        /// lblPerfil control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPerfil;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtIdPerfil;
         
         /// <summary>
         /// txtPerfil control.
@@ -208,16 +118,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPerfil;
-        
-        /// <summary>
-        /// lblFechaC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaC;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPerfil;
         
         /// <summary>
         /// txtFechaCreacion control.
@@ -226,16 +127,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaCreacion;
-        
-        /// <summary>
-        /// lblusrcreo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblusrcreo;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaCreacion;
         
         /// <summary>
         /// txtUserCreo control.
@@ -244,16 +136,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserCreo;
-        
-        /// <summary>
-        /// lblFechaModif control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaModif;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUserCreo;
         
         /// <summary>
         /// txtFechaModif control.
@@ -262,16 +145,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaModif;
-        
-        /// <summary>
-        /// lblUserModif control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserModif;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaModif;
         
         /// <summary>
         /// txtUserModifico control.
@@ -280,16 +154,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserModifico;
-        
-        /// <summary>
-        /// lblEstatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEstatus;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUserModifico;
         
         /// <summary>
         /// ddlEstadoABC control.
