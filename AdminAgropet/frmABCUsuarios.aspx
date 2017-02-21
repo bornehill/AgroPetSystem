@@ -116,7 +116,7 @@
                                         <input type="text" id="txtPasswordUsr" runat="server" class="form-control" maxlength="20" placeholder="Ingresa Password..." />
                                     </div>
                                     <div class="col-xs-4">
-                                        <label style="text-align: left; width: 100%;">Clave Usr:</label>
+                                        <label style="text-align: left; width: 100%;">Confirma Contraseña:</label>
                                         <input type="text" id="txtConfirmPass" runat="server" class="form-control" maxlength="20" placeholder="Confirma Password..." />
                                         <asp:CompareValidator ID="CV_ComparaPass" runat="server" ControlToValidate="txtPasswordUsr"
                                             ErrorMessage="Las contraseñas especificadas no son iguales, por ravor corrijalas."
