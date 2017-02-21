@@ -48,8 +48,10 @@
     <Compile Include="Catalogos\CatalogoDA.cs" />
     <Compile Include="Catalogos\CatalogosExtDA.cs" />
     <Compile Include="Catalogos\DatosArticulos.cs" />
+    <Compile Include="Catalogos\DatosCliente.cs" />
     <Compile Include="Catalogos\DatosImagenesArticulos.cs" />
     <Compile Include="Catalogos\DatosImagenesBanners.cs" />
+    <Compile Include="Catalogos\DatosUsuario.cs" />
     <Compile Include="Comun\ConversionesEntidadesNegocio.cs" />
     <Compile Include="Comun\EjecutaSP.cs" />
     <Compile Include="Excepciones\SinIDException.cs" />
