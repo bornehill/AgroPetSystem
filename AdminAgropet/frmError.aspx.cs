@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Agropet.Entidades.Seguridad;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,9 +10,19 @@ namespace AdminAgropet
 {
     public partial class frmError : System.Web.UI.Page
     {
+        private EntidadUsuarioLogeado usuarioLogeado;
+        public EntidadUsuarioLogeado UsuarioLogeado
+        {
+            get { return usuarioLogeado = (EntidadUsuarioLogeado)Session["UsuarioSesion"]; }
+            set { usuarioLogeado = value; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            MuestraError();
+            if (!IsPostBack)
+            {
+                MuestraError();
+            }
         }
 
         private void MuestraError()
@@ -23,6 +34,11 @@ namespace AdminAgropet
 
             //Limpiamos el error 
             Server.ClearError();
+        }
+
+        protected void btnRegresar_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/frmMenuModuloAdmin.aspx", false);
         }
 
         //private void EnviaCorreoError()

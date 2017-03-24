@@ -38,6 +38,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <div style="text-align:center">
+                                <asp:Button ID="btnRegresar" runat="server" CssClass="btn btn-info" Text="Regresar" OnClick="btnRegresar_Click" />
+                            </div>
                         </div>
                     </div>
                 </div>
