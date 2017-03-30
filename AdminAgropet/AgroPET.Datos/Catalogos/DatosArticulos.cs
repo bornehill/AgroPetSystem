@@ -9,36 +9,20 @@ using System.Threading.Tasks;
 
 namespace AgroPET.Datos.Catalogos
 {
-    public class DatosArticulos
+    public class DatosArticulos : DatosBase
     {
         public List<ConsultaArticulos> ObtenerArticulos()
         {
-            //MySqlDataReader drDatos;
-            //EjecutaSP spEjecutaSP = new EjecutaSP("uspArticulosObtener");
-
-            //drDatos = spEjecutaSP.ObtenerReader();
-
-            //List<ConsultaArticulos> lstInfo = ConversionesEntidadesNegocio<ConsultaArticulos>.ConvertirAListadoEntidadNegocio(drDatos);
-
-            //spEjecutaSP.Dispose();
-
-            //return lstInfo;
-
-            return null;
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspArticulosObtener";
+            return accesoDatos.ConsultaDataList<ConsultaArticulos>();
         }
 
         public List<ConsultaArticulos> ObtenerArticulosDropDown()
         {
-            MySqlDataReader drDatos;
-            EjecutaSP spEjecutaSP = new EjecutaSP("uspArticulosObtenerDropDown");
-
-            drDatos = spEjecutaSP.ObtenerReader();
-
-            List<ConsultaArticulos> lstInfo = ConversionesEntidadesNegocio<ConsultaArticulos>.ConvertirAListadoEntidadNegocio(drDatos);
-
-            spEjecutaSP.Dispose();
-
-            return lstInfo;
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspArticulosObtenerDropDown";
+            return accesoDatos.ConsultaDataList<ConsultaArticulos>();
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Agropet.Entidades.Consultas;
+using Agropet.Entidades.Seguridad;
 using AgroPET.Datos.Comun;
 using MySql.Data.MySqlClient;
 using System;
@@ -8,32 +9,33 @@ using System.Text;
 
 namespace AgroPET.Datos.Catalogos
 {
-    public class DatosUsuario
+    public class DatosUsuario : DatosBase
     {
+        public EntidadUsuarioLogeado ValidarUsuario(string sClaveUsuario, string sPasswdUsr)
+        {
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspusuarios_validausr";
+            accesoDatos.parametros.Agrega("@vNombreUsuario", sClaveUsuario, true);
+            accesoDatos.parametros.Agrega("@vPassUsuario", sPasswdUsr, true);
+            return accesoDatos.ConsultaDataList<EntidadUsuarioLogeado>().FirstOrDefault();
+        }
+
+        public List<EntidadDetAccesoPerfil> ObtenerDetPerfilUsuario(long nIdPerfil)
+        {
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspDetAccesosxPerfil_Seleccion";
+            accesoDatos.parametros.Agrega("@nIdPerfil", nIdPerfil, true);
+            return accesoDatos.ConsultaDataList<EntidadDetAccesoPerfil>();
+        }
+
         public List<ConsultaUsuarios> ObtenerUsuarios(int? IdPerfil, int? IdUsuario, int? Activo)
         {
-            MySqlDataReader drDatos;
-            EjecutaSP spEjecutaSP = new EjecutaSP("uspUsuariosConsultar");
-
-            MySqlParameter param_IdPerfil = new MySqlParameter("param_IdPerfil", MySqlDbType.Int32);
-            param_IdPerfil.Value = IdPerfil;
-            spEjecutaSP.AgregarParametro(param_IdPerfil);
-
-            MySqlParameter param_IdUsuario = new MySqlParameter("param_IdUsuario", MySqlDbType.Int32);
-            param_IdUsuario.Value = IdUsuario;
-            spEjecutaSP.AgregarParametro(param_IdUsuario);
-
-            MySqlParameter param_Activo = new MySqlParameter("param_Activo", MySqlDbType.Int32);
-            param_Activo.Value = Activo;
-            spEjecutaSP.AgregarParametro(param_Activo);
-
-            drDatos = spEjecutaSP.ObtenerReader();
-
-            List<ConsultaUsuarios> lstInfo = ConversionesEntidadesNegocio<ConsultaUsuarios>.ConvertirAListadoEntidadNegocio(drDatos);
-
-            spEjecutaSP.Dispose();
-
-            return lstInfo;
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspUsuariosConsultar";
+            accesoDatos.parametros.Agrega("@param_IdPerfil", IdPerfil, true);
+            accesoDatos.parametros.Agrega("@param_IdUsuario", IdUsuario, true);
+            accesoDatos.parametros.Agrega("@param_Activo", Activo, true);
+            return accesoDatos.ConsultaDataList<ConsultaUsuarios>();
         }
     }
 }
