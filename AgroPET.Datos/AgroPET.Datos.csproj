@@ -64,15 +64,15 @@
     <Compile Include="Seguridad\DatosMenuWeb.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Agropet.Entidades\AgroPET.Entidades.csproj">
+    <ProjectReference Include="..\Agropet.Entidades\AgroPET.Entidades.csproj">
       <Project>{6b241973-acfd-4c80-9c5a-d75814d90ef6}</Project>
       <Name>AgroPET.Entidades</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\InterfacesAgroPET\InterfacesAgroPET.csproj">
+    <ProjectReference Include="..\InterfacesAgroPET\InterfacesAgroPET.csproj">
       <Project>{370aefe8-aefc-4de3-b2b6-d80ff20054f0}</Project>
       <Name>InterfacesAgroPET</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Utilidades\Utilidades.csproj">
+    <ProjectReference Include="..\Utilidades\Utilidades.csproj">
       <Project>{eda6ee69-04bc-421d-9241-129704d18a8b}</Project>
       <Name>Utilidades</Name>
     </ProjectReference>

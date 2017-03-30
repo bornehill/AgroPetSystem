@@ -54,7 +54,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\AdminAgropet\AgroPET.Datos\AgroPET.Datos.csproj">
+    <ProjectReference Include="..\AgroPET.Datos\AgroPET.Datos.csproj">
       <Project>{b7b33ce4-f732-4c34-b9a9-29c799ecdd05}</Project>
       <Name>AgroPET.Datos</Name>
     </ProjectReference>
