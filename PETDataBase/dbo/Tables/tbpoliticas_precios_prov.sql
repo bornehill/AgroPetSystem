@@ -1,0 +1,20 @@
+﻿CREATE TABLE [dbo].[tbpoliticas_precios_prov] (
+    [ID_POL_PREC_PROV]         INT            IDENTITY (1, 1) NOT NULL,
+    [POLITICA_PRECIOS_PROV_ID] INT            NOT NULL,
+    [NOMBRE]                   VARCHAR (50)   NOT NULL,
+    [PROVEEDOR_ID]             INT            NOT NULL,
+    [PRECIO_PROV_ID]           INT            NOT NULL,
+    [DESCUENTO]                DECIMAL (9, 6) DEFAULT ('0.000000') NOT NULL,
+    [ES_DSCTO_EXCLUSIVO]       CHAR (1)       DEFAULT ('N') NULL,
+    [HABILITADA]               CHAR (1)       DEFAULT ('S') NULL,
+    [ES_PERMANENTE]            CHAR (1)       DEFAULT ('N') NULL,
+    [FECHA_INI_VIGENCIA]       DATE           DEFAULT (NULL) NULL,
+    [FECHA_FIN_VIGENCIA]       DATE           DEFAULT (NULL) NULL,
+    [USUARIO_CREADOR]          VARCHAR (31)   DEFAULT (NULL) NULL,
+    [FECHA_HORA_CREACION]      DATETIME       NOT NULL,
+    [USUARIO_ULT_MODIF]        VARCHAR (31)   DEFAULT (NULL) NULL,
+    [FECHA_HORA_ULT_MODIF]     DATETIME       NOT NULL,
+    CONSTRAINT [Pk_IdPolPrecProv] PRIMARY KEY CLUSTERED ([ID_POL_PREC_PROV] ASC),
+    CONSTRAINT [POLITICAS_PRECIOS_PROV_AK1] UNIQUE NONCLUSTERED ([PROVEEDOR_ID] ASC, [NOMBRE] ASC)
+);
+

@@ -1,0 +1,18 @@
+﻿CREATE TABLE [dbo].[tbarticulos_discretos] (
+    [ID_ART_DISC]     INT          IDENTITY (1, 1) NOT NULL,
+    [ART_DISCRETO_ID] INT          NOT NULL,
+    [CLAVE]           VARCHAR (20) NOT NULL,
+    [ARTICULO_ID]     INT          NOT NULL,
+    [TIPO]            CHAR (1)     NOT NULL,
+    [FECHA]           DATETIME     DEFAULT (NULL) NULL,
+    [ID_ART]          INT          NOT NULL,
+    [FECHA_REGISTRO]  DATETIME     DEFAULT (NULL) NULL,
+    CONSTRAINT [Pk_ID_ART_DISC] PRIMARY KEY CLUSTERED ([ID_ART_DISC] ASC),
+    CONSTRAINT [ARTICULOS_DISCRETOS_AK1] UNIQUE NONCLUSTERED ([ARTICULO_ID] ASC, [CLAVE] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ARTS_A_DISCRETOS_idx]
+    ON [dbo].[tbarticulos_discretos]([ID_ART] ASC);
+

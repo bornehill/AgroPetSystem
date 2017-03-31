@@ -1,0 +1,52 @@
+﻿CREATE TABLE [dbo].[tbarticulos] (
+    [ID_ART]                  INT             IDENTITY (1, 1) NOT NULL,
+    [ARTICULO_ID]             INT             NOT NULL,
+    [NOMBRE]                  VARCHAR (100)   NOT NULL,
+    [ES_ALMACENABLE]          CHAR (1)        DEFAULT ('S') NULL,
+    [ES_JUEGO]                CHAR (1)        DEFAULT ('N') NULL,
+    [IMPRIMIR_COMP]           CHAR (1)        DEFAULT ('N') NULL,
+    [LINEA_ARTICULO_ID]       INT             NOT NULL,
+    [UNIDAD_VENTA]            VARCHAR (5)     DEFAULT (NULL) NULL,
+    [UNIDAD_COMPRA]           VARCHAR (5)     DEFAULT (NULL) NULL,
+    [CONTENIDO_UNIDAD_COMPRA] DECIMAL (18, 5) DEFAULT ('1.00000') NOT NULL,
+    [PESO_UNITARIO]           DECIMAL (18, 5) DEFAULT ('0.00000') NOT NULL,
+    [ES_PESO_VARIABLE]        CHAR (1)        DEFAULT ('N') NULL,
+    [SEGUIMIENTO]             CHAR (1)        DEFAULT ('N') NULL,
+    [DIAS_GARANTIA]           INT             DEFAULT ('0') NULL,
+    [ES_IMPORTADO]            CHAR (1)        DEFAULT ('N') NULL,
+    [ES_SIEMPRE_IMPORTADO]    CHAR (1)        DEFAULT ('N') NULL,
+    [PCTJE_ARANCEL]           DECIMAL (9, 6)  DEFAULT ('0.000000') NULL,
+    [NOTAS_COMPRAS]           TEXT            NULL,
+    [IMPRIMIR_NOTAS_COMPRAS]  CHAR (1)        DEFAULT ('N') NULL,
+    [NOTAS_VENTAS]            TEXT            NULL,
+    [IMPRIMIR_NOTAS_VENTAS]   CHAR (1)        DEFAULT ('N') NULL,
+    [ES_PRECIO_VARIABLE]      CHAR (1)        DEFAULT ('N') NULL,
+    [CUENTA_ALMACEN]          VARCHAR (30)    DEFAULT (NULL) NULL,
+    [CUENTA_COSTO_VENTA]      VARCHAR (30)    DEFAULT (NULL) NULL,
+    [CUENTA_VENTAS]           VARCHAR (30)    DEFAULT (NULL) NULL,
+    [CUENTA_DEVOL_VENTAS]     VARCHAR (30)    DEFAULT (NULL) NULL,
+    [CUENTA_COMPRAS]          VARCHAR (30)    DEFAULT (NULL) NULL,
+    [CUENTA_DEVOL_COMPRAS]    VARCHAR (30)    DEFAULT (NULL) NULL,
+    [FECHA_ULTIMA_COMPRA]     DATETIME        DEFAULT (NULL) NULL,
+    [COSTO_ULTIMA_COMPRA]     DECIMAL (18, 6) DEFAULT ('0.000000') NOT NULL,
+    [FPGC_UNITARIO]           DECIMAL (18, 6) DEFAULT ('0.000000') NOT NULL,
+    [USUARIO_CREADOR]         VARCHAR (31)    DEFAULT (NULL) NULL,
+    [FECHA_HORA_CREACION]     DATETIME        NOT NULL,
+    [USUARIO_AUT_CREACION]    VARCHAR (31)    DEFAULT (NULL) NULL,
+    [USUARIO_ULT_MODIF]       VARCHAR (31)    DEFAULT (NULL) NULL,
+    [FECHA_HORA_ULT_MODIF]    DATETIME        NOT NULL,
+    [USUARIO_AUT_MODIF]       VARCHAR (31)    DEFAULT (NULL) NULL,
+    [IMPRIMIR]                INT             DEFAULT (NULL) NULL,
+    [CONTEOS]                 INT             DEFAULT ('0') NULL,
+    [FECHA_CONTEO]            DATE            DEFAULT (NULL) NULL,
+    [ID_LIN_ART]              INT             NOT NULL,
+    [FECHA_REGISTRO]          DATETIME        DEFAULT (NULL) NULL,
+    CONSTRAINT [Pk_IdArt] PRIMARY KEY CLUSTERED ([ID_ART] ASC),
+    CONSTRAINT [ARTICULOS_AK1] UNIQUE NONCLUSTERED ([NOMBRE] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [LINEAS_A_ART_idx]
+    ON [dbo].[tbarticulos]([ID_LIN_ART] ASC);
+
