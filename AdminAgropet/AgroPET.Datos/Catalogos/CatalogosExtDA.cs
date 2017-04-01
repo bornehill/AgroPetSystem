@@ -8,6 +8,7 @@ using MySql.Data.MySqlClient;
 using System.Reflection;
 using Agropet.Entidades.Base;
 using Agropet.Entidades.Especial;
+using Agropet.Entidades.Consultas;
 using Agropet.Entidades.Seguridad;
 using AgroPET.Datos.Comun;
 using AgroPET.Datos.Excepciones;
@@ -187,6 +188,43 @@ namespace AgroPET.Datos.Catalogos
       espSP.Dispose();    //Cierra los accesos a la base de datos.
 
       return listResultado;
+    }
+
+    public List<MenuArticulos> GetMenuArticulos(MenuArticulos tMenuArticulo)
+    {
+      List<MenuArticulos> listArticulos = new List<MenuArticulos>();
+      EjecutaSP espSP = new EjecutaSP("usp_GetMenuArticulos");
+
+      #region Asignacion de parametros
+
+      foreach (PropertyInfo piPropiedadEntidad in tMenuArticulo.GetType().GetProperties())
+      {
+        CampoAttribute caAtributoEntidadNegocio = null;
+        object[] oAtributos = piPropiedadEntidad.GetCustomAttributes(true);
+        if (oAtributos.Length > 0)
+        {
+          caAtributoEntidadNegocio = (CampoAttribute)oAtributos.ToList().Find(x => x.GetType() == typeof(CampoAttribute));
+        }
+
+        if (caAtributoEntidadNegocio == null || caAtributoEntidadNegocio.EsParametroSP)
+        {
+          object oValor = piPropiedadEntidad.GetValue(tMenuArticulo, null);
+          if (oValor != null)
+          {
+            string sNombreParametro = string.Format("{0}", piPropiedadEntidad.Name);
+            espSP.AgregarParametro(new MySqlParameter(sNombreParametro, oValor));
+          }
+        }
+      }
+
+      #endregion
+
+      MySqlDataReader drEntidad = espSP.ObtenerReader();
+      listArticulos = ConversionesEntidadesNegocio<MenuArticulos>.ConvertirAListadoEntidadNegocio(drEntidad);
+
+      espSP.Dispose();    //Cierra los accesos a la base de datos.
+
+      return listArticulos;
     }
   }
 }
