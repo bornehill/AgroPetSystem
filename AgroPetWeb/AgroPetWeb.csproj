@@ -307,6 +307,10 @@
       <Project>{6b241973-acfd-4c80-9c5a-d75814d90ef6}</Project>
       <Name>AgroPET.Entidades</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PetData\PetData.csproj">
+      <Project>{8a81aafd-0b1e-4fbb-8768-ad63ac1474f1}</Project>
+      <Name>PetData</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -5,8 +5,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using PetData.Pet;
-using Agropet.Entidades.Seguridad;
-using Agropet.Entidades.Especial;
+using AgroPET.Entidades.Seguridad;
+using AgroPET.Entidades.Especial;
 
 namespace AgroPetWeb.website
 {

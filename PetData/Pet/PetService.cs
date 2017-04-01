@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Agropet.Entidades.Seguridad;
-using Agropet.Entidades.Especial;
-using Agropet.Entidades.Consultas;
+using AgroPET.Entidades.Seguridad;
+using AgroPET.Entidades.Especial;
+using AgroPET.Entidades.Consultas;
 
 namespace PetData.Pet
 {

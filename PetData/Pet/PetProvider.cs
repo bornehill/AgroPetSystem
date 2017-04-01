@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Runtime.Serialization;
 using AgroPET.Datos.Catalogos;
-using Agropet.Entidades.Seguridad;
-using Agropet.Entidades.Especial;
-using Agropet.Entidades.Consultas;
+using AgroPET.Entidades.Seguridad;
+using AgroPET.Entidades.Especial;
+using AgroPET.Entidades.Consultas;
 
 namespace PetData.Pet
 {
