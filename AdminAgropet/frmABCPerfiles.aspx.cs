@@ -24,6 +24,7 @@ namespace AdminAgropet
             if (!IsPostBack)
             {
                 IniciaPagina();
+                mvwPerfiles.SetActiveView(vwConsulta);
             }
         }
 
@@ -52,29 +53,38 @@ namespace AdminAgropet
             EntidadUsuarioLogeado objUser;
 
             this.hdnFlag.Value = "1";
-            DivPerfilesABC.Visible = true;
-            divAlta.Visible = true;
-            divCambio.Visible = false;
-            this.txtFechaCreacion.Text = DateTime.Now.ToString("yyyy/MM/dd HH:mm");
+            mvwPerfiles.SetActiveView(vwNuevo); //DivPerfilesABC.Visible = true;
+            lblTituloNuevo.InnerText = "NUEVO PERFIL";
+            //divAlta.Visible = true;
+            //divCambio.Visible = false;
+            this.txtFechaCreacion.Value = DateTime.Now.ToString("yyyy/MM/dd HH:mm");
             
             objUser= (EntidadUsuarioLogeado)Session["UsuarioSesion"];
-            this.txtUserCreo.Text = objUser.claveusuario;
+            this.txtUserCreo.Value = objUser.claveusuario;
+
+           
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
         {
+            CancelarRegresar();
+        }
+
+        private void CancelarRegresar()
+        {
             Limpiar_Controles();
-            DivPerfilesABC.Visible = false;
+            Buscar();
+            mvwPerfiles.SetActiveView(vwConsulta);
         }
 
         protected void Limpiar_Controles()
         {
-            this.txtIdPerfil.Text = string.Empty;
-            this.txtPerfil.Text = string.Empty;
-            this.txtFechaCreacion.Text = string.Empty;
-            this.txtUserCreo.Text = string.Empty;
-            this.txtFechaModif.Text = string.Empty;
-            this.txtUserModifico.Text = string.Empty;
+            this.txtIdPerfil.Value = string.Empty;
+            this.txtPerfil.Value = string.Empty;
+            this.txtFechaCreacion.Value = string.Empty;
+            this.txtUserCreo.Value = string.Empty;
+            this.txtFechaModif.Value = string.Empty;
+            this.txtUserModifico.Value = string.Empty;
             this.ddlEstadoABC.SelectedIndex = 0;
 
         }
@@ -99,6 +109,8 @@ namespace AdminAgropet
                 {
                     MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
                             clsCatalogos.MensajeReturnSP.Trim(), 0);
+
+                    CancelarRegresar();
                 }
                 else
                 {
@@ -129,6 +141,8 @@ namespace AdminAgropet
                 {
                     MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
                         "Cambio especificado se guardo correctamente.", 0);
+
+                    CancelarRegresar();
                 }
                 else
                 {
@@ -157,6 +171,8 @@ namespace AdminAgropet
                     Guarda_Alta_Perfil();
                 else
                     Guarda_Cambio_Perfil();
+
+                CancelarRegresar();
             }
         }
 
@@ -170,17 +186,17 @@ namespace AdminAgropet
             if (bEsAlta)
             {
                 UnPerfil.idperfil = null;
-                UnPerfil.nombreperfil = this.txtPerfil.Text.Trim();
-                UnPerfil.fechacreacion = this.txtFechaCreacion.Text.Trim();
+                UnPerfil.nombreperfil = this.txtPerfil.Value.Trim();
+                UnPerfil.fechacreacion = this.txtFechaCreacion.Value.Trim();
                 UnPerfil.idusuariocreo = UnUsuario.idusuario;
-                UnPerfil.fechaultmodif = this.txtFechaModif.Text.Trim();
+                UnPerfil.fechaultmodif = this.txtFechaModif.Value.Trim();
                 UnPerfil.idusuarioultmodif = null;
                 UnPerfil.activo = Convert.ToInt64(this.ddlEstadoABC.SelectedValue);
             }
             else
             {
-                UnPerfil.idperfil = Convert.ToInt64(this.txtIdPerfil.Text);
-                UnPerfil.nombreperfil = this.txtPerfil.Text.Trim();
+                UnPerfil.idperfil = Convert.ToInt64(this.txtIdPerfil.Value);
+                UnPerfil.nombreperfil = this.txtPerfil.Value.Trim();
                 UnPerfil.fechacreacion = null;
                 UnPerfil.idusuariocreo = null;
                 UnPerfil.idusuarioultmodif = UnUsuario.idusuario;
@@ -193,13 +209,14 @@ namespace AdminAgropet
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
-            List<ConsultaPerfiles> lstPerfiles;
+            Buscar();
+        }
 
-            divResulBusqueda.Visible = true;
-            lstPerfiles = RealizaConsulta();
-
+        private void Buscar()
+        {
+            List<ConsultaPerfiles> lstPerfiles = RealizaConsulta();
             this.grdPerfiles.DataSource = lstPerfiles;
-            this.grdPerfiles.DataBind();
+            this.grdPerfiles.DataBind();           
         }
 
         private List<ConsultaPerfiles> RealizaConsulta()
@@ -271,18 +288,19 @@ namespace AdminAgropet
             {
                 if (e.CommandName.Equals("CmdEdit"))
                 {
+                    lblTituloNuevo.InnerText = "MODIFICAR PERFIL";
+                    //divAlta.Visible = false;
+                    //divCambio.Visible = true;
+                    hdnFlag.Value = "0";
+                    mvwPerfiles.SetActiveView(vwNuevo);
 
-                    divAlta.Visible = false;
-                    divCambio.Visible = true;
-                    this.DivPerfilesABC.Visible = true;
+                    int nIndice = Convert.ToInt32(e.CommandArgument) % grdPerfiles.PageSize;//- (this.grdPerfiles.PageIndex * this.grdPerfiles.PageSize);
 
-                    int nIndice = Convert.ToInt32(e.CommandArgument) - (this.grdPerfiles.PageIndex * this.grdPerfiles.PageSize);
-
-                    this.txtIdPerfil.Text = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[2].Text);
-                    this.txtPerfil.Text = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[3].Text);
-                    this.txtFechaCreacion.Text = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[4].Text);
-                    this.txtUserCreo.Text = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[5].Text);
-                    this.txtFechaModif.Text=Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[6].Text);
+                    this.txtIdPerfil.Value = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[2].Text);
+                    this.txtPerfil.Value = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[3].Text);
+                    this.txtFechaCreacion.Value = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[4].Text);
+                    this.txtUserCreo.Value = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[5].Text);
+                    this.txtFechaModif.Value = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[6].Text);
 
                     sEstatus = Server.HtmlDecode(this.grdPerfiles.Rows[nIndice].Cells[8].Text);
                     if (sEstatus.Equals("Activo"))
@@ -291,7 +309,7 @@ namespace AdminAgropet
                         this.ddlEstadoABC.SelectedIndex = 0;
 
                     Usuario = (EntidadUsuarioLogeado)Session["UsuarioSesion"];
-                    this.txtUserModifico.Text = Usuario.claveusuario.Trim();
+                    this.txtUserModifico.Value = Usuario.claveusuario.Trim();
 
                     this.txtPerfil.Focus();
                 }
@@ -300,7 +318,6 @@ namespace AdminAgropet
             {
                 MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
                     "Error al mostrar datos en el Grid: " + ex.Message.Trim(), 2);
-
             }
         }
 
@@ -309,7 +326,7 @@ namespace AdminAgropet
             try
             {
                 this.grdPerfiles.PageIndex = e.NewPageIndex;
-                btnBuscar_Click(new object(), new EventArgs());
+                Buscar();
             }
             catch (Exception ex)
             {

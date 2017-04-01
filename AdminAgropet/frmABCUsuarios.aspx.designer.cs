@@ -22,13 +22,49 @@ namespace AdminAgropet {
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
         
         /// <summary>
-        /// FiltroBusqueda control.
+        /// mvwUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel FiltroBusqueda;
+        protected global::System.Web.UI.WebControls.MultiView mvwUsuario;
+        
+        /// <summary>
+        /// vwConsulta control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View vwConsulta;
+        
+        /// <summary>
+        /// ddluc_UserBus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddluc_UserBus;
+        
+        /// <summary>
+        /// ddluc_PerfilBus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddluc_PerfilBus;
+        
+        /// <summary>
+        /// SelEstatus control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList SelEstatus;
         
         /// <summary>
         /// btnNuevo control.
@@ -49,96 +85,6 @@ namespace AdminAgropet {
         protected global::System.Web.UI.WebControls.Button btnBuscar;
         
         /// <summary>
-        /// Busqueda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Busqueda;
-        
-        /// <summary>
-        /// label2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label2;
-        
-        /// <summary>
-        /// ddluc_UserBus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddluc_UserBus;
-        
-        /// <summary>
-        /// lblPerfilBus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPerfilBus;
-        
-        /// <summary>
-        /// ddluc_PerfilBus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddluc_PerfilBus;
-        
-        /// <summary>
-        /// label3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label label3;
-        
-        /// <summary>
-        /// SelEstatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList SelEstatus;
-        
-        /// <summary>
-        /// divResulBusqueda control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divResulBusqueda;
-        
-        /// <summary>
-        /// pnlGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGrid;
-        
-        /// <summary>
-        /// pnlGrd2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlGrd2;
-        
-        /// <summary>
         /// grdUsuarios control.
         /// </summary>
         /// <remarks>
@@ -148,58 +94,22 @@ namespace AdminAgropet {
         protected global::System.Web.UI.WebControls.GridView grdUsuarios;
         
         /// <summary>
-        /// btnCambiaEstatus control.
+        /// vwNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCambiaEstatus;
+        protected global::System.Web.UI.WebControls.View vwNuevo;
         
         /// <summary>
-        /// DivUsuariosABC control.
+        /// lblTituloNuevo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl DivUsuariosABC;
-        
-        /// <summary>
-        /// pnlUsuariosABC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlUsuariosABC;
-        
-        /// <summary>
-        /// divAlta control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divAlta;
-        
-        /// <summary>
-        /// divCambio control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divCambio;
-        
-        /// <summary>
-        /// lblIdUsuario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblIdUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl lblTituloNuevo;
         
         /// <summary>
         /// txtIdUsuario control.
@@ -208,16 +118,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtIdUsuario;
-        
-        /// <summary>
-        /// lblNomUsusuario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblNomUsusuario;
+        protected global::System.Web.UI.WebControls.HiddenField txtIdUsuario;
         
         /// <summary>
         /// txtNombreUsuario control.
@@ -226,16 +127,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtNombreUsuario;
-        
-        /// <summary>
-        /// lblCveUsuario control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCveUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtNombreUsuario;
         
         /// <summary>
         /// txtCveUsuario control.
@@ -244,16 +136,16 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtCveUsuario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtCveUsuario;
         
         /// <summary>
-        /// lblPasswordUsr control.
+        /// ddl_PerfilABC control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblPasswordUsr;
+        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddl_PerfilABC;
         
         /// <summary>
         /// txtPasswordUsr control.
@@ -262,16 +154,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtPasswordUsr;
-        
-        /// <summary>
-        /// lblConfirmPass control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblConfirmPass;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPasswordUsr;
         
         /// <summary>
         /// txtConfirmPass control.
@@ -280,7 +163,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtConfirmPass;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtConfirmPass;
         
         /// <summary>
         /// CV_ComparaPass control.
@@ -301,87 +184,6 @@ namespace AdminAgropet {
         protected global::AjaxControlToolkit.ValidatorCalloutExtender VCE_CV_ComparaPass;
         
         /// <summary>
-        /// lblUserCreo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserCreo;
-        
-        /// <summary>
-        /// txtUsuarioCreo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUsuarioCreo;
-        
-        /// <summary>
-        /// lblFechaC control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaC;
-        
-        /// <summary>
-        /// txtFechaCreacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaCreacion;
-        
-        /// <summary>
-        /// lblUserModif control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserModif;
-        
-        /// <summary>
-        /// txtUserModifico control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtUserModifico;
-        
-        /// <summary>
-        /// lblFechaModif control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFechaModif;
-        
-        /// <summary>
-        /// txtFechaModif control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtFechaModif;
-        
-        /// <summary>
-        /// lblEstatus control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEstatus;
-        
-        /// <summary>
         /// ddlEstadoABC control.
         /// </summary>
         /// <remarks>
@@ -391,22 +193,40 @@ namespace AdminAgropet {
         protected global::System.Web.UI.WebControls.DropDownList ddlEstadoABC;
         
         /// <summary>
-        /// Label1 control.
+        /// txtUsuarioCreo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUsuarioCreo;
         
         /// <summary>
-        /// ddl_PerfilABC control.
+        /// txtFechaCreacion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddl_PerfilABC;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaCreacion;
+        
+        /// <summary>
+        /// txtUserModifico control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUserModifico;
+        
+        /// <summary>
+        /// txtFechaModif control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtFechaModif;
         
         /// <summary>
         /// btnGuardar control.

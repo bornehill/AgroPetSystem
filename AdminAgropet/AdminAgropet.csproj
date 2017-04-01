@@ -13,13 +13,14 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdminAgropet</RootNamespace>
     <AssemblyName>AdminAgropet</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -44,22 +45,21 @@
       <HintPath>AjaxToolKit\AjaxControlToolkit.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="AjaxToolkit\AjaxControlToolkit.dll" />
@@ -69,6 +69,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="ControlWEB\Comun\wucDropDownEntidadNegocio.ascx" />
+    <Content Include="CSS\EstiloCheckBox.css" />
     <Content Include="CSS\Paginacion.css" />
     <Content Include="CSS\StyleDateTimePicker.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -112,10 +113,12 @@
     <Content Include="CSS\TreeView.css" />
     <Content Include="frmAccesosPerfiles.aspx" />
     <Content Include="frmDsctosPromos.aspx" />
+    <Content Include="frmError.aspx" />
     <Content Include="frmListasPrecios.aspx" />
     <Content Include="frmLoginModuloAdmin.aspx" />
     <Content Include="frmMenuModuloAdmin.aspx" />
     <Content Include="frmMenuModuloWeb.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="Imagenes\action_check.png" />
     <Content Include="Imagenes\action_remove.png" />
     <Content Include="Imagenes\Add-32.png" />
@@ -169,6 +172,8 @@
     <Content Include="Imagenes\Menu\fdMenuActivo_Small.jpg" />
     <Content Include="Imagenes\Menu\fdMenuPasivo.jpg" />
     <Content Include="Imagenes\Menu\fdMenuPasivo_Small.jpg" />
+    <Content Include="Imagenes\PaginaMantenimiento.jpg" />
+    <Content Include="Imagenes\PaginaMantenimiento.png" />
     <Content Include="Imagenes\pdf16.png" />
     <Content Include="Imagenes\petceterablanco.jpg" />
     <Content Include="Imagenes\petceterablanco_small.jpg" />
@@ -214,11 +219,13 @@
     <Content Include="Content\bootstrap.css.map" />
     <Content Include="Content\bootstrap-theme.min.css.map" />
     <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Scripts\jquery-1.9.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -297,6 +304,13 @@
     <Compile Include="frmDsctosPromos.aspx.designer.cs">
       <DependentUpon>frmDsctosPromos.aspx</DependentUpon>
     </Compile>
+    <Compile Include="frmError.aspx.cs">
+      <DependentUpon>frmError.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmError.aspx.designer.cs">
+      <DependentUpon>frmError.aspx</DependentUpon>
+    </Compile>
     <Compile Include="frmListasPrecios.aspx.cs">
       <DependentUpon>frmListasPrecios.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -324,6 +338,9 @@
     </Compile>
     <Compile Include="frmMenuModuloWeb.aspx.designer.cs">
       <DependentUpon>frmMenuModuloWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

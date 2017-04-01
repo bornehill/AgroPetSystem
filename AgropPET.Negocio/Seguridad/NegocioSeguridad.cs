@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Agropet.Entidades.Seguridad;
-using AgroPET.Datos.Seguridad;
+using AgroPET.Datos.Catalogos;
 
 namespace AgropPET.Negocio.Seguridad
 {
@@ -23,7 +23,7 @@ namespace AgropPET.Negocio.Seguridad
 
             UnUsuario = UsuarioDA.ValidarUsuario(sClaveUser, sPasswdUser);
 
-            if (UnUsuario.idusuario.Equals(-11))
+            if (UnUsuario == null || UnUsuario.idusuario.Equals(-11))
                 bExisteUsuario = false;
             else
                 bExisteUsuario = true;

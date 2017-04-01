@@ -31,22 +31,13 @@ namespace AdminAgropet {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Principal;
         
         /// <summary>
-        /// div_FiltrosB control.
+        /// btn_Buscar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_FiltrosB;
-        
-        /// <summary>
-        /// lbl_Menu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Menu;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Buscar;
         
         /// <summary>
         /// txt_Menu_Buscar control.
@@ -55,25 +46,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Menu_Buscar;
-        
-        /// <summary>
-        /// div_Botones_Buscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Botones_Buscar;
-        
-        /// <summary>
-        /// btn_Buscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Buscar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Menu_Buscar;
         
         /// <summary>
         /// btn_Nuevo control.
@@ -82,7 +55,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Nuevo;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Nuevo;
         
         /// <summary>
         /// grd_Consultas control.
@@ -103,58 +76,13 @@ namespace AdminAgropet {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Editar;
         
         /// <summary>
-        /// div_CamposEP control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_CamposEP;
-        
-        /// <summary>
-        /// lbl_Menu_Editar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Menu_Editar;
-        
-        /// <summary>
         /// txt_Menu_Editar control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_Menu_Editar;
-        
-        /// <summary>
-        /// rfv_txt_MenuEditar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txt_MenuEditar;
-        
-        /// <summary>
-        /// vce_Menu control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ValidatorCalloutExtender vce_Menu;
-        
-        /// <summary>
-        /// lbl_MenuUrl_Editar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_MenuUrl_Editar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Menu_Editar;
         
         /// <summary>
         /// txt_MenuUrl_Editar control.
@@ -163,34 +91,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txt_MenuUrl_Editar;
-        
-        /// <summary>
-        /// rfv_txt_MenuUrlEditar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_txt_MenuUrlEditar;
-        
-        /// <summary>
-        /// vce_Url control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ValidatorCalloutExtender vce_Url;
-        
-        /// <summary>
-        /// lbl_Padre_Editar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Padre_Editar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_MenuUrl_Editar;
         
         /// <summary>
         /// ddl_ListaMenus_Editar control.
@@ -202,31 +103,13 @@ namespace AdminAgropet {
         protected global::System.Web.UI.WebControls.DropDownList ddl_ListaMenus_Editar;
         
         /// <summary>
-        /// rfv_ddl_ListaMenus control.
+        /// lseMenus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfv_ddl_ListaMenus;
-        
-        /// <summary>
-        /// vce_Padre control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.ValidatorCalloutExtender vce_Padre;
-        
-        /// <summary>
-        /// lbl_Estado_Editar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbl_Estado_Editar;
+        protected global::AjaxControlToolkit.ListSearchExtender lseMenus;
         
         /// <summary>
         /// chk_Estado_Editar control.
@@ -235,16 +118,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chk_Estado_Editar;
-        
-        /// <summary>
-        /// div_Botones_Editar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Botones_Editar;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chk_Estado_Editar;
         
         /// <summary>
         /// btn_Guardar control.
@@ -253,7 +127,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Guardar;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Guardar;
         
         /// <summary>
         /// btn_Cancelar control.
@@ -262,7 +136,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btn_Cancelar;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Cancelar;
         
         /// <summary>
         /// txt_Comando control.
@@ -274,24 +148,6 @@ namespace AdminAgropet {
         protected global::System.Web.UI.HtmlControls.HtmlInputHidden txt_Comando;
         
         /// <summary>
-        /// div_Estrucrura control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Estrucrura;
-        
-        /// <summary>
-        /// div_Arboles control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Arboles;
-        
-        /// <summary>
         /// tvw_Editar control.
         /// </summary>
         /// <remarks>
@@ -301,49 +157,31 @@ namespace AdminAgropet {
         protected global::System.Web.UI.WebControls.TreeView tvw_Editar;
         
         /// <summary>
-        /// div1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div1;
-        
-        /// <summary>
-        /// div3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div3;
-        
-        /// <summary>
         /// btnMostrarArt control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnMostrarArt;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnMostrarArt;
         
         /// <summary>
-        /// lblMensaje control.
+        /// rdGrupoLineaArticulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblMensaje;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdGrupoLineaArticulo;
         
         /// <summary>
-        /// rblFiltro control.
+        /// rdLibreArticulo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButtonList rblFiltro;
+        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdLibreArticulo;
         
         /// <summary>
         /// divGpoLinArt control.
@@ -391,15 +229,6 @@ namespace AdminAgropet {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divLibresArt;
         
         /// <summary>
-        /// div4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl div4;
-        
-        /// <summary>
         /// trvLibArt control.
         /// </summary>
         /// <remarks>
@@ -424,7 +253,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnAsignar;
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnAsignar;
         
         /// <summary>
         /// hdnFlag control.

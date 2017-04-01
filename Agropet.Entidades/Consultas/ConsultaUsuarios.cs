@@ -48,7 +48,7 @@ namespace Agropet.Entidades.Consultas
         [Campo("IdUsuarioModif", EsParametroSP = false, EsCampoRetornoConsulta = true)]
         public int? IdUsuarioModif { get; set; }
 
-        [Campo("FechaUltModif", EsParametroSP = false, EsCampoRetornoConsulta = true)]
+        [Campo("FechaModif", EsParametroSP = false, EsCampoRetornoConsulta = true)]
         public string FechaUltModif { get; set; }
 
         [Campo("UsuarioUltModif", EsParametroSP = false, EsCampoRetornoConsulta = true)]

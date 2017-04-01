@@ -1,305 +1,157 @@
 ﻿<%@ Page Title="Catálogo de Perfiles" Language="C#" MasterPageFile="~/Agropet.Master" AutoEventWireup="true" CodeBehind="frmABCPerfiles.aspx.cs" Inherits="AdminAgropet.frmABCPerfiles" %>
+
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 <%@ Register Src="~/ControlWEB/Comun/wucDropDownEntidadNegocio.ascx" TagName="wucDropDownEntidadNegocio" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
-    <style type="text/css">
-        .SeparadorPag
-        {
-        	background-color: #d3d3d3;
-            color:darkblue;
-            font-family: Verdana;
-            font-size: 13px;
-            font-weight:bold;
-            letter-spacing:4px;
-            height:16px;
-            text-decoration: none;
-            text-align: center;
-            text-transform:uppercase;
-        }
-        .separadorGris
-        {
-        	background-repeat:repeat-x;
-        	background-image:url('../../Imagenes/barunder_gris.JPG');
-            color:Black;
-            font-family: Verdana;
-            font-size:12px;
-            font-weight:bold;
-            height:14px;
-            letter-spacing:2px;
-            text-decoration:none;
-            text-align: center;
-            text-transform:capitalize;
-            font-variant:small-caps;
-        }
-        .separadorNegro
-        {
-            background-repeat:repeat-x;
-            background-image:url('../../Imagenes/barunder.JPG');
-            color:White;
-            font-family: Verdana;
-            font-size: 12px;
-            font-weight:bold;
-            height:14px;
-            letter-spacing:2px;
-            text-decoration:none;
-            text-align: center;
-            text-transform:capitalize;
-            font-variant:small-caps;
-        }
-        .DivSeccion
-        {
-	        border: 1px solid #C0C0C0;
-            color:White;
-            font-size: 12px;
-            font-family: Verdana;
-            font-weight:bold;
-            text-decoration: none;
-            text-align: center;
-            width: 97%;
-        }
-        .DivSeccionEspacio
-        {
-	        height:6px;
-            width:100%;
-        }
-        .SeparadorSec
-        {
-	        background-repeat:repeat-x;
-            background-image:url('../../Imagenes/barunder.JPG');
-            color:White;
-            font-family: Verdana;
-            font-size: 12px;
-            font-weight:bold;
-            height:14px;
-            letter-spacing:2px;
-            text-decoration: none;
-            text-align: center;
-            text-transform:capitalize;
-            font-variant:small-caps;
-        }
-        .Etiqueta
-        {
-            font-weight:bold;
-            font-size:10px;
-            color:#666666;
-        }
-        .EtiquetaNegra
-        {
-            font-family:"Verdana";
-            font-weight:bold;
-            font-size:12px;
-            color:#666666;
-        }
-        .BordesDivBusquedas
-        {
-	        width: 97%;
-	        margin: 15px auto;
-	        border: 1px; 
-	        border-color: darkblue;
-	        border-style:solid;
-        }
-        .Centrar
-        {
-            text-align: center;
-        }
-    </style>
-    <script type="text/javascript">
+
+    <%--<script type="text/javascript">
         $(function () {
             $(document).tooltip({ track: true });
         });
-    </script>
+    </script>--%>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-   
-    <center>
-        <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-            <ContentTemplate>
-                <br />
-                <div class="SeparadorPag">
-                    Cat&aacute;logo de Perfiles
-                </div>
-                <div class="DivSeccionEspacio"></div>
-                <asp:Panel ID="FiltroBusqueda" runat="server">
-                    <br />
-                    <center>
-                        <table>
-                            <tr>
-                                <td>
-                                    <asp:Button ID="btnNuevo" runat="server" Text="Nuevo" OnClick="btnNuevo_Click" />
-                                </td>
-                                <td>
-                                    <td style="width:75px;"></td>
-                                </td>
-                                <td>
-                                    <asp:Button ID="btnBuscar" runat="server" Text="Buscar" OnClick="btnBuscar_Click" />
-                                </td>
-                            </tr>
-                        </table>
+    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+        <ContentTemplate>
+
+            <asp:MultiView ID="mvwPerfiles" runat="server">
+                <asp:View ID="vwConsulta" runat="server">
+                    <div class="col-lg-12">
                         <br />
-                        <div id="Busqueda" runat="server" class="BordesDivBusquedas">
-                            <asp:Label ID="lbletiq" runat="server" Text="Criterios para búsqueda" CssClass="EtiquetaNegra"></asp:Label>
-                        <br />
-                            <table>
-                                <tr>
-                                    <td>
-                                        <asp:Label ID="label2" runat="server" Text="Seleccione Perfil: " CssClass="Etiqueta"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <uc1:wucDropDownEntidadNegocio ID="ddluc_Perfil" runat="server" />
-                                    </td>
-                                    <td style="width:100px;"></td>
-                                    <td>
-                                        <asp:Label ID="label3" runat="server" Text="Estatus: " CssClass="Etiqueta"></asp:Label>
-                                    </td>
-                                    <td>
-                                        <asp:DropDownList ID="SelEstatus" runat="server" AutoPostBack="false">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <label>BUSQUEDA DE PERFIL</label>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                        <div class="form-group col-lg-6">
+                                            <label style="text-align: left; width: 100%;">Perfil</label>
+                                            <uc1:wucDropDownEntidadNegocio ID="ddluc_Perfil" runat="server" Width="250px" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                        <label style="text-align: left; width: 100%;">Estatus</label>
+                                        <asp:DropDownList ID="SelEstatus" runat="server" AutoPostBack="false" class="form-control">
                                             <asp:ListItem Text="Seleccione..." Value="-1"></asp:ListItem>
                                             <asp:ListItem Text="Activo" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="No Activo" Value="0"></asp:ListItem>
                                         </asp:DropDownList>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div id="divResulBusqueda" runat="server" class="BordesDivBusquedas" visible="false">
-                            <asp:Panel ID="pnlGrid" runat="server" ScrollBars="Auto" CssClass="Centrar">
-                                <div class="separadorGris">
-                                    Resultado de la Busqueda
+                                    </div>
+                                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="text-align: center">
+                                        <br />
+                                        <button id="btnBuscar" runat="server" type="submit" class="btn btn-success" onserverclick="btnBuscar_Click">Buscar</button>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <button id="btnNuevo" runat="server" type="submit" class="btn btn-info" onserverclick="btnNuevo_Click">Nuevo</button>
+                                    </div>
                                 </div>
-                                <br />
-                                <div class="Centrar">
-                                    <asp:GridView ID="grdPerfiles" runat="server" SkinID="NoPaginacion" AutoGenerateColumns="false"
-                                         AllowPaging="true" HorizontalAlign="Center" 
-                                        OnPageIndexChanging="grdPerfiles_PageIndexChanging" 
-                                        OnRowCommand="grdPerfiles_RowCommand" 
-                                        OnRowDataBound="grdPerfiles_RowDataBound">
-                                        <Columns>
-                                            <asp:TemplateField>
-                                                <ItemTemplate>
-                                                    <asp:ImageButton ID="imgEditItem" runat="server"
-                                                         ImageUrl="~/Imagenes/ico_editar_chico.gif"
-                                                         CommandName="UpdateRow"
-                                                         CommandArgument="<%# ((GridViewRow)Container).RowIndex %>"
-                                                         ToolTip="Editar perfil" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:TemplateField>
-                                                <HeaderTemplate>
-                                                    <asp:CheckBox ID="chkSelTodoHdr" runat="server"
-                                                         ToolTip="Seleccionar / Des-seleccionar todos" />
-                                                </HeaderTemplate>
-                                                <ItemTemplate>
-                                                    <asp:CheckBox ID="chkSelItem" runat="server" />
-                                                </ItemTemplate>
-                                            </asp:TemplateField>
-                                            <asp:BoundField DataField="idperfil" HeaderText="ID Perfil" />
-                                            <asp:BoundField DataField="nombreperfil" HeaderText="Perfil" />
-                                            <asp:BoundField DataField="fechacreacion" HeaderText="Fecha Creación" />
-                                            <asp:BoundField DataField="UsuarioCreo" HeaderText="Usuario Creó" />
-                                            <asp:BoundField DataField="fechaultmodif" HeaderText="Fecha Ult. Modif." />
-                                            <asp:BoundField DataField="UsuarioModif" HeaderText="Usuario Modificó" />
-                                            <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
-                                        </Columns>
-                                    </asp:GridView>
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <center>
+                                            <br />
+                                            <asp:GridView ID="grdPerfiles" runat="server" AutoGenerateColumns="false"
+                                                CssClass="table table-striped table-bordered table-hover"
+                                                OnRowCommand="grdPerfiles_RowCommand" OnRowDataBound="grdPerfiles_RowDataBound"
+                                                AllowPaging="true" PageSize="10" OnPageIndexChanging="grdPerfiles_PageIndexChanging">
+                                                <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                                <EditRowStyle BackColor="#ffffcc" Height="10px" />
+                                                <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
+                                                <Columns>
+                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center">
+                                                        <ItemTemplate>
+                                                            <asp:ImageButton ID="imgEditItem" runat="server" Width="20px" ImageUrl="~/Imagenes/Iconos/Editar.PNG"
+                                                                CommandName="Editar" CommandArgument='<%# ((GridViewRow)Container).RowIndex %>' />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField ItemStyle-HorizontalAlign="Center" Visible="false">
+                                                        <ItemTemplate>
+                                                            <asp:CheckBox ID="chkSelItem" runat="server" CssClass="Visible" />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:BoundField DataField="idperfil" HeaderText="ID Perfil" />
+                                                    <asp:BoundField DataField="nombreperfil" HeaderText="Perfil" />
+                                                    <asp:BoundField DataField="fechacreacion" HeaderText="Fecha Creación" />
+                                                    <asp:BoundField DataField="UsuarioCreo" HeaderText="Usuario Creó" />
+                                                    <asp:BoundField DataField="fechaultmodif" HeaderText="Fecha Ult. Modif." />
+                                                    <asp:BoundField DataField="UsuarioModif" HeaderText="Usuario Modificó" />
+                                                    <asp:BoundField DataField="Estatus" HeaderText="Estatus" />
+                                                </Columns>
+                                                <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
+                                            </asp:GridView>
+                                        </center>
+                                    </div>
                                 </div>
-                            </asp:Panel>
-                            <br />
-                            <asp:Button ID="btnCambiaEstatus" runat="server" Text="Activar / Des-activar" Width="200px" />
-                            <br />
-                            <br />
+                            </div>
                         </div>
-                        <div id="DivPerfilesABC" runat="server" class="BordesDivBusquedas" Visible="false">
-                            <asp:Panel ID="pnlPerfilesABC" runat="server" ScrollBars="None" CssClass="Centrar" Width="100%"
-                                 Height="145px" BorderColor="Black" BorderWidth="1px" BorderStyle="Solid" HorizontalAlign="Center">
-                                 <div id="divAlta" runat="server" class="separadorNegro" visible="false">
-                                     Alta de Nuevo Perfil
-                                 </div>
-                                <div id="divCambio" runat="server" class="separadorNegro" visible="false">
-                                    Modificación de información del perfil
+                    </div>
+                </asp:View>
+                <asp:View ID="vwNuevo" runat="server">
+                    <br />
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <label id="lblTituloNuevo" runat="server">PERFIL</label>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label style="text-align: left; width: 100%;">Id Perfil:</label>
+                                        <input type="text" id="txtIdPerfil" runat="server" class="form-control" readonly="readonly" placeholder="Info: ID del perfil" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label style="text-align: left; width: 100%;">Nombre Perfil:</label>
+                                        <input type="text" id="txtPerfil" runat="server" class="form-control" placeholder="Ingresa Nombre Perfil...." maxlength="100" />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label style="text-align: left; width: 100%;">Fecha Creación:</label>
+                                        <input type="text" id="txtFechaCreacion" runat="server" class="form-control" readonly="readonly" placeholder="Info Fecha creacion...." />
+                                    </div>
                                 </div>
-                                <br />
-                                <table width="100%">
-                                    <tr>
-                                        <td align="right">
-                                            <asp:Label ID="lblIdPerfil" runat="server" Text="Id Perfil: " CssClass="Etiqueta">
-                                            </asp:Label>
-                                        </td>
-                                        <td align="left">
-                                            <asp:TextBox ID="txtIdPerfil" runat="server" CssClass="" Width="80px" Enabled="false"
-                                                 ToolTip="Campo de solo consulta, muestra el ID del perfil."></asp:TextBox>
-                                        </td>
-                                        <td align="right">
-                                            <asp:Label ID="lblPerfil" runat="server" Text="Nombre Perfil: " CssClass="Etiqueta">
-                                            </asp:Label>
-                                        </td>
-                                        <td align="left">
-                                            <asp:TextBox ID="txtPerfil" runat="server" CssClass="" Width="300px" MaxLength="100"
-                                                 ToolTip="Captura el nombre del perfil."></asp:TextBox>
-                                        </td>
-                                        <td align="right">
-                                            <asp:Label ID="lblFechaC" runat="server" Text="Fecha Creación: " CssClass="Etiqueta">
-                                            </asp:Label>
-                                        </td>
-                                        <td align="left">
-                                            <asp:TextBox ID="txtFechaCreacion" runat="server" CssClass="" Width="150px" Enabled="false"
-                                                 ToolTip="Fecha en que fue creado el perfil."></asp:TextBox>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right">
-                                            <asp:Label ID="lblusrcreo" runat="server" Text="Creado por: " CssClass="Etiqueta">
-                                            </asp:Label>
-                                        </td>
-                                        <td align="left">
-                                            <asp:TextBox ID="txtUserCreo" runat="server" CssClass="" Width="200px" Enabled="false"
-                                                 ToolTip="Usuario que creo el perfil."></asp:TextBox>
-                                        </td>
-                                        <td align="right">
-                                            <asp:Label ID="lblFechaModif" runat="server" Text="Fecha Modificación: " CssClass="Etiqueta">
-                                            </asp:Label>
-                                        </td>
-                                        <td align="left">
-                                            <asp:TextBox ID="txtFechaModif" runat="server" CssClass="" Width="150px" Enabled="false"
-                                                 ToolTip="Fecha de Últ. Modificación al perfil."></asp:TextBox>
-                                        </td>
-                                        <td align="right">
-                                            <asp:Label ID="lblUserModif" runat="server" Text="Usuario Modificó." CssClass="Etiqueta">
-                                            </asp:Label>
-                                        </td>
-                                        <td align="left">
-                                            <asp:TextBox ID="txtUserModifico" runat="server" CssClass="" Width="200px" Enabled="false"
-                                                 ToolTip="Usuario que realizo la última modificación."></asp:TextBox>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td align="right">
-                                            <asp:Label ID="lblEstatus" runat="server" Text="Estatus" CssClass="Etiqueta"></asp:Label>
-                                        </td>
-                                        <td align="left">
-                                            <asp:DropDownList ID="ddlEstadoABC" runat="server" AutoPostBack="false" >
-                                                <asp:ListItem Text="Seleccione..." Value="-1"></asp:ListItem>
-                                                <asp:ListItem Text="Activo" Value="1"></asp:ListItem>
-                                                <asp:ListItem Text="No Activo" Value="0"></asp:ListItem>
-                                            </asp:DropDownList>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="6" align="center">
-                                            <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" />
-                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" OnClick="btnLimpiar_Click" />
-                                            <asp:HiddenField ID="hdnFlag" runat="server" />
-                                        </td>
-                                    </tr>
-                                </table>
-                            </asp:Panel>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label style="text-align: left; width: 100%;">Creado por: </label>
+                                        <input type="text" id="txtUserCreo" runat="server" class="form-control" readonly="readonly" placeholder="Usuario que creo el perfil...." />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label style="text-align: left; width: 100%;">Fecha Modificación: </label>
+                                        <input type="text" id="txtFechaModif" runat="server" class="form-control" readonly="readonly" placeholder="Fecha de Últ. Modificación al perfil...." />
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <label style="text-align: left; width: 100%;">Usuario Modificó:</label>
+                                        <input type="text" id="txtUserModifico" runat="server" class="form-control" readonly="readonly" placeholder="Usuario que realizo la última modificación...." />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-4">
+                                        <label style="text-align: left; width: 100%;">Estatus:</label>
+                                        <asp:DropDownList ID="ddlEstadoABC" runat="server" AutoPostBack="false" class="form-control">
+                                            <asp:ListItem Text="Seleccione..." Value="-1"></asp:ListItem>
+                                            <asp:ListItem Text="Activo" Value="1"></asp:ListItem>
+                                            <asp:ListItem Text="No Activo" Value="0"></asp:ListItem>
+                                        </asp:DropDownList>
+                                    </div>
+                                    <div class="col-lg-4">
+                                    </div>
+                                    <div class="col-lg-4">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg-12">
+
+                                        <asp:Button ID="btnGuardar" runat="server" Text="Guardar" OnClick="btnGuardar_Click" class="btn btn-success" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <asp:Button ID="btnCancelar" runat="server" Text="Cancelar" OnClick="btnCancelar_Click" class="btn btn-warning" />
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <asp:Button ID="btnLimpiar" runat="server" Text="Limpiar" OnClick="btnLimpiar_Click" class="btn btn-default" />
+                                        <asp:HiddenField ID="hdnFlag" runat="server" />
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </center>
-                </asp:Panel>
-            </ContentTemplate>
-        </asp:UpdatePanel>
-    </center>
+                    </div>
+                </asp:View>
+            </asp:MultiView>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>

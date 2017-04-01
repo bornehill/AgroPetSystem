@@ -7,7 +7,7 @@
 </asp:Panel>
 <asp:Panel ID="pnlDropDown" runat="server" CssClass="bloqueIzq" Width="100">    
     <input type="text" id="txtComboSearch" runat="server" value="" style="display:none;position:absolute"/>
-    <asp:DropDownList ID="ddlEntidadNegocio" runat="server" AutoPostBack="false" CssClass="ddlGeneral" 
+    <asp:DropDownList ID="ddlEntidadNegocio" runat="server" AutoPostBack="false"  class="form-control"
         onchange="f_throwTextSearcher(this);">
     </asp:DropDownList>
 </asp:Panel>
