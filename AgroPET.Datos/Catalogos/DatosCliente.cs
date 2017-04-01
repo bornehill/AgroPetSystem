@@ -1,5 +1,5 @@
-﻿using Agropet.Entidades.CatABCs;
-using Agropet.Entidades.Consultas;
+﻿using AgroPET.Entidades.CatABCs;
+using AgroPET.Entidades.Consultas;
 using AgroPET.Datos.Comun;
 using MySql.Data.MySqlClient;
 using System;

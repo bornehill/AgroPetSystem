@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,11 +30,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AccesoDatos, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Dll\AccesoDatos.dll</HintPath>
+    </Reference>
+    <Reference Include="AgroPET.Entidades">
+      <HintPath>..\Agropet.Entidades\bin\Debug\AgroPET.Entidades.dll</HintPath>
     </Reference>
     <Reference Include="MySql.Data, Version=5.1.7.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -64,10 +69,6 @@
     <Compile Include="Seguridad\DatosMenuWeb.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Agropet.Entidades\AgroPET.Entidades.csproj">
-      <Project>{6b241973-acfd-4c80-9c5a-d75814d90ef6}</Project>
-      <Name>AgroPET.Entidades</Name>
-    </ProjectReference>
     <ProjectReference Include="..\InterfacesAgroPET\InterfacesAgroPET.csproj">
       <Project>{370aefe8-aefc-4de3-b2b6-d80ff20054f0}</Project>
       <Name>InterfacesAgroPET</Name>

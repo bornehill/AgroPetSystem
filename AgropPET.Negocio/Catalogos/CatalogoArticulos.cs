@@ -1,4 +1,4 @@
-﻿using Agropet.Entidades.Consultas;
+﻿using AgroPET.Entidades.Consultas;
 using AgroPET.Datos.Catalogos;
 using System;
 using System.Collections.Generic;

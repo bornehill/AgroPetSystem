@@ -5,7 +5,7 @@ using System.Text;
 using System.Reflection;
 using System.Data;
 
-using Agropet.Entidades.Base;
+using AgroPET.Entidades.Base;
 using AgroPET.Datos.Catalogos;
 using InterfacesAgroPET.Catalogos;
 using InterfacesAgroPET;

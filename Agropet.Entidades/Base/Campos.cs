@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Agropet.Entidades.Base
+namespace AgroPET.Entidades.Base
 {
     /// <summary>
     /// Clase de tipo atributo para asignar el nombre del campo de la base de datos 

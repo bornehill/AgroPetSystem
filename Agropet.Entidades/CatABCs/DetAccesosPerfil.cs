@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Agropet.Entidades.Base;
+using AgroPET.Entidades.Base;
 
-namespace Agropet.Entidades.CatABCs
+namespace AgroPET.Entidades.CatABCs
 {
     public class DetAccesosPerfil
     {

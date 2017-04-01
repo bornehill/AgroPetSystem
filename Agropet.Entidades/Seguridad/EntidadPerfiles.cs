@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Agropet.Entidades.Seguridad
+namespace AgroPET.Entidades.Seguridad
 {
-    using Agropet.Entidades.Base;
+    using AgroPET.Entidades.Base;
 
     [Serializable]
     [Tabla("Perfiles")]

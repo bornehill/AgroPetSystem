@@ -14,7 +14,7 @@ using Utilidades.Extensiones;
 using Utilidades.Generales;
 using AgropPET.Negocio.Catalogos;
 using AdminAgropet.ControlWEB.Comun;
-using Agropet.Entidades.Seguridad;
+using AgroPET.Entidades.Seguridad;
 
 namespace AdminAgropet.Base
 {

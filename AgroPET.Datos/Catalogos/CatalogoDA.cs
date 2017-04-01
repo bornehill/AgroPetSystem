@@ -7,8 +7,8 @@ using MySql.Data.MySqlClient;
 using System.Reflection;
 
 using AgroPET.Datos.Comun;
-using Agropet.Entidades.Base;
-using Agropet.Entidades.Especial;
+using AgroPET.Entidades.Base;
+using AgroPET.Entidades.Especial;
 using AgroPET.Datos.Excepciones;
 using InterfacesAgroPET.Catalogos;
 using Utilidades;
@@ -125,12 +125,12 @@ namespace AgroPET.Datos.Catalogos
 
             object[] oAtributos=typeof(T).GetCustomAttributes(true);
 
-            Agropet.Entidades.Base.TablaAttribute taAtributoNombreTabla;
+            AgroPET.Entidades.Base.TablaAttribute taAtributoNombreTabla;
             foreach (object unAtributo in oAtributos)
             {
-                if (unAtributo.GetType() == typeof(Agropet.Entidades.Base.TablaAttribute))
+                if (unAtributo.GetType() == typeof(AgroPET.Entidades.Base.TablaAttribute))
                 {
-                    taAtributoNombreTabla = (Agropet.Entidades.Base.TablaAttribute)unAtributo;
+                    taAtributoNombreTabla = (AgroPET.Entidades.Base.TablaAttribute)unAtributo;
                     sResultado = taAtributoNombreTabla.NombreTabla;
                 }
             }

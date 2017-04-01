@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Agropet.Entidades.Seguridad;
+using AgroPET.Entidades.Seguridad;
 using AgroPET.Datos.Comun;
 
 namespace AgroPET.Datos.Seguridad

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Agropet.Entidades.Seguridad;
+using AgroPET.Entidades.Seguridad;
 using AgroPET.Datos.Catalogos;
 
 namespace AgropPET.Negocio.Seguridad

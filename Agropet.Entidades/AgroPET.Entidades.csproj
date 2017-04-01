@@ -8,88 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Agropet.Entidades</RootNamespace>
-    <AssemblyName>Agropet.Entidades</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Base\Campos.cs" />
-    <Compile Include="Base\Tabla.cs" />
-    <Compile Include="CatABCs\DetAccesosPerfil.cs" />
-    <Compile Include="CatABCs\EntidadBanners.cs" />
-    <Compile Include="CatABCs\EntidadBannersDetail.cs" />
-    <Compile Include="CatABCs\EntImagenesBannersDetalle.cs" />
-    <Compile Include="CatABCs\EntImgenesBanners.cs" />
-    <Compile Include="CatABCs\EntImagenesArticulosDetalle.cs" />
-    <Compile Include="CatABCs\EntImgenesArticulos.cs" />
-    <Compile Include="Consultas\ConsultaArticulos.cs" />
-    <Compile Include="Consultas\ConsultaArtLibArt.cs" />
-    <Compile Include="Consultas\ConsultaDetPerfil.cs" />
-    <Compile Include="Consultas\ConsultaGruposLineas.cs" />
-    <Compile Include="Consultas\ConsultaLibresArticulos.cs" />
-    <Compile Include="Consultas\ConsultaLineasArticulos.cs" />
-    <Compile Include="Consultas\ConsultaPerfiles.cs" />
-    <Compile Include="Consultas\ConsultaUsuarios.cs" />
-    <Compile Include="Consultas\MenuArticulos.cs" />
-    <Compile Include="Especial\EntidadBannersWeb.cs" />
-    <Compile Include="Especial\EntidadDDLUC.cs" />
-    <Compile Include="Especial\EntidadResultProceso.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Seguridad\EntidadDetAccesoPerfil.cs" />
-    <Compile Include="Seguridad\EntidadMenuApp.cs" />
-    <Compile Include="Seguridad\EntidadMenuArticulos.cs" />
-    <Compile Include="Seguridad\EntidadMenuWeb.cs" />
-    <Compile Include="Seguridad\EntidadPerfiles.cs" />
-    <Compile Include="Seguridad\EntidadUsuario.cs" />
-    <Compile Include="Seguridad\EntidadUsuarioLogeado.cs" />
-  </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
-=======
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6B241973-ACFD-4C80-9C5A-D75814D90EF6}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Agropet.Entidades</RootNamespace>
-    <AssemblyName>Agropet.Entidades</AssemblyName>
+    <AssemblyName>AgroPET.Entidades</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -139,6 +58,7 @@
     <Compile Include="Consultas\ConsultaLineasArticulos.cs" />
     <Compile Include="Consultas\ConsultaPerfiles.cs" />
     <Compile Include="Consultas\ConsultaUsuarios.cs" />
+    <Compile Include="Consultas\MenuArticulos.cs" />
     <Compile Include="Especial\EntidadBannersWeb.cs" />
     <Compile Include="Especial\EntidadDDLUC.cs" />
     <Compile Include="Especial\EntidadResultProceso.cs" />

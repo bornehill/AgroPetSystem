@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-using Agropet.Entidades.Base;
+using AgroPET.Entidades.Base;
 
-namespace Agropet.Entidades.Consultas
+namespace AgroPET.Entidades.Consultas
 {
 
     [Serializable]

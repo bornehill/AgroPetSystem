@@ -8,8 +8,8 @@ using System.Reflection;
 using System.Xml;
 using System.Xml.Serialization;
 
-using Agropet.Entidades.Base;
-using Agropet.Entidades.Seguridad;
+using AgroPET.Entidades.Base;
+using AgroPET.Entidades.Seguridad;
 
 using MySql.Data.MySqlClient;
 

@@ -1,4 +1,4 @@
-﻿using Agropet.Entidades.Consultas;
+﻿using AgroPET.Entidades.Consultas;
 using AgroPET.Datos.Comun;
 using MySql.Data.MySqlClient;
 using System;

@@ -40,6 +40,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AgroPET.Entidades, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Agropet.Entidades\bin\Debug\AgroPET.Entidades.dll</HintPath>
+    </Reference>
+    <Reference Include="AgropPET.Negocio">
+      <HintPath>..\AgropPET.Negocio\bin\Debug\AgropPET.Negocio.dll</HintPath>
+    </Reference>
     <Reference Include="AjaxControlToolkit, Version=3.5.51116.0, Culture=neutral, PublicKeyToken=28f01b0e84b6d53e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>AjaxToolKit\AjaxControlToolkit.dll</HintPath>
@@ -356,14 +363,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Agropet.Entidades\AgroPET.Entidades.csproj">
-      <Project>{6b241973-acfd-4c80-9c5a-d75814d90ef6}</Project>
-      <Name>AgroPET.Entidades</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\AgropPET.Negocio\AgropPET.Negocio.csproj">
-      <Project>{26cfd05d-d2d7-4d32-9e52-e6e1cdec9643}</Project>
-      <Name>AgropPET.Negocio</Name>
-    </ProjectReference>
     <ProjectReference Include="..\InterfacesAgroPET\InterfacesAgroPET.csproj">
       <Project>{370aefe8-aefc-4de3-b2b6-d80ff20054f0}</Project>
       <Name>InterfacesAgroPET</Name>
