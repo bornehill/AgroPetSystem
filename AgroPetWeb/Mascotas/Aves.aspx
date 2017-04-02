@@ -8,17 +8,20 @@
     .thumbnail img {
       padding-top: 10px;
     }
+    .spinner {
+      width:30px;
+    }
   </style>
 
   <script>
     $( function() {
-      $( "#spinner" ).spinner({
+      $( ".spinner" ).spinner({
         spin: function( event, ui ) {
-          if ( ui.value > 10 ) {
-            $( this ).spinner( "value", -10 );
+          if ( ui.value > 100 ) {
+            $( this ).spinner( "value", 100 );
             return false;
-          } else if ( ui.value < -10 ) {
-            $( this ).spinner( "value", 10 );
+          } else if ( ui.value < 0 ) {
+            $( this ).spinner( "value", 0 );
             return false;
           }
         }
