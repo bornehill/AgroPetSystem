@@ -75,7 +75,7 @@ namespace AdminAgropet
             try
             {
                 sCveUsuario = this.txt_Usuario.Text.Trim();
-                sPasswdUsuario = "4dm1N_5yS."; //this.txt_Contrasena.Text.Trim();
+                sPasswdUsuario = this.txt_Contrasena.Text.Trim();
 
                 if (sCveUsuario.Equals(string.Empty))
                 {
