@@ -1,0 +1,23 @@
+﻿CREATE TABLE [dbo].[tbdsctos_artcli_arts] (
+    [ID_DSCTO_ARTCLI_ART]       INT            IDENTITY (1, 1) NOT NULL,
+    [DSCTO_ARTCLI_ART_ID]       INT            NOT NULL,
+    [POLITICA_DSCTO_ART_CLI_ID] INT            NOT NULL,
+    [CLAVE_ARTICULO]            VARCHAR (20)   DEFAULT (NULL) NULL,
+    [ARTICULO_ID]               INT            NOT NULL,
+    [DESCUENTO]                 DECIMAL (9, 6) DEFAULT ('0.000000') NOT NULL,
+    [ID_ART]                    INT            NOT NULL,
+    [ID_POL_DSCTO_ART_CLI]      INT            NOT NULL,
+    CONSTRAINT [Pk_IdDsctoArtCliArt] PRIMARY KEY CLUSTERED ([ID_DSCTO_ARTCLI_ART] ASC),
+    CONSTRAINT [DSCTOS_ARTCLI_ARTS_AK1] UNIQUE NONCLUSTERED ([POLITICA_DSCTO_ART_CLI_ID] ASC, [ARTICULO_ID] ASC)
+);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ARTS_A_DSTOS_ARTCLI_idx]
+    ON [dbo].[tbdsctos_artcli_arts]([ID_ART] ASC);
+
+
+GO
+CREATE NONCLUSTERED INDEX [ARTS_CON_DSCTO_ARTCLI_idx]
+    ON [dbo].[tbdsctos_artcli_arts]([ID_POL_DSCTO_ART_CLI] ASC);
+

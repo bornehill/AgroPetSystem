@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,8 +30,15 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AgroPET.Datos">
+      <HintPath>..\AgroPET.Datos\bin\Debug\AgroPET.Datos.dll</HintPath>
+    </Reference>
+    <Reference Include="AgroPET.Entidades">
+      <HintPath>..\Agropet.Entidades\bin\Debug\AgroPET.Entidades.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -54,14 +62,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\AgroPET.Datos\AgroPET.Datos.csproj">
-      <Project>{b7b33ce4-f732-4c34-b9a9-29c799ecdd05}</Project>
-      <Name>AgroPET.Datos</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Agropet.Entidades\AgroPET.Entidades.csproj">
-      <Project>{6b241973-acfd-4c80-9c5a-d75814d90ef6}</Project>
-      <Name>AgroPET.Entidades</Name>
-    </ProjectReference>
     <ProjectReference Include="..\InterfacesAgroPET\InterfacesAgroPET.csproj">
       <Project>{370aefe8-aefc-4de3-b2b6-d80ff20054f0}</Project>
       <Name>InterfacesAgroPET</Name>

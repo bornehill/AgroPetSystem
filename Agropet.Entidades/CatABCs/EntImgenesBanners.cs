@@ -1,7 +1,7 @@
-﻿using Agropet.Entidades.Base;
+﻿using AgroPET.Entidades.Base;
 using System;
 
-namespace Agropet.Entidades
+namespace AgroPET.Entidades
 {
     [Serializable]
     [Tabla("tbBannersSitio")]

@@ -1,0 +1,11 @@
+﻿CREATE TABLE [dbo].[tbdsctos_vol_arts] (
+    [ID_DSCTO_VOL_ART]          INT             IDENTITY (1, 1) NOT NULL,
+    [DSCTO_VOL_ART_ID]          INT             NOT NULL,
+    [POLITICA_DSCTO_VOLUMEN_ID] INT             NOT NULL,
+    [ARTICULO_ID]               INT             NOT NULL,
+    [UNIDADES]                  DECIMAL (18, 5) DEFAULT ('0.00000') NOT NULL,
+    [DESCUENTO]                 DECIMAL (9, 6)  DEFAULT ('0.000000') NOT NULL,
+    CONSTRAINT [Pk_IdDsctoVolArt] PRIMARY KEY CLUSTERED ([ID_DSCTO_VOL_ART] ASC),
+    CONSTRAINT [DSCTOS_VOL_ARTS_AK1] UNIQUE NONCLUSTERED ([POLITICA_DSCTO_VOLUMEN_ID] ASC, [ARTICULO_ID] ASC, [UNIDADES] ASC)
+);
+

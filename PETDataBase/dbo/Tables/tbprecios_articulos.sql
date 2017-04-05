@@ -1,0 +1,13 @@
+﻿CREATE TABLE [dbo].[tbprecios_articulos] (
+    [ID_PREC_ART]          INT             IDENTITY (1, 1) NOT NULL,
+    [PRECIO_ARTICULO_ID]   INT             NOT NULL,
+    [ARTICULO_ID]          INT             NOT NULL,
+    [PRECIO_EMPRESA_ID]    INT             NOT NULL,
+    [PRECIO]               DECIMAL (18, 6) DEFAULT ('0.000000') NULL,
+    [MONEDA_ID]            INT             NOT NULL,
+    [MARGEN]               DECIMAL (9, 6)  DEFAULT ('0.000000') NULL,
+    [FECHA_HORA_ULT_MODIF] DATETIME        NOT NULL,
+    CONSTRAINT [Pk_IdPrecArt] PRIMARY KEY CLUSTERED ([ID_PREC_ART] ASC),
+    CONSTRAINT [PRECIOS_ARTICULOS_AK1] UNIQUE NONCLUSTERED ([ARTICULO_ID] ASC, [PRECIO_EMPRESA_ID] ASC)
+);
+

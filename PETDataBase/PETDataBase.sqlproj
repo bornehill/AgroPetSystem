@@ -1,0 +1,170 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>PETDataBase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{f25d7607-5bcf-4545-9c1c-108e40a2b660}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql130DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>PETDataBase</RootNamespace>
+    <AssemblyName>PETDataBase</AssemblyName>
+    <ModelCollation>3082,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>Modern_Spanish_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="Security\" />
+    <Folder Include="dbo\Functions\" />
+    <Folder Include="dbo\Stored Procedures\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\tbpoliticas_dsctos_promocion.sql" />
+    <Build Include="dbo\Tables\tbroles_claves_proveedores.sql" />
+    <Build Include="dbo\Tables\tbimagenesarticulosdet.sql" />
+    <Build Include="dbo\Tables\tbdoctos_ve_det.sql" />
+    <Build Include="dbo\Tables\tblibresarticulos.sql" />
+    <Build Include="dbo\Tables\tbtiempointerfaces.sql" />
+    <Build Include="dbo\Tables\tbtipos_clientes.sql" />
+    <Build Include="dbo\Tables\tbdsctos_artcli_arts.sql" />
+    <Build Include="dbo\Tables\tbclientes_web.sql" />
+    <Build Include="dbo\Tables\tbpoliticas_dsctos_volumen.sql" />
+    <Build Include="dbo\Tables\tblineas_articulos.sql" />
+    <Build Include="dbo\Tables\tbdsctos_artcli_grupos.sql" />
+    <Build Include="dbo\Tables\tbdsctos_artcli_lineas.sql" />
+    <Build Include="dbo\Tables\tbcobradores.sql" />
+    <Build Include="dbo\Tables\tbarticulos.sql" />
+    <Build Include="dbo\Tables\tbpoliticas_precios_clientes.sql" />
+    <Build Include="dbo\Tables\tbdsctos_max_arts.sql" />
+    <Build Include="dbo\Tables\tbdsctos_max_grupos.sql" />
+    <Build Include="dbo\Tables\tbcondiciones_pago.sql" />
+    <Build Include="dbo\Tables\tbdsctos_max_lineas.sql" />
+    <Build Include="dbo\Tables\tbpoliticas_precios_prov.sql" />
+    <Build Include="dbo\Tables\tbmarcas.sql" />
+    <Build Include="dbo\Tables\tbdsctos_promo_arts.sql" />
+    <Build Include="dbo\Tables\tbdetaccesosxperfil.sql" />
+    <Build Include="dbo\Tables\tbmenuadminagropet.sql" />
+    <Build Include="dbo\Tables\tbdirsclientes.sql" />
+    <Build Include="dbo\Tables\tbdsctos_promo_grupos.sql" />
+    <Build Include="dbo\Tables\tbprecios_articulos.sql" />
+    <Build Include="dbo\Tables\tbdsctos_promo_lineas.sql" />
+    <Build Include="dbo\Tables\tbmenuweb.sql" />
+    <Build Include="dbo\Tables\tbdsctos_promo_prov_arts.sql" />
+    <Build Include="dbo\Tables\tbprecios_cli_cli.sql" />
+    <Build Include="dbo\Tables\tbprecios_cli_tipo.sql" />
+    <Build Include="dbo\Tables\tbdsctos_vol_arts.sql" />
+    <Build Include="dbo\Tables\tbdoctos_pv.sql" />
+    <Build Include="dbo\Tables\tbarticulos_discretos.sql" />
+    <Build Include="dbo\Tables\tbprecios_cli_zona.sql" />
+    <Build Include="dbo\Tables\tbmonedas.sql" />
+    <Build Include="dbo\Tables\tbdsctos_vol_globales.sql" />
+    <Build Include="dbo\Tables\tbprecios_empresa.sql" />
+    <Build Include="dbo\Tables\tbbannerssitio.sql" />
+    <Build Include="dbo\Tables\tbdsctos_vol_grupos.sql" />
+    <Build Include="dbo\Tables\tbperfiles.sql" />
+    <Build Include="dbo\Tables\tbproveedores.sql" />
+    <Build Include="dbo\Tables\tbdsctos_vol_lineas.sql" />
+    <Build Include="dbo\Tables\tbbannerssitiodetalle.sql" />
+    <Build Include="dbo\Tables\tbformas_cobro.sql" />
+    <Build Include="dbo\Tables\tbpoliticas_comisiones_cobradores.sql" />
+    <Build Include="dbo\Tables\tbcajas.sql" />
+    <Build Include="dbo\Tables\tbdoctos_pv_det.sql" />
+    <Build Include="dbo\Tables\tbpoliticas_comisiones_vendedores.sql" />
+    <Build Include="dbo\Tables\tbcajas_cajeros.sql" />
+    <Build Include="dbo\Tables\tbcajeros.sql" />
+    <Build Include="dbo\Tables\tbpoliticas_dsctos_art_cli.sql" />
+    <Build Include="dbo\Tables\tbformas_cobro_refer.sql" />
+    <Build Include="dbo\Tables\tbdoctos_ve.sql" />
+    <Build Include="dbo\Tables\tbrelmenuarticulos.sql" />
+    <Build Include="dbo\Tables\tbroles_claves_articulos.sql" />
+    <Build Include="dbo\Tables\tbpoliticas_dsctos_maximos.sql" />
+    <Build Include="dbo\Tables\tbclaves_articulos.sql" />
+    <Build Include="dbo\Tables\tbgrupos_lineas.sql" />
+    <Build Include="dbo\Tables\tbclaves_cat_sec.sql" />
+    <Build Include="dbo\Tables\tbclaves_clientes.sql" />
+    <Build Include="dbo\Tables\tbroles_claves_clientes.sql" />
+    <Build Include="dbo\Tables\tbclaves_proveedores.sql" />
+    <Build Include="dbo\Tables\tbclientes.sql" />
+    <Build Include="dbo\Tables\tbpoliticas_dsctos_promo_prov.sql" />
+    <Build Include="dbo\Tables\tbroles_claves_empleados.sql" />
+    <Build Include="dbo\Tables\tbimagenesarticulos.sql" />
+    <Build Include="dbo\Tables\tbalmacenes.sql" />
+    <Build Include="Security\ali.escamilla.sql" />
+    <Build Include="Security\RoleMemberships.sql" />
+    <Build Include="dbo\Functions\ufn_MenuObtenerOrden.sql" />
+    <Build Include="dbo\Functions\ufn_MenuObtenerNivel.sql" />
+    <Build Include="dbo\Stored Procedures\uspArticulos_Seleccion.sql" />
+    <Build Include="dbo\Stored Procedures\uspAsignarArticulosMenuWeb_Insertar.sql" />
+    <Build Include="dbo\Stored Procedures\uspDDLItems_Seleccion.sql" />
+    <Build Include="dbo\Stored Procedures\uspDesAsignarArticulosMenuWeb_Delete.sql" />
+    <Build Include="dbo\Stored Procedures\uspDetAccesosxPerfil_Seleccion.sql" />
+    <Build Include="dbo\Stored Procedures\uspgrupos_Lineas_Seleccion.sql" />
+    <Build Include="dbo\Stored Procedures\uspInsDoctos_Ve.sql" />
+    <Build Include="dbo\Stored Procedures\uspLineas_Articulos_Seleccion.sql" />
+    <Build Include="dbo\Stored Procedures\uspmenuWeb_Actualiza.sql" />
+    <Build Include="dbo\Stored Procedures\uspmenuweb_Alta.sql" />
+    <Build Include="dbo\Stored Procedures\uspPerfiles_Actualiza.sql" />
+    <Build Include="dbo\Stored Procedures\uspPerfiles_Alta.sql" />
+    <Build Include="dbo\Stored Procedures\uspPerfiles_Elimina.sql" />
+    <Build Include="dbo\Stored Procedures\uspPerfiles_Seleccion.sql" />
+    <Build Include="dbo\Stored Procedures\uspProcArticulosDiscretos.sql" />
+    <Build Include="dbo\Stored Procedures\uspProcClavesCatSec.sql" />
+    <Build Include="dbo\Stored Procedures\uspProcClavesProveedores.sql" />
+    <Build Include="dbo\Stored Procedures\uspSelClientes_Web.sql" />
+    <Build Include="dbo\Stored Procedures\uspSeltbTiempoInterfaces.sql" />
+    <Build Include="dbo\Stored Procedures\usptbMarca_Actualiza.sql" />
+    <Build Include="dbo\Stored Procedures\usptbMarca_Alta.sql" />
+    <Build Include="dbo\Stored Procedures\uspUpdtbTiempoInterfaces.sql" />
+    <Build Include="dbo\Stored Procedures\uspUsuarios_Seleccionar.sql" />
+    <Build Include="dbo\Stored Procedures\uspUsuarios_ValidaUsr.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetBannersWeb.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetMenuArticulos.sql" />
+  </ItemGroup>
+</Project>

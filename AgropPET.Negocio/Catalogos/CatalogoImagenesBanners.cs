@@ -1,5 +1,5 @@
-﻿using Agropet.Entidades;
-using Agropet.Entidades.CatABCs;
+﻿using AgroPET.Entidades;
+using AgroPET.Entidades.CatABCs;
 using AgroPET.Datos.Catalogos;
 using System;
 using System.Collections.Generic;

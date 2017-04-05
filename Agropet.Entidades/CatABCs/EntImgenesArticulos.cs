@@ -1,13 +1,13 @@
-﻿using Agropet.Entidades.Base;
+﻿using AgroPET.Entidades.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Agropet.Entidades.CatABCs
+namespace AgroPET.Entidades.CatABCs
 {
-    using Agropet.Entidades.Base;
+    using AgroPET.Entidades.Base;
 
     [Serializable]
     [Tabla("tbImagenesArticulos")]

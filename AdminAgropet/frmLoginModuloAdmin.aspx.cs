@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-using Agropet.Entidades.Seguridad;
+using AgroPET.Entidades.Seguridad;
 using AgropPET.Negocio.Seguridad;
 
 namespace AdminAgropet

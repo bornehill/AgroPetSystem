@@ -1,6 +1,6 @@
 ﻿using AdminAgropet.Base;
-using Agropet.Entidades.CatABCs;
-using Agropet.Entidades.Consultas;
+using AgroPET.Entidades.CatABCs;
+using AgroPET.Entidades.Consultas;
 using AgropPET.Negocio.Catalogos;
 using System;
 using System.Collections.Generic;

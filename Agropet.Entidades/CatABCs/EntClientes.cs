@@ -1,10 +1,10 @@
-﻿using Agropet.Entidades.Base;
+﻿using AgroPET.Entidades.Base;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Agropet.Entidades.CatABCs
+namespace AgroPET.Entidades.CatABCs
 {
     [Serializable]
     [Tabla("tbclientes_web")]

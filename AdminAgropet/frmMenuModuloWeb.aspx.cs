@@ -5,11 +5,11 @@ using System.Web;
 using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Agropet.Entidades.Seguridad;
+using AgroPET.Entidades.Seguridad;
 using AgropPET.Negocio.Seguridad;
 
 using Utilidades.Extensiones;
-using Agropet.Entidades.Consultas;
+using AgroPET.Entidades.Consultas;
 using AgropPET.Negocio.Catalogos;
 
 namespace AdminAgropet
