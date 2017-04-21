@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using AgroPET.Entidades.Base;
 
 namespace AgroPET.Entidades.Seguridad
 {
-  [Serializable]
+    [Serializable]
   public class EntUser
   {
     public int UserId

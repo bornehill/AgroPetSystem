@@ -57,5 +57,60 @@ namespace AgroPET.Datos.Catalogos
             accesoDatos.comandoSP = "usp_GetMenuArticulos";
             return accesoDatos.ConsultaDataList<MenuArticulos>();
         }
+
+        public EntUser GetUser(EntUser user)
+        {
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspGetUser";
+            accesoDatos.parametros.Agrega("@userid", user.UserId, true);
+            if (user.User_Name != null && user.User_Name.Length > 0)
+                accesoDatos.parametros.Agrega("@username", user.User_Name, true);
+            else
+                accesoDatos.parametros.Agrega("@username", DBNull.Value, true);
+            if (user.Pass != null && user.Pass.Length > 0)
+                accesoDatos.parametros.Agrega("@pass", user.Pass, true);
+            else
+                accesoDatos.parametros.Agrega("@pass", DBNull.Value, true);
+
+            return accesoDatos.ConsultaDataList<EntUser>().FirstOrDefault();
+        }
+
+        public EntUser AddUser(EntUser user)
+        {
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspCreateUser";
+            accesoDatos.parametros.Agrega("@username", user.User_Name, true);
+            accesoDatos.parametros.Agrega("@pass", user.Pass, true);
+
+            return accesoDatos.ConsultaDataList<EntUser>().FirstOrDefault();
+        }
+
+        public EntBuy AddBuy(EntBuy item)
+        {
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspAddBuy";
+            accesoDatos.parametros.Agrega("@userId", item.UserId, true);
+            accesoDatos.parametros.Agrega("@itemId", item.ItemId, true);
+            accesoDatos.parametros.Agrega("@lot", item.lot, true);
+            accesoDatos.parametros.Agrega("@price", item.price, true);
+
+            return accesoDatos.ConsultaDataList<EntBuy>().FirstOrDefault();
+        }
+
+        public List<EntBuyView> GetBuyView(EntBuyView item)
+        {
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspGetBuyView";
+            accesoDatos.parametros.Agrega("@userId", item.UserId, true);
+
+            return accesoDatos.ConsultaDataList<EntBuyView>();
+        }
+
+        public int GetTotalMenuArt(MenuArticulos menu)
+        {
+            var t = accesoDatos.ConsultaDataSet("select dbo.ufn_GetTotalMenuArt(" + menu.MenuId + ")");
+            return (int)t.Tables[0].Rows[0].ItemArray[0];
+        }
+
     }
 }

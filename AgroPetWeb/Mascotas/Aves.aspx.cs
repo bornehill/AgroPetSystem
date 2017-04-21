@@ -9,7 +9,6 @@ using PetData.Pet;
 using AgroPET.Entidades.Consultas;
 using AgroPET.Entidades.Especial;
 using AgroPET.Entidades.Seguridad;
-using AgroPET.Entidades.Base;
 
 namespace AgroPetWeb.Mascotas
 {
