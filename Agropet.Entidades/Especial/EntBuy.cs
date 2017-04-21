@@ -7,35 +7,35 @@ using AgroPET.Entidades.Base;
 namespace AgroPET.Entidades.Especial
 {
   [Serializable]
-  [Tabla("TempBuy")]
+ // [Tabla("TempBuy")]
   public class EntBuy
   {
-    [Campo("UserId", EsParametroSP = true, EsCampoRetornoConsulta = true)]
+   // [Campo("UserId", EsParametroSP = true, EsCampoRetornoConsulta = true)]
     public int UserId { get; set; }
 
-    [Campo("ItemId", EsParametroSP = true, EsCampoRetornoConsulta = true)]
+   // [Campo("ItemId", EsParametroSP = true, EsCampoRetornoConsulta = true)]
     public int ItemId { get; set; }
 
-    [Campo("lot", EsParametroSP = true, EsCampoRetornoConsulta = true)]
+  //  [Campo("lot", EsParametroSP = true, EsCampoRetornoConsulta = true)]
     public Decimal lot { get; set; }
 
-    [Campo("price", EsParametroSP = true, EsCampoRetornoConsulta = true)]
+  //  [Campo("price", EsParametroSP = true, EsCampoRetornoConsulta = true)]
     public Decimal price { get; set; }
   }
 
   [Serializable]
-  [Tabla("TempBuy")]
+ // [Tabla("TempBuy")]
   public class EntBuyView : EntBuy {
-    [Campo("NombreGpoMicrosip", EsParametroSP = false, EsCampoRetornoConsulta = true)]
+  //  [Campo("NombreGpoMicrosip", EsParametroSP = false, EsCampoRetornoConsulta = true)]
     public string NombreGpoMicrosip { get; set; }
 
-    [Campo("NombreLinMicrosip", EsParametroSP = false, EsCampoRetornoConsulta = true)]
+ //   [Campo("NombreLinMicrosip", EsParametroSP = false, EsCampoRetornoConsulta = true)]
     public string NombreLinMicrosip { get; set; }
 
-    [Campo("NombreArticulo", EsParametroSP = true, EsCampoRetornoConsulta = true)]
+  //  [Campo("NombreArticulo", EsParametroSP = true, EsCampoRetornoConsulta = true)]
     public string NombreArticulo { get; set; }
 
-    [Campo("Image", EsParametroSP = true, EsCampoRetornoConsulta = true)]
+//[Campo("Image", EsParametroSP = true, EsCampoRetornoConsulta = true)]
     public string Image { get; set; }
   }
 }
