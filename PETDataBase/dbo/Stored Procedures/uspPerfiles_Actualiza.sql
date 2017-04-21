@@ -1,12 +1,15 @@
 ﻿
-
-CREATE PROCEDURE uspPerfiles_Actualiza(@IdPerfil int, @NombrePerfil varchar(100),
-@FechaUltModif varchar(20), @IdUsuarioUltModif int, @Activo int)
+CREATE PROCEDURE [dbo].[uspPerfiles_Actualiza](
+	@IdPerfil int, 
+	@NombrePerfil varchar(100),
+--	@FechaUltModif varchar(20), 
+	@IdUsuarioUltModif int,
+	@Activo int)
 AS
 BEGIN
 
 	UPDATE tbperfiles SET nombreperfil = @NombrePerfil, 
-		fechaultmodif = @FechaUltModif,
+		fechaultmodif = GETDATE(),
         idusuarioultmodif = @IdUsuarioUltModif,
         activo = @Activo
 	WHERE idperfil = @IdPerfil;

@@ -175,6 +175,25 @@
     <Build Include="dbo\Stored Procedures\uspAddBuy.sql" />
     <Build Include="dbo\Stored Procedures\uspGetBuyView.sql" />
     <Build Include="dbo\Functions\ufn_GetTotalMenuArt.sql" />
+    <Build Include="dbo\Tables\tbusuarios.sql" />
+    <Build Include="dbo\Stored Procedures\uspUsuariosConsultar.sql" />
+    <Build Include="dbo\Stored Procedures\uspUsuariosAlta.sql" />
+    <Build Include="dbo\Stored Procedures\uspUsuariosActualiza.sql" />
+    <Build Include="dbo\Stored Procedures\uspPerfiles_Consultar.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesBannersObtenerDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesBannersObtener.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesBannersInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesBannersActualizarDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesBannersActualizar.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesBannerInsertarDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesBannerEliminaDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesArticulosObtener.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesArticulosInsertarDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesArticulosInsertar.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesArticulosEliminaDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesArticulosDetalleObtener.sql" />
+    <Build Include="dbo\Stored Procedures\uspImagenesArticulosActualizarDetalle.sql" />
+    <Build Include="dbo\Stored Procedures\uspArticulosObtenerDropDown.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="PETDataBase.refactorlog" />
