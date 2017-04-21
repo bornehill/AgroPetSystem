@@ -17,7 +17,7 @@
     <script src="/Scripts/main.js"></script>
     <script type="text/javascript" src="/Scripts/simplegallery.min.js"></script>
 
-    <script language="javascript" type="text/javascript">
+    <script lang="javascript" type="text/javascript">
       function muestra(panelID, page, titleDialog) {
         $panel = $('#' + panelID);
         $panel.dialog({
@@ -54,7 +54,9 @@
                 <% GetMenuWeb();  %>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                <li><a href="#contact"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <% if (Session["UserWeb"]!=null) { %>
+                  <li><a href="/Mascotas/ShopCar.aspx"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                <% }  %>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="<%=HttpContext.Current.Request.Url.AbsolutePath %>"><span class="glyphicon glyphicon-search"></span></a>
                     <ul class="dropdown-menu">
@@ -71,15 +73,17 @@
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle">
-                      <span class="glyphicon glyphicon-user" title="<%= Session["user_id"]!=null? Session["user_id"] : "Iniciar sesión" %>" onclick="muestra('dialog','Prueba.aspx', 'Autenticacion');return false;"></span></a>
+                      <span class="glyphicon glyphicon-user" title="<%= Session["UserWeb"]!=null? Session["UserName"] : "Iniciar sesión" %>"  <%= Session["UserWeb"]==null? "onclick=\"muestra('dialog','/Security/Autentica.aspx', 'Autenticacion');return false;\"" : "" %>></span></a>
                     <ul class="dropdown-menu">
                     <li class="divider"></li>
                     </ul>
                 </li>
-                <% if (Session["user_id"]!=null) { %>
-                  <li><a href="index.php?action=registro"><span class="glyphicon glyphicon-plus-sign"></span></a></li>
+                <% if (Session["UserWeb"]==null) { %>
+                  <li><a href="/Security/Registro.aspx" title="Registrarse"><span class="glyphicon glyphicon-plus-sign"></span></a></li>
+                <% }  
+                if (Session["UserWeb"]!=null) { %>
+                <li><a href="/Security/Logout.aspx" title="Salir"><span class="glyphicon glyphicon-log-out"></span></a></li>
                 <% }  %>
-                <li><a href="Security/logout.aspx" title="Salir"><span class="glyphicon glyphicon-log-out"></span></a></li>
                 </ul>
             </div>
             </div>
