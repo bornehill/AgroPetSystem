@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\Campos.cs" />
+    <Compile Include="Base\PageView.cs" />
     <Compile Include="Base\Tabla.cs" />
     <Compile Include="CatABCs\DetAccesosPerfil.cs" />
     <Compile Include="CatABCs\EntClientes.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="Consultas\ConsultaPerfiles.cs" />
     <Compile Include="Consultas\ConsultaUsuarios.cs" />
     <Compile Include="Consultas\MenuArticulos.cs" />
+    <Compile Include="Especial\EntBuy.cs" />
     <Compile Include="Especial\EntidadBannersWeb.cs" />
     <Compile Include="Especial\EntidadDDLUC.cs" />
     <Compile Include="Especial\EntidadResultProceso.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Seguridad\EntidadPerfiles.cs" />
     <Compile Include="Seguridad\EntidadUsuario.cs" />
     <Compile Include="Seguridad\EntidadUsuarioLogeado.cs" />
+    <Compile Include="Seguridad\EntUser.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

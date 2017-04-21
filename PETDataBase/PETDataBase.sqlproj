@@ -166,5 +166,17 @@
     <Build Include="dbo\Stored Procedures\uspUsuarios_ValidaUsr.sql" />
     <Build Include="dbo\Stored Procedures\usp_GetBannersWeb.sql" />
     <Build Include="dbo\Stored Procedures\usp_GetMenuArticulos.sql" />
+    <Build Include="dbo\Stored Procedures\usptbArt_Seleccion.sql" />
+    <Build Include="dbo\Stored Procedures\usp_MenuWebObtener.sql" />
+    <Build Include="dbo\Tables\tbusers.sql" />
+    <Build Include="dbo\Stored Procedures\uspGetUser.sql" />
+    <Build Include="dbo\Stored Procedures\uspCreateUser.sql" />
+    <Build Include="dbo\Tables\tbTempBuy.sql" />
+    <Build Include="dbo\Stored Procedures\uspAddBuy.sql" />
+    <Build Include="dbo\Stored Procedures\uspGetBuyView.sql" />
+    <Build Include="dbo\Functions\ufn_GetTotalMenuArt.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="PETDataBase.refactorlog" />
   </ItemGroup>
 </Project>

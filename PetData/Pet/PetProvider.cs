@@ -31,5 +31,34 @@ namespace PetData.Pet
       return catalogoGenerico.GetMenuArticulos(articulo);
     }
 
+    internal EntUser GetUser(EntUser user)
+    {
+      CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
+      return catalogoGenerico.GetUser(user);
+    }
+
+    internal EntUser AddUser(EntUser user)
+    {
+      CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
+      return catalogoGenerico.AddUser(user);
+    }
+
+    internal EntBuy AddBuy(EntBuy item)
+    {
+      CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
+      return catalogoGenerico.AddBuy(item);
+    }
+
+    internal List<EntBuyView> GetBuyView(EntBuyView item)
+    {
+      CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
+      return catalogoGenerico.GetBuyView(item);
+    }
+
+    internal int GetTotalMenuArt(MenuArticulos menu)
+    {
+      CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
+      return catalogoGenerico.GetTotalMenuArt(menu);
+    }
   }
 }

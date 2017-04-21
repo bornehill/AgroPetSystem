@@ -9,22 +9,46 @@ using AgroPET.Entidades.Consultas;
 
 namespace PetData.Pet
 {
-    public class PetService
+  public class PetService
+  {
+    public List<EntidadMenuWeb> GetMenuWeb(EntidadMenuWeb menu)
     {
-      public List<EntidadMenuWeb> GetMenuWeb(EntidadMenuWeb menu)
-      {
-        return new PetProvider().GetMenuWeb(menu);
-      }
+      return new PetProvider().GetMenuWeb(menu);
+    }
 
-      public List<EntidadBannersWeb> GetBannersWeb(EntidadBannersWeb banner)
-      {
-        return new PetProvider().GetBannersWeb(banner);
-      }
+    public List<EntidadBannersWeb> GetBannersWeb(EntidadBannersWeb banner)
+    {
+      return new PetProvider().GetBannersWeb(banner);
+    }
 
     public List<MenuArticulos> GetMenuArticulos(MenuArticulos articulo)
     {
       return new PetProvider().GetMenuArticulos(articulo);
     }
 
+    public EntUser GetUser(EntUser user)
+    {
+      return new PetProvider().GetUser(user);
+    }
+
+    public EntUser AddUser(EntUser user)
+    {
+      return new PetProvider().AddUser(user);
+    }
+
+    public EntBuy AddBuy(EntBuy item)
+    {
+      return new PetProvider().AddBuy(item);
+    }
+
+    public List<EntBuyView> GetBuyView(EntBuyView item)
+    {
+      return new PetProvider().GetBuyView(item);
+    }
+
+    public int GetTotalMenuArt(MenuArticulos menu)
+    {
+      return new PetProvider().GetTotalMenuArt(menu);
+    }
   }
 }

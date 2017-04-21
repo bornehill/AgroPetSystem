@@ -13,11 +13,18 @@ using AgroPET.Entidades.Seguridad;
 using AgroPET.Datos.Comun;
 using AgroPET.Datos.Excepciones;
 using Utilidades;
+using AccesoDatos.Comun;
 
 namespace AgroPET.Datos.Catalogos
 {
   public class CatalogosExtDA
   {
+    public AccesoBD accesoDatos = new AccesoBD();
+
+    public CatalogosExtDA()
+    {
+      accesoDatos.conexionSQL = ConexionSQL.DB_ObtenCadenaConexion("Default");
+    }
 
     #region Variables privadas
 
@@ -118,113 +125,83 @@ namespace AgroPET.Datos.Catalogos
 
     public List<EntidadMenuWeb> ObtenerMenuWeb(EntidadMenuWeb tEntidadNegocio)
     {
-      List<EntidadMenuWeb> listResultado = new List<EntidadMenuWeb>();
-      EjecutaSP espSP = new EjecutaSP("usp_MenuWebObtener");
-
-      #region Asignacion de parametros
-
-      foreach (PropertyInfo piPropiedadEntidad in tEntidadNegocio.GetType().GetProperties())
-      {
-        CampoAttribute caAtributoEntidadNegocio = null;
-        object[] oAtributos = piPropiedadEntidad.GetCustomAttributes(true);
-        if (oAtributos.Length > 0)
-        {
-          caAtributoEntidadNegocio = (CampoAttribute)oAtributos.ToList().Find(x => x.GetType() == typeof(CampoAttribute));
-        }
-
-        if (caAtributoEntidadNegocio == null || caAtributoEntidadNegocio.EsParametroSP)
-        {
-          object oValor = piPropiedadEntidad.GetValue(tEntidadNegocio, null);
-          if (oValor != null)
-          {
-            string sNombreParametro = string.Format("{0}", piPropiedadEntidad.Name);
-            espSP.AgregarParametro(new MySqlParameter(sNombreParametro, oValor));
-          }
-        }
-      }
-
-      #endregion
-
-      MySqlDataReader drEntidad = espSP.ObtenerReader();
-      listResultado = ConversionesEntidadesNegocio<EntidadMenuWeb>.ConvertirAListadoEntidadNegocio(drEntidad);
-
-      espSP.Dispose();    //Cierra los accesos a la base de datos.
-
-      return listResultado;
+      accesoDatos.parametros.listaParametros.Clear();
+      accesoDatos.comandoSP = "usp_MenuWebObtener";
+      accesoDatos.parametros.Agrega("@MenuId", tEntidadNegocio.MenuId, true);
+      accesoDatos.parametros.Agrega("@Menu", tEntidadNegocio.Menu, true);
+      return accesoDatos.ConsultaDataList<EntidadMenuWeb>();
     }
 
     public List<EntidadBannersWeb> ObtenerBannersWeb(EntidadBannersWeb tEntidadNegocio)
     {
-      List<EntidadBannersWeb> listResultado = new List<EntidadBannersWeb>();
-      EjecutaSP espSP = new EjecutaSP("usp_GetBannersWeb");
-
-      #region Asignacion de parametros
-
-      foreach (PropertyInfo piPropiedadEntidad in tEntidadNegocio.GetType().GetProperties())
-      {
-        CampoAttribute caAtributoEntidadNegocio = null;
-        object[] oAtributos = piPropiedadEntidad.GetCustomAttributes(true);
-        if (oAtributos.Length > 0)
-        {
-          caAtributoEntidadNegocio = (CampoAttribute)oAtributos.ToList().Find(x => x.GetType() == typeof(CampoAttribute));
-        }
-
-        if (caAtributoEntidadNegocio == null || caAtributoEntidadNegocio.EsParametroSP)
-        {
-          object oValor = piPropiedadEntidad.GetValue(tEntidadNegocio, null);
-          if (oValor != null)
-          {
-            string sNombreParametro = string.Format("{0}", piPropiedadEntidad.Name);
-            espSP.AgregarParametro(new MySqlParameter(sNombreParametro, oValor));
-          }
-        }
-      }
-
-      #endregion
-
-      MySqlDataReader drEntidad = espSP.ObtenerReader();
-      listResultado = ConversionesEntidadesNegocio<EntidadBannersWeb>.ConvertirAListadoEntidadNegocio(drEntidad);
-
-      espSP.Dispose();    //Cierra los accesos a la base de datos.
-
-      return listResultado;
+      accesoDatos.parametros.listaParametros.Clear();
+      accesoDatos.comandoSP = "usp_GetBannersWeb";
+      accesoDatos.parametros.Agrega("@idbanner", tEntidadNegocio.idbanner, true);
+      accesoDatos.parametros.Agrega("@fechaini", tEntidadNegocio.fechaini, true);
+      accesoDatos.parametros.Agrega("@fechafin", tEntidadNegocio.fechafin, true);
+      return accesoDatos.ConsultaDataList<EntidadBannersWeb>();
     }
 
     public List<MenuArticulos> GetMenuArticulos(MenuArticulos tMenuArticulo)
     {
-      List<MenuArticulos> listArticulos = new List<MenuArticulos>();
-      EjecutaSP espSP = new EjecutaSP("usp_GetMenuArticulos");
+      accesoDatos.parametros.listaParametros.Clear();
+      accesoDatos.comandoSP = "usp_GetMenuArticulos";
+      accesoDatos.parametros.Agrega("@MenuId", tMenuArticulo.MenuId, true);
+      return accesoDatos.ConsultaDataList<MenuArticulos>();
+    }
 
-      #region Asignacion de parametros
+    public EntUser GetUser(EntUser user)
+    {
+      accesoDatos.parametros.listaParametros.Clear();
+      accesoDatos.comandoSP = "uspGetUser";
+      accesoDatos.parametros.Agrega("@userid", user.UserId, true);
+      if (user.User_Name!=null && user.User_Name.Length>0)
+        accesoDatos.parametros.Agrega("@username", user.User_Name, true);
+      else
+        accesoDatos.parametros.Agrega("@username", DBNull.Value, true);
+      if (user.Pass != null && user.Pass.Length > 0)
+        accesoDatos.parametros.Agrega("@pass", user.Pass, true);
+      else
+        accesoDatos.parametros.Agrega("@pass", DBNull.Value, true);
 
-      foreach (PropertyInfo piPropiedadEntidad in tMenuArticulo.GetType().GetProperties())
-      {
-        CampoAttribute caAtributoEntidadNegocio = null;
-        object[] oAtributos = piPropiedadEntidad.GetCustomAttributes(true);
-        if (oAtributos.Length > 0)
-        {
-          caAtributoEntidadNegocio = (CampoAttribute)oAtributos.ToList().Find(x => x.GetType() == typeof(CampoAttribute));
-        }
+      return accesoDatos.ConsultaDataList<EntUser>().FirstOrDefault();
+    }
 
-        if (caAtributoEntidadNegocio == null || caAtributoEntidadNegocio.EsParametroSP)
-        {
-          object oValor = piPropiedadEntidad.GetValue(tMenuArticulo, null);
-          if (oValor != null)
-          {
-            string sNombreParametro = string.Format("{0}", piPropiedadEntidad.Name);
-            espSP.AgregarParametro(new MySqlParameter(sNombreParametro, oValor));
-          }
-        }
-      }
+    public EntUser AddUser(EntUser user)
+    {
+      accesoDatos.parametros.listaParametros.Clear();
+      accesoDatos.comandoSP = "uspCreateUser";
+      accesoDatos.parametros.Agrega("@username", user.User_Name, true);
+      accesoDatos.parametros.Agrega("@pass", user.Pass, true);
 
-      #endregion
+      return accesoDatos.ConsultaDataList<EntUser>().FirstOrDefault();
+    }
 
-      MySqlDataReader drEntidad = espSP.ObtenerReader();
-      listArticulos = ConversionesEntidadesNegocio<MenuArticulos>.ConvertirAListadoEntidadNegocio(drEntidad);
+    public EntBuy AddBuy(EntBuy item)
+    {
+      accesoDatos.parametros.listaParametros.Clear();
+      accesoDatos.comandoSP = "uspAddBuy";
+      accesoDatos.parametros.Agrega("@userId", item.UserId, true);
+      accesoDatos.parametros.Agrega("@itemId", item.ItemId, true);
+      accesoDatos.parametros.Agrega("@lot", item.lot, true);
+      accesoDatos.parametros.Agrega("@price", item.price, true);
 
-      espSP.Dispose();    //Cierra los accesos a la base de datos.
+      return accesoDatos.ConsultaDataList<EntBuy>().FirstOrDefault();
+    }
 
-      return listArticulos;
+    public List<EntBuyView> GetBuyView(EntBuyView item)
+    {
+      accesoDatos.parametros.listaParametros.Clear();
+      accesoDatos.comandoSP = "uspGetBuyView";
+      accesoDatos.parametros.Agrega("@userId", item.UserId, true);
+
+      return accesoDatos.ConsultaDataList<EntBuyView>();
+    }
+
+    public int GetTotalMenuArt(MenuArticulos menu)
+    {
+      var t = accesoDatos.ConsultaDataSet("select dbo.ufn_GetTotalMenuArt("+menu.MenuId+")");
+      return (int)t.Tables[0].Rows[0].ItemArray[0];
     }
   }
 }

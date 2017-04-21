@@ -28,5 +28,8 @@ namespace AgroPET.Entidades.Consultas
 
     [Campo("Image", EsParametroSP = false, EsCampoRetornoConsulta = true)]
     public string Image { get; set; }
+
+    [Campo("Precio", EsParametroSP = false, EsCampoRetornoConsulta = true)]
+    public Decimal Precio { get; set; }
   }
 }
