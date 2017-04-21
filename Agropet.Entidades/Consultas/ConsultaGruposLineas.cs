@@ -4,18 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using AgroPET.Entidades.Base;
-
 namespace AgroPET.Entidades.Consultas
 {
-    [Serializable]
-    [Tabla("grupos_Lineas")]
-    public sealed class ConsultaGruposLineas
+ 
+    public class ConsultaGruposLineas
     {
-        [Campo("Id_Gpo_Lin", EsParametroSP = true, EsCampoRetornoConsulta = true)]
         public int? Id_Gpo_Lin { get; set; }
 
-        [Campo("Nombre", EsLlavePrimaria = false, EsParametroSP = false, EsCampoRetornoConsulta = true)]
         public string Nombre { get; set; }
     }
 }

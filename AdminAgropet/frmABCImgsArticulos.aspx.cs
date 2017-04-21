@@ -42,6 +42,23 @@ namespace AdminAgropet
             ddlArticulos.SelectedIndex = 0;
         }
 
+        protected void btnBuscar_Click(object sender, EventArgs e)
+        {
+            Buscar();
+        }
+
+        public void Buscar()
+        {
+            List<EntImgenesArticulos> lstArticulosConsulta = new CatalogoImagenesArticulos().ObtenerImagenesArticulos(txtArticuloBuscar.Value);
+            gvwConsulta.DataSource = lstArticulosConsulta;
+            gvwConsulta.DataBind();
+        }
+
+        public void LimpiarDatos()
+        {
+            //txtImagenArticulo.Value = string.Empty;
+        }
+
         protected void btnGuardar_Click(object sender, EventArgs e)
         {
             Insertar();
@@ -55,12 +72,12 @@ namespace AdminAgropet
         protected void gvwConsulta_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsulta.PageSize;
-            if (e.CommandName.Equals("Detalles"))
-            {
-                hfIdImagenArticulo.Value = gvwConsulta.DataKeys[nFila].Values[0].ToString();
-                BuscarDetalle((int)gvwConsulta.DataKeys[nFila].Values[0]);
-                mvwArticulos.SetActiveView(vwDetalle);
-            }
+            //if (e.CommandName.Equals("Detalles"))
+            //{
+            //    hfIdImagenArticulo.Value = gvwConsulta.DataKeys[nFila].Values[0].ToString();
+            //    BuscarDetalle((int)gvwConsulta.DataKeys[nFila].Values[0]);
+            //    mvwArticulos.SetActiveView(vwDetalle);
+            //}
         }
 
         protected void gvwConsulta_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -68,79 +85,75 @@ namespace AdminAgropet
 
         }
 
-        protected void btnBuscar_Click(object sender, EventArgs e)
-        {
-            Buscar();
-        }
-
+       
         protected void gvwConsultaDetalle_RowDataBound(object sender, GridViewRowEventArgs e)
         {
 
         }
 
-        protected void gvwConsultaDetalle_RowCommand(object sender, GridViewCommandEventArgs e)
-        {
-            int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsultaDetalle.PageSize;
-            if (e.CommandName.Equals("Editar"))
-            {
-                hfIdImagenArticuloDetalle.Value = gvwConsultaDetalle.DataKeys[nFila].Values[0].ToString();
-                txtImagenArticulo.Value = gvwConsultaDetalle.Rows[nFila].Cells[4].Text;
-                BEdicion = true;
+        //protected void gvwConsultaDetalle_RowCommand(object sender, GridViewCommandEventArgs e)
+        //{
+        //    int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsultaDetalle.PageSize;
+        //    if (e.CommandName.Equals("Editar"))
+        //    {
+        //        hfIdImagenArticuloDetalle.Value = gvwConsultaDetalle.DataKeys[nFila].Values[0].ToString();
+        //        txtImagenArticulo.Value = gvwConsultaDetalle.Rows[nFila].Cells[4].Text;
+        //        BEdicion = true;
 
-                mvwArticulos.SetActiveView(vwDetalleNuevo);
-            }
-            if (e.CommandName.Equals("Eliminar"))
-            {
-                int IdDetImagenArticulo = Convert.ToInt32(gvwConsultaDetalle.DataKeys[nFila].Values[0]);
-                int IdImagenArticulo = Convert.ToInt32(gvwConsultaDetalle.DataKeys[nFila].Values[1]);
-                bool correcto = BorrarDetalle(IdDetImagenArticulo, IdImagenArticulo);
-                BuscarDetalle(IdImagenArticulo);
+        //        mvwArticulos.SetActiveView(vwDetalleNuevo);
+        //    }
+        //    if (e.CommandName.Equals("Eliminar"))
+        //    {
+        //        int IdDetImagenArticulo = Convert.ToInt32(gvwConsultaDetalle.DataKeys[nFila].Values[0]);
+        //        int IdImagenArticulo = Convert.ToInt32(gvwConsultaDetalle.DataKeys[nFila].Values[1]);
+        //        bool correcto = BorrarDetalle(IdDetImagenArticulo, IdImagenArticulo);
+        //        BuscarDetalle(IdImagenArticulo);
 
-                if (!correcto)
-                {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                    "Ocurrio un error al intentar guardar la información: ", 2);
-                }
-            }
-        }
+        //        if (!correcto)
+        //        {
+        //            MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+        //            "Ocurrio un error al intentar guardar la información: ", 2);
+        //        }
+        //    }
+        //}
 
-        protected void btnGuardarDetalle_Click(object sender, EventArgs e)
-        {
-            if (inputfile.PostedFile != null && !string.IsNullOrEmpty(txtImagenArticulo.Value))
-            {
-                // File was sent
-                var postedFile = inputfile.PostedFile;
-                //int dataLength = postedFile.ContentLength;
-                //byte[] myData = new byte[dataLength];
-                //postedFile.InputStream.Read(myData, 0, dataLength);
-                postedFile.SaveAs(@"" + repositorio + txtImagenArticulo.Value);
+        //protected void btnGuardarDetalle_Click(object sender, EventArgs e)
+        //{
+        //    if (inputfile.PostedFile != null && !string.IsNullOrEmpty(txtImagenArticulo.Value))
+        //    {
+        //        // File was sent
+        //        var postedFile = inputfile.PostedFile;
+        //        //int dataLength = postedFile.ContentLength;
+        //        //byte[] myData = new byte[dataLength];
+        //        //postedFile.InputStream.Read(myData, 0, dataLength);
+        //        postedFile.SaveAs(@"" + repositorio + txtImagenArticulo.Value);
 
-                InsertarDetalle();
-            }
-            else
-            {
-                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                 "Es Necesario ingresar todos los datos: ", 2);
-            }
-        }
+        //        InsertarDetalle();
+        //    }
+        //    else
+        //    {
+        //        MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+        //         "Es Necesario ingresar todos los datos: ", 2);
+        //    }
+        //}
 
 
-        protected void btnNuevoDetalle_ServerClick(object sender, EventArgs e)
-        {
-            BEdicion = false;
-            LimpiarDatos();
-            mvwArticulos.SetActiveView(vwDetalleNuevo);
-        }
+        //protected void btnNuevoDetalle_ServerClick(object sender, EventArgs e)
+        //{
+        //    BEdicion = false;
+        //    LimpiarDatos();
+        //    mvwArticulos.SetActiveView(vwDetalleNuevo);
+        //}
 
         protected void btnCancelarDetalle_ServerClick(object sender, EventArgs e)
         {
             Cancelar();
         }
 
-        protected void btnRegresarDetalleNuevo_Click(object sender, EventArgs e)
-        {
-            CancelarDetalle();
-        }
+        //protected void btnRegresarDetalleNuevo_Click(object sender, EventArgs e)
+        //{
+        //    CancelarDetalle();
+        //}
      
 
         #region Metdos
@@ -151,19 +164,14 @@ namespace AdminAgropet
             LlenarDropDown(ddlArticulos, lstArticulos, "Nombre", "ID_ART", PrimerElemento.ValorPropio, "Selecciona Articulo a Insertar...");
         }
 
-        public void Buscar()
-        {
-            List<EntImgenesArticulos> lstArticulosConsulta = new CatalogoImagenesArticulos().ObtenerImagenesArticulos(txtArticuloBuscar.Value);
-            gvwConsulta.DataSource = lstArticulosConsulta;
-            gvwConsulta.DataBind();
-        }
+      
 
-        public void BuscarDetalle(int idImagenArticulo)
-        {
-            List<EntImagenesArticulosDetalle> lstArticulosConsultaDetalle = new CatalogoImagenesArticulos().ObtenerImagenesArticulosDetalle(idImagenArticulo);
-            gvwConsultaDetalle.DataSource = lstArticulosConsultaDetalle;
-            gvwConsultaDetalle.DataBind();
-        }
+        //public void BuscarDetalle(int idImagenArticulo)
+        //{
+        //    List<EntImagenesArticulosDetalle> lstArticulosConsultaDetalle = new CatalogoImagenesArticulos().ObtenerImagenesArticulosDetalle(idImagenArticulo);
+        //    gvwConsultaDetalle.DataSource = lstArticulosConsultaDetalle;
+        //    gvwConsultaDetalle.DataBind();
+        //}
 
         public void Insertar()
         {
@@ -177,7 +185,7 @@ namespace AdminAgropet
                 if (!correcto)
                 {
                     MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                    "Ocurrio un error al intentar guardar la información: ", 2);
+                    "El articulo ya existe: ", 2);
                 }
                 else
                 {
@@ -193,55 +201,52 @@ namespace AdminAgropet
             mvwArticulos.SetActiveView(vwConsulta);
         }
 
-        private void CancelarDetalle()
-        {
-            LimpiarDatos();
-            BuscarDetalle(Convert.ToInt32(hfIdImagenArticulo.Value));
-            mvwArticulos.SetActiveView(vwDetalle);
-        }
+        //private void CancelarDetalle()
+        //{
+        //    LimpiarDatos();
+        //    BuscarDetalle(Convert.ToInt32(hfIdImagenArticulo.Value));
+        //    mvwArticulos.SetActiveView(vwDetalle);
+        //}
 
-        public void LimpiarDatos()
-        {
-            txtImagenArticulo.Value = string.Empty;
-        }
+      
 
-        public void InsertarDetalle()
-        {
-            if (!string.IsNullOrEmpty(txtImagenArticulo.Value))
-            {
-                int idImagenArticulo = Convert.ToInt32(hfIdImagenArticulo.Value);
-                int idUsuario = Convert.ToInt32(UsuarioLogeado.idusuario);
+        //public void InsertarDetalle()
+        //{
+        //    if (!string.IsNullOrEmpty(txtImagenArticulo.Value))
+        //    {
+        //        int idImagenArticulo = Convert.ToInt32(hfIdImagenArticulo.Value);
+        //        int idUsuario = Convert.ToInt32(UsuarioLogeado.idusuario);
 
-                bool correcto;
-                if (BEdicion)
-                {
-                    //ACTUALIZA
-                    int idImagenArticuloDetalle = Convert.ToInt32(hfIdImagenArticuloDetalle.Value);
-                    correcto = new CatalogoImagenesArticulos().ActualizarImagenesArticulosDetalle(idImagenArticulo, idUsuario, txtImagenArticulo.Value, idImagenArticuloDetalle);
-                }
-                else
-                {
-                    //INSERTA 
-                    correcto = new CatalogoImagenesArticulos().InsertaImagenesArticulosDetalle(idImagenArticulo, idUsuario, txtImagenArticulo.Value);
-                }
+        //        bool correcto;
+        //        if (BEdicion)
+        //        {
+        //            //ACTUALIZA
+        //            int idImagenArticuloDetalle = Convert.ToInt32(hfIdImagenArticuloDetalle.Value);
+        //            correcto = new CatalogoImagenesArticulos().ActualizarImagenesArticulosDetalle(idImagenArticulo, idUsuario, txtImagenArticulo.Value, idImagenArticuloDetalle);
+        //        }
+        //        else
+        //        {
+        //            //INSERTA 
+        //            correcto = new CatalogoImagenesArticulos().InsertaImagenesArticulosDetalle(idImagenArticulo, idUsuario, txtImagenArticulo.Value);
+        //        }
 
 
-                if (!correcto)
-                {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                    "Ocurrio un error al intentar guardar la información: ", 2);
-                }
+        //        if (!correcto)
+        //        {
+        //            MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+        //            "Ocurrio un error al intentar guardar la información: ", 2);
+        //        }
 
-                BuscarDetalle(idImagenArticulo);
-                mvwArticulos.SetActiveView(vwDetalle);
-            }
-        }
+        //        BuscarDetalle(idImagenArticulo);
+        //        mvwArticulos.SetActiveView(vwDetalle);
+        //    }
+        //}
 
-        public bool BorrarDetalle(int IdDetImagenArticulo, int IdImagenArticulo)
-        {
-            int idUsuario = Convert.ToInt32(UsuarioLogeado.idusuario);
-            return new CatalogoImagenesArticulos().EliminaImagenesArticulosDetalle(IdDetImagenArticulo, IdImagenArticulo, idUsuario);
-        }
+        //public bool BorrarDetalle(int IdDetImagenArticulo, int IdImagenArticulo)
+        //{
+        //    int idUsuario = Convert.ToInt32(UsuarioLogeado.idusuario);
+        //    return new CatalogoImagenesArticulos().EliminaImagenesArticulosDetalle(IdDetImagenArticulo, IdImagenArticulo, idUsuario);
+        //}
 
 
         #endregion Metdos
@@ -252,10 +257,10 @@ namespace AdminAgropet
             Buscar();
         }
 
-        protected void gvwConsultaDetalle_PageIndexChanging(object sender, GridViewPageEventArgs e)
-        {
-            gvwConsultaDetalle.PageIndex = e.NewPageIndex;
-            BuscarDetalle(Convert.ToInt32(hfIdImagenArticulo.Value));
-        }
+        //protected void gvwConsultaDetalle_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        //{
+        //    gvwConsultaDetalle.PageIndex = e.NewPageIndex;
+        //    BuscarDetalle(Convert.ToInt32(hfIdImagenArticulo.Value));
+        //}
     }
 }

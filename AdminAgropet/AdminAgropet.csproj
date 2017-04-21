@@ -75,7 +75,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="ControlWEB\Comun\wucDropDownEntidadNegocio.ascx" />
     <Content Include="CSS\EstiloCheckBox.css" />
     <Content Include="CSS\Paginacion.css" />
     <Content Include="CSS\StyleDateTimePicker.css" />
@@ -241,13 +240,6 @@
     <Compile Include="Base\BaseCatalogo.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="ControlWEB\Comun\wucDropDownEntidadNegocio.ascx.cs">
-      <DependentUpon>wucDropDownEntidadNegocio.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="ControlWEB\Comun\wucDropDownEntidadNegocio.ascx.designer.cs">
-      <DependentUpon>wucDropDownEntidadNegocio.ascx</DependentUpon>
-    </Compile>
     <Compile Include="frmABCClientes.aspx.cs">
       <DependentUpon>frmABCClientes.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -363,10 +355,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InterfacesAgroPET\InterfacesAgroPET.csproj">
-      <Project>{370aefe8-aefc-4de3-b2b6-d80ff20054f0}</Project>
-      <Name>InterfacesAgroPET</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Utilidades\Utilidades.csproj">
       <Project>{eda6ee69-04bc-421d-9241-129704d18a8b}</Project>
       <Name>Utilidades</Name>

@@ -9,43 +9,22 @@ namespace AgropPET.Negocio.Catalogos
 {
     public class CatalogoUsuario
     {
-        public List<ConsultaUsuarios> ObtenerUsuarios(int? IdPerfil, int? IdUsuario, int? Activo)
+        public List<ConsultaUsuarios> ObtenerUsuarios(int? IdPerfil, int? IdUsuario, bool? Activo)
         {
             List<ConsultaUsuarios> lst = new DatosUsuario().ObtenerUsuarios(IdPerfil,IdUsuario,Activo);
 
             return lst;
         }
 
-        //public bool InsertaImagenesBanners(int idusuariocreo, DateTime FechaInicioApp, DateTime FechaFinApp, string descripcion)
-        //{
-        //    return new DatosImagenesBanners().InsertaImagenesBanners(idusuariocreo, FechaInicioApp, FechaFinApp, descripcion);
-        //}
+        public int GuardarUsuario(ConsultaUsuarios usuario)
+        {
+            return new DatosUsuario().GuardarUsuario(usuario);
+        }
 
-        //public bool ActualizarImagenesBanner(int idBanner, int idUsuarioModifico, string descripcion, DateTime fechainiaplica, DateTime fechafinaplica)
-        //{
-        //    return new DatosImagenesBanners().ActualizarImagenesBanner(idBanner, idUsuarioModifico, descripcion, fechainiaplica, fechafinaplica);
-        //}
+        public int EditarUsuario(ConsultaUsuarios usuario)
+        {
+            return new DatosUsuario().EditarUsuario(usuario);
+        }
 
-        //public List<EntImagenesBannersDetalle> ObtenerImagenesBannersDetalle(int idBanner)
-        //{
-        //    List<EntImagenesBannersDetalle> lstImagBanners = new DatosImagenesBanners().ObtenerImagenesBannersDetalle(idBanner);
-
-        //    return lstImagBanners;
-        //}
-
-        //public bool InsertaImagenesBannerDetalle(int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle, string titulo, string subtitulo)
-        //{
-        //    return new DatosImagenesBanners().InsertaImagenesBannerDetalle(idBanner, idUsuarioModifico, RutaBannerDetalle, OrdenDetalle, titulo, subtitulo);
-        //}
-
-        //public bool ActualizarImagenesBannerDetalle(int idBannerDetalle, int idBanner, int idUsuarioModifico, string RutaBannerDetalle, string OrdenDetalle, string titulo, string subtitulo)
-        //{
-        //    return new DatosImagenesBanners().ActualizarImagenesBannerDetalle(idBannerDetalle, idBanner, idUsuarioModifico, RutaBannerDetalle, OrdenDetalle, titulo, subtitulo);
-        //}
-
-        //public bool EliminaImagenesBannerDetalle(int idBanner, int idBannerDetalle, int idUsuarioModifico)
-        //{
-        //    return new DatosImagenesBanners().EliminaImagenesBannerDetalle(idBanner, idBannerDetalle, idUsuarioModifico);
-        //}
     }
 }

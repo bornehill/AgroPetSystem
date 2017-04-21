@@ -13,7 +13,6 @@ using System.Data;
 using Utilidades.Extensiones;
 using Utilidades.Generales;
 using AgropPET.Negocio.Catalogos;
-using AdminAgropet.ControlWEB.Comun;
 using AgroPET.Entidades.Seguridad;
 
 namespace AdminAgropet.Base
@@ -40,355 +39,355 @@ namespace AdminAgropet.Base
 
         protected enum enm_GridCommands { ViewRow, InsertRow, UpdateRow, DeleteRow, ExportRows };
 
-        public virtual void SetValuesCtlsDivReg(IEnumerable<object> controles, GridViewRow row)
-        {
-            foreach (WebControl control in controles.OfType<WebControl>())
-            {
-                string campo = control.Attributes["campo"];
+        //public virtual void SetValuesCtlsDivReg(IEnumerable<object> controles, GridViewRow row)
+        //{
+        //    foreach (WebControl control in controles.OfType<WebControl>())
+        //    {
+        //        string campo = control.Attributes["campo"];
 
-                if (control.GetType() == typeof(TextBox))
-                {
-                    TextBox textBox = ((TextBox)control);
-                    //int index = GetColumnIndexByName(row, campo);
-                    textBox.Text = WebUtility.HtmlDecode(GetColumnByName(row, campo).Text).Trim();
-                }
-                else if (control.GetType() == typeof(CheckBox))
-                {
-                    CheckBox checkBox = ((CheckBox)control);
-                    string vls_Valor = GetColumnByName(row, campo).Text;
-                    if ((vls_Valor.Equals("1")) || (vls_Valor.ToUpper().Equals("SI")) || (vls_Valor.ToUpper().Equals("TRUE")))
-                    {
-                        checkBox.Checked = true;
-                    }
-                    else
-                    {
-                        checkBox.Checked = false;
-                    }
-                }
-            }
+        //        if (control.GetType() == typeof(TextBox))
+        //        {
+        //            TextBox textBox = ((TextBox)control);
+        //            //int index = GetColumnIndexByName(row, campo);
+        //            textBox.Text = WebUtility.HtmlDecode(GetColumnByName(row, campo).Text).Trim();
+        //        }
+        //        else if (control.GetType() == typeof(CheckBox))
+        //        {
+        //            CheckBox checkBox = ((CheckBox)control);
+        //            string vls_Valor = GetColumnByName(row, campo).Text;
+        //            if ((vls_Valor.Equals("1")) || (vls_Valor.ToUpper().Equals("SI")) || (vls_Valor.ToUpper().Equals("TRUE")))
+        //            {
+        //                checkBox.Checked = true;
+        //            }
+        //            else
+        //            {
+        //                checkBox.Checked = false;
+        //            }
+        //        }
+        //    }
 
-            foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>())
-            {
-                string campo = control.Attributes["campo"];
-                string vls_Valor = GetColumnByName(row, campo).Text;
+        //    foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>())
+        //    {
+        //        string campo = control.Attributes["campo"];
+        //        string vls_Valor = GetColumnByName(row, campo).Text;
 
-                //Checamos si el control indica el tipo de dato del campo para tratarlo de manera especial
-                if (control.HasAttribute("tipoDatoCampo"))
-                {
-                    if (control.Attributes["tipoDatoCampo"].Equals("bool"))
-                    {
-                        vls_Valor = vls_Valor.ToUpper().Equals("TRUE") ?
-                            "1" : (vls_Valor.ToUpper().Equals("FALSE") ?
-                                "0" :
-                                "-1");
-                    }
-                }
+        //        //Checamos si el control indica el tipo de dato del campo para tratarlo de manera especial
+        //        if (control.HasAttribute("tipoDatoCampo"))
+        //        {
+        //            if (control.Attributes["tipoDatoCampo"].Equals("bool"))
+        //            {
+        //                vls_Valor = vls_Valor.ToUpper().Equals("TRUE") ?
+        //                    "1" : (vls_Valor.ToUpper().Equals("FALSE") ?
+        //                        "0" :
+        //                        "-1");
+        //            }
+        //        }
 
-                control.IDSeleccionado = vls_Valor;
-            }
-        }
+        //        control.IDSeleccionado = vls_Valor;
+        //    }
+        //}
 
-        public virtual void SetValuesCtlsDivReg(IEnumerable<object> controles, DataRow row)
-        {
-            foreach (WebControl control in controles.OfType<WebControl>())
-            {
-                string campo = control.Attributes["campo"];
-                string valor = null;
-                if ((campo != null) && row.Table.Columns.Contains(campo))
-                    valor = (string)row[campo];
+        //public virtual void SetValuesCtlsDivReg(IEnumerable<object> controles, DataRow row)
+        //{
+        //    foreach (WebControl control in controles.OfType<WebControl>())
+        //    {
+        //        string campo = control.Attributes["campo"];
+        //        string valor = null;
+        //        if ((campo != null) && row.Table.Columns.Contains(campo))
+        //            valor = (string)row[campo];
 
-                if (control.GetType() == typeof(TextBox))
-                {
-                    TextBox textBox = ((TextBox)control);
-                    //int index = GetColumnIndexByName(row, campo);                    
-                    textBox.Text = WebUtility.HtmlDecode(valor);
-                }
-                else if (control.GetType() == typeof(CheckBox))
-                {
-                    CheckBox checkBox = ((CheckBox)control);
-                    if ((valor.Equals("1")) || (valor.ToUpper().Equals("SI")) || (valor.ToUpper().Equals("TRUE")))
-                    {
-                        checkBox.Checked = true;
-                    }
-                    else
-                    {
-                        checkBox.Checked = false;
-                    }
-                }
-            }
+        //        if (control.GetType() == typeof(TextBox))
+        //        {
+        //            TextBox textBox = ((TextBox)control);
+        //            //int index = GetColumnIndexByName(row, campo);                    
+        //            textBox.Text = WebUtility.HtmlDecode(valor);
+        //        }
+        //        else if (control.GetType() == typeof(CheckBox))
+        //        {
+        //            CheckBox checkBox = ((CheckBox)control);
+        //            if ((valor.Equals("1")) || (valor.ToUpper().Equals("SI")) || (valor.ToUpper().Equals("TRUE")))
+        //            {
+        //                checkBox.Checked = true;
+        //            }
+        //            else
+        //            {
+        //                checkBox.Checked = false;
+        //            }
+        //        }
+        //    }
 
-            foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>())
-            {
-                string campo = control.Attributes["campo"];
-                string valor = null;
-                if (row.Table.Columns.Contains(campo))
-                    valor = (string)row[campo];
+        //    foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>())
+        //    {
+        //        string campo = control.Attributes["campo"];
+        //        string valor = null;
+        //        if (row.Table.Columns.Contains(campo))
+        //            valor = (string)row[campo];
 
-                //Checamos si el control indica el tipo de dato del campo para tratarlo de manera especial
-                if (control.HasAttribute("tipoDatoCampo"))
-                {
-                    if (control.Attributes["tipoDatoCampo"].Equals("bool"))
-                    {
-                        valor = valor.ToUpper().Equals("TRUE") ?
-                            "1" : (valor.ToUpper().Equals("FALSE") ?
-                                "0" :
-                                "-1");
-                    }
-                }
-                control.IDSeleccionado = valor;
-            }
-        }
+        //        //Checamos si el control indica el tipo de dato del campo para tratarlo de manera especial
+        //        if (control.HasAttribute("tipoDatoCampo"))
+        //        {
+        //            if (control.Attributes["tipoDatoCampo"].Equals("bool"))
+        //            {
+        //                valor = valor.ToUpper().Equals("TRUE") ?
+        //                    "1" : (valor.ToUpper().Equals("FALSE") ?
+        //                        "0" :
+        //                        "-1");
+        //            }
+        //        }
+        //        control.IDSeleccionado = valor;
+        //    }
+        //}
 
-        public void SetValuesCtlsDivReg<T>(IEnumerable<object> controles, T entidad) where T : new()
-        {
-            foreach (WebControl control in controles.OfType<WebControl>())
-            {
-                string campo = control.Attributes["campo"];
+        //public void SetValuesCtlsDivReg<T>(IEnumerable<object> controles, T entidad) where T : new()
+        //{
+        //    foreach (WebControl control in controles.OfType<WebControl>())
+        //    {
+        //        string campo = control.Attributes["campo"];
 
-                if (control.GetType() == typeof(TextBox))
-                {
-                    TextBox textBox = ((TextBox)control);
-                    //int index = GetColumnIndexByName(row, campo);
-                    textBox.Text = WebUtility.HtmlDecode(GetValuePropEntidad<T>(entidad, campo));
-                }
-                else if (control.GetType() == typeof(CheckBox))
-                {
-                    CheckBox checkBox = ((CheckBox)control);
-                    string vls_Valor = GetValuePropEntidad<T>(entidad, campo);
-                    if ((vls_Valor.Equals("1")) || (vls_Valor.ToUpper().Equals("SI")) || (vls_Valor.ToUpper().Equals("TRUE")))
-                    {
-                        checkBox.Checked = true;
-                    }
-                    else
-                    {
-                        checkBox.Checked = false;
-                    }
-                }
-            }
+        //        if (control.GetType() == typeof(TextBox))
+        //        {
+        //            TextBox textBox = ((TextBox)control);
+        //            //int index = GetColumnIndexByName(row, campo);
+        //            textBox.Text = WebUtility.HtmlDecode(GetValuePropEntidad<T>(entidad, campo));
+        //        }
+        //        else if (control.GetType() == typeof(CheckBox))
+        //        {
+        //            CheckBox checkBox = ((CheckBox)control);
+        //            string vls_Valor = GetValuePropEntidad<T>(entidad, campo);
+        //            if ((vls_Valor.Equals("1")) || (vls_Valor.ToUpper().Equals("SI")) || (vls_Valor.ToUpper().Equals("TRUE")))
+        //            {
+        //                checkBox.Checked = true;
+        //            }
+        //            else
+        //            {
+        //                checkBox.Checked = false;
+        //            }
+        //        }
+        //    }
 
-            foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>())
-            {
-                string campo = control.Attributes["campo"];
-                string vls_Valor = GetValuePropEntidad<T>(entidad, campo);
+        //    foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>())
+        //    {
+        //        string campo = control.Attributes["campo"];
+        //        string vls_Valor = GetValuePropEntidad<T>(entidad, campo);
 
-                //Checamos si el control indica el tipo de dato del campo para tratarlo de manera especial
-                if (control.HasAttribute("tipoDatoCampo"))
-                {
-                    if (control.Attributes["tipoDatoCampo"].Equals("bool"))
-                    {
-                        vls_Valor = vls_Valor.ToUpper().Equals("TRUE") ?
-                            "1" : (vls_Valor.ToUpper().Equals("FALSE") ?
-                                "0" :
-                                "-1");
-                    }
-                }
+        //        //Checamos si el control indica el tipo de dato del campo para tratarlo de manera especial
+        //        if (control.HasAttribute("tipoDatoCampo"))
+        //        {
+        //            if (control.Attributes["tipoDatoCampo"].Equals("bool"))
+        //            {
+        //                vls_Valor = vls_Valor.ToUpper().Equals("TRUE") ?
+        //                    "1" : (vls_Valor.ToUpper().Equals("FALSE") ?
+        //                        "0" :
+        //                        "-1");
+        //            }
+        //        }
 
-                control.IDSeleccionado = vls_Valor;
-            }
-        }
+        //        control.IDSeleccionado = vls_Valor;
+        //    }
+        //}
 
-        public void SetModoVisibleCtlsDivReg(IEnumerable<object> controles, int accion, int accionSoloConsulta)
-        {
-            bool vlb_SoloConsulta = accion == accionSoloConsulta ? true : false;
+        //public void SetModoVisibleCtlsDivReg(IEnumerable<object> controles, int accion, int accionSoloConsulta)
+        //{
+        //    bool vlb_SoloConsulta = accion == accionSoloConsulta ? true : false;
 
-            foreach (WebControl control in controles.OfType<WebControl>().Where(t => t.Attributes["modoVisible"] != null))
-            {
-                char[] vlo_ModoVisible = control.Attributes["modoVisible"].ToCharArray();
-                bool? vlb_Accion = Conversiones.StringCeroUnoABoolean(vlo_ModoVisible[accion].ToString());
+        //    foreach (WebControl control in controles.OfType<WebControl>().Where(t => t.Attributes["modoVisible"] != null))
+        //    {
+        //        char[] vlo_ModoVisible = control.Attributes["modoVisible"].ToCharArray();
+        //        bool? vlb_Accion = Conversiones.StringCeroUnoABoolean(vlo_ModoVisible[accion].ToString());
 
-                control.Visible = vlb_Accion == null ? false : (bool)vlb_Accion;
+        //        control.Visible = vlb_Accion == null ? false : (bool)vlb_Accion;
 
-                SetSoloConsultaCtrl(control, accion, vlb_SoloConsulta);
-            }
+        //        SetSoloConsultaCtrl(control, accion, vlb_SoloConsulta);
+        //    }
 
-            foreach (WebControl control in controles.OfType<WebControl>().Where(t => t.Attributes["modoVisible"] == null))
-            {
-                SetSoloConsultaCtrl(control, accion, vlb_SoloConsulta);
-            }
+        //    foreach (WebControl control in controles.OfType<WebControl>().Where(t => t.Attributes["modoVisible"] == null))
+        //    {
+        //        SetSoloConsultaCtrl(control, accion, vlb_SoloConsulta);
+        //    }
 
-            foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>().Where(t => t.HasAttribute("modoVisible")))
-            {
-                char[] vlo_ModoVisible = control.Attributes["modoVisible"].ToCharArray();
-                bool? vlb_Accion = Conversiones.StringCeroUnoABoolean(vlo_ModoVisible[accion].ToString());
+        //    foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>().Where(t => t.HasAttribute("modoVisible")))
+        //    {
+        //        char[] vlo_ModoVisible = control.Attributes["modoVisible"].ToCharArray();
+        //        bool? vlb_Accion = Conversiones.StringCeroUnoABoolean(vlo_ModoVisible[accion].ToString());
 
-                control.MostrarDropDown = vlb_Accion == null ? false : (bool)vlb_Accion;
+        //        control.MostrarDropDown = vlb_Accion == null ? false : (bool)vlb_Accion;
 
-                SetSoloConsultaCtrl(control, accion, vlb_SoloConsulta);
-            }
+        //        SetSoloConsultaCtrl(control, accion, vlb_SoloConsulta);
+        //    }
 
-            foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>().Where(t => !t.HasAttribute("modoVisible")))
-            {
-                SetSoloConsultaCtrl(control, accion, vlb_SoloConsulta);
-            }
-        }
+        //    foreach (wucDropDownEntidadNegocio control in controles.OfType<wucDropDownEntidadNegocio>().Where(t => !t.HasAttribute("modoVisible")))
+        //    {
+        //        SetSoloConsultaCtrl(control, accion, vlb_SoloConsulta);
+        //    }
+        //}
 
-        public void SetSoloConsultaCtrl(object control, int accion, bool soloConsulta)
-        {
-            if (control.GetType() == typeof(TextBox))
-            {
-                TextBox textBox = ((TextBox)control);
-                string vls_ModoSoloConsulta = textBox.Attributes["modoSoloConsulta"];
+        //public void SetSoloConsultaCtrl(object control, int accion, bool soloConsulta)
+        //{
+        //    if (control.GetType() == typeof(TextBox))
+        //    {
+        //        TextBox textBox = ((TextBox)control);
+        //        string vls_ModoSoloConsulta = textBox.Attributes["modoSoloConsulta"];
 
-                if (vls_ModoSoloConsulta != null)
-                {
-                    char[] vlo_ModoSoloConsulta = vls_ModoSoloConsulta.ToCharArray();
-                    bool? vlb_AccionSoloConsulta = Conversiones.StringCeroUnoABoolean(vlo_ModoSoloConsulta[accion].ToString());
+        //        if (vls_ModoSoloConsulta != null)
+        //        {
+        //            char[] vlo_ModoSoloConsulta = vls_ModoSoloConsulta.ToCharArray();
+        //            bool? vlb_AccionSoloConsulta = Conversiones.StringCeroUnoABoolean(vlo_ModoSoloConsulta[accion].ToString());
 
-                    textBox.ReadOnly = vlb_AccionSoloConsulta == null ? false : (bool)vlb_AccionSoloConsulta;
-                }
-                else
-                {
-                    textBox.ReadOnly = soloConsulta;
-                }
-            }
-            else if (control.GetType() == typeof(CheckBox))
-            {
-                CheckBox checkBox = ((CheckBox)control);
-                string vls_ModoSoloConsulta = checkBox.Attributes["modoSoloConsulta"];
-                if (vls_ModoSoloConsulta != null)
-                {
-                    char[] vlo_ModoSoloConsulta = vls_ModoSoloConsulta.ToCharArray();
-                    bool? vlb_AccionSoloConsulta = Conversiones.StringCeroUnoABoolean(vlo_ModoSoloConsulta[accion].ToString());
+        //            textBox.ReadOnly = vlb_AccionSoloConsulta == null ? false : (bool)vlb_AccionSoloConsulta;
+        //        }
+        //        else
+        //        {
+        //            textBox.ReadOnly = soloConsulta;
+        //        }
+        //    }
+        //    else if (control.GetType() == typeof(CheckBox))
+        //    {
+        //        CheckBox checkBox = ((CheckBox)control);
+        //        string vls_ModoSoloConsulta = checkBox.Attributes["modoSoloConsulta"];
+        //        if (vls_ModoSoloConsulta != null)
+        //        {
+        //            char[] vlo_ModoSoloConsulta = vls_ModoSoloConsulta.ToCharArray();
+        //            bool? vlb_AccionSoloConsulta = Conversiones.StringCeroUnoABoolean(vlo_ModoSoloConsulta[accion].ToString());
 
-                    checkBox.Enabled = vlb_AccionSoloConsulta == null ? false : (bool)vlb_AccionSoloConsulta;
-                }
-                else
-                {
-                    checkBox.Enabled = soloConsulta;
-                }
-            }
-            else if (control.GetType() == typeof(wucDropDownEntidadNegocio))
-            {
-                wucDropDownEntidadNegocio combo = ((wucDropDownEntidadNegocio)control);
-                string vls_ModoSoloConsulta = combo.Attributes["modoSoloConsulta"];
-                if (vls_ModoSoloConsulta != null)
-                {
-                    char[] vlo_ModoSoloConsulta = vls_ModoSoloConsulta.ToCharArray();
-                    bool? vlb_AccionSoloConsulta = Conversiones.StringCeroUnoABoolean(vlo_ModoSoloConsulta[accion].ToString());
+        //            checkBox.Enabled = vlb_AccionSoloConsulta == null ? false : (bool)vlb_AccionSoloConsulta;
+        //        }
+        //        else
+        //        {
+        //            checkBox.Enabled = soloConsulta;
+        //        }
+        //    }
+        //    else if (control.GetType() == typeof(wucDropDownEntidadNegocio))
+        //    {
+        //        wucDropDownEntidadNegocio combo = ((wucDropDownEntidadNegocio)control);
+        //        string vls_ModoSoloConsulta = combo.Attributes["modoSoloConsulta"];
+        //        if (vls_ModoSoloConsulta != null)
+        //        {
+        //            char[] vlo_ModoSoloConsulta = vls_ModoSoloConsulta.ToCharArray();
+        //            bool? vlb_AccionSoloConsulta = Conversiones.StringCeroUnoABoolean(vlo_ModoSoloConsulta[accion].ToString());
 
-                    combo.SoloLectura = vlb_AccionSoloConsulta == null ? false : (bool)vlb_AccionSoloConsulta;
-                }
-                else
-                {
-                    combo.SoloLectura = soloConsulta;
-                }
+        //            combo.SoloLectura = vlb_AccionSoloConsulta == null ? false : (bool)vlb_AccionSoloConsulta;
+        //        }
+        //        else
+        //        {
+        //            combo.SoloLectura = soloConsulta;
+        //        }
 
-            }
+        //    }
 
-        }
+        //}
 
-        public int GetColumnIndexByName(GridView grd, string columnName)
-        {
-            int columnIndex = -1;
-            if (grd.Rows.Count > 0)
-            {
-                GridViewRow row = grd.Rows[0];
-                foreach (DataControlFieldCell cell in row.Cells)
-                {
-                    columnIndex++; // keep adding 1 while we don't have the correct name
+        //public int GetColumnIndexByName(GridView grd, string columnName)
+        //{
+        //    int columnIndex = -1;
+        //    if (grd.Rows.Count > 0)
+        //    {
+        //        GridViewRow row = grd.Rows[0];
+        //        foreach (DataControlFieldCell cell in row.Cells)
+        //        {
+        //            columnIndex++; // keep adding 1 while we don't have the correct name
 
-                    if (cell.ContainingField is BoundField)
-                        if (((BoundField)cell.ContainingField).DataField.ToUpper().Equals(columnName.ToUpper()))
-                            break;
-                }
-            }
-            return columnIndex;
-        }
+        //            if (cell.ContainingField is BoundField)
+        //                if (((BoundField)cell.ContainingField).DataField.ToUpper().Equals(columnName.ToUpper()))
+        //                    break;
+        //        }
+        //    }
+        //    return columnIndex;
+        //}
 
-        public int GetColumnIndexByName(GridViewRow row, string columnName)
-        {
-            int columnIndex = -1;
-            foreach (DataControlFieldCell cell in row.Cells)
-            {
-                if (cell.ContainingField is BoundField)
-                    if (((BoundField)cell.ContainingField).DataField.ToUpper().Equals(columnName.ToUpper()))
-                        break;
-                columnIndex++; // keep adding 1 while we don't have the correct name
-            }
-            return columnIndex;
-        }
+        //public int GetColumnIndexByName(GridViewRow row, string columnName)
+        //{
+        //    int columnIndex = -1;
+        //    foreach (DataControlFieldCell cell in row.Cells)
+        //    {
+        //        if (cell.ContainingField is BoundField)
+        //            if (((BoundField)cell.ContainingField).DataField.ToUpper().Equals(columnName.ToUpper()))
+        //                break;
+        //        columnIndex++; // keep adding 1 while we don't have the correct name
+        //    }
+        //    return columnIndex;
+        //}
 
-        public TableCell GetColumnByName(GridView grd, string columnName)
-        {
-            TableCell column = new TableCell();
-            if (grd.Rows.Count > 0)
-            {
-                GridViewRow row = grd.Rows[0];
-                foreach (DataControlFieldCell cell in row.Cells)
-                {
-                    if (cell.ContainingField is BoundField)
-                        if (((BoundField)cell.ContainingField).DataField.Equals(columnName))
-                        {
-                            column = cell;
-                            break;
-                        }
-                }
-            }
-            return column;
-        }
+        //public TableCell GetColumnByName(GridView grd, string columnName)
+        //{
+        //    TableCell column = new TableCell();
+        //    if (grd.Rows.Count > 0)
+        //    {
+        //        GridViewRow row = grd.Rows[0];
+        //        foreach (DataControlFieldCell cell in row.Cells)
+        //        {
+        //            if (cell.ContainingField is BoundField)
+        //                if (((BoundField)cell.ContainingField).DataField.Equals(columnName))
+        //                {
+        //                    column = cell;
+        //                    break;
+        //                }
+        //        }
+        //    }
+        //    return column;
+        //}
 
-        public TableCell GetColumnByName(GridViewRow row, string columnName)
-        {
-            TableCell column = new TableCell();
-            foreach (DataControlFieldCell cell in row.Cells)
-            {
-                if (cell.ContainingField is BoundField)
-                    if (((BoundField)cell.ContainingField).DataField.Equals(columnName))
-                    {
-                        column = cell;
-                        break;
-                    }
-            }
-            return column;
-        }
+        //public TableCell GetColumnByName(GridViewRow row, string columnName)
+        //{
+        //    TableCell column = new TableCell();
+        //    foreach (DataControlFieldCell cell in row.Cells)
+        //    {
+        //        if (cell.ContainingField is BoundField)
+        //            if (((BoundField)cell.ContainingField).DataField.Equals(columnName))
+        //            {
+        //                column = cell;
+        //                break;
+        //            }
+        //    }
+        //    return column;
+        //}
 
-        public IEnumerable<object> GetCntrlsDivReg(Panel panel)
-        {
-            //ControlCollection lista = ;
-            var controles = (from control in panel.Controls.OfType<WebControl>()
-                             where control.HasAttributes && ((control.Attributes["campo"] != null) || (control.Attributes["modoVisible"] != null) || (control.Attributes["modoSoloConsulta"] != null))
-                             select (object)control)
-                            .Union(
-                            from control in panel.Controls.OfType<ControlWEB.Comun.wucDropDownEntidadNegocio>()
-                            where ((control.HasAttribute("campo")) || (control.HasAttribute("modoVisible")) || (control.Attributes["modoSoloConsulta"] != null))
-                            select (object)control);
+        //public IEnumerable<object> GetCntrlsDivReg(Panel panel)
+        //{
+        //    //ControlCollection lista = ;
+        //    var controles = (from control in panel.Controls.OfType<WebControl>()
+        //                     where control.HasAttributes && ((control.Attributes["campo"] != null) || (control.Attributes["modoVisible"] != null) || (control.Attributes["modoSoloConsulta"] != null))
+        //                     select (object)control)
+        //                    .Union(
+        //                    from control in panel.Controls.OfType<ControlWEB.Comun.wucDropDownEntidadNegocio>()
+        //                    where ((control.HasAttribute("campo")) || (control.HasAttribute("modoVisible")) || (control.Attributes["modoSoloConsulta"] != null))
+        //                    select (object)control);
 
-            return controles;
-        }
+        //    return controles;
+        //}
 
-        /// <summary>
-        /// Determina si existe al menos un registro seleccionado en el grid.
-        /// </summary>
-        /// <param name="grdCatalogo">Grid que se desea revisar</param>
-        /// <param name="sNombreCheckBox">Nombre del CheckBox a revisar si esta seleccionado o no</param>
-        /// <returns>True: Si hay al menos un registro seleccionado. False: No hay ninguno seleccionado</returns>
-        public bool HasSelectedRowsByCheckBox(GridView grdCatalogo, string vps_CheckBoxName)
-        {
-            for (int i = 0; i < grdCatalogo.Rows.Count; i++)
-            {
-                CheckBox chk_ItemGrid = (CheckBox)grdCatalogo.Rows[i].FindControl(vps_CheckBoxName);
-                if (chk_ItemGrid.Checked)
-                    return true;
-            }
+        ///// <summary>
+        ///// Determina si existe al menos un registro seleccionado en el grid.
+        ///// </summary>
+        ///// <param name="grdCatalogo">Grid que se desea revisar</param>
+        ///// <param name="sNombreCheckBox">Nombre del CheckBox a revisar si esta seleccionado o no</param>
+        ///// <returns>True: Si hay al menos un registro seleccionado. False: No hay ninguno seleccionado</returns>
+        //public bool HasSelectedRowsByCheckBox(GridView grdCatalogo, string vps_CheckBoxName)
+        //{
+        //    for (int i = 0; i < grdCatalogo.Rows.Count; i++)
+        //    {
+        //        CheckBox chk_ItemGrid = (CheckBox)grdCatalogo.Rows[i].FindControl(vps_CheckBoxName);
+        //        if (chk_ItemGrid.Checked)
+        //            return true;
+        //    }
 
-            return false;
-        }
+        //    return false;
+        //}
 
-        /// <summary>
-        /// Determina si existe al menos un registro seleccionado en el grid.
-        /// </summary>
-        /// <param name="grdCatalogo">Grid que se desea revisar</param>
-        /// <param name="sNombreCheckBox">Nombre del CheckBox a revisar si esta seleccionado o no</param>
-        /// <returns>True: Si hay al menos un registro seleccionado. False: No hay ninguno seleccionado</returns>
-        public IEnumerable<GridViewRow> GetSelectedRowsByCheckBox(GridView grdCatalogo, string vps_CheckBoxName)
-        {
-            for (int i = 0; i < grdCatalogo.Rows.Count; i++)
-            {
-                CheckBox chk_ItemGrid = (CheckBox)grdCatalogo.Rows[i].FindControl(vps_CheckBoxName);
-                if (chk_ItemGrid.Checked)
-                    yield return grdCatalogo.Rows[i];
-            }
-        }
+        ///// <summary>
+        ///// Determina si existe al menos un registro seleccionado en el grid.
+        ///// </summary>
+        ///// <param name="grdCatalogo">Grid que se desea revisar</param>
+        ///// <param name="sNombreCheckBox">Nombre del CheckBox a revisar si esta seleccionado o no</param>
+        ///// <returns>True: Si hay al menos un registro seleccionado. False: No hay ninguno seleccionado</returns>
+        //public IEnumerable<GridViewRow> GetSelectedRowsByCheckBox(GridView grdCatalogo, string vps_CheckBoxName)
+        //{
+        //    for (int i = 0; i < grdCatalogo.Rows.Count; i++)
+        //    {
+        //        CheckBox chk_ItemGrid = (CheckBox)grdCatalogo.Rows[i].FindControl(vps_CheckBoxName);
+        //        if (chk_ItemGrid.Checked)
+        //            yield return grdCatalogo.Rows[i];
+        //    }
+        //}
 
         /// Muestra un mensaje en el explorador cliente
         /// </summary>

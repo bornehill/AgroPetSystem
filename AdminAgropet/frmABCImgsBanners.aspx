@@ -11,24 +11,26 @@
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <label>ABC IMAGENES BANNERS</label>
+                                <label>
+                            ABC IMAGENES BANNERS</label>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-btn">
-                                                <button id="btnBuscar" runat="server" type="button" class="btn btn-success" onserverclick="btnBuscar_ServerClick" tabindex="1">Go!</button>
+                                            <button id="btnBuscar" runat="server" type="submit" class="btn btn-success" onserverclick="btnBuscar_Click" tabindex="1">
+                                            Go!
+                                            </button>
                                             </span>
                                             <input id="txtBannerBuscar" runat="server" type="text" class="form-control" placeholder="Buscar por..." tabindex="0" />
                                         </div>
                                     </div>
                                     <center>
-                                        <button id="btnNuevo" runat="server" class="btn btn-info" onserverclick="btnNuevo_ServerClick" tabindex="2">Nuevo</button>
+                                        <asp:Button id="btnNuevo" runat="server" class="btn btn-info" onclick="btnNuevo_Click" Text="Nuevo" />
                                     </center>
                                 </div>
                             </div>
-
                             <div class="panel-body">
                                 <asp:GridView ID="gvwConsulta" runat="server" AutoGenerateColumns="false" DataKeyNames="idbanner"
                                     OnRowCommand="gvwConsulta_RowCommand" OnRowDataBound="gvwConsulta_RowDataBound"
@@ -59,18 +61,20 @@
                                         <asp:BoundField DataField="fechainiaplica" HeaderText="Fecha Inicio" DataFormatString="{0:dd/MM/yyyy}" />
                                         <asp:BoundField DataField="fechafinaplica" HeaderText="Fecha Fin" DataFormatString="{0:dd/MM/yyyy}" />
                                     </Columns>
-                                    <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
+                                    <EmptyDataTemplate>
+                                    Sin datos
+                                    </EmptyDataTemplate>
                                 </asp:GridView>
                             </div>
                         </div>
                     </div>
                 </asp:View>
-
                 <asp:View ID="vwNuevo" runat="server">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <label>NUEVO BANNER</label>
+                                <label>
+                            NUEVO BANNER</label>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -90,8 +94,8 @@
                                             <br />
                                         </div>
                                         <center>
-                                            <button id="btnGuardar" runat="server" class="btn btn-success" onserverclick="btnGuardar_ServerClick">Guardar</button>
-                                            <button id="btnCancelar" runat="server" class="btn btn-info" onserverclick="btnCancelar_ServerClick">Cancelar</button>
+                                            <asp:Button id="btnGuardar" runat="server" class="btn btn-success" onclick="btnGuardar_Click" Text="Guardar" />
+                                            <asp:Button id="btnCancelar" runat="server" class="btn btn-info" onclick="btnCancelar_Click" Text="Cancelar" />
                                         </center>
                                         <asp:HiddenField ID="hfIdBannerEditar" runat="server" />
                                     </div>
@@ -100,20 +104,19 @@
                         </div>
                     </div>
                 </asp:View>
-
                 <asp:View ID="vwDetalle" runat="server">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <label>DETALLE DE IMAGENES DE BANNERS</label>
+                                <label>
+                            DETALLE DE IMAGENES DE BANNERS</label>
                             </div>
-
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <center>
-                                            <button id="btnNuevoDetalle" runat="server" class="btn btn-success" onserverclick="btnNuevoDetalle_ServerClick" validationgroup="guarda">Nuevo</button>
-                                            <button id="btnCancelarDetalle" runat="server" class="btn btn-info" onserverclick="btnCancelarDetalle_ServerClick">Cancelar</button>
+                                            <asp:Button id="btnNuevoDetalle" runat="server" class="btn btn-success" onclick="btnNuevoDetalle_Click" validationgroup="guarda" Text="Nuevo"/>
+                                            <asp:Button id="btnCancelarDetalle" runat="server" class="btn btn-info" onclick="btnCancelarDetalle_Click" Text="Cancelar"/>
                                         </center>
                                     </div>
                                 </div>
@@ -148,7 +151,9 @@
                                                     <asp:BoundField DataField="Titulo" HeaderText="Titulo" />
                                                     <asp:BoundField DataField="Subtitulo" HeaderText="Subtitulo" />
                                                 </Columns>
-                                                <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
+                                                <EmptyDataTemplate>
+                                                Sin datos
+                                                </EmptyDataTemplate>
                                             </asp:GridView>
                                         </center>
                                     </div>
@@ -157,29 +162,31 @@
                         </div>
                     </div>
                 </asp:View>
-
                 <asp:View ID="vwDetalleNuevo" runat="server">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
-                                <label>NUEVO DETALLE IMAGEN BANNER</label>
+                                <label>
+                            NUEVO DETALLE IMAGEN BANNER</label>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group col-lg-2">
-                                            <label style="text-align: left; width: 100%;">Orden</label>
+                                            <label style="text-align: left; width: 100%;">
+                                        Orden</label>
                                             <asp:TextBox ID="txtOrdenDetalle" runat="server" class="form-control" placeholder="Ingrese Orden..." Width="130px"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-lg-4">
                                             <%-- <div class="btnera col-lg-12 col-md-12 col-xs-12">
                                                 <div class="col-xs-6 col-md-2">--%>
-                                            <label style="text-align: left; width: 100%;">Imagen</label>
+                                            <label style="text-align: left; width: 100%;">
+                                        Imagen</label>
                                             <div class="input-group">
                                                 <label class="input-group-btn">
-                                                    <span class="btn btn-primary">Buscar
+                                                <span class="btn btn-primary">Buscar
                                                                 <input type="file" name="file" id="inputfile" class="file" runat="server" accept=".jpg,.jpeg,.png,.gif" style="display: none;" />
-                                                    </span>
+                                                </span>
                                                 </label>
                                                 <input id="txtRutaBannerDetalle" runat="server" type="text" class="form-control" style="width: 300px;" readonly placeholder="Selecciona archivo..." />
                                             </div>
@@ -187,11 +194,13 @@
                                            </div>--%>
                                         </div>
                                         <div class="form-group col-lg-3">
-                                            <label style="text-align: left; width: 100%;">Titulo</label>
+                                            <label style="text-align: left; width: 100%;">
+                                        Titulo</label>
                                             <asp:TextBox ID="txtTiltulo" runat="server" class="form-control" placeholder="Ingrese Titulo..."></asp:TextBox>
                                         </div>
                                         <div class="form-group col-lg-3">
-                                            <label style="text-align: left; width: 100%;">Subtitulo</label>
+                                            <label style="text-align: left; width: 100%;">
+                                        Subtitulo</label>
                                             <asp:TextBox ID="txtSubtitulo" runat="server" class="form-control" placeholder="Ingrese Subtitulo.."></asp:TextBox>
                                         </div>
                                     </div>
@@ -210,7 +219,6 @@
                         </div>
                     </div>
                 </asp:View>
-
             </asp:MultiView>
         </ContentTemplate>
         <Triggers>

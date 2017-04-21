@@ -46,7 +46,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddluc_Perfil;
+        protected global::System.Web.UI.WebControls.DropDownList ddluc_Perfil;
         
         /// <summary>
         /// SelEstatus control.

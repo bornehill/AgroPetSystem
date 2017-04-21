@@ -40,9 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\Campos.cs" />
-    <Compile Include="Base\Tabla.cs" />
-    <Compile Include="CatABCs\DetAccesosPerfil.cs" />
     <Compile Include="CatABCs\EntClientes.cs" />
     <Compile Include="CatABCs\EntidadBanners.cs" />
     <Compile Include="CatABCs\EntidadBannersDetail.cs" />
@@ -50,6 +47,7 @@
     <Compile Include="CatABCs\EntImgenesBanners.cs" />
     <Compile Include="CatABCs\EntImagenesArticulosDetalle.cs" />
     <Compile Include="CatABCs\EntImgenesArticulos.cs" />
+    <Compile Include="CatABCs\EntPerfil.cs" />
     <Compile Include="Consultas\ConsultaArticulos.cs" />
     <Compile Include="Consultas\ConsultaArtLibArt.cs" />
     <Compile Include="Consultas\ConsultaDetPerfil.cs" />

@@ -1,7 +1,6 @@
 ﻿using AgroPET.Entidades;
 using AgroPET.Entidades.CatABCs;
 using AgroPET.Datos.Comun;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -132,7 +131,7 @@ namespace AgroPET.Datos.Catalogos
             {
                 accesoDatos.parametros.listaParametros.Clear();
                 accesoDatos.comandoSP = "uspImagenesBannerEliminaDetalle";
-                accesoDatos.parametros.Agrega("@p_iddetbanners", idBannerDetalle, true);
+                accesoDatos.parametros.Agrega("@p_idBannerDetalle", idBannerDetalle, true);
                 accesoDatos.parametros.Agrega("@p_idBanner", idBanner, true);
                 accesoDatos.parametros.Agrega("@p_idUsuarioModifico", idUsuarioModifico, true);
                 int afectados = accesoDatos.EjecutaNQuery();

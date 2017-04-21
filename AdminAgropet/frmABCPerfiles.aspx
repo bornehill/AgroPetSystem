@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Catálogo de Perfiles" Language="C#" MasterPageFile="~/Agropet.Master" AutoEventWireup="true" CodeBehind="frmABCPerfiles.aspx.cs" Inherits="AdminAgropet.frmABCPerfiles" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Src="~/ControlWEB/Comun/wucDropDownEntidadNegocio.ascx" TagName="wucDropDownEntidadNegocio" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 
@@ -28,7 +27,8 @@
                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                         <div class="form-group col-lg-6">
                                             <label style="text-align: left; width: 100%;">Perfil</label>
-                                            <uc1:wucDropDownEntidadNegocio ID="ddluc_Perfil" runat="server" Width="250px" />
+                                             <asp:DropDownList ID="ddluc_Perfil" runat="server" Style="width: 250px;" class="form-control">
+                                             </asp:DropDownList>
                                         </div>
                                     </div>
                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">

@@ -132,7 +132,7 @@
                             <div class="panel-body">
 
                                 <asp:TreeView CssClass="treeview" ID="tvw_Editar" runat="server" ShowLines="True" TabIndex="7" OnSelectedNodeChanged="tvw_Editar_SelectedNodeChanged"
-                                    NodeStyle-CssClass="nodoTreeView"
+                                    NodeStyle-CssClass="nodoTreeView" SelectedNodeStyle-BackColor="LightSkyBlue"
                                     EnableViewState="true" ExpandImageUrl="~/Images/arrow_right.png" CollapseImageUrl="~/Images/bullet.png" ImageSet="Custom">
                                 </asp:TreeView>
                             </div>

@@ -47,12 +47,12 @@ namespace AdminAgropet
 
         #region VistaConsulta
 
-        protected void btnBuscar_ServerClick(object sender, EventArgs e)
+        protected void btnBuscar_Click(object sender, EventArgs e)
         {
             Buscar();
         }
 
-        protected void btnNuevo_ServerClick(object sender, EventArgs e)
+        protected void btnNuevo_Click(object sender, EventArgs e)
         {
             BEdicion = false;
             LimpiarDatos();
@@ -107,12 +107,12 @@ namespace AdminAgropet
 
         #region VistaNuevo
 
-        protected void btnGuardar_ServerClick(object sender, EventArgs e)
+        protected void btnGuardar_Click(object sender, EventArgs e)
         {
             Insertar();
         }
 
-        protected void btnCancelar_ServerClick(object sender, EventArgs e)
+        protected void btnCancelar_Click(object sender, EventArgs e)
         {
             Cancelar();
         }
@@ -162,14 +162,14 @@ namespace AdminAgropet
 
         #region VistaDetalle
 
-        protected void btnNuevoDetalle_ServerClick(object sender, EventArgs e)
+        protected void btnNuevoDetalle_Click(object sender, EventArgs e)
         {
             BEdicion = false;
             LimpiarDatos();
             mvwBanners.SetActiveView(vwDetalleNuevo);
         }
 
-        protected void btnCancelarDetalle_ServerClick(object sender, EventArgs e)
+        protected void btnCancelarDetalle_Click(object sender, EventArgs e)
         {
             Cancelar();
         }
@@ -182,6 +182,8 @@ namespace AdminAgropet
                 hfIdBannerDetalle.Value = gvwConsultaDetalle.DataKeys[nFila].Values[0].ToString();
                 txtRutaBannerDetalle.Value = gvwConsultaDetalle.Rows[nFila].Cells[5].Text;
                 txtOrdenDetalle.Text = gvwConsultaDetalle.Rows[nFila].Cells[4].Text;
+                txtTiltulo.Text = gvwConsultaDetalle.Rows[nFila].Cells[6].Text;
+                txtSubtitulo.Text = gvwConsultaDetalle.Rows[nFila].Cells[7].Text;
                 BEdicion = true;
 
                 mvwBanners.SetActiveView(vwDetalleNuevo);

@@ -46,7 +46,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddluc_UserBus;
+        protected global::System.Web.UI.WebControls.DropDownList ddluc_UserBus;
         
         /// <summary>
         /// ddluc_PerfilBus control.
@@ -55,7 +55,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddluc_PerfilBus;
+        protected global::System.Web.UI.WebControls.DropDownList ddluc_PerfilBus;
         
         /// <summary>
         /// SelEstatus control.
@@ -145,7 +145,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AdminAgropet.ControlWEB.Comun.wucDropDownEntidadNegocio ddl_PerfilABC;
+        protected global::System.Web.UI.WebControls.DropDownList ddl_PerfilABC;
         
         /// <summary>
         /// txtPasswordUsr control.

@@ -196,7 +196,7 @@ namespace AdminAgropet
 
         protected void btn_Guardar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value) && !string.IsNullOrEmpty(txt_MenuUrl_Editar.Value) ) //&& ddl_ListaMenus_Editar.SelectedIndex!=0)
+            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value) && !string.IsNullOrEmpty(txt_MenuUrl_Editar.Value) && ddl_ListaMenus_Editar.SelectedIndex!=0)
             {
                 // Se verifica que acción se realiza, si es inserción o modificación
                 bool bAccion = string.IsNullOrEmpty(txt_Comando.Value);
@@ -525,84 +525,84 @@ namespace AdminAgropet
 
         private void CargarGruposLineas()
         {
-            CatalogoBR<ConsultaGruposLineas> objGpoLin = new CatalogoBR<ConsultaGruposLineas>();
+            //CatalogoBR<ConsultaGruposLineas> objGpoLin = new CatalogoBR<ConsultaGruposLineas>();
 
-            grdGposLin.DataSource = objGpoLin.ObtenerListaGrid(new ConsultaGruposLineas());
-            grdGposLin.DataBind();
+            //grdGposLin.DataSource = objGpoLin.ObtenerListaGrid(new ConsultaGruposLineas());
+            //grdGposLin.DataBind();
         }
 
         private void CargarLineasArticulos()
         {
-            CatalogoBR<ConsultaLineasArticulos> objLinArt = new CatalogoBR<ConsultaLineasArticulos>();
-            List<ConsultaLineasArticulos> lstLinArt = new List<ConsultaLineasArticulos>();
+            //CatalogoBR<ConsultaLineasArticulos> objLinArt = new CatalogoBR<ConsultaLineasArticulos>();
+            //List<ConsultaLineasArticulos> lstLinArt = new List<ConsultaLineasArticulos>();
 
-            for (int index = 0; index < grdGposLin.Rows.Count; index++)
-            {
-                CheckBox chk = (CheckBox)grdGposLin.Rows[index].Cells[0].FindControl("chkSelItem");
-                if (chk.Checked)
-                {
-                    lstLinArt.AddRange(objLinArt.ObtenerListado(new ConsultaLineasArticulos { Id_Gpo_Lin = Convert.ToInt32(grdGposLin.DataKeys[index].Value) }));
-                }
-            }
+            //for (int index = 0; index < grdGposLin.Rows.Count; index++)
+            //{
+            //    CheckBox chk = (CheckBox)grdGposLin.Rows[index].Cells[0].FindControl("chkSelItem");
+            //    if (chk.Checked)
+            //    {
+            //        lstLinArt.AddRange(objLinArt.ObtenerListado(new ConsultaLineasArticulos { Id_Gpo_Lin = Convert.ToInt32(grdGposLin.DataKeys[index].Value) }));
+            //    }
+            //}
 
-            grdLinArt.DataSource = lstLinArt;
-            grdLinArt.DataBind();
+            //grdLinArt.DataSource = lstLinArt;
+            //grdLinArt.DataBind();
         }
 
         private void CargarArticulos()
         {
-            CatalogoBR<ConsultaArticulos> objArt = new CatalogoBR<ConsultaArticulos>();
-            List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
+            //CatalogoBR<ConsultaArticulos> objArt = new CatalogoBR<ConsultaArticulos>();
+            //List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
 
-            for (int index = 0; index < grdLinArt.Rows.Count; index++)
-            {
-                CheckBox chk = (CheckBox)grdLinArt.Rows[index].Cells[0].FindControl("chkSelItem");
-                if (chk.Checked)
-                {
-                    lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
-                    {
-                        Id_Linea_Art = Convert.ToInt32(grdLinArt.DataKeys[index].Value),
-                        Familia = "",
-                        Categoria = "",
-                        Marca = "",
-                        Nombre = ""
-                    }, 0));
-                }
-            }
+            //for (int index = 0; index < grdLinArt.Rows.Count; index++)
+            //{
+            //    CheckBox chk = (CheckBox)grdLinArt.Rows[index].Cells[0].FindControl("chkSelItem");
+            //    if (chk.Checked)
+            //    {
+            //        lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
+            //        {
+            //            Id_Linea_Art = Convert.ToInt32(grdLinArt.DataKeys[index].Value),
+            //            Familia = "",
+            //            Categoria = "",
+            //            Marca = "",
+            //            Nombre = ""
+            //        }, 0));
+            //    }
+            //}
 
-            grdArt.DataSource = lstArt;
-            grdArt.DataBind();
-            LstArticulos = lstArt.Select(x => (int)x.Id_Art).ToList();
-            LstArticulosBorrar = new List<int>();
+            //grdArt.DataSource = lstArt;
+            //grdArt.DataBind();
+            //LstArticulos = lstArt.Select(x => (int)x.Id_Art).ToList();
+            //LstArticulosBorrar = new List<int>();
         }
 
         private void CargarLibArticulos()
         {
 
-            CatalogoBR<ConsultaArticulos> objArt = new CatalogoBR<ConsultaArticulos>();
-            List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
+            //CatalogoBR<ConsultaArticulos> objArt = new CatalogoBR<ConsultaArticulos>();
+            //List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
 
-            lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
-            {
-                Id_Linea_Art = 0,
-                Familia = trvLibArt.SelectedNode.ValuePath.Split('/')[0],
-                Categoria = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 1 ? trvLibArt.SelectedNode.ValuePath.Split('/')[1] : "",
-                Marca = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 2 ? trvLibArt.SelectedNode.ValuePath.Split('/')[2] : "",
-                Nombre = ""
-            }, 1));
+            //lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
+            //{
+            //    Id_Linea_Art = 0,
+            //    Familia = trvLibArt.SelectedNode.ValuePath.Split('/')[0],
+            //    Categoria = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 1 ? trvLibArt.SelectedNode.ValuePath.Split('/')[1] : "",
+            //    Marca = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 2 ? trvLibArt.SelectedNode.ValuePath.Split('/')[2] : "",
+            //    Nombre = ""
+            //}, 1));
 
-            grdLibArt.DataSource = lstArt;
-            grdLibArt.DataBind();
-            LstArticulos = lstArt.Select(x => (int)x.Id_Art).ToList();
-            LstArticulosBorrar = new List<int>();
+            //grdLibArt.DataSource = lstArt;
+            //grdLibArt.DataBind();
+            //LstArticulos = lstArt.Select(x => (int)x.Id_Art).ToList();
+            //LstArticulosBorrar = new List<int>();
         }
 
         private void CargarLibresArticulos()
         {
-            CatalogoBR<ConsultaLibresArticulos> objGpoLin = new CatalogoBR<ConsultaLibresArticulos>();
+            //CatalogoBR<ConsultaLibresArticulos> objGpoLin = new CatalogoBR<ConsultaLibresArticulos>();
 
-            var lstLibres = objGpoLin.ObtenerListado(new ConsultaLibresArticulos());
-            CargaArbolLibresArt(trvLibArt, lstLibres);
+            //var lstLibres = objGpoLin.ObtenerListado(new ConsultaLibresArticulos());
+            //CargaArbolLibresArt(trvLibArt, lstLibres);
 
         }
 

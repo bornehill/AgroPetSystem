@@ -9,6 +9,7 @@ using AgroPET.Entidades.Especial;
 using AgroPET.Entidades.Seguridad;
 using AgroPET.Entidades.Consultas;
 using AgropPET.Negocio.Catalogos;
+using Agropet.Entidades.CatABCs;
 
 namespace AdminAgropet
 {
@@ -38,43 +39,29 @@ namespace AdminAgropet
 
         private void LlenarDrops(int nCualesDrops)
         {
-            EntidadDDLUC beFiltroP = new EntidadDDLUC
-            {
-                nOpcionSeleccion = 1,
-                IdValor = 0,
-                DescripValor = string.Empty
-            };
-            EntidadDDLUC beFiltroUs = new EntidadDDLUC
-            {
-                nOpcionSeleccion = 10,
-                IdValor = 0,
-                DescripValor = string.Empty
-            };
-
             if (nCualesDrops.Equals(1))
             {
-                ddluc_PerfilBus.LlenarDropDown<EntidadDDLUC>(beFiltroP);
-                ddluc_UserBus.LlenarDropDown<EntidadDDLUC>(beFiltroUs);
+                List<ConsultaUsuarios> usuarios = new CatalogoUsuario().ObtenerUsuarios(null, null, null);
+                List<EntPerfil> perfiles = new CatalogoPerfil().ObtenerPerfiles(null, null);
+
+                LlenarDropDown(ddluc_PerfilBus, perfiles, "nombreperfil", "idPerfil", PrimerElemento.Selecciona);
+                LlenarDropDown(ddluc_UserBus, usuarios, "NombreUsr", "IdUsuario", PrimerElemento.Selecciona);
             }
             else
             {
-                ddl_PerfilABC.LlenarDropDown<EntidadDDLUC>(beFiltroUs);
+                List<EntPerfil> perfiles = new CatalogoPerfil().ObtenerPerfiles(null, null);
+                LlenarDropDown(ddl_PerfilABC, perfiles, "nombreperfil", "idPerfil", PrimerElemento.Selecciona);
             }
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
-            //EntidadUsuarioLogeado objUser;
-
             this.hdnFlag.Value = "1";
             mvwUsuario.SetActiveView(vwNuevo);
             lblTituloNuevo.InnerText = "NUEVO USUARIO";
-            //this.divAlta.Visible = true;
-            //this.divCambio.Visible = false;
             this.txtFechaCreacion.Value = DateTime.Now.ToString("yyyy/MM/dd HH:mm");
             LlenarDrops(2);
-            //objUser = (EntidadUsuarioLogeado)Session["UsuarioSesion"];
-            this.txtUsuarioCreo.Value = UsuarioLogeado.claveusuario; //objUser.claveusuario;
+            this.txtUsuarioCreo.Value = UsuarioLogeado.claveusuario; 
             this.txtNombreUsuario.Focus();
         }
 
@@ -112,14 +99,12 @@ namespace AdminAgropet
                 if (hdnFlag.Value.Trim().Equals("1"))
                 {
                     Guarda_Alta_Usuario();
-                    Limpiar_Controles();
+                    //Limpiar_Controles();
                 }
                 else
                 {
                     Guarda_Cambio_Usuario();
                 }
-
-                mvwUsuario.SetActiveView(vwConsulta);
             }
         }
 
@@ -140,23 +125,24 @@ namespace AdminAgropet
         private List<ConsultaUsuarios> RealizaConsulta()
         {
             ConsultaUsuarios tFiltro = new ConsultaUsuarios();
-            //List<ConsultaUsuarios> lstConsultaUsuarios;
-            //CatalogoBR<ConsultaUsuarios> clsConsultas = new CatalogoBR<ConsultaUsuarios>();
-
-            //if (this.ddluc_PerfilBus.IDSeleccionado == null)
-            //    tFiltro.IdPerfil = 0;
-
-            //if (this.ddluc_UserBus.IDSeleccionado == null)
-            //    tFiltro.IdUsuario = 0;
 
             if (Convert.ToInt32(SelEstatus.SelectedValue.Trim()) != -1)
-                tFiltro.Activo = Convert.ToInt32(SelEstatus.SelectedValue.Trim());
+                tFiltro.Activo = (SelEstatus.SelectedValue == "0") ? false : true; 
+            else
+                tFiltro.Activo = null;
 
-            //lstConsultaUsuarios = clsConsultas.ObtenerListado(tFiltro);
+            if (ddluc_UserBus.SelectedValue.Trim() != "")
+                tFiltro.IdUsuario = Convert.ToInt32(ddluc_UserBus.SelectedValue.Trim());
+            else
+                tFiltro.IdUsuario = null;
 
-            List<ConsultaUsuarios> lstUsuarios = new CatalogoUsuario().ObtenerUsuarios(tFiltro.IdPerfil, tFiltro.IdUsuario, tFiltro.Activo);
+            if (ddluc_PerfilBus.SelectedValue.Trim() != "")
+                tFiltro.IdPerfil = Convert.ToInt32(ddluc_PerfilBus.SelectedValue.Trim());
+            else
+                tFiltro.IdPerfil = null;
+
+            List <ConsultaUsuarios> lstUsuarios = new CatalogoUsuario().ObtenerUsuarios(tFiltro.IdPerfil, tFiltro.IdUsuario, tFiltro.Activo);
             return lstUsuarios;
-            //return lstConsultaUsuarios;
         }
 
         private EntidadUsuario ObtenInfoForma(bool bEsAlta)
@@ -166,7 +152,7 @@ namespace AdminAgropet
             if (bEsAlta)
             {
                 UnUsuario.idusuario = null;
-                UnUsuario.idperfil = Convert.ToInt32(this.ddl_PerfilABC.IDSeleccionado);
+                UnUsuario.idperfil = Convert.ToInt32(this.ddl_PerfilABC.SelectedItem.Value);
                 UnUsuario.nombreusr = this.txtNombreUsuario.Value.Trim();
                 UnUsuario.claveusr = this.txtCveUsuario.Value.Trim();
                 UnUsuario.passwordusr = this.txtConfirmPass.Value.Trim();
@@ -179,7 +165,7 @@ namespace AdminAgropet
             else
             {
                 UnUsuario.idusuario = Convert.ToInt32(this.txtIdUsuario.Value);
-                UnUsuario.idperfil = Convert.ToInt32(this.ddl_PerfilABC.IDSeleccionado);
+                UnUsuario.idperfil = Convert.ToInt32(this.ddl_PerfilABC.SelectedItem.Value);
                 UnUsuario.nombreusr = this.txtNombreUsuario.Value.Trim();
                 UnUsuario.claveusr = this.txtCveUsuario.Value.Trim();
                 UnUsuario.passwordusr = this.txtConfirmPass.Value.Trim();
@@ -195,60 +181,79 @@ namespace AdminAgropet
 
         private void Guarda_Alta_Usuario()
         {
-            CatalogoBR<EntidadUsuario> clsCatalogos = new CatalogoBR<EntidadUsuario>();
-            EntidadUsuario UnUsuario;
+            if (ddl_PerfilABC.SelectedIndex == 0 || ddlEstadoABC.SelectedIndex == 0 
+                || string.IsNullOrEmpty(txtNombreUsuario.Value) || string.IsNullOrEmpty(txtCveUsuario.Value)
+                || string.IsNullOrEmpty(txtPasswordUsr.Value) || string.IsNullOrEmpty(txtConfirmPass.Value))
+            {
+                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")), "Es necesario Ingresar todos los datos requeridos", 2);
+                return;
+            }
+
 
             try
             {
-                UnUsuario = ObtenInfoForma(true);
+                ConsultaUsuarios usuario = new ConsultaUsuarios();
+                usuario.IdPerfil = Convert.ToInt32(ddl_PerfilABC.SelectedItem.Value);
+                usuario.NombreUsr = txtNombreUsuario.Value;
+                usuario.ClaveUsr = txtCveUsuario.Value;
+                usuario.PasswordUsr = txtPasswordUsr.Value;
+                usuario.Activo = (ddlEstadoABC.SelectedItem.Value == "0")?false:true;
+                usuario.IdUsuarioCreo = Convert.ToInt32(UsuarioLogeado.idusuario);
+             
+                int afectados = new CatalogoUsuario().GuardarUsuario(usuario);
 
-                clsCatalogos.Guardar(UnUsuario);
-
-                if (clsCatalogos.ResultadoejecucionSP.Trim().Equals("OK"))
+                if(afectados>0)
                 {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                        clsCatalogos.MensajeReturnSP.Trim(), 0);
+                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")), "Guardado con exito", 2);
+                    mvwUsuario.SetActiveView(vwConsulta);
                 }
                 else
-                {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                        clsCatalogos.MensajeReturnSP.Trim(), 1);
-                }
+                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")), 
+                        "No es posible Guardar, El nombre de Usuario o clave ya existe", 2);
             }
             catch (Exception ex)
             {
                 MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                    "Ocurrio un error al intentar guardar la información, Error: " + ex.Message.Trim(), 2);
+                    "Ocurrio un error al intentar guardar la información: " + ex.Message.Trim(), 2);
             }
         }
 
         private void Guarda_Cambio_Usuario()
         {
-            CatalogoBR<EntidadUsuario> clsCatalogos = new CatalogoBR<EntidadUsuario>();
-            EntidadUsuario UnUsuario;
+            if (ddl_PerfilABC.SelectedIndex == 0 || ddlEstadoABC.SelectedIndex == 0
+               || string.IsNullOrEmpty(txtNombreUsuario.Value) || string.IsNullOrEmpty(txtCveUsuario.Value)
+               || string.IsNullOrEmpty(txtPasswordUsr.Value) || string.IsNullOrEmpty(txtConfirmPass.Value))
+            {
+                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")), "Es necesario Ingresar todos los datos requeridos", 2);
+                return;
+            }
 
             try
             {
-                UnUsuario = ObtenInfoForma(false);
+                ConsultaUsuarios usuario = new ConsultaUsuarios();
+                usuario.IdUsuario = Convert.ToInt32(hdnFlag.Value);
+                usuario.IdPerfil = Convert.ToInt32(ddl_PerfilABC.SelectedItem.Value);
+                usuario.NombreUsr = txtNombreUsuario.Value;
+                usuario.ClaveUsr = txtCveUsuario.Value;
+                usuario.PasswordUsr = txtPasswordUsr.Value;
+                usuario.Activo = (ddlEstadoABC.SelectedItem.Value == "0") ? false : true;
+                usuario.IdUsuarioModif = Convert.ToInt32(UsuarioLogeado.idusuario);
 
-                clsCatalogos.Actualizar(UnUsuario);
+                int afectados = new CatalogoUsuario().EditarUsuario(usuario);
 
-                if (clsCatalogos.ResultadoejecucionSP.Trim().Equals("OK"))
+                if (afectados > 0)
                 {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                        clsCatalogos.MensajeReturnSP.Trim(), 0);
+                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")), "Guardado con exito", 2);
+                    mvwUsuario.SetActiveView(vwConsulta);
                 }
                 else
-                {
                     MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                        clsCatalogos.MensajeReturnSP.Trim(), 1);
-                }
+                        "No es posible Guardar, El Usuario NO existe", 2);
             }
-
             catch (Exception ex)
             {
                 MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                    "Ocurrio un error al intentar guardar la información, Error: " + ex.Message.Trim(), 2);
+                    "Ocurrio un error al intentar guardar la información: " + ex.Message.Trim(), 2);
             }
         }
 
@@ -271,14 +276,24 @@ namespace AdminAgropet
         {
             try
             {
+                int nFila = int.Parse(e.CommandArgument.ToString()) % grdUsuarios.PageSize;
                 if (e.CommandName.Equals("CmdEdit"))
                 {
+                    LlenarDrops(2);
+
                     lblTituloNuevo.InnerText = "MODIFICAR PERFIL";
-                    hdnFlag.Value = "0";
+                    hdnFlag.Value = grdUsuarios.DataKeys[nFila].Values[0].ToString();
+                    txtNombreUsuario.Value = grdUsuarios.Rows[nFila].Cells[5].Text;
+                    txtCveUsuario.Value = grdUsuarios.Rows[nFila].Cells[4].Text;
+                    ddl_PerfilABC.SelectedValue = grdUsuarios.DataKeys[nFila].Values[1].ToString();
+                    ddlEstadoABC.SelectedValue = (Convert.ToBoolean(grdUsuarios.DataKeys[nFila].Values[2]))?"1":"0";
+                    txtUsuarioCreo.Value = grdUsuarios.Rows[nFila].Cells[7].Text;
+                    txtFechaCreacion.Value = grdUsuarios.Rows[nFila].Cells[6].Text;
+                    txtUserModifico.Value = grdUsuarios.Rows[nFila].Cells[9].Text.Replace("&nbsp;","");
+                    txtFechaModif.Value = grdUsuarios.Rows[nFila].Cells[8].Text.Replace("&nbsp;", "");
+
+                    //BEdicion = true;
                     mvwUsuario.SetActiveView(vwNuevo);
-                    int nIndice = Convert.ToInt32(e.CommandArgument) % grdUsuarios.PageSize;
-
-
                 }
             }
             catch (Exception ex)

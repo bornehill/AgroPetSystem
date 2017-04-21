@@ -1,7 +1,6 @@
 ﻿using AgroPET.Entidades.CatABCs;
 using AgroPET.Entidades.Consultas;
 using AgroPET.Datos.Comun;
-using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;

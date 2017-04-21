@@ -9,6 +9,7 @@ using AgroPET.Entidades.Especial;
 using AgroPET.Entidades.Seguridad;
 using AgroPET.Entidades.Consultas;
 using AgropPET.Negocio.Catalogos;
+using Agropet.Entidades.CatABCs;
 
 namespace AdminAgropet
 {
@@ -38,14 +39,9 @@ namespace AdminAgropet
 
         private void LlenarDrops()
         {
-            EntidadDDLUC beFiltro = new EntidadDDLUC
-            {
-                nOpcionSeleccion = 1,
-                IdValor = 0,
-                DescripValor = string.Empty
-            };
+            List<EntPerfil> perfiles = new CatalogoPerfil().ObtenerPerfiles(null, null);
 
-            ddluc_Perfil.LlenarDropDown<EntidadDDLUC>(beFiltro);
+            LlenarDropDown(ddluc_Perfil, perfiles, "nombreperfil", "idperfil", PrimerElemento.Selecciona);
         }
 
         protected void btnNuevo_Click(object sender, EventArgs e)
@@ -58,11 +54,11 @@ namespace AdminAgropet
             //divAlta.Visible = true;
             //divCambio.Visible = false;
             this.txtFechaCreacion.Value = DateTime.Now.ToString("yyyy/MM/dd HH:mm");
-            
-            objUser= (EntidadUsuarioLogeado)Session["UsuarioSesion"];
+
+            objUser = (EntidadUsuarioLogeado)Session["UsuarioSesion"];
             this.txtUserCreo.Value = objUser.claveusuario;
 
-           
+
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -96,27 +92,14 @@ namespace AdminAgropet
 
         protected void Guarda_Alta_Perfil()
         {
-            CatalogoBR<EntidadPerfiles> clsCatalogos = new CatalogoBR<EntidadPerfiles>();
-            EntidadPerfiles MiPerfil;
             try
             {
+                EntPerfil perfil = new EntPerfil();
+                perfil.nombreperfil = txtPerfil.Value;
+                perfil.idusuariocreo = Convert.ToInt32(UsuarioLogeado.idusuario);
+                perfil.activo = Convert.ToInt32(ddlEstadoABC.SelectedItem.Value);
 
-                MiPerfil = ObtenInfoForma(true);
-
-                clsCatalogos.Guardar(MiPerfil);
-
-                if (clsCatalogos.ResultadoejecucionSP.Trim().Equals("OK"))
-                {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                            clsCatalogos.MensajeReturnSP.Trim(), 0);
-
-                    CancelarRegresar();
-                }
-                else
-                {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                            clsCatalogos.MensajeReturnSP.Trim(), 1);
-                }
+                new CatalogoPerfil().GuardarPerfil(perfil);
             }
 
             catch (Exception ex)
@@ -124,32 +107,19 @@ namespace AdminAgropet
                 MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
                     "Ocurrio un error al intentar guardar la información: " + ex.Message.Trim(), 2);
             }
-                
         }
 
         protected void Guarda_Cambio_Perfil()
         {
-            CatalogoBR<EntidadPerfiles> clsCatalogos = new CatalogoBR<EntidadPerfiles>();
-            EntidadPerfiles UnPerfil;
-
             try
             {
+                EntPerfil perfil = new EntPerfil();
+                perfil.idperfil = Convert.ToInt32(txtIdPerfil.Value);
+                perfil.nombreperfil = txtPerfil.Value;
+                perfil.idusuarioultmodif = Convert.ToInt32(UsuarioLogeado.idusuario);
+                perfil.activo = Convert.ToInt32(ddlEstadoABC.SelectedItem.Value);
 
-                UnPerfil = ObtenInfoForma(false);
-                clsCatalogos.Actualizar(UnPerfil);
-                if (clsCatalogos.ResultadoejecucionSP.Trim().Equals("OK"))
-                {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                        "Cambio especificado se guardo correctamente.", 0);
-
-                    CancelarRegresar();
-                }
-                else
-                {
-                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                        "El cambio especificado no se guardo en la Base de datos.", 1);
-                }
-
+                new CatalogoPerfil().EditarPerfil(perfil);
             }
             catch (Exception ex)
             {
@@ -216,33 +186,22 @@ namespace AdminAgropet
         {
             List<ConsultaPerfiles> lstPerfiles = RealizaConsulta();
             this.grdPerfiles.DataSource = lstPerfiles;
-            this.grdPerfiles.DataBind();           
+            this.grdPerfiles.DataBind();
         }
 
         private List<ConsultaPerfiles> RealizaConsulta()
         {
-            ConsultaPerfiles tFiltro = new ConsultaPerfiles();
-            List<ConsultaPerfiles> lstConsultaPerfiles;
-            CatalogoBR<ConsultaPerfiles> clsConsultas = new CatalogoBR<ConsultaPerfiles>();
-            long nOpcionSel;
+            int? idPerfil = null;
+            bool? activo = null;
 
-            if (this.ddluc_Perfil.IDSeleccionado == null)
-            {
-                tFiltro.idperfil = 0;
-                nOpcionSel = 2;
-            }
-            else
-            {
-                tFiltro.idperfil = Convert.ToInt32(this.ddluc_Perfil.IDSeleccionado);
-                nOpcionSel = 1;
-            }
+            if (ddluc_Perfil.SelectedItem.Value != "")
+                idPerfil = Convert.ToInt32(ddluc_Perfil.SelectedItem.Value);
 
-            tFiltro.activo = Convert.ToInt32(this.SelEstatus.SelectedValue.Trim());
+            if (SelEstatus.SelectedItem.Value != "-1")
+                activo = (SelEstatus.SelectedItem.Value == "0") ? false : true;
 
-            lstConsultaPerfiles = clsConsultas.ObtenerListado(tFiltro, nOpcionSel);
-
-            return lstConsultaPerfiles;
-            
+            List<ConsultaPerfiles> perfiles = new CatalogoPerfil().ObtenerPerfilesGrid(idPerfil, activo);
+            return perfiles;
         }
 
         protected void grdPerfiles_RowDataBound(object sender, GridViewRowEventArgs e)

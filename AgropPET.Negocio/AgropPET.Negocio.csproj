@@ -49,24 +49,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Catalogos\CatalogoArticulos.cs" />
-    <Compile Include="Catalogos\CatalogoBR.cs" />
     <Compile Include="Catalogos\CatalogoCliente.cs" />
     <Compile Include="Catalogos\CatalogoImagenesArticulos.cs" />
     <Compile Include="Catalogos\CatalogoImagenesBanners.cs" />
-    <Compile Include="Catalogos\CatalogosExtBR.cs" />
+    <Compile Include="Catalogos\CatalogoPerfil.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
-    <Compile Include="Eventos\CatalogoEventHandlers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad\NegocioMenuWeb.cs" />
     <Compile Include="Seguridad\NegocioSeguridad.cs" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="..\InterfacesAgroPET\InterfacesAgroPET.csproj">
-      <Project>{370aefe8-aefc-4de3-b2b6-d80ff20054f0}</Project>
-      <Name>InterfacesAgroPET</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Agropet.Master" AutoEventWireup="true" CodeBehind="frmABCImgsArticulos.aspx.cs" Inherits="AdminAgropet.ABCImgsArticulos" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
-<%@ Register Src="~/ControlWEB/Comun/wucDropDownEntidadNegocio.ascx" TagName="wucDropDownEntidadNegocio" TagPrefix="uc1" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -54,6 +53,7 @@
                                         <asp:BoundField DataField="FechaModificacion" HeaderText="Fecha de Modificacion" />
                                         <asp:BoundField DataField="IdUsuarioCreo" HeaderText="IdUsuarioCreo" Visible="false" />
                                         <asp:BoundField DataField="IdUsuarioModifico" HeaderText="IdUsuarioModifico" Visible="false" />
+                                        <asp:BoundField DataField="pathimagen" HeaderText="Imagen" />
                                     </Columns>
                                     <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
                                 </asp:GridView>
@@ -90,7 +90,7 @@
                     </div>
                 </asp:View>
 
-                <asp:View ID="vwDetalle" runat="server">
+             <%--   <asp:View ID="vwDetalle" runat="server">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -143,9 +143,9 @@
                             </div>
                         </div>
                     </div>
-                </asp:View>
+                </asp:View>--%>
 
-                <asp:View ID="vwDetalleNuevo" runat="server">
+              <%--  <asp:View ID="vwDetalleNuevo" runat="server">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -177,7 +177,7 @@
                             </div>
                         </div>
                     </div>
-                </asp:View>
+                </asp:View>--%>
 
             </asp:MultiView>
         </ContentTemplate>
@@ -185,9 +185,9 @@
             <asp:PostBackTrigger ControlID="btnNuevo" />
             <asp:PostBackTrigger ControlID="btnGuardar" />
             <asp:PostBackTrigger ControlID="gvwConsulta" />
-            <asp:PostBackTrigger ControlID="btnNuevoDetalle" />
+           <%-- <asp:PostBackTrigger ControlID="btnNuevoDetalle" />
             <asp:PostBackTrigger ControlID="btnGuardarDetalle" />
-            <asp:PostBackTrigger ControlID="gvwConsultaDetalle" />
+            <asp:PostBackTrigger ControlID="gvwConsultaDetalle" />--%>
         </Triggers>
     </asp:UpdatePanel>
 

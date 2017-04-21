@@ -44,7 +44,7 @@ namespace AdminAgropet
                 DescripValor = string.Empty
             };
 
-            this.ddluc_Perfil.LlenarDropDown<EntidadDDLUC>(beFiltroP);
+          //  this.ddluc_Perfil.LlenarDropDown<EntidadDDLUC>(beFiltroP);
         }
 
         protected void btnBuscar_Click(object sender, EventArgs e)
@@ -62,16 +62,16 @@ namespace AdminAgropet
 
         private List<ConsultaDetPerfil> RealizaConsulta()
         {
-            ConsultaDetPerfil tFiltro = new ConsultaDetPerfil();
-            List<ConsultaDetPerfil> lstDetallePerfil;
-            CatalogoBR<ConsultaDetPerfil> clsConsultas = new CatalogoBR<ConsultaDetPerfil>();
+            //ConsultaDetPerfil tFiltro = new ConsultaDetPerfil();
+            //List<ConsultaDetPerfil> lstDetallePerfil;
+            //CatalogoBR<ConsultaDetPerfil> clsConsultas = new CatalogoBR<ConsultaDetPerfil>();
 
-            tFiltro.idperfil = Convert.ToInt32(this.ddluc_Perfil.IDSeleccionado);
+            //tFiltro.idperfil = Convert.ToInt32(this.ddluc_Perfil.IDSeleccionado);
 
-            lstDetallePerfil = clsConsultas.ObtenerListado(tFiltro);
+            //lstDetallePerfil = clsConsultas.ObtenerListado(tFiltro);
 
-            return lstDetallePerfil;
-
+            //return lstDetallePerfil;
+            return null;
         }
 
         private void ActualizaPerfilEnGrid(List<ConsultaDetPerfil> lstItemsPerfil)

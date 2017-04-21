@@ -5,22 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-using AgroPET.Entidades.Base;
 
 namespace AgroPET.Entidades.Consultas
 {
-
-    [Serializable]
-    [Tabla("ArtLibArt")]
-    public sealed class ConsultaArtLibArt
+    public class ConsultaArtLibArt
     {
-        [Campo("Fam", EsParametroSP = false, EsCampoRetornoConsulta = true)]
         public string Familia { get; set; }
 
-        [Campo("Cat", EsParametroSP = true, EsCampoRetornoConsulta = false)]
         public string Categoria { get; set; }
 
-        [Campo("Marc", EsParametroSP = false, EsCampoRetornoConsulta = true)]
         public string Marca { get; set; }
     }
 }

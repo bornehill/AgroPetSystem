@@ -1,5 +1,4 @@
-﻿using MySql.Data.MySqlClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -65,9 +64,9 @@ namespace AgroPET.Datos.Seguridad
                 else
                     return false;
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                Error = "Code Error :: " + ex.ErrorCode + " Sourcer ::" + ex.Source + " Error Message :: " + ex.Message;
+                Error = " Sourcer ::" + ex.Source + " Error Message :: " + ex.Message;
                 return false;
             }
         }
@@ -91,9 +90,9 @@ namespace AgroPET.Datos.Seguridad
                 else
                     return false;
             }
-            catch (MySqlException ex)
+            catch (Exception ex)
             {
-                Error = "Code Error :: " + ex.ErrorCode + " Sourcer ::" + ex.Source + " Error Message :: " + ex.Message;
+                Error = " Sourcer ::" + ex.Source + " Error Message :: " + ex.Message;
                 return false;
             }
         }

@@ -64,7 +64,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnNuevo;
+        protected global::System.Web.UI.WebControls.Button btnNuevo;
         
         /// <summary>
         /// gvwConsulta control.
@@ -118,7 +118,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnGuardar;
+        protected global::System.Web.UI.WebControls.Button btnGuardar;
         
         /// <summary>
         /// btnCancelar control.
@@ -127,7 +127,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnCancelar;
+        protected global::System.Web.UI.WebControls.Button btnCancelar;
         
         /// <summary>
         /// hfIdBannerEditar control.
@@ -154,7 +154,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnNuevoDetalle;
+        protected global::System.Web.UI.WebControls.Button btnNuevoDetalle;
         
         /// <summary>
         /// btnCancelarDetalle control.
@@ -163,7 +163,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnCancelarDetalle;
+        protected global::System.Web.UI.WebControls.Button btnCancelarDetalle;
         
         /// <summary>
         /// gvwConsultaDetalle control.
