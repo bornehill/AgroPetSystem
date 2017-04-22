@@ -28,5 +28,5 @@ BEGIN
 	FROM tbmenuweb AS H      
 	LEFT JOIN tbmenuweb AS P ON H.Padre = P.MenuId    
 	WHERE (@MenuId IS NULL AND H.MenuId = H.MenuId) OR (H.MenuId = @MenuId)
-	AND  (@Menu IS NULL AND H.Menu = H.Menu) OR (H.Menu LIKE CONCAT('%',@Menu,'%'));
+	AND  (@Menu IS NULL AND H.Menu = H.Menu) OR (H.Menu LIKE '%' + @Menu + '%');
 END
