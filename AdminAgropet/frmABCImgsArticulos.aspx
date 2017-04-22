@@ -34,17 +34,21 @@
                             <div class="panel-body">
                                 <asp:GridView ID="gvwConsulta" runat="server" AutoGenerateColumns="false" DataKeyNames="IdImagenArticulo"
                                     OnRowCommand="gvwConsulta_RowCommand" OnRowDataBound="gvwConsulta_RowDataBound"
-                                    CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvwConsulta_PageIndexChanging"
-                                    >
+                                    CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvwConsulta_PageIndexChanging">
                                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                     <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                     <Columns>
                                         <asp:TemplateField>
                                             <ItemTemplate>
+                                                <asp:ImageButton ID="ibnEliminarDetalle" runat="server" Width="20px" ImageUrl="~/Imagenes/Iconos/Basurero.PNG"
+                                                    CommandName="Eliminar" CommandArgument='<%# Container.DataItemIndex %>'
+                                                    OnClientClick="return confirm('Are you confirm to delete?')" />
+                                            </ItemTemplate>
+                                            <%-- <ItemTemplate>
                                                 <asp:ImageButton ID="ibnDetalle" runat="server" Width="20px" ImageUrl="~/Imagenes/Iconos/Info2.PNG"
                                                     CommandName="Detalles" CommandArgument='<%# Container.DataItemIndex %>' TabIndex="3" />
-                                            </ItemTemplate>
+                                            </ItemTemplate>--%>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="IdImagenArticulo" HeaderText="IdImagenArticulo" Visible="false" />
                                         <asp:BoundField DataField="IdArticulo" HeaderText="IdArticulo" Visible="false" />
@@ -78,6 +82,17 @@
                                                 PromptText="Busqueda por.." QueryPattern="Contains">
                                             </asp:ListSearchExtender>
                                         </div>
+                                         <div class="form-group col-lg-6">
+                                            <%--<label style="text-align: left; width: 100%;"></label>--%>
+                                            <div class="input-group">
+                                                <label class="input-group-btn">
+                                                    <span class="btn btn-primary">Imagen
+                                                         <input type="file" name="file" id="inputfile" class="file" runat="server" accept=".jpg,.jpeg,.png,.gif" style="display: none;" />
+                                                    </span>
+                                                </label>
+                                                <input id="txtImagenArticulo" runat="server" type="text" class="form-control" style="width: 300px;" readonly placeholder="Selecciona archivo..." />
+                                            </div>
+                                        </div>
                                         <center>
                                             <button id="btnGuardar" runat="server" class="btn btn-success" onserverclick="btnGuardar_Click" validationgroup="guarda">Guardar</button>
                                             <button id="btnCancelar" runat="server" class="btn btn-info" onserverclick="btnCancelar_Click">Cancelar</button>
@@ -90,7 +105,7 @@
                     </div>
                 </asp:View>
 
-             <%--   <asp:View ID="vwDetalle" runat="server">
+                <%--   <asp:View ID="vwDetalle" runat="server">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -145,7 +160,7 @@
                     </div>
                 </asp:View>--%>
 
-              <%--  <asp:View ID="vwDetalleNuevo" runat="server">
+                <%--  <asp:View ID="vwDetalleNuevo" runat="server">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -178,14 +193,13 @@
                         </div>
                     </div>
                 </asp:View>--%>
-
             </asp:MultiView>
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnNuevo" />
             <asp:PostBackTrigger ControlID="btnGuardar" />
             <asp:PostBackTrigger ControlID="gvwConsulta" />
-           <%-- <asp:PostBackTrigger ControlID="btnNuevoDetalle" />
+            <%-- <asp:PostBackTrigger ControlID="btnNuevoDetalle" />
             <asp:PostBackTrigger ControlID="btnGuardarDetalle" />
             <asp:PostBackTrigger ControlID="gvwConsultaDetalle" />--%>
         </Triggers>

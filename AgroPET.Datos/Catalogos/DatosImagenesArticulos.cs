@@ -39,6 +39,26 @@ namespace AgroPET.Datos.Catalogos
             }
         }
 
+        public bool EliminaImagenesArticulos(int idImagenArticulo)
+        {
+            try
+            {
+                accesoDatos.parametros.listaParametros.Clear();
+                accesoDatos.comandoSP = "uspImagenesArticulosElimina";
+                accesoDatos.parametros.Agrega("@idImagenArticulo", idImagenArticulo, true);
+                int afectados = accesoDatos.EjecutaNQuery();
+
+                if (afectados >= 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
         public List<EntImagenesArticulosDetalle> ObtenerImagenesArticulosDetalle(int idImagenArticulo)
         {
             accesoDatos.parametros.listaParametros.Clear();

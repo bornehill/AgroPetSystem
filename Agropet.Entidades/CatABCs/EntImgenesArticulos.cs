@@ -14,9 +14,9 @@ namespace AgroPET.Entidades.CatABCs
 
         public string NombreArticulo { get; set; }
 
-        public DateTime FechaRegistro { get; set; }
+        public DateTime? FechaRegistro { get; set; }
 
-        public DateTime FechaModificacion { get; set; }
+        public DateTime? FechaModificacion { get; set; }
 
         public int? IdUsuarioCreo { get; set; }
 

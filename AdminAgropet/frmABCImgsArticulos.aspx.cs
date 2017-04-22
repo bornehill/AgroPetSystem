@@ -56,7 +56,7 @@ namespace AdminAgropet
 
         public void LimpiarDatos()
         {
-            //txtImagenArticulo.Value = string.Empty;
+            txtImagenArticulo.Value = string.Empty;
         }
 
         protected void btnGuardar_Click(object sender, EventArgs e)
@@ -72,12 +72,24 @@ namespace AdminAgropet
         protected void gvwConsulta_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsulta.PageSize;
-            //if (e.CommandName.Equals("Detalles"))
-            //{
-            //    hfIdImagenArticulo.Value = gvwConsulta.DataKeys[nFila].Values[0].ToString();
-            //    BuscarDetalle((int)gvwConsulta.DataKeys[nFila].Values[0]);
-            //    mvwArticulos.SetActiveView(vwDetalle);
-            //}
+            if (e.CommandName.Equals("Eliminar"))
+            {
+                int IdImagenArticulo = Convert.ToInt32(gvwConsulta.DataKeys[nFila].Values[0]);
+                bool correcto = Borrar(IdImagenArticulo);
+                Buscar();
+
+                if (!correcto)
+                {
+                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+                    "Ocurrio un error al intentar guardar la información: ", 2);
+                }
+            }
+        }
+
+        public bool Borrar(int IdImagenArticulo)
+        {
+            int idUsuario = Convert.ToInt32(UsuarioLogeado.idusuario);
+            return new CatalogoImagenesArticulos().EliminaImagenesArticulos(IdImagenArticulo);
         }
 
         protected void gvwConsulta_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -145,10 +157,10 @@ namespace AdminAgropet
         //    mvwArticulos.SetActiveView(vwDetalleNuevo);
         //}
 
-        protected void btnCancelarDetalle_ServerClick(object sender, EventArgs e)
-        {
-            Cancelar();
-        }
+        //protected void btnCancelarDetalle_ServerClick(object sender, EventArgs e)
+        //{
+        //    Cancelar();
+        //}
 
         //protected void btnRegresarDetalleNuevo_Click(object sender, EventArgs e)
         //{

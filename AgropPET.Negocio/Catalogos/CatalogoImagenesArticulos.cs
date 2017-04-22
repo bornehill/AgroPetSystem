@@ -29,6 +29,11 @@ namespace AgropPET.Negocio.Catalogos
             return lstImagArt;
         }
 
+        public bool EliminaImagenesArticulos(int IdImagenArticulo)
+        {
+            return new DatosImagenesArticulos().EliminaImagenesArticulos(IdImagenArticulo);
+        }
+
         public bool InsertaImagenesArticulosDetalle(int idImagenArticulo, int idusuarioModifico, string pathimagen)
         {
             return new DatosImagenesArticulos().InsertaImagenesArticulosDetalle(idImagenArticulo, idusuarioModifico, pathimagen);

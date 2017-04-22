@@ -103,6 +103,24 @@ namespace AdminAgropet {
         protected global::AjaxControlToolkit.ListSearchExtender lseArticulos;
         
         /// <summary>
+        /// inputfile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputFile inputfile;
+        
+        /// <summary>
+        /// txtImagenArticulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtImagenArticulo;
+        
+        /// <summary>
         /// btnGuardar control.
         /// </summary>
         /// <remarks>
