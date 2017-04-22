@@ -13,6 +13,6 @@ BEGIN
         idusuarioultmodif = @IdUsuarioUltModif,
         activo = @Activo
 	WHERE idperfil = @IdPerfil;
-        
+         
     SELECT 'OKActualizacion de datos del perfil terminó correctamente.' AS MsgProceso;    
 END ;
