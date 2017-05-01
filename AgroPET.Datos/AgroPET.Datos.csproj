@@ -59,6 +59,7 @@
     <Compile Include="Catalogos\DatosCliente.cs" />
     <Compile Include="Catalogos\DatosImagenesArticulos.cs" />
     <Compile Include="Catalogos\DatosImagenesBanners.cs" />
+    <Compile Include="Catalogos\DatosLibresArticulos.cs" />
     <Compile Include="Catalogos\DatosPerfil.cs" />
     <Compile Include="Catalogos\DatosUsuario.cs" />
     <Compile Include="Comun\DatosBase.cs" />

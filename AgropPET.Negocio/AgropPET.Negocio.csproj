@@ -52,6 +52,7 @@
     <Compile Include="Catalogos\CatalogoCliente.cs" />
     <Compile Include="Catalogos\CatalogoImagenesArticulos.cs" />
     <Compile Include="Catalogos\CatalogoImagenesBanners.cs" />
+    <Compile Include="Catalogos\CatalogoLibresArticulos.cs" />
     <Compile Include="Catalogos\CatalogoPerfil.cs" />
     <Compile Include="Catalogos\CatalogoUsuario.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

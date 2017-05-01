@@ -599,11 +599,8 @@ namespace AdminAgropet
 
         private void CargarLibresArticulos()
         {
-            //CatalogoBR<ConsultaLibresArticulos> objGpoLin = new CatalogoBR<ConsultaLibresArticulos>();
-
-            //var lstLibres = objGpoLin.ObtenerListado(new ConsultaLibresArticulos());
-            //CargaArbolLibresArt(trvLibArt, lstLibres);
-
+            List<ConsultaLibresArticulos> lstLibres = new CatalogoLibresArticulos().Firebird_ObtenerLibresArticulos();
+            CargaArbolLibresArt(trvLibArt, lstLibres);
         }
 
         private void CargaArbolLibresArt(TreeView tArbol, List<ConsultaLibresArticulos> lstObjs)
