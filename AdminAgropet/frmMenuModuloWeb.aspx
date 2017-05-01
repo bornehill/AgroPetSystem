@@ -65,8 +65,8 @@
                                     </HeaderTemplate>
                                     <ItemTemplate>
                                         <%--<div class="squaredOne">--%>
-                                            <asp:CheckBox ID="chkSelItem" runat="server" CssClass="Visible" />
-                                           <%-- <label id="lblConsulta" for="ContentPlaceHolder1_grd_Consultas_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                        <asp:CheckBox ID="chkSelItem" runat="server" CssClass="Visible" />
+                                        <%-- <label id="lblConsulta" for="ContentPlaceHolder1_grd_Consultas_chkSelItem_<%# Container.DataItemIndex %>"></label>
                                         </div>--%>
                                     </ItemTemplate>
                                 </asp:TemplateField>
@@ -141,29 +141,29 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">Asignar Articulos</div>
                             <div class="panel-body">
-                                <div class="alert alert-info alert-dismissible" role="alert">
+                              <%--  <div class="alert alert-info alert-dismissible" role="alert">
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                                     <strong class="glyphicon glyphicon-info-sign" style="float: left; font-size: 15px; margin-right: 9px;"></strong>
                                     <span>Puede Filtrar Articulos Utilizando los siguientes controles:</span>
-                                </div>
+                                </div>--%>
                                 <div class="row">
                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                        <button id="btnMostrarArt" type="button" runat="server" class="btn btn-info" onserverclick="btnMostrarArt_Click">Asignar Articulos Microsip</button>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                         <div class="funkyradio funkyradio-warning" style="width: 220px;">
                                             <input type="radio" name="radio" id="rdGrupoLineaArticulo" runat="server" onserverchange="rblFiltro_SelectedIndexChanged" />
                                             <label for="ContentPlaceHolder1_rdGrupoLineaArticulo" style="font-size: 13px">Grupos, Líneas y Artículos</label>
                                         </div>
                                     </div>
 
-                                    <div class="col-xs-5 col-sm-5 col-md-5 col-lg-5">
+                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                         <div class="funkyradio funkyradio-warning" style="width: 200px">
                                             <input type="radio" name="radio" id="rdLibreArticulo" runat="server" onserverchange="rblFiltro_SelectedIndexChanged" />
                                             <label for="ContentPlaceHolder1_rdLibreArticulo" style="font-size: 13px">Libres Artículos</label>
                                         </div>
                                     </div>
 
+                                    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                                        <button id="btnAsignar" type="button" runat="server" class="btn btn-info" onserverclick="btnAsignar_Click">Asignar / Desasignar</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -181,16 +181,16 @@
                                             <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                             <Columns>
                                                 <asp:TemplateField>
-                                                     <HeaderTemplate>
+                                                    <HeaderTemplate>
                                                         <div class="squaredOne">
                                                             <asp:CheckBox ID="chkSelTodoHdr" CssClass="Visible" runat="server" AutoPostBack="True" />
-                                                         <%--   <label for="ContentPlaceHolder1_grdGposLin_chkSelTodoHdr"></label>--%>
+                                                            <%--   <label for="ContentPlaceHolder1_grdGposLin_chkSelTodoHdr"></label>--%>
                                                         </div>
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <%--<div class="squaredOne">--%>
-                                                            <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged" />
-                                                           <%-- <label for="ContentPlaceHolder1_grdGposLin_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                                        <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged" />
+                                                        <%-- <label for="ContentPlaceHolder1_grdGposLin_chkSelItem_<%# Container.DataItemIndex %>"></label>
                                                         </div>--%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -213,8 +213,8 @@
                                                     </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <%--<div class="squaredOne">--%>
-                                                            <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged1" />
-                                                           <%-- <label for="ContentPlaceHolder1_grdLinArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                                        <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged1" />
+                                                        <%-- <label for="ContentPlaceHolder1_grdLinArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
                                                         </div>--%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -224,7 +224,7 @@
                                         </asp:GridView>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <asp:GridView ID="grdArt" runat="server" DataKeyNames="Id_Art" OnDataBound="grdArt_DataBound" OnPageIndexChanging="grdArt_PageIndexChanging"
+                                        <asp:GridView ID="grdArt" runat="server" AutoGenerateColumns="False" DataKeyNames="articulo_id" OnDataBound="grdArt_DataBound" OnPageIndexChanging="grdArt_PageIndexChanging"
                                             CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
                                             <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                             <EditRowStyle BackColor="#ffffcc" Height="10px" />
@@ -237,9 +237,9 @@
                                                             ToolTip="Seleccionar / Des-seleccionar todos" />
                                                     </HeaderTemplate>--%>
                                                     <ItemTemplate>
-                                                       <%-- <div class="squaredOne">--%>
-                                                            <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged2" />
-                                                           <%-- <label for="ContentPlaceHolder1_grdArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                                        <%-- <div class="squaredOne">--%>
+                                                        <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged2" />
+                                                        <%-- <label for="ContentPlaceHolder1_grdArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
                                                         </div>--%>
                                                     </ItemTemplate>
                                                 </asp:TemplateField>
@@ -270,13 +270,13 @@
                                     <Columns>
                                         <asp:TemplateField>
                                             <HeaderTemplate>
-                                               <asp:CheckBox ID="chkSelTodoHdr" runat="server" class="Visible" 
-                                                   AutoPostBack="true" ToolTip="Seleccionar / Des-seleccionar todos" />
+                                                <asp:CheckBox ID="chkSelTodoHdr" runat="server" class="Visible"
+                                                    AutoPostBack="true" ToolTip="Seleccionar / Des-seleccionar todos" />
                                             </HeaderTemplate>
                                             <ItemTemplate>
                                                 <%--<div class="squaredOne">--%>
-                                                    <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" />
-                                                   <%-- <label for="ContentPlaceHolder1_grdLibArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
+                                                <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" />
+                                                <%-- <label for="ContentPlaceHolder1_grdLibArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
                                                 </div>--%>
                                             </ItemTemplate>
                                         </asp:TemplateField>
@@ -284,9 +284,6 @@
                                     </Columns>
                                     <EmptyDataTemplate>Sin datos</EmptyDataTemplate>
                                 </asp:GridView>
-                            </div>
-                            <div class="panel-body">
-                                <button id="btnAsignar" type="button" runat="server" class="btn btn-info" onserverclick="btnAsignar_Click">Asignar / Desasignar</button>
                             </div>
                         </div>
                     </div>
@@ -308,7 +305,6 @@
             <asp:PostBackTrigger ControlID="grdLinArt" />
             <asp:PostBackTrigger ControlID="grdArt" />
             <asp:PostBackTrigger ControlID="grdLibArt" />
-            <asp:PostBackTrigger ControlID="btnMostrarArt" />
             <asp:PostBackTrigger ControlID="btnAsignar" />
         </Triggers>
     </asp:UpdatePanel>

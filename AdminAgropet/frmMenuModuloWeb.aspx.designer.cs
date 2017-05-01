@@ -157,15 +157,6 @@ namespace AdminAgropet {
         protected global::System.Web.UI.WebControls.TreeView tvw_Editar;
         
         /// <summary>
-        /// btnMostrarArt control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnMostrarArt;
-        
-        /// <summary>
         /// rdGrupoLineaArticulo control.
         /// </summary>
         /// <remarks>
@@ -182,6 +173,15 @@ namespace AdminAgropet {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdLibreArticulo;
+        
+        /// <summary>
+        /// btnAsignar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btnAsignar;
         
         /// <summary>
         /// divGpoLinArt control.
@@ -245,15 +245,6 @@ namespace AdminAgropet {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView grdLibArt;
-        
-        /// <summary>
-        /// btnAsignar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btnAsignar;
         
         /// <summary>
         /// hdnFlag control.
