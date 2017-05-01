@@ -578,23 +578,16 @@ namespace AdminAgropet
 
         private void CargarLibArticulos()
         {
+            string Familia = trvLibArt.SelectedNode.ValuePath.Split('/')[0];
+            string Categoria = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 1 ? trvLibArt.SelectedNode.ValuePath.Split('/')[1] : "";
+            string Marca = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 2 ? trvLibArt.SelectedNode.ValuePath.Split('/')[2] : "";
 
-            //CatalogoBR<ConsultaArticulos> objArt = new CatalogoBR<ConsultaArticulos>();
-            //List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
+            List<ConsultaArticulos> lstArt = new CatalogoLibresArticulos().Firebird_ObtenerLibresArticulos(Familia, Categoria, Marca);
 
-            //lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
-            //{
-            //    Id_Linea_Art = 0,
-            //    Familia = trvLibArt.SelectedNode.ValuePath.Split('/')[0],
-            //    Categoria = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 1 ? trvLibArt.SelectedNode.ValuePath.Split('/')[1] : "",
-            //    Marca = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 2 ? trvLibArt.SelectedNode.ValuePath.Split('/')[2] : "",
-            //    Nombre = ""
-            //}, 1));
-
-            //grdLibArt.DataSource = lstArt;
-            //grdLibArt.DataBind();
-            //LstArticulos = lstArt.Select(x => (int)x.Id_Art).ToList();
-            //LstArticulosBorrar = new List<int>();
+            grdLibArt.DataSource = lstArt;
+            grdLibArt.DataBind();
+            LstArticulos = lstArt.Select(x => (int)x.articulo_id).ToList();
+            LstArticulosBorrar = new List<int>();
         }
 
         private void CargarLibresArticulos()

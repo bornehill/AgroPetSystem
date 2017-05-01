@@ -46,23 +46,5 @@ namespace AgroPET.Entidades.Consultas
             }
             set { _Marca = value; }
         }
-
-        //public string? Familia
-        //{
-        //    get;
-        //    set;
-        //}
-
-        //public string? Categoria
-        //{
-        //    get;
-        //    set;
-        //}
-
-        //public string? Marca
-        //{
-        //    get;
-        //    set;
-        //}
     }
 }

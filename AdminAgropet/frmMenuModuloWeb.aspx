@@ -262,22 +262,21 @@
                                 </asp:TreeView>
                             </div>
                             <div class="panel-body">
-                                <asp:GridView ID="grdLibArt" runat="server" AutoGenerateColumns="False" DataKeyNames="Id_Art"
+                                <asp:GridView ID="grdLibArt" runat="server" AutoGenerateColumns="False" DataKeyNames="articulo_id"
                                     CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
-                                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
+                                    <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
                                     <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                     <AlternatingRowStyle BackColor="White" />
                                     <Columns>
                                         <asp:TemplateField>
-                                             <%-- <HeaderTemplate>
-                                                 
-                                               <asp:CheckBox ID="chkSelTodoHdr" runat="server"
-                                                    ToolTip="Seleccionar / Des-seleccionar todos" />
-                                            </HeaderTemplate>--%>
+                                            <HeaderTemplate>
+                                               <asp:CheckBox ID="chkSelTodoHdr" runat="server" class="Visible" 
+                                                   AutoPostBack="true" ToolTip="Seleccionar / Des-seleccionar todos" />
+                                            </HeaderTemplate>
                                             <ItemTemplate>
                                                 <%--<div class="squaredOne">--%>
-                                                    <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" />
+                                                    <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" />
                                                    <%-- <label for="ContentPlaceHolder1_grdLibArt_chkSelItem_<%# Container.DataItemIndex %>"></label>
                                                 </div>--%>
                                             </ItemTemplate>
