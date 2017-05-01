@@ -40,6 +40,10 @@
     <Reference Include="AgroPET.Entidades">
       <HintPath>..\Agropet.Entidades\bin\Debug\AgroPET.Entidades.dll</HintPath>
     </Reference>
+    <Reference Include="FirebirdSql.Data.FirebirdClient, Version=5.8.1.0, Culture=neutral, PublicKeyToken=3750abcc3150b00c, processorArchitecture=MSIL">
+      <HintPath>..\AdminAgropet\packages\FirebirdSql.Data.FirebirdClient.5.8.1\lib\net40-client\FirebirdSql.Data.FirebirdClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -69,6 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Dll\AccesoDatos.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
