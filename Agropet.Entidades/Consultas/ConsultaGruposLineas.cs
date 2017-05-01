@@ -9,8 +9,8 @@ namespace AgroPET.Entidades.Consultas
  
     public class ConsultaGruposLineas
     {
-        public int? Id_Gpo_Lin { get; set; }
+        public int? grupo_linea_id { get; set; }
 
-        public string Nombre { get; set; }
+        public string nombre { get; set; }
     }
 }

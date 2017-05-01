@@ -174,19 +174,19 @@
                                 <div class="row">
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                         <asp:GridView ID="grdGposLin" runat="server" AutoGenerateColumns="False"
-                                            DataKeyNames="Id_Gpo_Lin" OnPageIndexChanging="grdGposLin_PageIndexChanging"
+                                            DataKeyNames="grupo_linea_id" OnPageIndexChanging="grdGposLin_PageIndexChanging"
                                             CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
                                             <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                             <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                             <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                             <Columns>
                                                 <asp:TemplateField>
-                                                    <%-- <HeaderTemplate>
+                                                     <HeaderTemplate>
                                                         <div class="squaredOne">
-                                                            <asp:CheckBox ID="chkSelTodoHdr" runat="server" AutoPostBack="True" />
-                                                            <label for="ContentPlaceHolder1_grdGposLin_chkSelTodoHdr"></label>
+                                                            <asp:CheckBox ID="chkSelTodoHdr" CssClass="Visible" runat="server" AutoPostBack="True" />
+                                                         <%--   <label for="ContentPlaceHolder1_grdGposLin_chkSelTodoHdr"></label>--%>
                                                         </div>
-                                                    </HeaderTemplate>--%>
+                                                    </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <%--<div class="squaredOne">--%>
                                                             <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged" />
@@ -200,7 +200,7 @@
                                         </asp:GridView>
                                     </div>
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-                                        <asp:GridView ID="grdLinArt" runat="server" AutoGenerateColumns="False" DataKeyNames="Id_Lin_Art" OnPageIndexChanging="grdLinArt_PageIndexChanging"
+                                        <asp:GridView ID="grdLinArt" runat="server" AutoGenerateColumns="False" DataKeyNames="linea_articulo_id" OnPageIndexChanging="grdLinArt_PageIndexChanging"
                                             CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
                                             <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                             <EditRowStyle BackColor="#ffffcc" Height="10px" />
@@ -208,10 +208,9 @@
                                             <AlternatingRowStyle BackColor="White" />
                                             <Columns>
                                                 <asp:TemplateField>
-                                                    <%--<HeaderTemplate>
-                                                        <asp:CheckBox ID="chkSelTodoHdr" runat="server"
-                                                            ToolTip="Seleccionar / Des-seleccionar todos" />
-                                                    </HeaderTemplate>--%>
+                                                    <HeaderTemplate>
+                                                        <asp:CheckBox ID="chkSelTodoHdr" CssClass="Visible" runat="server" ToolTip="Seleccionar / Des-seleccionar todos" />
+                                                    </HeaderTemplate>
                                                     <ItemTemplate>
                                                         <%--<div class="squaredOne">--%>
                                                             <asp:CheckBox ID="chkSelItem" runat="server" class="Visible" AutoPostBack="True" OnCheckedChanged="chkSelItem_CheckedChanged1" />

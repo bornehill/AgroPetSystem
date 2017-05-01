@@ -525,28 +525,33 @@ namespace AdminAgropet
 
         private void CargarGruposLineas()
         {
+            List<ConsultaGruposLineas> objGpoLin = new CatalogoGruposLineas().Firebird_ObtenerGruposLineas();
             //CatalogoBR<ConsultaGruposLineas> objGpoLin = new CatalogoBR<ConsultaGruposLineas>();
 
-            //grdGposLin.DataSource = objGpoLin.ObtenerListaGrid(new ConsultaGruposLineas());
-            //grdGposLin.DataBind();
+            grdGposLin.DataSource = objGpoLin; //objGpoLin.ObtenerListaGrid(new ConsultaGruposLineas());
+            grdGposLin.DataBind();
         }
 
         private void CargarLineasArticulos()
         {
-            //CatalogoBR<ConsultaLineasArticulos> objLinArt = new CatalogoBR<ConsultaLineasArticulos>();
-            //List<ConsultaLineasArticulos> lstLinArt = new List<ConsultaLineasArticulos>();
 
-            //for (int index = 0; index < grdGposLin.Rows.Count; index++)
-            //{
-            //    CheckBox chk = (CheckBox)grdGposLin.Rows[index].Cells[0].FindControl("chkSelItem");
-            //    if (chk.Checked)
-            //    {
-            //        lstLinArt.AddRange(objLinArt.ObtenerListado(new ConsultaLineasArticulos { Id_Gpo_Lin = Convert.ToInt32(grdGposLin.DataKeys[index].Value) }));
-            //    }
-            //}
+            List<ConsultaLineasArticulos> lstLinArt = new List<ConsultaLineasArticulos>();
+            CatalogoGruposLineas objLinArt = new CatalogoGruposLineas();
+          
+            for (int index = 0; index < grdGposLin.Rows.Count; index++)
+            {
+                CheckBox chk = (CheckBox)grdGposLin.Rows[index].Cells[0].FindControl("chkSelItem");
+                if (chk.Checked)
+                {
+                    //lstArt.AddRange(objLinArt.ObtenerListado(new ConsultaLineasArticulos { Id_Gpo_Lin = Convert.ToInt32(grdGposLin.DataKeys[index].Value) }));
+                    int grupo_linea_id = Convert.ToInt32(grdGposLin.DataKeys[index].Value);
+                    lstLinArt.AddRange(objLinArt.Firebird_ObtenerGruposLineasArticulos(grupo_linea_id));
 
-            //grdLinArt.DataSource = lstLinArt;
-            //grdLinArt.DataBind();
+                }
+            }
+
+            grdLinArt.DataSource = lstLinArt;
+            grdLinArt.DataBind();
         }
 
         private void CargarArticulos()

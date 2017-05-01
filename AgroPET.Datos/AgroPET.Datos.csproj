@@ -57,6 +57,7 @@
     <Compile Include="Catalogos\CatalogosExtDA.cs" />
     <Compile Include="Catalogos\DatosArticulos.cs" />
     <Compile Include="Catalogos\DatosCliente.cs" />
+    <Compile Include="Catalogos\DatosGruposLineas.cs" />
     <Compile Include="Catalogos\DatosImagenesArticulos.cs" />
     <Compile Include="Catalogos\DatosImagenesBanners.cs" />
     <Compile Include="Catalogos\DatosLibresArticulos.cs" />

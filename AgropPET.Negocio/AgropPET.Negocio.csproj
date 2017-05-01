@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="Catalogos\CatalogoArticulos.cs" />
     <Compile Include="Catalogos\CatalogoCliente.cs" />
+    <Compile Include="Catalogos\CatalogoGruposLineas.cs" />
     <Compile Include="Catalogos\CatalogoImagenesArticulos.cs" />
     <Compile Include="Catalogos\CatalogoImagenesBanners.cs" />
     <Compile Include="Catalogos\CatalogoLibresArticulos.cs" />
