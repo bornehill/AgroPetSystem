@@ -27,6 +27,8 @@ BEGIN
 	,P.Menu AS PadreNom    
 	FROM tbmenuweb AS H      
 	LEFT JOIN tbmenuweb AS P ON H.Padre = P.MenuId    
-	WHERE (@MenuId IS NULL AND H.MenuId = H.MenuId) OR (H.MenuId = @MenuId)
-	AND  (@Menu IS NULL AND H.Menu = H.Menu) OR (H.Menu LIKE CONCAT('%',@Menu,'%'));
+	WHERE ((@MenuId IS NULL AND H.MenuId = H.MenuId) OR (H.MenuId = @MenuId) OR (P.MenuId = @MenuId))
+	AND  ((@Menu IS NULL AND H.Menu = H.Menu) OR (H.Menu LIKE CONCAT('%',@Menu,'%')))
+	AND h.activo=1
+	order by h.Orden
 END

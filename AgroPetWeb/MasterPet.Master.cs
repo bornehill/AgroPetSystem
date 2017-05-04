@@ -23,7 +23,7 @@ namespace AgroPetWeb
     protected void GetMenuWeb()
     {
       PetService service = new PetService();
-      var menus = service.GetMenuWeb(new EntidadMenuWeb() { MenuId = 0, Menu = "" });
+      var menus = service.GetMenuWeb(new EntidadMenuWeb() { MenuId = 1, Menu = "" });
       foreach (var menu in menus)
       {
         var submenu = service.GetMenuWeb(menu);
