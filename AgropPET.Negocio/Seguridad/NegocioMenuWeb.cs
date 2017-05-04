@@ -135,7 +135,7 @@ namespace AgropPET.Negocio.Seguridad
             {
                 //// Se inserta el registro en la base de datos
                 var oDatos = new DatosMenuWeb();
-                oDatos.DesAsignarArticulosMicrosip(ent);
+                oDatos.AsignarArticulosMicrosip(ent);
                 return true;
             }
             catch (Exception ex)

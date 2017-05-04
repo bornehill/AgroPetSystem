@@ -8,9 +8,9 @@ namespace AgroPET.Entidades.Consultas
 {
     public  class ConsultaArticulos
     {
-        public int? Id_Art { get; set; }
+        public int? articulo_id { get; set; }
 
-        public int? Id_Linea_Art { get; set; }
+        public int? linea_articulo_id { get; set; }
 
         public string Nombre { get; set; }
 

@@ -186,7 +186,7 @@
         <img src="<%= ResolveUrl("~/Imagenes/Loader.gif") %>" alt="Cargando..." />
         <br />
         <br />
-        CaCargando...
+        Cargando...
     </div>
     <!-- Termina Imagen de carga -->
     <form id="frmMaestro" runat="server">

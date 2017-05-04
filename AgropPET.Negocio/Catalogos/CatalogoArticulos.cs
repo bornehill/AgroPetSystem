@@ -17,6 +17,13 @@ namespace AgropPET.Negocio.Catalogos
             return lstImagArt;
         }
 
+        public List<ConsultaArticulos> Firebird_ObtenerArticulos(int linea_articulo_id)
+        {
+            List<ConsultaArticulos> lstImagArt = new DatosArticulos().Firebird_ObtenerArticulos(linea_articulo_id);
+
+            return lstImagArt;
+        }
+
         public List<ConsultaArticulos> ObtenerArticulosDropDown()
         {
             List<ConsultaArticulos> lstImagArt = new DatosArticulos().ObtenerArticulosDropDown();
