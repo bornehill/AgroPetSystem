@@ -14,7 +14,7 @@ BEGIN
     ELSE
 		BEGIN
 			INSERT INTO tbperfiles VALUES (@NombrePerfil, GETDATE(), @IdUsuarioCreo,
-				NULL, NULL, @Activo);    
+				NULL, NULL, @Activo);     
             
 		SELECT 'OKPerfil Registrado Correctamente.' as MsgProceso;
     END

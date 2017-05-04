@@ -322,3 +322,7 @@ body
     vertical-align:top;
     height:16px
 }
+
+.oculto {
+    display: none;
+}

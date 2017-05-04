@@ -227,28 +227,11 @@ namespace AdminAgropet
 
         }
 
-       
-
-        protected void btnMostrarArt_Click(object sender, EventArgs e)
-        {
-            if (hdnIdSeleccionado.Value != null)
-            {
-                // rblFiltro.ClearSelection();
-                divGpoLinArt.Visible = false;
-
-            }
-            else
-            {
-                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                    "Debe seleccionar un nodo del menú antes de asignar articulos", 2);
-            }
-        }
-
         protected void btnAsignar_Click(object sender, EventArgs e)
         {
             try
             {
-                if (hdnIdSeleccionado != null)
+                if (hdnIdSeleccionado != null && !string.IsNullOrEmpty(hdnIdSeleccionado.Value))
                 {
                     //if (rblFiltro.SelectedIndex == 0)
                     if (rdGrupoLineaArticulo.Checked)
@@ -278,6 +261,15 @@ namespace AdminAgropet
                             }
                         }
                     }
+                    else
+                    {
+
+                    }
+                }
+                else
+                {
+                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+                    "Debe seleccionar un nodo del menú antes de asignar articulos", 2);
                 }
             }
             catch (Exception ex)
@@ -525,85 +517,81 @@ namespace AdminAgropet
 
         private void CargarGruposLineas()
         {
+            List<ConsultaGruposLineas> objGpoLin = new CatalogoGruposLineas().Firebird_ObtenerGruposLineas();
             //CatalogoBR<ConsultaGruposLineas> objGpoLin = new CatalogoBR<ConsultaGruposLineas>();
 
-            //grdGposLin.DataSource = objGpoLin.ObtenerListaGrid(new ConsultaGruposLineas());
-            //grdGposLin.DataBind();
+            grdGposLin.DataSource = objGpoLin; //objGpoLin.ObtenerListaGrid(new ConsultaGruposLineas());
+            grdGposLin.DataBind();
         }
 
         private void CargarLineasArticulos()
         {
-            //CatalogoBR<ConsultaLineasArticulos> objLinArt = new CatalogoBR<ConsultaLineasArticulos>();
-            //List<ConsultaLineasArticulos> lstLinArt = new List<ConsultaLineasArticulos>();
 
-            //for (int index = 0; index < grdGposLin.Rows.Count; index++)
-            //{
-            //    CheckBox chk = (CheckBox)grdGposLin.Rows[index].Cells[0].FindControl("chkSelItem");
-            //    if (chk.Checked)
-            //    {
-            //        lstLinArt.AddRange(objLinArt.ObtenerListado(new ConsultaLineasArticulos { Id_Gpo_Lin = Convert.ToInt32(grdGposLin.DataKeys[index].Value) }));
-            //    }
-            //}
+            List<ConsultaLineasArticulos> lstLinArt = new List<ConsultaLineasArticulos>();
+            CatalogoGruposLineas objLinArt = new CatalogoGruposLineas();
+          
+            for (int index = 0; index < grdGposLin.Rows.Count; index++)
+            {
+                CheckBox chk = (CheckBox)grdGposLin.Rows[index].Cells[0].FindControl("chkSelItem");
+                if (chk.Checked)
+                {
+                    //lstArt.AddRange(objLinArt.ObtenerListado(new ConsultaLineasArticulos { Id_Gpo_Lin = Convert.ToInt32(grdGposLin.DataKeys[index].Value) }));
+                    int grupo_linea_id = Convert.ToInt32(grdGposLin.DataKeys[index].Value);
+                    lstLinArt.AddRange(objLinArt.Firebird_ObtenerGruposLineasArticulos(grupo_linea_id));
 
-            //grdLinArt.DataSource = lstLinArt;
-            //grdLinArt.DataBind();
+                }
+            }
+
+            grdLinArt.DataSource = lstLinArt;
+            grdLinArt.DataBind();
+
+            if (lstLinArt.Count <= 0)
+            {
+                grdArt.DataSource = null;
+                grdArt.DataBind();
+            }
+
         }
 
         private void CargarArticulos()
         {
-            //CatalogoBR<ConsultaArticulos> objArt = new CatalogoBR<ConsultaArticulos>();
-            //List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
+            List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
+            CatalogoArticulos objArt = new CatalogoArticulos();
 
-            //for (int index = 0; index < grdLinArt.Rows.Count; index++)
-            //{
-            //    CheckBox chk = (CheckBox)grdLinArt.Rows[index].Cells[0].FindControl("chkSelItem");
-            //    if (chk.Checked)
-            //    {
-            //        lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
-            //        {
-            //            Id_Linea_Art = Convert.ToInt32(grdLinArt.DataKeys[index].Value),
-            //            Familia = "",
-            //            Categoria = "",
-            //            Marca = "",
-            //            Nombre = ""
-            //        }, 0));
-            //    }
-            //}
+            for (int index = 0; index < grdLinArt.Rows.Count; index++)
+            {
+                CheckBox chk = (CheckBox)grdLinArt.Rows[index].Cells[0].FindControl("chkSelItem");
+                if (chk.Checked)
+                {
+                    int linea_articulo_id = Convert.ToInt32(grdLinArt.DataKeys[index].Value);
+                    lstArt.AddRange(objArt.Firebird_ObtenerArticulos(linea_articulo_id));
+                }
+            }
 
-            //grdArt.DataSource = lstArt;
-            //grdArt.DataBind();
-            //LstArticulos = lstArt.Select(x => (int)x.Id_Art).ToList();
-            //LstArticulosBorrar = new List<int>();
+            grdArt.DataSource = lstArt;
+            grdArt.DataBind();
+            LstArticulos = lstArt.Select(x => (int)x.articulo_id).ToList();
+            LstArticulosBorrar = new List<int>();
         }
 
         private void CargarLibArticulos()
         {
+            string Familia = trvLibArt.SelectedNode.ValuePath.Split('/')[0];
+            string Categoria = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 1 ? trvLibArt.SelectedNode.ValuePath.Split('/')[1] : "";
+            string Marca = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 2 ? trvLibArt.SelectedNode.ValuePath.Split('/')[2] : "";
 
-            //CatalogoBR<ConsultaArticulos> objArt = new CatalogoBR<ConsultaArticulos>();
-            //List<ConsultaArticulos> lstArt = new List<ConsultaArticulos>();
+            List<ConsultaArticulos> lstArt = new CatalogoLibresArticulos().Firebird_ObtenerLibresArticulos(Familia, Categoria, Marca);
 
-            //lstArt.AddRange(objArt.ObtenerListado(new ConsultaArticulos
-            //{
-            //    Id_Linea_Art = 0,
-            //    Familia = trvLibArt.SelectedNode.ValuePath.Split('/')[0],
-            //    Categoria = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 1 ? trvLibArt.SelectedNode.ValuePath.Split('/')[1] : "",
-            //    Marca = trvLibArt.SelectedNode.ValuePath.Split('/').Length > 2 ? trvLibArt.SelectedNode.ValuePath.Split('/')[2] : "",
-            //    Nombre = ""
-            //}, 1));
-
-            //grdLibArt.DataSource = lstArt;
-            //grdLibArt.DataBind();
-            //LstArticulos = lstArt.Select(x => (int)x.Id_Art).ToList();
-            //LstArticulosBorrar = new List<int>();
+            grdLibArt.DataSource = lstArt;
+            grdLibArt.DataBind();
+            LstArticulos = lstArt.Select(x => (int)x.articulo_id).ToList();
+            LstArticulosBorrar = new List<int>();
         }
 
         private void CargarLibresArticulos()
         {
-            //CatalogoBR<ConsultaLibresArticulos> objGpoLin = new CatalogoBR<ConsultaLibresArticulos>();
-
-            //var lstLibres = objGpoLin.ObtenerListado(new ConsultaLibresArticulos());
-            //CargaArbolLibresArt(trvLibArt, lstLibres);
-
+            List<ConsultaLibresArticulos> lstLibres = new CatalogoLibresArticulos().Firebird_ObtenerLibresArticulos();
+            CargaArbolLibresArt(trvLibArt, lstLibres);
         }
 
         private void CargaArbolLibresArt(TreeView tArbol, List<ConsultaLibresArticulos> lstObjs)

@@ -5,7 +5,7 @@
 	@Activo int 
 )
 AS
-BEGIN
+BEGIN 
 			
 	SELECT tPf.idperfil, 
 		tPf.nombreperfil, 

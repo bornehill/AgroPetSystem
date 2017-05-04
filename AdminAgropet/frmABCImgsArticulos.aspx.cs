@@ -37,6 +37,8 @@ namespace AdminAgropet
         protected void btnNuevo_Click(object sender, EventArgs e)
         {
             mvwArticulos.SetActiveView(vwNuevo);
+            ddlArticulos.Enabled = true;
+
             BEdicion = false;
             LimpiarDatos();
             ddlArticulos.SelectedIndex = 0;
@@ -72,6 +74,17 @@ namespace AdminAgropet
         protected void gvwConsulta_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsulta.PageSize;
+            if (e.CommandName.Equals("Editar"))
+            {
+                hfIdImagenArticulo.Value = gvwConsulta.DataKeys[nFila].Values[0].ToString();
+                txtImagenArticulo.Value = gvwConsulta.Rows[nFila].Cells[9].Text.Replace("&nbsp;","");
+                ddlArticulos.SelectedValue = gvwConsulta.Rows[nFila].Cells[3].Text;
+                ddlArticulos.Enabled = false;
+                ddlArticulos.ControlStyle.CssClass = "form-control";
+                BEdicion = true;
+
+                mvwArticulos.SetActiveView(vwNuevo);
+            }
             if (e.CommandName.Equals("Eliminar"))
             {
                 int IdImagenArticulo = Convert.ToInt32(gvwConsulta.DataKeys[nFila].Values[0]);
@@ -187,17 +200,32 @@ namespace AdminAgropet
 
         public void Insertar()
         {
-            if (ddlArticulos.SelectedIndex != 0)
+            if (ddlArticulos.SelectedIndex != 0 && !string.IsNullOrEmpty(txtImagenArticulo.Value))
             {
                 int idArticulo = Convert.ToInt32(ddlArticulos.SelectedItem.Value);
                 int idUsuario = Convert.ToInt32(UsuarioLogeado.idusuario);
 
-                bool correcto = new CatalogoImagenesArticulos().InsertaImagenesArticulos(idArticulo, idUsuario);
+                string alertaError = string.Empty;
+                bool correcto;
+                if (BEdicion)
+                {
+                    //ACTUALIZA
+                    int idImagenArticulo = Convert.ToInt32(hfIdImagenArticulo.Value);
+                    correcto = new CatalogoImagenesArticulos().ActualizarImagenesArticulos(idImagenArticulo, idUsuario, txtImagenArticulo.Value);
+                    alertaError = "No es posible actualizar el Articulo";
+                }
+                else
+                {
+                    //INSERTA 
+                    correcto = new CatalogoImagenesArticulos().InsertaImagenesArticulos(idArticulo, idUsuario, txtImagenArticulo.Value);
+                    alertaError = "No es posible insertar el articulo es posible que ya exista";
+                }
+
 
                 if (!correcto)
                 {
                     MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                    "El articulo ya existe: ", 2);
+                    alertaError, 2);
                 }
                 else
                 {
@@ -205,11 +233,17 @@ namespace AdminAgropet
                     mvwArticulos.SetActiveView(vwConsulta);
                 }
             }
+            else
+            {
+                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+                    "Es necesario ingresar todos los datos", 2);
+            }
+
         }
 
         private void Cancelar()
         {
-            Buscar();
+            //Buscar();
             mvwArticulos.SetActiveView(vwConsulta);
         }
 

@@ -18,14 +18,38 @@ namespace AgroPET.Datos.Catalogos
             return accesoDatos.ConsultaDataList<EntImgenesArticulos>();
         }
 
-        public bool InsertaImagenesArticulos(int IdArticulo, int idusuariocreo)
+        public bool InsertaImagenesArticulos(int IdArticulo, int idusuariocreo, string pathimagen)
         {
             try
             {
                 accesoDatos.parametros.listaParametros.Clear();
                 accesoDatos.comandoSP = "uspImagenesArticulosInsertar";
-                accesoDatos.parametros.Agrega("@p_idArticulo", IdArticulo, true);
-                accesoDatos.parametros.Agrega("@p_idusuariocreo", idusuariocreo, true);
+                accesoDatos.parametros.Agrega("@idArticulo", IdArticulo, true);
+                accesoDatos.parametros.Agrega("@idusuariocreo", idusuariocreo, true);
+                accesoDatos.parametros.Agrega("@pathimagen", pathimagen, true);
+
+                int afectados = accesoDatos.EjecutaNQuery();
+
+                if (afectados >= 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
+
+        public bool ActualizarImagenesArticulos(int idImagenArticulo, int idusuarioModifico, string pathimagen)
+        {
+            try
+            {
+                accesoDatos.parametros.listaParametros.Clear();
+                accesoDatos.comandoSP = "uspImagenesArticulosActualizar";
+                accesoDatos.parametros.Agrega("@p_idImagenArticulo", idImagenArticulo, true);
+                accesoDatos.parametros.Agrega("@p_idusuarioModifico", idusuarioModifico, true);
+                accesoDatos.parametros.Agrega("@p_pathimagen", pathimagen, true);
                 int afectados = accesoDatos.EjecutaNQuery();
 
                 if (afectados >= 1)

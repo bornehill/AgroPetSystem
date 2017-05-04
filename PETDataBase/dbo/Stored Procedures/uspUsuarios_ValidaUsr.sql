@@ -17,7 +17,7 @@ SET NOCOUNT ON;
 			INNER JOIN tbperfiles tp ON tu.idperfil = tp.idperfil
         WHERE tu.claveusr = @vNombreUsuario 
 			AND	tu.passwordusr = @vPassUsuario
-    END
+    END 
     ELSE 
 	BEGIN
 		SELECT -11 as idusuario, 

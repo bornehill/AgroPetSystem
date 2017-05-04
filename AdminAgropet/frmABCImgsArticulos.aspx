@@ -41,17 +41,19 @@
                                     <Columns>
                                         <asp:TemplateField>
                                             <ItemTemplate>
+                                                <asp:ImageButton ID="ibnEditarDetalle" runat="server" Width="20px" ImageUrl="~/Imagenes/Iconos/Editar.PNG"
+                                                    CommandName="Editar" CommandArgument='<%# Container.DataItemIndex %>' />
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+                                        <asp:TemplateField>
+                                            <ItemTemplate>
                                                 <asp:ImageButton ID="ibnEliminarDetalle" runat="server" Width="20px" ImageUrl="~/Imagenes/Iconos/Basurero.PNG"
                                                     CommandName="Eliminar" CommandArgument='<%# Container.DataItemIndex %>'
                                                     OnClientClick="return confirm('Are you confirm to delete?')" />
                                             </ItemTemplate>
-                                            <%-- <ItemTemplate>
-                                                <asp:ImageButton ID="ibnDetalle" runat="server" Width="20px" ImageUrl="~/Imagenes/Iconos/Info2.PNG"
-                                                    CommandName="Detalles" CommandArgument='<%# Container.DataItemIndex %>' TabIndex="3" />
-                                            </ItemTemplate>--%>
                                         </asp:TemplateField>
                                         <asp:BoundField DataField="IdImagenArticulo" HeaderText="IdImagenArticulo" Visible="false" />
-                                        <asp:BoundField DataField="IdArticulo" HeaderText="IdArticulo" Visible="false" />
+                                        <asp:BoundField DataField="IdArticulo" HeaderText="IdArticulo" ItemStyle-CssClass="oculto" HeaderStyle-CssClass="oculto"  />
                                         <asp:BoundField DataField="NombreArticulo" HeaderText="Articulo" />
                                         <asp:BoundField DataField="FechaRegistro" HeaderText="Fecha de Registro" />
                                         <asp:BoundField DataField="FechaModificacion" HeaderText="Fecha de Modificacion" />
@@ -82,7 +84,7 @@
                                                 PromptText="Busqueda por.." QueryPattern="Contains">
                                             </asp:ListSearchExtender>
                                         </div>
-                                         <div class="form-group col-lg-6">
+                                        <div class="form-group col-lg-6">
                                             <%--<label style="text-align: left; width: 100%;"></label>--%>
                                             <div class="input-group">
                                                 <label class="input-group-btn">
@@ -97,6 +99,7 @@
                                             <button id="btnGuardar" runat="server" class="btn btn-success" onserverclick="btnGuardar_Click" validationgroup="guarda">Guardar</button>
                                             <button id="btnCancelar" runat="server" class="btn btn-info" onserverclick="btnCancelar_Click">Cancelar</button>
                                         </center>
+                                        <asp:HiddenField ID="hfIdImagenArticulo" runat="server" />
                                         <%-- </form>--%>
                                     </div>
                                 </div>
