@@ -195,5 +195,6 @@
     <Build Include="dbo\Stored Procedures\uspArticulosObtenerDropDown.sql" />
     <Build Include="dbo\Stored Procedures\uspImagenesArticulosElimina.sql" />
     <Build Include="dbo\Stored Procedures\uspImagenesArticulosActualizar.sql" />
+    <Build Include="dbo\Tables\tbusuarios.sql" />
   </ItemGroup>
 </Project>
