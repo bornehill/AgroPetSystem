@@ -175,7 +175,6 @@
     <Build Include="dbo\Stored Procedures\uspAddBuy.sql" />
     <Build Include="dbo\Stored Procedures\uspGetBuyView.sql" />
     <Build Include="dbo\Functions\ufn_GetTotalMenuArt.sql" />
-    <Build Include="dbo\Tables\tbusuarios.sql" />
     <Build Include="dbo\Stored Procedures\uspUsuariosConsultar.sql" />
     <Build Include="dbo\Stored Procedures\uspUsuariosAlta.sql" />
     <Build Include="dbo\Stored Procedures\uspUsuariosActualiza.sql" />
