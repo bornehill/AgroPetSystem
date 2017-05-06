@@ -227,6 +227,26 @@ namespace AdminAgropet
 
         }
 
+        public void desasignar()
+        {
+            NegocioMenuWeb negMenuWeb = new NegocioMenuWeb();
+            EntidadMenuArticulos entMenArt;
+
+            if (LstArticulosBorrar != null && LstArticulosBorrar.Count > 0)
+            {
+                foreach (int art in LstArticulosBorrar)
+                {
+                    entMenArt = new EntidadMenuArticulos();
+                    entMenArt.MenuId = Convert.ToInt32(hdnIdSeleccionado.Value);
+                    entMenArt.IdArticulo = art;
+                    negMenuWeb.DesAsignarArticulosMicrosip(entMenArt);
+                }
+
+                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+               "Articulos Desasignados", 2);
+            }
+        }
+
         protected void btnAsignar_Click(object sender, EventArgs e)
         {
             try
@@ -239,16 +259,6 @@ namespace AdminAgropet
 
                         NegocioMenuWeb negMenuWeb = new NegocioMenuWeb();
                         EntidadMenuArticulos entMenArt;
-                        if (LstArticulosBorrar != null)
-                        {
-                            foreach (int art in LstArticulosBorrar)
-                            {
-                                entMenArt = new EntidadMenuArticulos();
-                                entMenArt.MenuId = Convert.ToInt32(hdnIdSeleccionado.Value);
-                                entMenArt.IdArticulo = art;
-                                negMenuWeb.DesAsignarArticulosMicrosip(entMenArt);
-                            }
-                        }
 
                         if (LstArticulos.Count > 0)
                         {
@@ -259,11 +269,10 @@ namespace AdminAgropet
                                 entMenArt.IdArticulo = art;
                                 negMenuWeb.AsignarArticulosMicrosip(entMenArt);
                             }
-                        }
-                    }
-                    else
-                    {
 
+                            MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+                            "Articulos Asignados", 2);
+                        }
                     }
                 }
                 else
@@ -676,5 +685,10 @@ namespace AdminAgropet
 
 
         #endregion
+
+        protected void btnDesasignar_ServerClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

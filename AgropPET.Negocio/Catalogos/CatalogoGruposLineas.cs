@@ -22,5 +22,19 @@ namespace AgropPET.Negocio.Catalogos
 
             return lst;
         }
+
+        public int Firebird_ObtenerIdLineaArticulo(int idArticulo)
+        {
+            int Linea_articulo_id = new DatosGruposLineas().Firebird_ObtenerIdLineaArticulo(idArticulo);
+
+            return Linea_articulo_id;
+        }
+
+        public int Firebird_ObtenerIdGrupoLinea(int idLineaArticulo)
+        {
+            int grupo_linea_id = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea(idLineaArticulo);
+
+            return grupo_linea_id;
+        }
     }
 }

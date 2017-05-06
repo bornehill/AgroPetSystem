@@ -162,7 +162,8 @@
                                     </div>
 
                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                        <button id="btnAsignar" type="button" runat="server" class="btn btn-info" onserverclick="btnAsignar_Click">Asignar / Desasignar</button>
+                                        <button id="btnAsignar" type="button" runat="server" class="btn btn-info" onserverclick="btnAsignar_Click">Asignar</button> 
+                                        <button id="btnDesasignar" type="button" runat="server" class="btn btn-info" onserverclick="btnDesasignar_ServerClick">Desasignar</button>
                                     </div>
                                 </div>
                             </div>
