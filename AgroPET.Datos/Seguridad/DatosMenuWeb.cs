@@ -121,8 +121,8 @@ namespace AgroPET.Datos.Seguridad
             accesoDatos.parametros.listaParametros.Clear();
             accesoDatos.comandoSP = "uspDesAsignarArticulosMenuWeb_Delete";
             accesoDatos.parametros.Agrega("@MenId", ent.MenuId, true);
-            accesoDatos.parametros.Agrega("@idGpo_Lin", ent.IdGrupo_Linea, true);
-            accesoDatos.parametros.Agrega("@idLin_Art", ent.IdLinea_Articulo, true);
+            accesoDatos.parametros.Agrega("@idGpo_Lin", grupo_linea_id, true);
+            accesoDatos.parametros.Agrega("@idLin_Art", Linea_articulo_id, true);
             accesoDatos.parametros.Agrega("@idArt", ent.IdArticulo, true);
             int afectados = accesoDatos.EjecutaNQuery();
         }

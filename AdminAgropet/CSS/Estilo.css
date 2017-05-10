@@ -326,3 +326,7 @@ body
 .oculto {
     display: none;
 }
+
+.table > tbody > tr > th, .table > thead > tr > td {
+  text-align:center;
+}
