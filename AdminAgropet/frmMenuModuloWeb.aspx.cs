@@ -50,6 +50,8 @@ namespace AdminAgropet
             //set { ViewState["lstArticulosBorrar"] = value; }
             //get { return (List<int>)ViewState["lstArticulosBorrar"]; }
         }
+
+        private string valorSeleccionado = string.Empty;
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -121,31 +123,20 @@ namespace AdminAgropet
                 if (e.CommandName == ComandoEditar)
                 {
                     int iFila = int.Parse(e.CommandArgument.ToString()) % grd_Consultas.PageSize;
-
                     txt_Comando.Value = Convert.ToString(grd_Consultas.DataKeys[iFila].Values[GrdDkId]);
-
                     txt_Menu_Editar.Value = grd_Consultas.Rows[iFila].Cells[GrdMenu].Text;
-
                     txt_MenuUrl_Editar.Value = string.IsNullOrEmpty(grd_Consultas.Rows[iFila].Cells[GrdUrl].Text)
                                                         ? "#" : grd_Consultas.Rows[iFila].Cells[GrdUrl].Text;
-
                     chk_Estado_Editar.Checked = Convert.ToBoolean(grd_Consultas.DataKeys[iFila].Values[GrdDkActivo]);
 
                     LlenalListaMenusBuscar(0);
                     ddl_ListaMenus_Editar.SelectedValue = string.IsNullOrEmpty(grd_Consultas.DataKeys[iFila].Values[GrdDkPadreId].ToString())
                                                                         ? "0" : grd_Consultas.DataKeys[iFila].Values[GrdDkPadreId].ToString();
 
+                    valorSeleccionado = txt_Comando.Value;
+
                     CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
-
-
-                    //TreeNode[] treeNodes = tvw_Editar.Nodes
-                    //                .Cast<TreeNode>()
-                    //                .Where(r => r.Text == "#")
-                    //                .ToArray();
-
-                    //string nodo = tvw_Editar.FindNode("#").Value;
-                   // tvw_Editar.Nodes[]
-
+                    nodoSeleccionado();
                     div_Principal.Visible = false;
                     div_Editar.Visible = true;
                 }
@@ -195,9 +186,14 @@ namespace AdminAgropet
 
         protected void tvw_Editar_SelectedNodeChanged(object sender, EventArgs e)
         {
-            hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
+            nodoSeleccionado();
         }
 
+        //jval
+        private void nodoSeleccionado()
+        {
+            hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
+        }
 
         #endregion VistaEditar
 
@@ -461,6 +457,9 @@ namespace AdminAgropet
             {
                 var tn = new TreeNode(objSubopcion.Menu, Convert.ToString(objSubopcion.MenuId));
                 tnNodoPadre.ChildNodes.Add(tn);
+
+                if (tn.Value == valorSeleccionado && !string.IsNullOrEmpty(valorSeleccionado))
+                    tn.Selected = true;
 
                 CargarSubMenu(tn, lstOpciones);
             }
