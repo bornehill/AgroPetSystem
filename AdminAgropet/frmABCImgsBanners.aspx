@@ -12,30 +12,29 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <label>
-                            ABC IMAGENES BANNERS</label>
+                                    ABC IMAGENES BANNERS</label>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                                         <div class="input-group">
                                             <span class="input-group-btn">
-                                            <button id="btnBuscar" runat="server" type="submit" class="btn btn-success" onserverclick="btnBuscar_Click" tabindex="1">
-                                            Go!
-                                            </button>
+                                                <button id="btnBuscar" runat="server" type="submit" class="btn btn-success" onserverclick="btnBuscar_Click" tabindex="1">
+                                                    Go!
+                                                </button>
                                             </span>
                                             <input id="txtBannerBuscar" runat="server" type="text" class="form-control" placeholder="Buscar por..." tabindex="0" />
                                         </div>
                                     </div>
                                     <center>
-                                        <asp:Button id="btnNuevo" runat="server" class="btn btn-info" onclick="btnNuevo_Click" Text="Nuevo" />
+                                        <asp:Button ID="btnNuevo" runat="server" class="btn btn-info" OnClick="btnNuevo_Click" Text="Nuevo" />
                                     </center>
                                 </div>
                             </div>
                             <div class="panel-body">
                                 <asp:GridView ID="gvwConsulta" runat="server" AutoGenerateColumns="false" DataKeyNames="idbanner"
                                     OnRowCommand="gvwConsulta_RowCommand" OnRowDataBound="gvwConsulta_RowDataBound"
-                                    CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvwConsulta_PageIndexChanging"
-                                    >
+                                    CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10" OnPageIndexChanging="gvwConsulta_PageIndexChanging">
                                     <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                     <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                     <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
@@ -62,7 +61,7 @@
                                         <asp:BoundField DataField="fechafinaplica" HeaderText="Fecha Fin" DataFormatString="{0:dd/MM/yyyy}" />
                                     </Columns>
                                     <EmptyDataTemplate>
-                                    Sin datos
+                                        Sin datos
                                     </EmptyDataTemplate>
                                 </asp:GridView>
                             </div>
@@ -74,7 +73,7 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <label>
-                            NUEVO BANNER</label>
+                                    NUEVO BANNER</label>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
@@ -94,8 +93,8 @@
                                             <br />
                                         </div>
                                         <center>
-                                            <asp:Button id="btnGuardar" runat="server" class="btn btn-success" onclick="btnGuardar_Click" Text="Guardar" />
-                                            <asp:Button id="btnCancelar" runat="server" class="btn btn-info" onclick="btnCancelar_Click" Text="Cancelar" />
+                                            <asp:Button ID="btnGuardar" runat="server" class="btn btn-success" OnClick="btnGuardar_Click" Text="Guardar" />
+                                            <asp:Button ID="btnCancelar" runat="server" class="btn btn-info" OnClick="btnCancelar_Click" Text="Cancelar" />
                                         </center>
                                         <asp:HiddenField ID="hfIdBannerEditar" runat="server" />
                                     </div>
@@ -109,14 +108,14 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <label>
-                            DETALLE DE IMAGENES DE BANNERS</label>
+                                    DETALLE DE IMAGENES DE BANNERS</label>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <center>
-                                            <asp:Button id="btnNuevoDetalle" runat="server" class="btn btn-success" onclick="btnNuevoDetalle_Click" validationgroup="guarda" Text="Nuevo"/>
-                                            <asp:Button id="btnCancelarDetalle" runat="server" class="btn btn-info" onclick="btnCancelarDetalle_Click" Text="Cancelar"/>
+                                            <asp:Button ID="btnNuevoDetalle" runat="server" class="btn btn-success" OnClick="btnNuevoDetalle_Click" ValidationGroup="guarda" Text="Nuevo" />
+                                            <asp:Button ID="btnCancelarDetalle" runat="server" class="btn btn-info" OnClick="btnCancelarDetalle_Click" Text="Cancelar" />
                                         </center>
                                     </div>
                                 </div>
@@ -131,6 +130,12 @@
                                                 <EditRowStyle BackColor="#ffffcc" Height="10px" />
                                                 <EmptyDataRowStyle ForeColor="Red" CssClass="table table-bordered" />
                                                 <Columns>
+                                                    <asp:TemplateField ItemStyle-Width="50px">
+                                                        <ItemTemplate>
+                                                            <asp:ImageButton ID="ibnVerImagen" runat="server" Width="20px" ImageUrl="~/Imagenes/Iconos/Visible-50px.png"
+                                                                CommandName="VerImagen" CommandArgument='<%# Container.DataItemIndex %>' />
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
                                                     <asp:TemplateField ItemStyle-Width="50px">
                                                         <ItemTemplate>
                                                             <asp:ImageButton ID="ibnEditarDetalle" runat="server" Width="20px" ImageUrl="~/Imagenes/Iconos/Editar.PNG"
@@ -152,7 +157,7 @@
                                                     <asp:BoundField DataField="Subtitulo" HeaderText="Subtitulo" />
                                                 </Columns>
                                                 <EmptyDataTemplate>
-                                                Sin datos
+                                                    Sin datos
                                                 </EmptyDataTemplate>
                                             </asp:GridView>
                                         </center>
@@ -167,26 +172,26 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <label>
-                            NUEVO DETALLE IMAGEN BANNER</label>
+                                    NUEVO DETALLE IMAGEN BANNER</label>
                             </div>
                             <div class="panel-body">
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="form-group col-lg-2">
                                             <label style="text-align: left; width: 100%;">
-                                        Orden</label>
+                                                Orden</label>
                                             <asp:TextBox ID="txtOrdenDetalle" runat="server" class="form-control" placeholder="Ingrese Orden..." Width="130px"></asp:TextBox>
                                         </div>
                                         <div class="form-group col-lg-4">
                                             <%-- <div class="btnera col-lg-12 col-md-12 col-xs-12">
                                                 <div class="col-xs-6 col-md-2">--%>
                                             <label style="text-align: left; width: 100%;">
-                                        Imagen</label>
+                                                Imagen</label>
                                             <div class="input-group">
                                                 <label class="input-group-btn">
-                                                <span class="btn btn-primary">Buscar
-                                                                <input type="file" name="file" id="inputfile" class="file" runat="server" accept=".jpg,.jpeg,.png,.gif" style="display: none;" />
-                                                </span>
+                                                    <span class="btn btn-primary">Buscar
+                                                        <input type="file" name="file" id="inputfile" class="file" runat="server" accept=".jpg,.jpeg,.png,.gif" style="display: none;" />
+                                                    </span>
                                                 </label>
                                                 <input id="txtRutaBannerDetalle" runat="server" type="text" class="form-control" style="width: 300px;" readonly placeholder="Selecciona archivo..." />
                                             </div>
@@ -195,12 +200,12 @@
                                         </div>
                                         <div class="form-group col-lg-3">
                                             <label style="text-align: left; width: 100%;">
-                                        Titulo</label>
+                                                Titulo</label>
                                             <asp:TextBox ID="txtTiltulo" runat="server" class="form-control" placeholder="Ingrese Titulo..."></asp:TextBox>
                                         </div>
                                         <div class="form-group col-lg-3">
                                             <label style="text-align: left; width: 100%;">
-                                        Subtitulo</label>
+                                                Subtitulo</label>
                                             <asp:TextBox ID="txtSubtitulo" runat="server" class="form-control" placeholder="Ingrese Subtitulo.."></asp:TextBox>
                                         </div>
                                     </div>
@@ -223,13 +228,34 @@
         </ContentTemplate>
         <Triggers>
             <asp:PostBackTrigger ControlID="btnNuevo" />
-            <asp:PostBackTrigger ControlID="btnGuardar" />
-            <asp:PostBackTrigger ControlID="gvwConsulta" />
+            <asp:PostBackTrigger ControlID="btnGuardar" /> 
+            <asp:PostBackTrigger ControlID="gvwConsulta"/>
             <asp:PostBackTrigger ControlID="btnNuevoDetalle" />
             <asp:PostBackTrigger ControlID="btnGuardarDetalle" />
             <asp:PostBackTrigger ControlID="gvwConsultaDetalle" />
         </Triggers>
     </asp:UpdatePanel>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <asp:Image ID="imgGridDetalle" runat="server" Width="250px" Height="250px" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function openModal(imagen) {
+            //alert(imagen);
+            var img = document.getElementById('ContentPlaceHolder1_imgGridDetalle');
+            img.src = imagen;
+            $('#myModal').modal('show');
+        }
+    </script>
+
     <script type="text/javascript">
         $('#ContentPlaceHolder1_dtpFechaInicioApp').datepicker();
         $('#ContentPlaceHolder1_dtpFechaFinApp').datepicker();
