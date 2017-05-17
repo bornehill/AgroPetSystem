@@ -12,16 +12,15 @@ using AgroPET.Entidades.Seguridad;
 
 namespace AgroPetWeb.Mascotas
 {
-  public partial class Articulos : System.Web.UI.Page
+  public partial class ArticulosPedido : System.Web.UI.Page
   {
     private int menuId = 0;
     public string Titulo = string.Empty;
-
     protected void Page_Load(object sender, EventArgs e)
     {
       menuId = int.Parse(Request.QueryString["MenuId"]);
       PetService service = new PetService();
-      EntidadMenuWeb menu= service.GetMenuWeb(new EntidadMenuWeb() { MenuId = menuId }).FirstOrDefault();
+      EntidadMenuWeb menu = service.GetMenuWeb(new EntidadMenuWeb() { MenuId = menuId }).FirstOrDefault();
       Titulo = menu.Menu;
     }
 
@@ -29,41 +28,41 @@ namespace AgroPetWeb.Mascotas
     {
       PetService service = new PetService();
       int tot = service.GetTotalMenuArt(new MenuArticulos() { MenuId = menuId });
-      int rec = 0, recRow = 0;
       var menus = service.GetMenuArticulos(new MenuArticulos() { MenuId = menuId });
+
+      Response.Write("  <div class=\"panel panel-default\">");
+      Response.Write("  <div class=\"panel -heading\">Productos "+Titulo+"</div>");
+      Response.Write("  <table class=\"table\">");
+      Response.Write("    <tr>");
+      Response.Write("      <th>L&iacute;nea</th>");
+      Response.Write("      <th>Art&iacute;culo</th>");
+      Response.Write("      <th>Imagen</th>");
+      Response.Write("      <th>Precio</th>");
+      Response.Write("      <th></th>");
+      Response.Write("    </tr>");
       foreach (var menu in menus)
       {
-        if (rec != 0 && recRow == 0)
-          Response.Write("</div>");
-        if (recRow == 0)
-          Response.Write("<div class=\"row\">");
-
-        Response.Write("  <div class=\"col-sm-6 col-md-4\" > ");
-        Response.Write("    <div class=\"thumbnail\">");
-        Response.Write("      <img src = \"/ImagenesArticulos/" + menu.Image + "\" alt =\"...\" > ");
-        Response.Write("      <div class=\"caption\" > ");
-        Response.Write("        <h3>" + menu.NombreLinMicrosip + "</h3>");
-        Response.Write("        <p>" + menu.NombreArticulo + "</p>");
-        Response.Write("        <h4>" + String.Format("{0:c}", menu.Precio) + "</h4>");
-        Response.Write("        <input type=\"hidden\" id = \"price_" + menu.IdArticulo + "\" value = \"" + menu.Precio + "\">");
+        Response.Write("    <tr>");
+        Response.Write("      <td>" + menu.NombreLinMicrosip + "</td>");
+        Response.Write("      <td>" + menu.NombreArticulo + "</td>");
+        Response.Write("      <td>");
+        Response.Write("        <a href=\"DetalleArticulo.aspx?IdArtiulo=" + menu.IdArticulo + "\" title=\"Click para ver detalle\">");
+        Response.Write("          <img src = \"/ImagenesArticulos/" + menu.Image + "\" alt =\"...\" width=\"10%\" > ");
+        Response.Write("        </a>");
+        Response.Write("      </td>");
+        Response.Write("      <td>" + String.Format("{0:c}", menu.Precio) + "</td>");
+        Response.Write("      <td>");
         if (Session["UserWeb"] != null)
         {
-          Response.Write("        <p>");
           Response.Write("          <label for= \"spinner_" + menu.IdArticulo + "\" >Cantidad:</ label >");
           Response.Write("          <input class=\"spinner\" id = \"spinner_" + menu.IdArticulo + "\" name = \"value\" >");
-          Response.Write("          <a class=\"btn btn-primary addButton\" role =\"button\" name=\"ar_" + menu.IdArticulo + "\" >Agregar</a>");
-          Response.Write("        </p>");
+          //Response.Write("          <a class=\"btn btn-primary addButton\" role =\"button\" name=\"ar_" + menu.IdArticulo + "\" >Agregar</a>");
         }
-        Response.Write("      </div>");
-        Response.Write("    </div>");
-        Response.Write("  </div>");
-
-        rec = rec + 1;
-        recRow = recRow == 2 ? 0 : recRow + 1;
+        Response.Write("      </td>");
+        Response.Write("    </tr>");
       }
-
-      if (rec > 0)
-        Response.Write("</div>");
+      Response.Write("  </table>");
+      Response.Write("  </div>");
 
       if (Session["UserWeb"] != null)
         Response.Write("<input type=\"hidden\" id = \"UserId\" value = \"" + ((EntUser)Session["UserWeb"]).UserId + "\">");

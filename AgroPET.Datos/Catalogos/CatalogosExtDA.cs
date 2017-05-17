@@ -46,9 +46,16 @@ namespace AgroPET.Datos.Catalogos
             accesoDatos.comandoSP = "usp_MenuWebObtener";
             accesoDatos.parametros.Agrega("@Menuid", tEntidadNegocio.MenuId, true);
             accesoDatos.parametros.Agrega("@Menu", tEntidadNegocio.Menu, true);
-      return accesoDatos.ConsultaDataList<EntidadMenuWeb>();
+            return accesoDatos.ConsultaDataList<EntidadMenuWeb>();
         }
 
+        public List<EntidadMenuWeb> GetMenuHijos(EntidadMenuWeb tEntidadNegocio)
+        {
+          accesoDatos.parametros.listaParametros.Clear();
+          accesoDatos.comandoSP = "usp_GetMenuHijos";
+          accesoDatos.parametros.Agrega("@PadreMenuId", tEntidadNegocio.MenuId, true);
+          return accesoDatos.ConsultaDataList<EntidadMenuWeb>();
+        }
         public List<EntidadBannersWeb> ObtenerBannersWeb(EntidadBannersWeb tEntidadNegocio)
         {
             accesoDatos.parametros.listaParametros.Clear();
@@ -56,7 +63,7 @@ namespace AgroPET.Datos.Catalogos
             accesoDatos.parametros.Agrega("@idbanner", tEntidadNegocio.idbanner, true);
             accesoDatos.parametros.Agrega("@fechaini", tEntidadNegocio.fechaini, true);
             accesoDatos.parametros.Agrega("@fechafin", tEntidadNegocio.fechafin, true);
-      return accesoDatos.ConsultaDataList<EntidadBannersWeb>();
+            return accesoDatos.ConsultaDataList<EntidadBannersWeb>();
         }
 
         public List<MenuArticulos> GetMenuArticulos(MenuArticulos tMenuArticulo)
@@ -121,5 +128,22 @@ namespace AgroPET.Datos.Catalogos
             return (int)t.Tables[0].Rows[0].ItemArray[0];
         }
 
-    }
+        public EntBuy GetTotalBuy(EntBuy buy)
+        {
+          accesoDatos.parametros.listaParametros.Clear();
+          accesoDatos.comandoSP = "uspGetTotalBuy";
+          accesoDatos.parametros.Agrega("@userId", buy.UserId, true);
+
+          return accesoDatos.ConsultaDataList<EntBuy>().FirstOrDefault();
+        }
+
+        public MenuArticulos GetArticulo(MenuArticulos art)
+        {
+          accesoDatos.parametros.listaParametros.Clear();
+          accesoDatos.comandoSP = "usp_GetArticulo";
+          accesoDatos.parametros.Agrega("@IdArticulo", art.IdArticulo, true);
+
+          return accesoDatos.ConsultaDataList<MenuArticulos>().FirstOrDefault();
+        }
+  }
 }

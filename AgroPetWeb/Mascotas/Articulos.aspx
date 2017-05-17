@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPet.Master" AutoEventWireup="true" CodeBehind="Articulos.aspx.cs" Inherits="AgroPetWeb.Mascotas.Articulos" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPage" runat="server">
   <style>
     .row {
       padding: 20px;
@@ -48,12 +48,13 @@
 
         $.ajax({
           type: "post",
-          url: "Aves.aspx/AddCar",
+          url: "Articulos.aspx/AddCar",
           contentType: "application/json; charset=utf-8",
           data: JSON.stringify({ item: { UserId: userId, ItemId: idArt, lot: lot, price: price } }),
           dataType: "json",
           success: function (result) {
-            alert(result.d);
+            $(".badge").html("").append(result.d);
+            $("#spinner" + name.substr(name.indexOf("_"))).val("");
           },
           error: function (result) {
             alert('error occured');
@@ -93,6 +94,4 @@
     </div>
     <%PrintArticulos();%>
   </div>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPage" runat="server">
 </asp:Content>

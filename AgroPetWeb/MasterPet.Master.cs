@@ -14,19 +14,24 @@ namespace AgroPetWeb
   public partial class MasterPet : System.Web.UI.MasterPage
   {
     private static string repositorio = System.Web.Configuration.WebConfigurationManager.AppSettings["rutaImagenesBanners"];
-
+    public int totalBuyProd=0;
     protected void Page_Load(object sender, EventArgs e)
     {
-
+      if (Session["UserWeb"] != null)
+      {
+        PetService service = new PetService();
+        var buy = service.GetTotalBuy(new EntBuy() { UserId = ((EntUser)Session["UserWeb"]).UserId });
+        totalBuyProd = buy!=null?(int)buy.lot:0;
+      }
     }
 
     protected void GetMenuWeb()
     {
       PetService service = new PetService();
-      var menus = service.GetMenuWeb(new EntidadMenuWeb() { MenuId = 1, Menu = "" });
+      var menus = service.GetMenuHijos(new EntidadMenuWeb() { MenuId = 0});
       foreach (var menu in menus)
       {
-        var submenu = service.GetMenuWeb(menu);
+        var submenu = service.GetMenuHijos(menu);
         if (submenu.Count > 0)
         {
           Response.Write("<li class=\"dropdown\">");
@@ -34,14 +39,14 @@ namespace AgroPetWeb
           Response.Write("<ul class=\"dropdown-menu\">");
           foreach (var sub in submenu)
           {
-            Response.Write("<li><a href=\"/" + menu.MenuUrl +"?MenuId="+ menu.MenuId.ToString()+ " \">" + sub.Menu + "</a></li>");
+            Response.Write("<li><a href=\"/" + sub.MenuUrl +".aspx?MenuId="+ sub.MenuId.ToString()+ " \">" + sub.Menu + "</a></li>");
           }
           Response.Write("</ul>");
           Response.Write("</li>");
         }
         else
         {
-          Response.Write("<li><a href=\"/" + menu.MenuId + "?MenuId=" + menu.MenuId.ToString() + " \">" + menu.Menu + "</a></li>");
+          Response.Write("<li><a href=\"/" + menu.MenuId + ".aspx?MenuId=" + menu.MenuId.ToString() + " \">" + menu.Menu + "</a></li>");
         }
       }
     }

@@ -1,5 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPet.Master" AutoEventWireup="true" CodeBehind="Aves.aspx.cs" Inherits="AgroPetWeb.Mascotas.Aves" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPage" runat="server">
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPet.Master" AutoEventWireup="true" CodeBehind="ArticulosPedido.aspx.cs" Inherits="AgroPetWeb.Mascotas.ArticulosPedido" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPage" runat="server">
   <style>
     .row {
       padding: 20px;
@@ -16,7 +16,6 @@
     }
     .btn {
       padding:3px 3px;
-      /*padding-left:5px;*/
     }
     .glyphicon {
       top:0px;
@@ -49,13 +48,13 @@
 
         $.ajax({
           type: "post",
-          url: "Aves.aspx/AddCar",
+          url: "ArticulosPedido.aspx/AddCar",
           contentType: "application/json; charset=utf-8",
           data: JSON.stringify({ item: { UserId: userId, ItemId: idArt, lot: lot, price: price } }),
           dataType: "json",
           success: function (result) {
-            alert(result.d);
-            //((document.getElementById("rowNC_" + dir)).childNodes)[1].innerHTML = result.d;
+            $(".badge").html("").append(result.d);
+            $("#spinner" + name.substr(name.indexOf("_"))).val("");
           },
           error: function (result) {
             alert('error occured');
@@ -71,7 +70,7 @@
   <br />
   <br />
   <div class="ui-widget-content ui-corner-all">
-    <h2 class="ui-widget-header ui-corner-all titleArticulo">Aves</h2>
+    <h2 class="ui-widget-header ui-corner-all titleArticulo"><%=Titulo %></h2>
     <div class="row">
       <asp:Label runat="server" Text="Registros"/>
       <asp:DropDownList ID="cboRecords" runat="server">
@@ -93,6 +92,6 @@
         <span class="glyphicon glyphicon-fast-forward" aria-hidden="true"></span>
       </asp:LinkButton>
     </div>
-    <%Articulos();%>
+    <%PrintArticulos();%>
   </div>
 </asp:Content>
