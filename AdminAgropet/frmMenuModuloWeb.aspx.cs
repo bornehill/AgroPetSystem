@@ -39,15 +39,19 @@ namespace AdminAgropet
 
         private List<int> LstArticulos
         {
-            set { ViewState["lstArticulos"] = value; }
-            get { return (List<int>)ViewState["lstArticulos"]; }
+            get; set;
+            //set { ViewState["lstArticulos"] = value; }
+            //get { return (List<int>)ViewState["lstArticulos"]; }
         }
 
         private List<int> LstArticulosBorrar
         {
-            set { ViewState["lstArticulosBorrar"] = value; }
-            get { return (List<int>)ViewState["lstArticulosBorrar"]; }
+            get; set;
+            //set { ViewState["lstArticulosBorrar"] = value; }
+            //get { return (List<int>)ViewState["lstArticulosBorrar"]; }
         }
+
+        private string valorSeleccionado = string.Empty;
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
@@ -119,22 +123,20 @@ namespace AdminAgropet
                 if (e.CommandName == ComandoEditar)
                 {
                     int iFila = int.Parse(e.CommandArgument.ToString()) % grd_Consultas.PageSize;
-
                     txt_Comando.Value = Convert.ToString(grd_Consultas.DataKeys[iFila].Values[GrdDkId]);
-
                     txt_Menu_Editar.Value = grd_Consultas.Rows[iFila].Cells[GrdMenu].Text;
-
                     txt_MenuUrl_Editar.Value = string.IsNullOrEmpty(grd_Consultas.Rows[iFila].Cells[GrdUrl].Text)
                                                         ? "#" : grd_Consultas.Rows[iFila].Cells[GrdUrl].Text;
-
                     chk_Estado_Editar.Checked = Convert.ToBoolean(grd_Consultas.DataKeys[iFila].Values[GrdDkActivo]);
 
                     LlenalListaMenusBuscar(0);
                     ddl_ListaMenus_Editar.SelectedValue = string.IsNullOrEmpty(grd_Consultas.DataKeys[iFila].Values[GrdDkPadreId].ToString())
                                                                         ? "0" : grd_Consultas.DataKeys[iFila].Values[GrdDkPadreId].ToString();
 
-                    CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
+                    valorSeleccionado = txt_Comando.Value;
 
+                    CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
+                    nodoSeleccionado();
                     div_Principal.Visible = false;
                     div_Editar.Visible = true;
                 }
@@ -184,9 +186,14 @@ namespace AdminAgropet
 
         protected void tvw_Editar_SelectedNodeChanged(object sender, EventArgs e)
         {
-            hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
+            nodoSeleccionado();
         }
 
+        //jval
+        private void nodoSeleccionado()
+        {
+            hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
+        }
 
         #endregion VistaEditar
 
@@ -196,7 +203,7 @@ namespace AdminAgropet
 
         protected void btn_Guardar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value) && !string.IsNullOrEmpty(txt_MenuUrl_Editar.Value) && ddl_ListaMenus_Editar.SelectedIndex!=0)
+            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value) && !string.IsNullOrEmpty(txt_MenuUrl_Editar.Value) && ddl_ListaMenus_Editar.SelectedIndex != 0)
             {
                 // Se verifica que acción se realiza, si es inserción o modificación
                 bool bAccion = string.IsNullOrEmpty(txt_Comando.Value);
@@ -233,38 +240,33 @@ namespace AdminAgropet
             {
                 if (hdnIdSeleccionado != null && !string.IsNullOrEmpty(hdnIdSeleccionado.Value))
                 {
-                    //if (rblFiltro.SelectedIndex == 0)
                     if (rdGrupoLineaArticulo.Checked)
-                    {
-
-                        NegocioMenuWeb negMenuWeb = new NegocioMenuWeb();
-                        EntidadMenuArticulos entMenArt;
-                        if (LstArticulosBorrar != null)
-                        {
-                            foreach (int art in LstArticulosBorrar)
-                            {
-                                entMenArt = new EntidadMenuArticulos();
-                                entMenArt.MenuId = Convert.ToInt32(hdnIdSeleccionado.Value);
-                                entMenArt.IdArticulo = art;
-                                negMenuWeb.DesAsignarArticulosMicrosip(entMenArt);
-                            }
-                        }
-
-                        if (LstArticulos.Count > 0)
-                        {
-                            foreach (int art in LstArticulos)
-                            {
-                                entMenArt = new EntidadMenuArticulos();
-                                entMenArt.MenuId = Convert.ToInt32(hdnIdSeleccionado.Value);
-                                entMenArt.IdArticulo = art;
-                                negMenuWeb.AsignarArticulosMicrosip(entMenArt);
-                            }
-                        }
-                    }
+                        articulosSeleccionados(grdArt);
                     else
-                    {
+                        articulosSeleccionados(grdLibArt);
 
+                    NegocioMenuWeb negMenuWeb = new NegocioMenuWeb();
+                    EntidadMenuArticulos entMenArt;
+
+
+                    foreach (int art in LstArticulos)
+                    {
+                        entMenArt = new EntidadMenuArticulos();
+                        entMenArt.MenuId = Convert.ToInt32(hdnIdSeleccionado.Value);
+                        entMenArt.IdArticulo = art;
+                        negMenuWeb.AsignarArticulosMicrosip(entMenArt);
                     }
+
+                    foreach (int artb in LstArticulosBorrar)
+                    {
+                        entMenArt = new EntidadMenuArticulos();
+                        entMenArt.MenuId = Convert.ToInt32(hdnIdSeleccionado.Value);
+                        entMenArt.IdArticulo = artb;
+                        negMenuWeb.DesAsignarArticulosMicrosip(entMenArt);
+                    }
+
+                    MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
+                        "Articulos Asignados", 2);
                 }
                 else
                 {
@@ -277,7 +279,34 @@ namespace AdminAgropet
                 MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
                     "Error al actualizar datos en el Grid: " + ex.Message.Trim(), 2);
             }
+        }
 
+        private void articulosSeleccionados(GridView grid)
+        {
+            LstArticulos = new List<int>(); //.Clear();
+            LstArticulosBorrar = new List<int>();//.Clear();
+            for (int index = 0; index < grid.Rows.Count; index++)
+            {
+                CheckBox chk = (CheckBox)grid.Rows[index].Cells[0].FindControl("chkSelItem");
+
+                if (!chk.Checked)
+                {
+                    LstArticulosBorrar.Add((int)grid.DataKeys[index].Value);
+                }
+                else
+                {
+                    LstArticulos.Add((int)grid.DataKeys[index].Value);
+                }
+            }
+        }
+
+        private void SeleccionarTodos(GridView grid, bool check)
+        {
+            for (int index = 0; index < grid.Rows.Count; index++)
+            {
+                CheckBox chk = (CheckBox)grid.Rows[index].Cells[0].FindControl("chkSelItem");
+                chk.Checked = check;
+            }
         }
 
         protected void chkSelItem_CheckedChanged(object sender, EventArgs e)
@@ -320,18 +349,18 @@ namespace AdminAgropet
             CargarLineasArticulos();
         }
 
-        protected void chkSelItem_CheckedChanged2(object sender, EventArgs e)
-        {
-            for (int index = 0; index < grdArt.Rows.Count; index++)
-            {
-                CheckBox chk = (CheckBox)grdArt.Rows[index].Cells[0].FindControl("chkSelItem");
+        //protected void chkSelItem_CheckedChanged2(object sender, EventArgs e)
+        //{
+        //    for (int index = 0; index < grdArt.Rows.Count; index++)
+        //    {
+        //        CheckBox chk = (CheckBox)grdArt.Rows[index].Cells[0].FindControl("chkSelItem");
 
-                if (!chk.Checked)
-                {
-                    LstArticulosBorrar.Add((int)grdArt.DataKeys[index].Value);
-                }
-            }
-        }
+        //        if (!chk.Checked)
+        //        {
+        //            LstArticulosBorrar.Add((int)grdArt.DataKeys[index].Value);
+        //        }
+        //    }
+        //}
 
         protected void grdArt_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
@@ -428,6 +457,9 @@ namespace AdminAgropet
             {
                 var tn = new TreeNode(objSubopcion.Menu, Convert.ToString(objSubopcion.MenuId));
                 tnNodoPadre.ChildNodes.Add(tn);
+
+                if (tn.Value == valorSeleccionado && !string.IsNullOrEmpty(valorSeleccionado))
+                    tn.Selected = true;
 
                 CargarSubMenu(tn, lstOpciones);
             }
@@ -529,7 +561,7 @@ namespace AdminAgropet
 
             List<ConsultaLineasArticulos> lstLinArt = new List<ConsultaLineasArticulos>();
             CatalogoGruposLineas objLinArt = new CatalogoGruposLineas();
-          
+
             for (int index = 0; index < grdGposLin.Rows.Count; index++)
             {
                 CheckBox chk = (CheckBox)grdGposLin.Rows[index].Cells[0].FindControl("chkSelItem");
@@ -570,8 +602,8 @@ namespace AdminAgropet
 
             grdArt.DataSource = lstArt;
             grdArt.DataBind();
-            LstArticulos = lstArt.Select(x => (int)x.articulo_id).ToList();
-            LstArticulosBorrar = new List<int>();
+            //LstArticulos = lstArt.Select(x => (int)x.articulo_id).ToList();
+            //LstArticulosBorrar = new List<int>();
         }
 
         private void CargarLibArticulos()
@@ -584,8 +616,8 @@ namespace AdminAgropet
 
             grdLibArt.DataSource = lstArt;
             grdLibArt.DataBind();
-            LstArticulos = lstArt.Select(x => (int)x.articulo_id).ToList();
-            LstArticulosBorrar = new List<int>();
+            //LstArticulos = lstArt.Select(x => (int)x.articulo_id).ToList();
+            //LstArticulosBorrar = new List<int>();
         }
 
         private void CargarLibresArticulos()
@@ -676,5 +708,31 @@ namespace AdminAgropet
 
 
         #endregion
+
+        protected void chkSelTodoHdr_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chktodos = (CheckBox)grdLibArt.HeaderRow.FindControl("chkSelTodoHdr");
+            SeleccionarTodos(grdLibArt, chktodos.Checked);
+        }
+
+        protected void chkGposLin_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chktodos = (CheckBox)grdGposLin.HeaderRow.FindControl("chkGposLin");
+            SeleccionarTodos(grdGposLin, chktodos.Checked);
+            CargarLineasArticulos();
+        }
+
+        protected void chkLinArt_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chktodos = (CheckBox)grdLinArt.HeaderRow.FindControl("chkLinArt");
+            SeleccionarTodos(grdLinArt, chktodos.Checked);
+            CargarArticulos();
+        }
+
+        protected void chkArt_CheckedChanged(object sender, EventArgs e)
+        {
+            CheckBox chktodos = (CheckBox)grdArt.HeaderRow.FindControl("chkArt");
+            SeleccionarTodos(grdArt, chktodos.Checked);
+        }
     }
 }

@@ -177,13 +177,19 @@ namespace AdminAgropet
         protected void gvwConsultaDetalle_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int nFila = int.Parse(e.CommandArgument.ToString()) % gvwConsultaDetalle.PageSize;
+            if (e.CommandName.Equals("VerImagen"))
+            {
+                hfIdBannerDetalle.Value = gvwConsultaDetalle.DataKeys[nFila].Values[0].ToString();
+                string ruta = gvwConsultaDetalle.Rows[nFila].Cells[6].Text;
+                ScriptManager.RegisterStartupScript(this, this.GetType(), "Pop", "openModal('ImagenesBanner/" + ruta + "');", true);
+            }
             if (e.CommandName.Equals("Editar"))
             {
                 hfIdBannerDetalle.Value = gvwConsultaDetalle.DataKeys[nFila].Values[0].ToString();
-                txtRutaBannerDetalle.Value = gvwConsultaDetalle.Rows[nFila].Cells[5].Text;
-                txtOrdenDetalle.Text = gvwConsultaDetalle.Rows[nFila].Cells[4].Text;
-                txtTiltulo.Text = gvwConsultaDetalle.Rows[nFila].Cells[6].Text;
-                txtSubtitulo.Text = gvwConsultaDetalle.Rows[nFila].Cells[7].Text;
+                txtRutaBannerDetalle.Value = gvwConsultaDetalle.Rows[nFila].Cells[6].Text;
+                txtOrdenDetalle.Text = gvwConsultaDetalle.Rows[nFila].Cells[5].Text;
+                txtTiltulo.Text = gvwConsultaDetalle.Rows[nFila].Cells[7].Text;
+                txtSubtitulo.Text = gvwConsultaDetalle.Rows[nFila].Cells[8].Text;
                 BEdicion = true;
 
                 mvwBanners.SetActiveView(vwDetalleNuevo);

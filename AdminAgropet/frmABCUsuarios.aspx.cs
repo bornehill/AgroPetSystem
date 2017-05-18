@@ -26,6 +26,7 @@ namespace AdminAgropet
             {
                 IniciaPagina();
                 mvwUsuario.SetActiveView(vwConsulta);
+                buscar();
             }
         }
 
@@ -67,12 +68,16 @@ namespace AdminAgropet
 
         protected void btnBuscar_Click(object sender, EventArgs e)
         {
+            buscar();
+        }
+
+        private void buscar()
+        {
             List<ConsultaUsuarios> lstUsuarios;
             lstUsuarios = RealizaConsulta();
 
             this.grdUsuarios.DataSource = lstUsuarios;
             this.grdUsuarios.DataBind();
-
         }
 
         protected void btnCancelar_Click(object sender, EventArgs e)
@@ -105,6 +110,8 @@ namespace AdminAgropet
                 {
                     Guarda_Cambio_Usuario();
                 }
+
+                buscar();
             }
         }
 
@@ -181,7 +188,7 @@ namespace AdminAgropet
 
         private void Guarda_Alta_Usuario()
         {
-            if (ddl_PerfilABC.SelectedIndex == 0 || ddlEstadoABC.SelectedIndex == 0 
+            if (ddl_PerfilABC.SelectedIndex == 0 
                 || string.IsNullOrEmpty(txtNombreUsuario.Value) || string.IsNullOrEmpty(txtCveUsuario.Value)
                 || string.IsNullOrEmpty(txtPasswordUsr.Value) || string.IsNullOrEmpty(txtConfirmPass.Value))
             {
@@ -220,7 +227,7 @@ namespace AdminAgropet
 
         private void Guarda_Cambio_Usuario()
         {
-            if (ddl_PerfilABC.SelectedIndex == 0 || ddlEstadoABC.SelectedIndex == 0
+            if (ddl_PerfilABC.SelectedIndex == 0
                || string.IsNullOrEmpty(txtNombreUsuario.Value) || string.IsNullOrEmpty(txtCveUsuario.Value)
                || string.IsNullOrEmpty(txtPasswordUsr.Value) || string.IsNullOrEmpty(txtConfirmPass.Value))
             {

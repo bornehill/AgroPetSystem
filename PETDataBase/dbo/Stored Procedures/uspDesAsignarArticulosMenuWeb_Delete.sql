@@ -1,13 +1,12 @@
 ﻿
-CREATE PROCEDURE uspDesAsignarArticulosMenuWeb_Delete(
+CREATE PROCEDURE [dbo].[uspDesAsignarArticulosMenuWeb_Delete](
     @MenId INT,
     @idGpo_Lin INT,
     @idLin_Art INT,
     @idArt INT)
 AS	
 BEGIN
-	DELETE
-	FROM WebSites.tbRelMenuArticulos
-	WHERE MenuId = @MenId
-	    AND IdArticulo = @idArt;
+		update tbRelMenuArticulos
+		set Activo = 0
+		where IdGrupo_Linea = @idGpo_Lin and IdLinea_Articulo = @idLin_Art and IdArticulo = @idArt
 END ;

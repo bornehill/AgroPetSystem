@@ -154,7 +154,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtPasswordUsr;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtPasswordUsr;
         
         /// <summary>
         /// txtConfirmPass control.
@@ -163,7 +163,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtConfirmPass;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtConfirmPass;
         
         /// <summary>
         /// CV_ComparaPass control.
