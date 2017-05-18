@@ -32,7 +32,6 @@
                                         <label style="text-align: left; width: 100%;">
                                         Estado:</label>
                                         <asp:DropDownList ID="SelEstatus" runat="server" class="form-control" AutoPostBack="false" Width="250px">
-                                            <asp:ListItem Text="Seleccione..." Value="-1"></asp:ListItem>
                                             <asp:ListItem Text="Activo" Value="1"></asp:ListItem>
                                             <asp:ListItem Text="No Activo" Value="0"></asp:ListItem>
                                         </asp:DropDownList>
@@ -121,15 +120,15 @@
                                     <div class="col-xs-4">
                                         <label style="text-align: left; width: 100%;">
                                         Contraseña:</label>
-                                        <input type="text" id="txtPasswordUsr" runat="server" class="form-control" maxlength="20" placeholder="Ingresa Password..." />
+                                        <input type="password" id="txtPasswordUsr" runat="server" class="form-control" maxlength="20" placeholder="Ingresa Password..." />
                                     </div>
                                     <div class="col-xs-4">
                                         <label style="text-align: left; width: 100%;">
                                         Confirma Contraseña:</label>
-                                        <input type="text" id="txtConfirmPass" runat="server" class="form-control" maxlength="20" placeholder="Confirma Password..." />
-                                        <asp:CompareValidator ID="CV_ComparaPass" runat="server" ControlToValidate="txtPasswordUsr"
+                                        <input type="password" id="txtConfirmPass" runat="server" class="form-control" maxlength="20" placeholder="Confirma Password..." />
+                                        <asp:CompareValidator ID="CV_ComparaPass" runat="server" ControlToValidate="txtConfirmPass"
                                             ErrorMessage="Las contraseñas especificadas no son iguales, por ravor corrijalas."
-                                            ControlToCompare="txtConfirmPass" Display="None" EnableClientScript="true">
+                                            ControlToCompare="txtPasswordUsr" Display="None" EnableClientScript="true">
                                         </asp:CompareValidator>
                                         <asp:ValidatorCalloutExtender ID="VCE_CV_ComparaPass" runat="server" TargetControlID="CV_ComparaPass">
                                         </asp:ValidatorCalloutExtender>
@@ -138,8 +137,7 @@
                                         <label style="text-align: left; width: 100%;">
                                         Estatus:</label>
                                         <asp:DropDownList ID="ddlEstadoABC" runat="server" AutoPostBack="false" class="form-control">
-                                            <asp:ListItem Text="Seleccione..." Value="-1"></asp:ListItem>
-                                            <asp:ListItem Text="Activo" Value="1"></asp:ListItem>
+                                            <asp:ListItem Text="Activo" Value="1" Selected="True"></asp:ListItem>
                                             <asp:ListItem Text="No Activo" Value="0"></asp:ListItem>
                                         </asp:DropDownList>
                                     </div>

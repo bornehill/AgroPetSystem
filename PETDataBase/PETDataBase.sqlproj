@@ -136,8 +136,6 @@
     <Build Include="dbo\Tables\tbroles_claves_empleados.sql" />
     <Build Include="dbo\Tables\tbimagenesarticulos.sql" />
     <Build Include="dbo\Tables\tbalmacenes.sql" />
-    <Build Include="Security\ali.escamilla.sql" />
-    <Build Include="Security\RoleMemberships.sql" />
     <Build Include="dbo\Functions\ufn_MenuObtenerOrden.sql" />
     <Build Include="dbo\Functions\ufn_MenuObtenerNivel.sql" />
     <Build Include="dbo\Stored Procedures\uspArticulos_Seleccion.sql" />
@@ -175,7 +173,9 @@
     <Build Include="dbo\Stored Procedures\uspAddBuy.sql" />
     <Build Include="dbo\Stored Procedures\uspGetBuyView.sql" />
     <Build Include="dbo\Functions\ufn_GetTotalMenuArt.sql" />
-    <Build Include="dbo\Tables\tbusuarios.sql" />
+    <Build Include="dbo\Stored Procedures\uspGetTotalBuy.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetMenuHijos.sql" />
+    <Build Include="dbo\Stored Procedures\usp_GetArticulo.sql" />
     <Build Include="dbo\Stored Procedures\uspUsuariosConsultar.sql" />
     <Build Include="dbo\Stored Procedures\uspUsuariosAlta.sql" />
     <Build Include="dbo\Stored Procedures\uspUsuariosActualiza.sql" />
@@ -196,5 +196,6 @@
     <Build Include="dbo\Stored Procedures\uspArticulosObtenerDropDown.sql" />
     <Build Include="dbo\Stored Procedures\uspImagenesArticulosElimina.sql" />
     <Build Include="dbo\Stored Procedures\uspImagenesArticulosActualizar.sql" />
+    <Build Include="dbo\Tables\tbusuarios.sql" />
   </ItemGroup>
 </Project>

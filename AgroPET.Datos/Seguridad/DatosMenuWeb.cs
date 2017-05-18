@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AgroPET.Entidades.Seguridad;
 using AgroPET.Datos.Comun;
+using AgroPET.Datos.Catalogos;
 
 namespace AgroPET.Datos.Seguridad
 {
@@ -99,11 +100,14 @@ namespace AgroPET.Datos.Seguridad
 
         public void AsignarArticulosMicrosip(EntidadMenuArticulos ent)
         {
+            int Linea_articulo_id = new DatosGruposLineas().Firebird_ObtenerIdLineaArticulo(ent.IdArticulo);
+            int grupo_linea_id = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea(Linea_articulo_id);
+
             accesoDatos.parametros.listaParametros.Clear();
             accesoDatos.comandoSP = "uspAsignarArticulosMenuWeb_Insertar";
             accesoDatos.parametros.Agrega("@MenId", ent.MenuId, true);
-            accesoDatos.parametros.Agrega("@idGpo_Lin", ent.IdGrupo_Linea, true);
-            accesoDatos.parametros.Agrega("@idLin_Art", ent.IdLinea_Articulo, true);
+            accesoDatos.parametros.Agrega("@idGpo_Lin", grupo_linea_id, true);
+            accesoDatos.parametros.Agrega("@idLin_Art", Linea_articulo_id, true);
             accesoDatos.parametros.Agrega("@idArt", ent.IdArticulo, true);
             int afectados = accesoDatos.EjecutaNQuery();
         }
@@ -111,11 +115,14 @@ namespace AgroPET.Datos.Seguridad
         //uspDesAsignarArticulosMenuWeb_Delete
         public void DesAsignarArticulosMicrosip(EntidadMenuArticulos ent)
         {
+            int Linea_articulo_id = new DatosGruposLineas().Firebird_ObtenerIdLineaArticulo(ent.IdArticulo);
+            int grupo_linea_id = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea(Linea_articulo_id);
+
             accesoDatos.parametros.listaParametros.Clear();
             accesoDatos.comandoSP = "uspDesAsignarArticulosMenuWeb_Delete";
             accesoDatos.parametros.Agrega("@MenId", ent.MenuId, true);
-            accesoDatos.parametros.Agrega("@idGpo_Lin", ent.IdGrupo_Linea, true);
-            accesoDatos.parametros.Agrega("@idLin_Art", ent.IdLinea_Articulo, true);
+            accesoDatos.parametros.Agrega("@idGpo_Lin", grupo_linea_id, true);
+            accesoDatos.parametros.Agrega("@idLin_Art", Linea_articulo_id, true);
             accesoDatos.parametros.Agrega("@idArt", ent.IdArticulo, true);
             int afectados = accesoDatos.EjecutaNQuery();
         }

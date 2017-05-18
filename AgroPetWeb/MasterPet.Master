@@ -38,6 +38,7 @@
 <body>
     <form id="formMaster" runat="server" data-spy="scroll" data-target=".navbar" data-offset="50">
       <div id="dialog" title="Dialog Title">I'm a dialog</div>
+
       <div class="contaier-fluid">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
@@ -55,7 +56,7 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                 <% if (Session["UserWeb"]!=null) { %>
-                  <li><a href="/Mascotas/ShopCar.aspx"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
+                  <li><a href="/Mascotas/ShopCar.aspx"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><%=totalBuyProd %></span></a></li>
                 <% }  %>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="<%=HttpContext.Current.Request.Url.AbsolutePath %>"><span class="glyphicon glyphicon-search"></span></a>
@@ -89,19 +90,16 @@
             </div>
         </nav>
       </div>
-      <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-
-      </asp:ContentPlaceHolder>
+      <div>
+          <asp:ContentPlaceHolder ID="ContentPage" runat="server">
+          </asp:ContentPlaceHolder>
+      </div>
       <footer class="text-center">
           <a class="up-arrow" href="#frmIndex" data-toggle="tooltip" title="IR ARRIBA">
           <span class="glyphicon glyphicon-chevron-up"></span>
           </a><br><br>
           <p>Grupo Agropet <a href="http://www.petcetera.com" data-toggle="tooltip" title="Visita Petcetera">www.petcetera.com</a></p> 
       </footer>
-    <div>
-        <asp:ContentPlaceHolder ID="ContentPage" runat="server">
-        </asp:ContentPlaceHolder>
-    </div>
     </form>
 </body>
 </html>

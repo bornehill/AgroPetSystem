@@ -194,6 +194,7 @@
     <Content Include="Imagenes\uploading.gif" />
     <Content Include="Imagenes\Verde.GIF" />
     <Content Include="Imagenes\VerDetalle2.gif" />
+    <Content Include="Imagenes\Iconos\Visible-50px.png" />
     <Content Include="JS\DateTimePicker\jquery-ui-datepicker.regional_es.js" />
     <Content Include="JS\DateTimePicker\jquery-ui-sliderAccess.js" />
     <Content Include="JS\DateTimePicker\jquery-ui-timepicker-addon-i18n.js" />

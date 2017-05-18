@@ -1,17 +1,9 @@
 ﻿
-CREATE PROCEDURE usp_MenuWebObtener(
+CREATE PROCEDURE [dbo].[usp_MenuWebObtener](
 	@MenuId INT      
 	,@Menu VARCHAR(100))
 AS	
 BEGIN
-	/*IF MenuId = -1 THEN
-		MenuId = NULL;
-	END IF;
-	
-	IF Menu = '' THEN
-		Menu = NULL;
-	END IF;*/
-	
 	SELECT       
 	H.MenuId      
 	,H.Menu      
@@ -27,6 +19,8 @@ BEGIN
 	,P.Menu AS PadreNom    
 	FROM tbmenuweb AS H      
 	LEFT JOIN tbmenuweb AS P ON H.Padre = P.MenuId    
-	WHERE (@MenuId IS NULL AND H.MenuId = H.MenuId) OR (H.MenuId = @MenuId)
-	AND  (@Menu IS NULL AND H.Menu = H.Menu) OR (H.Menu LIKE '%' + @Menu + '%');
+	WHERE ((@MenuId IS NULL AND H.MenuId = H.MenuId) OR (H.MenuId = @MenuId) OR (P.MenuId = @MenuId))
+	AND  ((@Menu IS NULL AND H.Menu = H.Menu) OR (H.Menu LIKE '%' + @Menu + '%'))
+	AND h.activo=1
+	order by h.Orden
 END

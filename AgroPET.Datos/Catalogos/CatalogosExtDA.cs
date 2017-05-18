@@ -13,11 +13,11 @@ using Utilidades;
 
 namespace AgroPET.Datos.Catalogos
 {
-    public class CatalogosExtDA : DatosBase
+    public class CatalogosExtDA
     {
 
         #region Variables privadas
-
+        public AccesoDatos.Comun.AccesoBD accesoDatos = new AccesoDatos.Comun.AccesoBD();
         private string _mensajeAlerta = string.Empty;
         private int? _valorReturn;
 
@@ -35,19 +35,34 @@ namespace AgroPET.Datos.Catalogos
             get { return _valorReturn; }
         }
 
+        public CatalogosExtDA() {
+          accesoDatos.conexionSQL = AccesoDatos.Comun.ConexionSQL.DB_ObtenCadenaConexion("Default");
+        }
         #endregion
 
         public List<EntidadMenuWeb> ObtenerMenuWeb(EntidadMenuWeb tEntidadNegocio)
         {
             accesoDatos.parametros.listaParametros.Clear();
             accesoDatos.comandoSP = "usp_MenuWebObtener";
+            accesoDatos.parametros.Agrega("@Menuid", tEntidadNegocio.MenuId, true);
+            accesoDatos.parametros.Agrega("@Menu", tEntidadNegocio.Menu, true);
             return accesoDatos.ConsultaDataList<EntidadMenuWeb>();
         }
 
+        public List<EntidadMenuWeb> GetMenuHijos(EntidadMenuWeb tEntidadNegocio)
+        {
+          accesoDatos.parametros.listaParametros.Clear();
+          accesoDatos.comandoSP = "usp_GetMenuHijos";
+          accesoDatos.parametros.Agrega("@PadreMenuId", tEntidadNegocio.MenuId, true);
+          return accesoDatos.ConsultaDataList<EntidadMenuWeb>();
+        }
         public List<EntidadBannersWeb> ObtenerBannersWeb(EntidadBannersWeb tEntidadNegocio)
         {
             accesoDatos.parametros.listaParametros.Clear();
             accesoDatos.comandoSP = "usp_GetBannersWeb";
+            accesoDatos.parametros.Agrega("@idbanner", tEntidadNegocio.idbanner, true);
+            accesoDatos.parametros.Agrega("@fechaini", tEntidadNegocio.fechaini, true);
+            accesoDatos.parametros.Agrega("@fechafin", tEntidadNegocio.fechafin, true);
             return accesoDatos.ConsultaDataList<EntidadBannersWeb>();
         }
 
@@ -55,6 +70,7 @@ namespace AgroPET.Datos.Catalogos
         {
             accesoDatos.parametros.listaParametros.Clear();
             accesoDatos.comandoSP = "usp_GetMenuArticulos";
+            accesoDatos.parametros.Agrega("@Menuid", tMenuArticulo.MenuId, true);
             return accesoDatos.ConsultaDataList<MenuArticulos>();
         }
 
@@ -112,5 +128,22 @@ namespace AgroPET.Datos.Catalogos
             return (int)t.Tables[0].Rows[0].ItemArray[0];
         }
 
-    }
+        public EntBuy GetTotalBuy(EntBuy buy)
+        {
+          accesoDatos.parametros.listaParametros.Clear();
+          accesoDatos.comandoSP = "uspGetTotalBuy";
+          accesoDatos.parametros.Agrega("@userId", buy.UserId, true);
+
+          return accesoDatos.ConsultaDataList<EntBuy>().FirstOrDefault();
+        }
+
+        public MenuArticulos GetArticulo(MenuArticulos art)
+        {
+          accesoDatos.parametros.listaParametros.Clear();
+          accesoDatos.comandoSP = "usp_GetArticulo";
+          accesoDatos.parametros.Agrega("@IdArticulo", art.IdArticulo, true);
+
+          return accesoDatos.ConsultaDataList<MenuArticulos>().FirstOrDefault();
+        }
+  }
 }

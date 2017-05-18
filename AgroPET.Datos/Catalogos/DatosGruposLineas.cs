@@ -53,5 +53,47 @@ namespace AgroPET.Datos.Catalogos
                 return null;
             }
         }
+
+        public int Firebird_ObtenerIdLineaArticulo(int idArticulo)
+        {
+            try
+            {
+                string Consulta = "select Linea_articulo_id from articulos where ARTICULO_ID = " + idArticulo;
+                DataTable dt = new DataTable();
+                FbDataAdapter da = new FbDataAdapter(Consulta, ConexionFireBird);
+                //da.SelectCommand.Parameters.Add("@id", 123);
+                da.Fill(dt);
+
+                int linea_articulo_id = Convert.ToInt32(dt.Rows[0][0]);
+
+                return linea_articulo_id;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public int Firebird_ObtenerIdGrupoLinea(int idLineaArticulo)
+        {
+            try
+            {
+                string Consulta = "SELECT grupo_linea_id FROM lineas_articulos where LINEA_ARTICULO_ID = " + idLineaArticulo;
+                DataTable dt = new DataTable();
+                FbDataAdapter da = new FbDataAdapter(Consulta, ConexionFireBird);
+                //da.SelectCommand.Parameters.Add("@id", 123);
+                da.Fill(dt);
+
+                int grupo_linea_id = Convert.ToInt32(dt.Rows[0][0]);
+
+                return grupo_linea_id;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        
     }
 }
