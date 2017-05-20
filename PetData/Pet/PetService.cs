@@ -16,6 +16,11 @@ namespace PetData.Pet
       return new PetProvider().GetMenuWeb(menu);
     }
 
+    public List<EntidadMenuWeb> GetMenuHijos(EntidadMenuWeb menu)
+    {
+      return new PetProvider().GetMenuHijos(menu);
+    }
+
     public List<EntidadBannersWeb> GetBannersWeb(EntidadBannersWeb banner)
     {
       return new PetProvider().GetBannersWeb(banner);
@@ -49,6 +54,16 @@ namespace PetData.Pet
     public int GetTotalMenuArt(MenuArticulos menu)
     {
       return new PetProvider().GetTotalMenuArt(menu);
+    }
+
+    public EntBuy GetTotalBuy(EntBuy buy)
+    {
+      return new PetProvider().GetTotalBuy(buy);
+    }
+
+    public MenuArticulos GetArticulo(MenuArticulos art)
+    {
+      return new PetProvider().GetArticulo(art);
     }
   }
 }

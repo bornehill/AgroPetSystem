@@ -19,6 +19,12 @@ namespace PetData.Pet
         return catalogoGenerico.ObtenerMenuWeb(menu);
       }
 
+      internal List<EntidadMenuWeb> GetMenuHijos(EntidadMenuWeb menu)
+      {
+        CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
+        return catalogoGenerico.GetMenuHijos(menu);
+      }
+
       internal List<EntidadBannersWeb> GetBannersWeb(EntidadBannersWeb banner)
       {
         CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
@@ -59,6 +65,18 @@ namespace PetData.Pet
     {
       CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
       return catalogoGenerico.GetTotalMenuArt(menu);
+    }
+
+    internal EntBuy GetTotalBuy(EntBuy buy)
+    {
+      CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
+      return catalogoGenerico.GetTotalBuy(buy);
+    }
+
+    internal MenuArticulos GetArticulo(MenuArticulos art)
+    {
+      CatalogosExtDA catalogoGenerico = new CatalogosExtDA();
+      return catalogoGenerico.GetArticulo(art);
     }
   }
 }

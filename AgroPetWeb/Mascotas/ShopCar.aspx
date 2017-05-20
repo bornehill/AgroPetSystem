@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPet.Master" AutoEventWireup="true" CodeBehind="ShopCar.aspx.cs" Inherits="AgroPetWeb.Mascotas.ShopCar" %>
-<asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content1" ContentPlaceHolderID="ContentPage" runat="server">
   <style>
     .row {
       padding: 20px;
@@ -37,6 +37,4 @@
     <h2 class="ui-widget-header ui-corner-all titleArticulo">Carrito de compras</h2>
     <%GetBuys();%>
   </div>
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPage" runat="server">
 </asp:Content>

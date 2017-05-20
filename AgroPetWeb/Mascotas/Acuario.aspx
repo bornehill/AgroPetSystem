@@ -1,5 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/MasterPet.Master" AutoEventWireup="true" CodeBehind="Acuario.aspx.cs" Inherits="AgroPetWeb.Mascotas.Acuario" %>
-<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPage" runat="server">
   <asp:Label Text="Acuarios" runat="server"></asp:Label>
   <br />
   <br />
