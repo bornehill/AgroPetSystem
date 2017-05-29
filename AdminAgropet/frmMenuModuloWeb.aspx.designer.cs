@@ -163,7 +163,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdGrupoLineaArticulo;
+        protected global::System.Web.UI.WebControls.CheckBox rdGrupoLineaArticulo;
         
         /// <summary>
         /// rdLibreArticulo control.
@@ -172,7 +172,7 @@ namespace AdminAgropet {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputRadioButton rdLibreArticulo;
+        protected global::System.Web.UI.WebControls.CheckBox rdLibreArticulo;
         
         /// <summary>
         /// btnAsignar control.
