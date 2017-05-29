@@ -149,14 +149,16 @@
                                 <div class="row">
                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                         <div class="funkyradio funkyradio-warning" style="width: 220px;">
-                                            <input type="radio" name="radio" id="rdGrupoLineaArticulo" runat="server" onserverchange="rblFiltro_SelectedIndexChanged" />
+                                            <asp:CheckBox id="rdGrupoLineaArticulo" runat="server" AutoPostBack="true" OnCheckedChanged="rblFiltro_SelectedIndexChanged"></asp:CheckBox>
+                                           <%-- <input type="radio" name="radio" id="rdGrupoLineaArticulo" runat="server" onserverchange="rblFiltro_SelectedIndexChanged" />--%>
                                             <label for="ContentPlaceHolder1_rdGrupoLineaArticulo" style="font-size: 13px">Grupos, Líneas y Artículos</label>
                                         </div>
                                     </div>
 
                                     <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                         <div class="funkyradio funkyradio-warning" style="width: 200px">
-                                            <input type="radio" name="radio" id="rdLibreArticulo" runat="server" onserverchange="rblFiltro_SelectedIndexChanged" />
+                                            <asp:CheckBox id="rdLibreArticulo" runat="server" AutoPostBack="true" OnCheckedChanged="rblFiltro_SelectedIndexChanged"></asp:CheckBox>
+                                           <%-- <input type="radio" name="radio" id="rdLibreArticulo" runat="server" onserverchange="rblFiltro_SelectedIndexChanged" />--%>
                                             <label for="ContentPlaceHolder1_rdLibreArticulo" style="font-size: 13px">Libres Artículos</label>
                                         </div>
                                     </div>
@@ -288,18 +290,21 @@
             <asp:HiddenField ID="hdnIdSeleccionado" runat="server" />
         </ContentTemplate>
         <Triggers>
-            <asp:PostBackTrigger ControlID="btn_Buscar" />
-            <asp:PostBackTrigger ControlID="btn_Nuevo" />
-            <asp:PostBackTrigger ControlID="btn_Guardar" />
-            <asp:PostBackTrigger ControlID="btn_Cancelar" />
-            <asp:PostBackTrigger ControlID="grd_Consultas" />
-            <asp:PostBackTrigger ControlID="tvw_Editar" />
-            <asp:PostBackTrigger ControlID="trvLibArt" />
-            <asp:PostBackTrigger ControlID="grdGposLin" />
-            <asp:PostBackTrigger ControlID="grdLinArt" />
-            <asp:PostBackTrigger ControlID="grdArt" />
-            <asp:PostBackTrigger ControlID="grdLibArt" />
-            <asp:PostBackTrigger ControlID="btnAsignar" />
+            <asp:AsyncPostBackTrigger ControlID="rdLibreArticulo"  />
+            <asp:AsyncPostBackTrigger ControlID="rdGrupoLineaArticulo"  />
+            <asp:AsyncPostBackTrigger ControlID="rdLibreArticulo"  />
+            <asp:AsyncPostBackTrigger ControlID="btn_Buscar"  />
+            <asp:AsyncPostBackTrigger ControlID="btn_Nuevo"   />
+            <asp:AsyncPostBackTrigger ControlID="btn_Guardar" />
+            <asp:AsyncPostBackTrigger ControlID="btn_Cancelar"  />
+            <asp:AsyncPostBackTrigger ControlID="grd_Consultas"  />
+            <asp:AsyncPostBackTrigger ControlID="tvw_Editar" />
+            <asp:AsyncPostBackTrigger ControlID="trvLibArt" />
+            <asp:AsyncPostBackTrigger ControlID="grdGposLin" />
+            <asp:AsyncPostBackTrigger ControlID="grdLinArt" />
+            <asp:AsyncPostBackTrigger ControlID="grdArt"/>
+            <asp:AsyncPostBackTrigger ControlID="grdLibArt" />
+            <asp:AsyncPostBackTrigger ControlID="btnAsignar"/>
         </Triggers>
     </asp:UpdatePanel>
 </asp:Content>
