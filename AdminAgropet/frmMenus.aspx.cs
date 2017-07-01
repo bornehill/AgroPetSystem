@@ -238,7 +238,7 @@ namespace AdminAgropet
                 {
                     exitoso = ObjMenus.InsertarEditar(bAccion, OMenu);
                     if (exitoso)
-                        MostrarMensaje(Page, "Menu Web", cgs_MensajeOk, 0);
+                        MostrarMensaje(Page, "Menu Web", cgs_MensajeOk, 1);
                 }
 
                 //btn_Buscar_Click(new object(), new EventArgs());
@@ -331,7 +331,7 @@ namespace AdminAgropet
 
 
                     MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                        "Articulos Asignados", 2);
+                        "Articulos Asignados", 1);
                 }
                 else
                 {

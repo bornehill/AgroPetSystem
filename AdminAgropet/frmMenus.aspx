@@ -25,17 +25,17 @@
                             </div>
                             <div class="panel-body">
                                 <div class="row">
-                                    <div style="text-align: left" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="width: auto">
+                                        <button id="btn_Nuevo" runat="server" type="button" class="btn btn-info" onserverclick="btn_Nuevo_Click" tabindex="3">Editar Arbol</button>
+                                        <button id="btnAsignaMenu" type="button" runat="server" class="btn btn-primary" onserverclick="btnAsignaMenu_ServerClick">Asignar</button>
+                                    </div>
+                                    <div style="text-align: left; visibility:hidden" class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                                         <div class="input-group">
                                             <span class="input-group-btn">
                                                 <button id="btn_Buscar" runat="server" type="button" class="btn btn-success" onserverclick="btn_Buscar_Click" tabindex="2">Go!</button>
                                             </span>
                                             <input id="txt_Menu_Buscar" runat="server" type="text" class="form-control" placeholder="Buscar por..." tabindex="1" />
                                         </div>
-                                    </div>
-                                    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="width: auto">
-                                        <button id="btn_Nuevo" runat="server" type="button" class="btn btn-info" onserverclick="btn_Nuevo_Click" tabindex="3">Editar Arbol</button>
-                                        <button id="btnAsignaMenu" type="button" runat="server" class="btn btn-primary" onserverclick="btnAsignaMenu_ServerClick">Asignar</button>
                                     </div>
                                 </div>
                                 <div style="padding-bottom: 10px"></div>
@@ -53,7 +53,7 @@
                                     </div>
                                     <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
                                         <asp:GridView ID="grd_Consultas" runat="server" AutoGenerateColumns="false" DataKeyNames="MenuId,Padre,Activo" EnableModelValidation="True" TabIndex="5"
-                                            OnRowCommand="grd_Consultas_RowCommand" OnPageIndexChanging="grd_Consultas_PageIndexChanging"
+                                            OnRowCommand="grd_Consultas_RowCommand" OnPageIndexChanging="grd_Consultas_PageIndexChanging" Visible="false"
                                             CssClass="table table-striped table-bordered table-hover" AllowPaging="true" PageSize="10">
                                             <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                             <EditRowStyle BackColor="#ffffcc" Height="10px" />
@@ -112,7 +112,7 @@
                                                 <label style="text-align: left; width: 100%; font-size: small">Menu</label>
                                                 <input id="txt_Menu_Editar" runat="server" class="form-control" type="text" placeholder="Ingresa Menú ..." />
                                             </div>
-                                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                            <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8" style="visibility:hidden">
                                                 <label style="text-align: left; width: 100%; font-size: small">URL Menu</label>
                                                 <input id="txt_MenuUrl_Editar" runat="server" class="form-control" type="text" placeholder="Ingresa URL del Menu" />
                                             </div>
@@ -177,7 +177,7 @@
                                 </div>
 
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
-                                    <button id="btnAsignar" type="button" runat="server" class="btn btn-info" onserverclick="btnAsignar_Click">Asignar / Desasignar</button>
+                                    <button id="btnAsignar" type="button" runat="server" class="btn btn-info" onserverclick="btnAsignar_Click">Guardar</button>
                                 </div>
                             </div>
 

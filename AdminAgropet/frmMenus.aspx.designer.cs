@@ -49,24 +49,6 @@ namespace AdminAgropet {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl div_Principal;
         
         /// <summary>
-        /// btn_Buscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Buscar;
-        
-        /// <summary>
-        /// txt_Menu_Buscar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Menu_Buscar;
-        
-        /// <summary>
         /// btn_Nuevo control.
         /// </summary>
         /// <remarks>
@@ -83,6 +65,24 @@ namespace AdminAgropet {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlButton btnAsignaMenu;
+        
+        /// <summary>
+        /// btn_Buscar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btn_Buscar;
+        
+        /// <summary>
+        /// txt_Menu_Buscar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txt_Menu_Buscar;
         
         /// <summary>
         /// tvwConsulta control.

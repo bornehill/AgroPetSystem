@@ -33,7 +33,7 @@ BEGIN
 	  ,ModificacionUsuarioId)    
 	 VALUES    
 	  (@Menu    
-	  ,@MenuUrl    
+	  ,'Mascotas/Articulos'    
 	  ,@Padre      
 	  ,@Nivel    
 	  ,@Orden      

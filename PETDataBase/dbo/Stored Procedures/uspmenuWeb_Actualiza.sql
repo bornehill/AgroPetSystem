@@ -24,7 +24,7 @@ BEGIN
 	
 	UPDATE tbmenuweb   
 	SET Menu = @Menu    
-	,MenuUrl = @MenuUrl    
+	,MenuUrl = 'Mascotas/Articulos'    
 	,Padre = @Padre    
 	,Nivel = @Nivel    
 	,Orden = @Orden    
