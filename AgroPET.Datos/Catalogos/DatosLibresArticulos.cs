@@ -35,9 +35,11 @@ namespace AgroPET.Datos.Catalogos
         {
             try
             {
-                string Consulta = " select a.articulo_id, a.linea_articulo_id, a.nombre, la.familia, la.categoria, la.marca " +
+                string Consulta = " select a.articulo_id, a.linea_articulo_id, a.nombre, la.familia, la.categoria, la.marca, c.clave_articulo, ca.nombre as nombreClave " +
                                   " from articulos as a " +
                                   " inner join LIBRES_ARTICULOS as la on la.articulo_id = a.articulo_id " +
+                                  " inner join claves_articulos as c on c.articulo_id = a.articulo_id " +
+                                  " inner join roles_claves_articulos as ca on ca.rol_clave_art_id = c.rol_clave_art_id " +
                                   " where(" + "'" + familia + "'" + " is null or familia = " + "'" + familia + "'" + ") and familia != '' " +
                                   " and(" + "'" + categoria + "'" + " is null or categoria = " + "'" + categoria + "'" + ") and categoria != '' " +
                                   " and(" + "'" + marca + "'" + " is null or marca = " + "'" + marca + "'" + ") and marca != '' " ;

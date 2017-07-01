@@ -124,6 +124,7 @@
     <Content Include="frmLoginModuloAdmin.aspx" />
     <Content Include="frmMenuModuloAdmin.aspx" />
     <Content Include="frmMenuModuloWeb.aspx" />
+    <Content Include="frmMenus.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Imagenes\action_check.png" />
     <Content Include="Imagenes\action_remove.png" />
@@ -338,6 +339,13 @@
     </Compile>
     <Compile Include="frmMenuModuloWeb.aspx.designer.cs">
       <DependentUpon>frmMenuModuloWeb.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="frmMenus.aspx.cs">
+      <DependentUpon>frmMenus.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="frmMenus.aspx.designer.cs">
+      <DependentUpon>frmMenus.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

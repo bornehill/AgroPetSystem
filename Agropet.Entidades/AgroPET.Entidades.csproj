@@ -55,6 +55,7 @@
     <Compile Include="Consultas\ConsultaLibresArticulos.cs" />
     <Compile Include="Consultas\ConsultaLineasArticulos.cs" />
     <Compile Include="Consultas\ConsultaPerfiles.cs" />
+    <Compile Include="Consultas\ConsultaRelacionMenuArticulo.cs" />
     <Compile Include="Consultas\ConsultaUsuarios.cs" />
     <Compile Include="Consultas\MenuArticulos.cs" />
     <Compile Include="Especial\EntBuy.cs" />
