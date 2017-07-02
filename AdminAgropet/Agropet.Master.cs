@@ -127,6 +127,12 @@ namespace AdminAgropet
                     color = "FFFF33";//"FFCC00";
                     cfuente = "000000";
                     break;
+                ////Verde
+                case 3:
+                    color = "82FA58";//"FFCC00";
+                    cfuente = "000000";
+                    break;
+
             }
 
             string script = string.Format("$('#div_Mensaje').html(\"{0}\");\n", sMensaje);

@@ -198,5 +198,6 @@
     <Build Include="dbo\Stored Procedures\uspImagenesArticulosActualizar.sql" />
     <Build Include="dbo\Tables\tbusuarios.sql" />
     <Build Include="dbo\Stored Procedures\uspRelacionMenuArticulosObtener.sql" />
+    <Build Include="dbo\Stored Procedures\uspMenuWeb_Eliminar.sql" />
   </ItemGroup>
 </Project>

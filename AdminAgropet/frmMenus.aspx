@@ -143,6 +143,7 @@
                                                 <div style="padding-bottom: 5px"></div>
                                                 <button id="btn_NuevoEditar" type="button" runat="server" class="btn btn-info" onserverclick="btn_NuevoEditar_ServerClick">Nuevo</button>
                                                 <button id="btn_Guardar" type="button" runat="server" class="btn btn-success" onserverclick="btn_Guardar_Click">Guardar</button>
+                                                <button id="btn_Eliminar" type="button" runat="server" class="btn btn-danger" onserverclick="btn_Eliminar_Click">Eliminar</button>
                                                 <button id="btn_Cancelar" type="button" runat="server" class="btn btn-default" onserverclick="btn_Cancelar_Click">Regresar</button>
                                                 <%--<input type="hidden" id="txt_Comando" runat="server" />--%>
                                             </div>

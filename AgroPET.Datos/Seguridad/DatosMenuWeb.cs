@@ -114,6 +114,26 @@ namespace AgroPET.Datos.Seguridad
             int afectados = accesoDatos.EjecutaNQuery();
         }
 
+        public bool EliminarMenu(int idMenu)
+        {
+            try
+            {
+                accesoDatos.parametros.listaParametros.Clear();
+                accesoDatos.comandoSP = "uspMenuWeb_Eliminar";
+                accesoDatos.parametros.Agrega("@idMenu", idMenu, true);
+                int afectados = accesoDatos.EjecutaNQuery();
+
+                if (afectados >= 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Error = " Sourcer ::" + ex.Source + " Error Message :: " + ex.Message;
+                return false;
+            }
+        }
         //uspDesAsignarArticulosMenuWeb_Delete
         public void DesAsignarArticulosMicrosip(EntidadMenuArticulos ent, bool esLibre)
         {

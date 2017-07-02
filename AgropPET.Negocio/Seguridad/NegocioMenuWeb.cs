@@ -168,6 +168,12 @@ namespace AgropPET.Negocio.Seguridad
             return new DatosMenuWeb().ConsultaRelacionMenuArticulos(idMenu);
         }
 
+        public bool EliminarMenu(int idMenu)
+        {
+            return new DatosMenuWeb().EliminarMenu(idMenu);
+        }
+
+
         #endregion
 
         #region IDisposable Members

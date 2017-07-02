@@ -225,6 +225,22 @@ namespace AdminAgropet
             mvPrincipal.SetActiveView(vwConsulta);
         }
 
+        protected void btn_Eliminar_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(hdnIdSeleccionado.Value))
+            {
+                int idMenu = Convert.ToInt32(hdnIdSeleccionado.Value);
+                new NegocioMenuWeb().EliminarMenu(idMenu);
+
+                hdnIdSeleccionado.Value = null;
+                CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
+                txt_Menu_Editar.Value = string.Empty;
+                chk_Estado_Editar.Checked = true;
+
+                MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")), "Menu Eliminado", 3);
+            }
+        }
+
         protected void btn_Guardar_Click(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txt_Menu_Editar.Value)) 
@@ -269,7 +285,7 @@ namespace AdminAgropet
                 if (bAccion && string.IsNullOrEmpty(hdnIdSeleccionado.Value) || (bAccion && !string.IsNullOrEmpty(hdnIdSeleccionado.Value)) || (!bAccion && !string.IsNullOrEmpty(hdnIdSeleccionado.Value)))
                 {
                     if (new NegocioMenuWeb().InsertarEditar(bAccion, OMenu))
-                        MostrarMensaje(Page, "Menu Web", cgs_MensajeOk, 1);
+                        MostrarMensaje(Page, "Menu Web", cgs_MensajeOk, 3);
                 }
 
                 BAccion = false;
@@ -364,7 +380,7 @@ namespace AdminAgropet
 
 
                     MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
-                        "Articulos Asignados", 1);
+                        "Articulos Asignados", 3);
                 }
                 else
                 {
