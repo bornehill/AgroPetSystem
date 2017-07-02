@@ -23,6 +23,15 @@ namespace AdminAgropet
         private List<int> LstArticulos { get; set; }
         private List<int> LstArticulosBorrar { get; set; }
         private List<int> LstArticulosExcluidos { get; set; }
+
+        private static bool bAccion;
+        public static bool BAccion
+        {
+            get { return bAccion; }
+            set { bAccion = value; }
+        }
+
+       
         //////Comandos
         //private const string ComandoEditar = "Editar";
 
@@ -160,19 +169,29 @@ namespace AdminAgropet
         {
             nodoSeleccionado();
 
-            EntidadMenuWeb lst = new NegocioMenuWeb().ObtenerMenus(Convert.ToInt32(hdnIdSeleccionado.Value)).FirstOrDefault();
-            txt_Menu_Editar.Value = lst.Menu;
-            txt_MenuUrl_Editar.Value = lst.MenuUrl;
-            chk_Estado_Editar.Checked = lst.Activo;
-            if (lst.Padre.ToString() != "0")
-                ddl_ListaMenus_Editar.SelectedValue = lst.Padre.ToString();
-            else
-                ddl_ListaMenus_Editar.ClearSelection();
+            //if (!string.IsNullOrEmpty(hdnIdSeleccionado.Value))
+            //{
+                EntidadMenuWeb lst = new NegocioMenuWeb().ObtenerMenus(Convert.ToInt32(hdnIdSeleccionado.Value)).FirstOrDefault();
+                txt_Menu_Editar.Value = lst.Menu;
+                txt_MenuUrl_Editar.Value = lst.MenuUrl;
+                chk_Estado_Editar.Checked = lst.Activo;
+                if (lst.Padre.ToString() != "0")
+                    ddl_ListaMenus_Editar.SelectedValue = lst.Padre.ToString();
+                else
+                    ddl_ListaMenus_Editar.ClearSelection();
+            //}
         }
 
         private void nodoSeleccionado()
         {
-            hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
+            //if(string.IsNullOrEmpty(hdnIdSeleccionado.Value) || hdnIdSeleccionado.Value != tvw_Editar.SelectedValue)
+                hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
+            //else
+            //{
+            //    hdnIdSeleccionado.Value = null;
+            //    if (tvw_Editar.SelectedNode != null)
+            //        tvw_Editar.SelectedNode.Selected = false;
+            //}
         }
 
         protected void btn_NuevoEditar_ServerClick(object sender, EventArgs e)
@@ -182,14 +201,17 @@ namespace AdminAgropet
 
         private void Nuevo()
         {
-            hdnIdSeleccionado.Value = string.Empty;
             txt_Menu_Editar.Value = string.Empty;
             txt_MenuUrl_Editar.Value = string.Empty;
             chk_Estado_Editar.Checked = true;
             ddl_ListaMenus_Editar.ClearSelection();
-            hdnIdSeleccionado.Value = null;
-            if(tvw_Editar.SelectedNode != null)
-                tvw_Editar.SelectedNode.Selected = false;
+
+            BAccion = true;
+
+            txt_Menu_Editar.Focus();
+            //hdnIdSeleccionado.Value = null;
+            //if(tvw_Editar.SelectedNode != null)
+            //    tvw_Editar.SelectedNode.Selected = false;
         }
 
         protected void btn_Cancelar_Click(object sender, EventArgs e)
@@ -205,16 +227,19 @@ namespace AdminAgropet
 
         protected void btn_Guardar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value) && !string.IsNullOrEmpty(txt_MenuUrl_Editar.Value) && ddl_ListaMenus_Editar.SelectedIndex != 0)
+            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value)) 
             {
-                // Se verifica que acción se realiza, si es inserción o modificación
-                bool bAccion = string.IsNullOrEmpty(hdnIdSeleccionado.Value);
-                InsertarEditar(bAccion);
+                InsertarEditar(BAccion);
 
                 LlenalListaMenusBuscar(0);
+
+                //valorSeleccionado = hdnIdSeleccionado.Value;
+
                 CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
-                Nuevo();
-                //Cancelar();
+
+                txt_Menu_Editar.Value = string.Empty;
+                chk_Estado_Editar.Checked = true;
+                BAccion = false;
             }
             else
             {
@@ -226,22 +251,29 @@ namespace AdminAgropet
         /// <summary>
         /// Envía a la base de datos la información de un nuevo(true)/edicion(false) menu
         /// </summary>
-        private void InsertarEditar(bool bAccion)
+        private void InsertarEditar(bool BAccion)
         {
             try
             {
-                bool exitoso = false;
                 EntidadMenuWeb OMenu = new EntidadMenuWeb();
-                OMenu = ObtenerDatos();
-                //// Se inserta el registro en la base de datos
-                using (var ObjMenus = new NegocioMenuWeb())
+                OMenu.Menu = txt_Menu_Editar.Value;
+                OMenu.MenuUrl = txt_MenuUrl_Editar.Value;                  
+                OMenu.Activo = chk_Estado_Editar.Checked;
+                OMenu.CreacionUsuarioId = GetUserLoggedID();
+                OMenu.ModificacionUsuarioId = GetUserLoggedID();
+                OMenu.FechaCreacion = new DateTime(1900, 01, 01);
+                OMenu.FechaModificacion = new DateTime(1900, 01, 01);
+                OMenu.MenuId = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value);
+                OMenu.Padre = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value);
+
+                if (bAccion && string.IsNullOrEmpty(hdnIdSeleccionado.Value) || (bAccion && !string.IsNullOrEmpty(hdnIdSeleccionado.Value)) || (!bAccion && !string.IsNullOrEmpty(hdnIdSeleccionado.Value)))
                 {
-                    exitoso = ObjMenus.InsertarEditar(bAccion, OMenu);
-                    if (exitoso)
+                    if (new NegocioMenuWeb().InsertarEditar(bAccion, OMenu))
                         MostrarMensaje(Page, "Menu Web", cgs_MensajeOk, 1);
                 }
 
-                //btn_Buscar_Click(new object(), new EventArgs());
+                BAccion = false;
+                hdnIdSeleccionado.Value = null;
             }
             catch (Exception ex)
             {
@@ -251,35 +283,36 @@ namespace AdminAgropet
 
         }
 
-        private EntidadMenuWeb ObtenerDatos()
-        {
-            try
-            {
-                var oObj = new EntidadMenuWeb
-                {
-                    //MenuId = string.IsNullOrEmpty(txt_Comando.Value) ? 0 : Convert.ToInt32(txt_Comando.Value),
-                    MenuId = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value),
-                    Menu = txt_Menu_Editar.Value,
-                    MenuUrl = txt_MenuUrl_Editar.Value,
-                    Padre = Convert.ToInt32(ddl_ListaMenus_Editar.SelectedItem.Value),
-                    Activo = chk_Estado_Editar.Checked,
-                    CreacionUsuarioId = GetUserLoggedID(),
-                    ModificacionUsuarioId = GetUserLoggedID(),
-                    FechaCreacion = new DateTime(1900, 01, 01),
-                    FechaModificacion = new DateTime(1900, 01, 01)
-                };
+        //private EntidadMenuWeb ObtenerDatos()
+        //{
+        //    try
+        //    {
+        //        var oObj = new EntidadMenuWeb();
+                
+        //        oObj.Menu = txt_Menu_Editar.Value;
+        //        oObj.MenuUrl = txt_MenuUrl_Editar.Value;
+        //        if (!string.IsNullOrEmpty(hdnIdSeleccionado.Value))
+        //        {
+        //            oObj.MenuId = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value);
+        //            oObj.Padre = Convert.ToInt32(hdnIdSeleccionado.Value);
+        //        }
+        //        oObj.Activo = chk_Estado_Editar.Checked;
+        //        oObj.CreacionUsuarioId = GetUserLoggedID();
+        //        oObj.ModificacionUsuarioId = GetUserLoggedID();
+        //        oObj.FechaCreacion = new DateTime(1900, 01, 01);
+        //        oObj.FechaModificacion = new DateTime(1900, 01, 01);
 
-                return oObj;
-            }
-            catch (FormatException ex)
-            {
-                throw new System.ArgumentException("Error de tipo de dato: ", ex.InnerException);
-            }
-            catch (Exception ex)
-            {
-                throw new System.ArgumentException("Error al intentar Obtener los datos del formulario.", ex.InnerException);
-            }
-        }
+        //        return oObj;
+        //    }
+        //    catch (FormatException ex)
+        //    {
+        //        throw new System.ArgumentException("Error de tipo de dato: ", ex.InnerException);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new System.ArgumentException("Error al intentar Obtener los datos del formulario.", ex.InnerException);
+        //    }
+        //}
 
         #endregion Editar
 
