@@ -1,8 +1,5 @@
 ﻿
-
-
-
-CREATE PROCEDURE uspmenuweb_Alta(
+CREATE PROCEDURE [dbo].[uspmenuweb_Alta](
     @Menu varchar(100),
     @MenuUrl Varchar(250),
     @Padre INT,
@@ -33,7 +30,7 @@ BEGIN
 	  ,ModificacionUsuarioId)    
 	 VALUES    
 	  (@Menu    
-	  ,'Mascotas/Articulos'    
+	  ,'Mascotas/ArticulosPedido'    
 	  ,@Padre      
 	  ,@Nivel    
 	  ,@Orden      
@@ -42,6 +39,4 @@ BEGIN
 	  ,@CreacionUsuarioId    
 	  ,NULL    
 	  ,NULL);
-	
-	/*SET MenuId = LAST_INSERT_ID();*/	
 END ;

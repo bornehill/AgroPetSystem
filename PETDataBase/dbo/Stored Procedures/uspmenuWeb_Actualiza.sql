@@ -1,7 +1,4 @@
 ﻿
-
-
-
 CREATE PROCEDURE [dbo].[uspmenuWeb_Actualiza](
 	@Id INT    
 	,@Menu varchar(100)    
@@ -21,11 +18,14 @@ BEGIN
 	
 	--select @Orden=dbo.ufn_MenuObtenerOrden(@Padre);
 	--select @Nivel=dbo.ufn_MenuObtenerNivel(@Padre);
-	
+
+	if(@Id = @Padre)
+		set @Padre = 0
+
 	UPDATE tbmenuweb   
 	SET Menu = @Menu    
-	,MenuUrl = 'Mascotas/Articulos'    
-	--,Padre = @Padre    
+	,MenuUrl = 'Mascotas/ArticulosPedido'    
+	,Padre = @Padre    
 	--,Nivel = @Nivel    
 	--,Orden = @Orden    
 	,Activo = @Activo    
