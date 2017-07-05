@@ -121,7 +121,15 @@
                                         <div style="padding-bottom: 5px"></div>
 
                                         <div class="row">
-                                              <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="text-align: left">
+                                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                                <label style="text-align: left; width: 100%; font-size: small">Padre:</label>
+                                                <asp:DropDownList ID="ddl_ListaMenus_Editar" class="form-control" runat="server" ValidationGroup="guarda" Width="100%"></asp:DropDownList>
+                                                <asp:ListSearchExtender ID="lseMenus" runat="server" TargetControlID="ddl_ListaMenus_Editar"
+                                                    PromptText="Busqueda por.." QueryPattern="Contains">
+                                                </asp:ListSearchExtender>
+                                            </div>
+
+                                            <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="text-align: left">
                                                 <label style="text-align: left; width: 100%; font-size: small">Activo:</label>
                                                 <div class="btn btn-default" style="height: 34px">
                                                     <div class="material-switch pull-right" style="padding-top: 10px">
@@ -131,13 +139,7 @@
                                                 </div>
 
                                             </div>
-                                            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" style="visibility:hidden">
-                                                <label style="text-align: left; width: 100%; font-size: small">Padre:</label>
-                                                <asp:DropDownList ID="ddl_ListaMenus_Editar" class="form-control" runat="server" ValidationGroup="guarda" Width="100%"></asp:DropDownList>
-                                                <asp:ListSearchExtender ID="lseMenus" runat="server" TargetControlID="ddl_ListaMenus_Editar"
-                                                    PromptText="Busqueda por.." QueryPattern="Contains">
-                                                </asp:ListSearchExtender>
-                                            </div>
+                                            
                                             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6" style="align-content: center">
                                                 <br />
                                                 <div style="padding-bottom: 5px"></div>

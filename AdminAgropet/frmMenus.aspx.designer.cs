@@ -139,15 +139,6 @@ namespace AdminAgropet {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_MenuUrl_Editar;
         
         /// <summary>
-        /// chk_Estado_Editar control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chk_Estado_Editar;
-        
-        /// <summary>
         /// ddl_ListaMenus_Editar control.
         /// </summary>
         /// <remarks>
@@ -164,6 +155,15 @@ namespace AdminAgropet {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::AjaxControlToolkit.ListSearchExtender lseMenus;
+        
+        /// <summary>
+        /// chk_Estado_Editar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chk_Estado_Editar;
         
         /// <summary>
         /// btn_NuevoEditar control.

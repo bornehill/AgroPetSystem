@@ -280,7 +280,11 @@ namespace AdminAgropet
                 OMenu.FechaCreacion = new DateTime(1900, 01, 01);
                 OMenu.FechaModificacion = new DateTime(1900, 01, 01);
                 OMenu.MenuId = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value);
-                OMenu.Padre = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value);
+
+                if(ddl_ListaMenus_Editar.SelectedItem.Value != string.Empty)
+                    OMenu.Padre = string.IsNullOrEmpty(ddl_ListaMenus_Editar.SelectedItem.Value) ? 0 : Convert.ToInt32(ddl_ListaMenus_Editar.SelectedItem.Value);
+                else
+                    OMenu.Padre = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value);
 
                 if (bAccion && string.IsNullOrEmpty(hdnIdSeleccionado.Value) || (bAccion && !string.IsNullOrEmpty(hdnIdSeleccionado.Value)) || (!bAccion && !string.IsNullOrEmpty(hdnIdSeleccionado.Value)))
                 {
