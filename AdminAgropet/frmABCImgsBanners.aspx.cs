@@ -249,11 +249,14 @@ namespace AdminAgropet
             if (inputfile.PostedFile != null && !string.IsNullOrEmpty(txtOrdenDetalle.Text) && !string.IsNullOrEmpty(txtRutaBannerDetalle.Value))
             {
                 // File was sent
-                var postedFile = inputfile.PostedFile;
-                //int dataLength = postedFile.ContentLength;
-                //byte[] myData = new byte[dataLength];
-                //postedFile.InputStream.Read(myData, 0, dataLength);
-                postedFile.SaveAs(@"" + repositorio + txtRutaBannerDetalle.Value);
+                if (inputfile.PostedFile.ContentLength > 0)
+                {
+                    var postedFile = inputfile.PostedFile;
+                    //int dataLength = postedFile.ContentLength;
+                    //byte[] myData = new byte[dataLength];
+                    //postedFile.InputStream.Read(myData, 0, dataLength);
+                    postedFile.SaveAs(@"" + repositorio + txtRutaBannerDetalle.Value);
+                }
 
                 InsertarDetalle();
             }
