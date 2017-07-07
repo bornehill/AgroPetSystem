@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using AgroPET.Entidades.Seguridad;
 using AgroPET.Datos.Comun;
 using AgroPET.Datos.Catalogos;
+using AgroPET.Entidades.Consultas;
+using Agropet.Entidades.Consultas;
 
 namespace AgroPET.Datos.Seguridad
 {
@@ -112,8 +114,28 @@ namespace AgroPET.Datos.Seguridad
             int afectados = accesoDatos.EjecutaNQuery();
         }
 
+        public bool EliminarMenu(int idMenu)
+        {
+            try
+            {
+                accesoDatos.parametros.listaParametros.Clear();
+                accesoDatos.comandoSP = "uspMenuWeb_Eliminar";
+                accesoDatos.parametros.Agrega("@idMenu", idMenu, true);
+                int afectados = accesoDatos.EjecutaNQuery();
+
+                if (afectados >= 1)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception ex)
+            {
+                Error = " Sourcer ::" + ex.Source + " Error Message :: " + ex.Message;
+                return false;
+            }
+        }
         //uspDesAsignarArticulosMenuWeb_Delete
-        public void DesAsignarArticulosMicrosip(EntidadMenuArticulos ent)
+        public void DesAsignarArticulosMicrosip(EntidadMenuArticulos ent, bool esLibre)
         {
             int Linea_articulo_id = new DatosGruposLineas().Firebird_ObtenerIdLineaArticulo(ent.IdArticulo);
             int grupo_linea_id = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea(Linea_articulo_id);
@@ -124,7 +146,16 @@ namespace AgroPET.Datos.Seguridad
             accesoDatos.parametros.Agrega("@idGpo_Lin", grupo_linea_id, true);
             accesoDatos.parametros.Agrega("@idLin_Art", Linea_articulo_id, true);
             accesoDatos.parametros.Agrega("@idArt", ent.IdArticulo, true);
+            accesoDatos.parametros.Agrega("@esLibre", esLibre, true);
             int afectados = accesoDatos.EjecutaNQuery();
+        }
+
+        public List<ConsultaRelacionMenuArticulo> ConsultaRelacionMenuArticulos(int idMenu)
+        {
+            accesoDatos.parametros.listaParametros.Clear();
+            accesoDatos.comandoSP = "uspRelacionMenuArticulosObtener";
+            accesoDatos.parametros.Agrega("@MenuId", idMenu, true);
+            return accesoDatos.ConsultaDataList<ConsultaRelacionMenuArticulo>();
         }
 
         #endregion

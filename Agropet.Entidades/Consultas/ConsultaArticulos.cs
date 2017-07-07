@@ -19,5 +19,9 @@ namespace AgroPET.Entidades.Consultas
         public string Categoria { get; set; }
 
         public string Marca { get; set; }
+
+        public string clave_articulo { get; set; }
+
+        public string nombreClave { get; set; }
     }
 }

@@ -1,8 +1,5 @@
 ﻿
-
-
-
-CREATE PROCEDURE uspmenuWeb_Actualiza(
+CREATE PROCEDURE [dbo].[uspmenuWeb_Actualiza](
 	@Id INT    
 	,@Menu varchar(100)    
 	,@MenuUrl varchar(250)    
@@ -19,15 +16,18 @@ BEGIN
 	DECLARE @Nivel INT;
 	DECLARE @Orden INT;
 	
-	select @Orden=dbo.ufn_MenuObtenerOrden(@Padre);
-	select @Nivel=dbo.ufn_MenuObtenerNivel(@Padre);
-	
+	--select @Orden=dbo.ufn_MenuObtenerOrden(@Padre);
+	--select @Nivel=dbo.ufn_MenuObtenerNivel(@Padre);
+
+	if(@Id = @Padre)
+		set @Padre = 0
+
 	UPDATE tbmenuweb   
 	SET Menu = @Menu    
-	,MenuUrl = @MenuUrl    
+	,MenuUrl = 'Mascotas/ArticulosPedido'    
 	,Padre = @Padre    
-	,Nivel = @Nivel    
-	,Orden = @Orden    
+	--,Nivel = @Nivel    
+	--,Orden = @Orden    
 	,Activo = @Activo    
 	,FechaModificacion = GETDATE()
 	,ModificacionUsuarioId = @ModificacionUsuarioId    

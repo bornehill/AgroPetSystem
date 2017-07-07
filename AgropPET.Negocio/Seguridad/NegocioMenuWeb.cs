@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using AgroPET.Entidades.Seguridad;
 using AgroPET.Datos.Seguridad;
+using AgroPET.Entidades.Consultas;
+using Agropet.Entidades.Consultas;
 
 namespace AgropPET.Negocio.Seguridad
 {
@@ -145,13 +147,13 @@ namespace AgropPET.Negocio.Seguridad
             }
         }
 
-        public bool DesAsignarArticulosMicrosip(EntidadMenuArticulos ent)
+        public bool DesAsignarArticulosMicrosip(EntidadMenuArticulos ent, bool esLibre = false)
         {
             try
             {
                 //// Se inserta el registro en la base de datos
                 var oDatos = new DatosMenuWeb();
-                oDatos.DesAsignarArticulosMicrosip(ent);
+                oDatos.DesAsignarArticulosMicrosip(ent, esLibre);
                 return true;
             }
             catch (Exception ex)
@@ -160,6 +162,17 @@ namespace AgropPET.Negocio.Seguridad
                 return false;
             }
         }
+
+        public List<ConsultaRelacionMenuArticulo> ConsultaRelacionMenuArticulos(int idMenu)
+        {
+            return new DatosMenuWeb().ConsultaRelacionMenuArticulos(idMenu);
+        }
+
+        public bool EliminarMenu(int idMenu)
+        {
+            return new DatosMenuWeb().EliminarMenu(idMenu);
+        }
+
 
         #endregion
 

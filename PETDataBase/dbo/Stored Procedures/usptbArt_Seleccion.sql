@@ -1,4 +1,5 @@
-﻿CREATE PROCEDURE usptbArt_Seleccion(
+﻿
+CREATE PROCEDURE usptbArt_Seleccion(
     @NombreArt VARCHAR(100),
     @LineaId INT
     )
@@ -15,17 +16,17 @@ BEGIN
 	BEGIN
 		IF (@NombreArt != '')
 		BEGIN
-			SET @nom = ' (A.Nombre LIKE CONCAT(''%'','''+@NombreArt+''',''%'')) '; 
+			SET @nom = ' (A.Nombre LIKE CONCAT(''%'','''+@NombreArt+''',''%'')) '
 			IF (@LineaId > 0)
 			BEGIN
-				SET @nom = @nom + ' AND AMM.MenuId = ' + @LineaId + ' ';
+				SET @nom = @nom+' AND AMM.MenuId = '+@LineaId+' '
 			END
 		END
 		ELSE
 			BEGIN
 				IF (@LineaId > 0)
 				BEGIN
-					SET @nom = ' AMM.MenuId = ' + @LineaId + ' ';
+					SET @nom = ' AMM.MenuId = '+@LineaId+' '
 				END
 			END
 	END		
@@ -39,7 +40,7 @@ BEGIN
 	'ON MW.MenuId = AMM.MenuId '+
 	'INNER JOIN tbmenuweb AS MWP '+
 	'ON MW.Padre = MWP.MenuId '+
-	'WHERE ' + @nom;
+	'WHERE '+ @nom
 
-	EXEC sp_executesql @script;
+	EXEC @script;
 END
