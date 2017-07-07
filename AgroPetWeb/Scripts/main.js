@@ -9,13 +9,15 @@ draggable:true,
 mapTypeId:google.maps.MapTypeId.ROADMAP
 };
 
-var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+	if (document.getElementById("googleMap") != null) {
+			var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
 
-var marker = new google.maps.Marker({
-position:myCenter,
-});
+			var marker = new google.maps.Marker({
+					position: myCenter,
+			});
 
-marker.setMap(map);
+			marker.setMap(map);
+	}
 }
 
 $(document).ready(function(){
@@ -59,4 +61,8 @@ $(document).ready(function(){
     	//alert("slid");
 	});
     /*end slider of articles*/
+});
+
+$(function () {
+	$("#menu").menu();
 });

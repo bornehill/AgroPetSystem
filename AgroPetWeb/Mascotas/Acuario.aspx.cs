@@ -6,23 +6,28 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using PetData.Pet;
 using AgroPET.Entidades.Consultas;
+using AgroPET.Entidades.Especial;
 
 namespace AgroPetWeb.Mascotas
 {
   public partial class Acuario : System.Web.UI.Page
   {
     private int menuId = 0;
+		private int pageQuery = 0;
+		private int records = 0;
 
-    protected void Page_Load(object sender, EventArgs e)
+		protected void Page_Load(object sender, EventArgs e)
     {
       menuId = int.Parse(Request.QueryString["MenuId"]);
-    }
+			pageQuery = int.Parse(Request.QueryString["pageQuery"] == null ? "0" : Request.QueryString["pageQuery"]);
+			records = int.Parse(Request.QueryString["cboRecords"] == null ? "10" : Request.QueryString["cboRecords"]);
+		}
 
-    public void Articulos()
+		public void Articulos()
     {
       PetService service = new PetService();
       int rec = 0, recRow = 0;
-      var menus = service.GetMenuArticulos(new MenuArticulos() { MenuId = menuId });
+      var menus = service.GetMenuArticulos(new MenuArticulos() { MenuId = menuId }, new PageQuery() { page = pageQuery, records = this.records }, (EntClientWeb)Session["ClientWeb"], null);
       foreach (var menu in menus)
       {
         if (rec != 0 && recRow == 0)

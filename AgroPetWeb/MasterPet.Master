@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="/Content/bootstrap.min.css"/>
     <link rel="stylesheet" href="/Content/jquery-ui.css"/>
     <link rel="stylesheet" href="/Content/style.css"/>
-
     <script src="/Scripts/jquery.js"></script>
     <script src="/Scripts/bootstrap.min.js"></script>
     <script src="/Scripts/jquery-ui.js"></script>
@@ -18,79 +17,76 @@
     <script type="text/javascript" src="/Scripts/simplegallery.min.js"></script>
 
     <script lang="javascript" type="text/javascript">
-      function muestra(panelID, page, titleDialog) {
-        $panel = $('#' + panelID);
-        $panel.dialog({
-          autoOpen: false, modal: true, open: function () {
-            $(this).load(page);
-          },
-          close: function (e) {
-            $(this).empty();
-            $(this).dialog('destroy');
-          },
-          title: titleDialog
-        });
-        $panel.dialog("open");
+			function muestra(panelID, page, titleDialog, width, height) {
+				$panel = $('#' + panelID);
+				$panel.dialog({
+					autoOpen: false, modal: true, open: function () {
+						$(this).load(page);
+					},
+					close: function (e) {
+						$(this).empty();
+						$(this).dialog('destroy');
+					},
+					title: titleDialog
+				});
+				$panel.dialog("open");
+				if (width != null) { 
+					$panel.dialog("option", "width", width);
+					$panel.dialog("option", "height", height);
+				}
       }
-
     </script>
 </head>
 <body>
-    <form id="formMaster" runat="server" data-spy="scroll" data-target=".navbar" data-offset="50">
-      <div id="dialog" title="Dialog Title">I'm a dialog</div>
-
+    <form id="formMaster" runat="server" data-spy="scroll" data-target=".navbar" data-offset="50" method="post">
+      <div id="dialog" title="Dialog Title"></div>
+			<br />
+			<br />
+			<br />
       <div class="contaier-fluid">
         <nav class="navbar navbar-default navbar-fixed-top">
             <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span> 
-                </button>
-                <a class="navbar-brand logo" href="/index.aspx"></a>
-            </div>
-            <div class="collapse navbar-collapse" id="myNavbar">
-                <ul class="nav navbar-nav">
-                <% GetMenuWeb();  %>
-                </ul>
-                <ul class="nav navbar-nav navbar-right">
-                <% if (Session["UserWeb"]!=null) { %>
-                  <li><a href="/Mascotas/ShopCar.aspx"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><%=totalBuyProd %></span></a></li>
-                <% }  %>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="<%=HttpContext.Current.Request.Url.AbsolutePath %>"><span class="glyphicon glyphicon-search"></span></a>
-                    <ul class="dropdown-menu">
-                      <li><a href="#">
-                              <div class="navbar-form navbar-left" role="search">
-                                <div class="form-group">
-                                  <asp:TextBox ID="txtSearch" CssClass="form-control" runat="server"/>
-                                  <asp:Button CssClass="btn btn-default" runat="server" Text="Buscar"/>
-                                </div>
-                              </div>
-                          </a>
-                      </li>
+                <div class="navbar-header">
+                    <a class="navbar-brand logo" href="/index.aspx"></a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                    <% if (Session["UserWeb"]!=null) { %>
+                      <li><a href="/Mascotas/ShopCar.aspx"><span class="glyphicon glyphicon-shopping-cart"></span><span class="badge"><%=totalBuyProd %></span></a></li>
+                    <% }  %>
+                    <li>
+												<a class="dropdown-toggle">
+														<span class="glyphicon glyphicon-search" title="Buscar" onclick="muestra('dialog','/Mascotas/Search.aspx', 'Buscar');return false;"></span></a>
+                        <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="dropdown-toggle">
+                          <span class="glyphicon glyphicon-user" title="<%= Session["UserWeb"]!=null? Session["UserName"] : "Iniciar sesión" %>"  <%= Session["UserWeb"]==null? "onclick=\"muestra('dialog','/Security/Autentica.aspx', 'Autenticacion');return false;\"" : "" %>></span></a>
+                        <ul class="dropdown-menu">
+                        <li class="divider"></li>
+                        </ul>
+                    </li>
+                    <% if (Session["UserWeb"]==null) { %>
+                      <li><a href="/Security/Registro.aspx" title="Registrarse"><span class="glyphicon glyphicon-plus-sign"></span></a></li>
+                    <% }  
+                    if (Session["UserWeb"]!=null) { %>
+                    <li><a href="/Security/Logout.aspx" title="Salir"><span class="glyphicon glyphicon-log-out"></span></a></li>
+                    <% }  %>
                     </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle">
-                      <span class="glyphicon glyphicon-user" title="<%= Session["UserWeb"]!=null? Session["UserName"] : "Iniciar sesión" %>"  <%= Session["UserWeb"]==null? "onclick=\"muestra('dialog','/Security/Autentica.aspx', 'Autenticacion');return false;\"" : "" %>></span></a>
-                    <ul class="dropdown-menu">
-                    <li class="divider"></li>
-                    </ul>
-                </li>
-                <% if (Session["UserWeb"]==null) { %>
-                  <li><a href="/Security/Registro.aspx" title="Registrarse"><span class="glyphicon glyphicon-plus-sign"></span></a></li>
-                <% }  
-                if (Session["UserWeb"]!=null) { %>
-                <li><a href="/Security/Logout.aspx" title="Salir"><span class="glyphicon glyphicon-log-out"></span></a></li>
-                <% }  %>
-                </ul>
-            </div>
+                </div>
             </div>
         </nav>
       </div>
-      <div>
+
+      <div id="mySidenav" class="sidenav">
+				<ul id="menu">
+				<% GetMenuWeb();  %>
+				</ul>
+      </div>
+
+      <div id="main">
           <asp:ContentPlaceHolder ID="ContentPage" runat="server">
           </asp:ContentPlaceHolder>
       </div>
@@ -98,7 +94,7 @@
           <a class="up-arrow" href="#frmIndex" data-toggle="tooltip" title="IR ARRIBA">
           <span class="glyphicon glyphicon-chevron-up"></span>
           </a><br><br>
-          <p>Grupo Agropet <a href="http://www.petcetera.com" data-toggle="tooltip" title="Visita Petcetera">www.petcetera.com</a></p> 
+          <p>Grupo Agropet <%--<a href="http://www.petcetera.com" data-toggle="tooltip" title="Visita Petcetera">www.petcetera.com</a>--%></p> 
       </footer>
     </form>
 </body>

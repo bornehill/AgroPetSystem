@@ -26,17 +26,27 @@ namespace PetData.Pet
       return new PetProvider().GetBannersWeb(banner);
     }
 
-    public List<MenuArticulos> GetMenuArticulos(MenuArticulos articulo)
+    public List<MenuArticulos> GetMenuArticulos(MenuArticulos articulo, PageQuery pag, EntClientWeb client, string search)
     {
-      return new PetProvider().GetMenuArticulos(articulo);
+      return new PetProvider().GetMenuArticulos(articulo, pag, client, search);
     }
 
-    public EntUser GetUser(EntUser user)
+    public EntidadUsuarioLogeado GetUser(EntidadUsuarioLogeado user)
     {
       return new PetProvider().GetUser(user);
     }
 
-    public EntUser AddUser(EntUser user)
+    public ConsultaUsuarios GetUser(ConsultaUsuarios user)
+    {
+        return new PetProvider().GetUser(user);
+    }
+
+    public EntUser GetUser(EntUser user)
+    {
+        return new PetProvider().GetUser(user);
+    }
+
+    public ConsultaUsuarios AddUser(ConsultaUsuarios user)
     {
       return new PetProvider().AddUser(user);
     }
@@ -46,14 +56,19 @@ namespace PetData.Pet
       return new PetProvider().AddBuy(item);
     }
 
-    public List<EntBuyView> GetBuyView(EntBuyView item)
+		public EntBuy UpdateBuy(EntBuy item)
+		{
+			return new PetProvider().UpdateBuy(item);
+		}
+
+		public List<EntBuyView> GetBuyView(EntBuyView item)
     {
       return new PetProvider().GetBuyView(item);
     }
 
-    public int GetTotalMenuArt(MenuArticulos menu)
+    public int GetTotalMenuArt(MenuArticulos menu, EntClientWeb client, string search)
     {
-      return new PetProvider().GetTotalMenuArt(menu);
+      return new PetProvider().GetTotalMenuArt(menu, client, search);
     }
 
     public EntBuy GetTotalBuy(EntBuy buy)
@@ -61,9 +76,49 @@ namespace PetData.Pet
       return new PetProvider().GetTotalBuy(buy);
     }
 
-    public MenuArticulos GetArticulo(MenuArticulos art)
+    public MenuArticulos GetArticulo(MenuArticulos art, EntClientWeb client)
     {
-      return new PetProvider().GetArticulo(art);
+      return new PetProvider().GetArticulo(art, client);
     }
-  }
+
+		public EntClientWeb GetClient(ConsultaUsuarios user)
+		{
+			return new PetProvider().GetClient(user);
+		}
+
+		public List<EntPais> GetCountries(EntPais pais)
+		{
+			return new PetProvider().GetCountries(pais);
+		}
+
+		public List<EntEstado> GetStates(EntPais pais, EntEstado estado)
+		{
+			return new PetProvider().GetStates(pais, estado);
+		}
+
+		public List<EntCiudad> GetCities(EntEstado estado, EntCiudad ciudad)
+		{
+			return new PetProvider().GetCities(estado, ciudad);
+		}
+
+		public List<EntDireccion> GetAddress(EntClientWeb cliente)
+		{
+			return new PetProvider().GetAddress(cliente);
+		}
+
+		public EntDireccion GetAddress(EntDireccion dir)
+		{
+			return new PetProvider().GetAddress(dir);
+		}
+
+		public EntDireccion AddAddress(EntDireccion address)
+		{
+			return new PetProvider().AddAddress(address);
+		}
+
+		public EntDoctoPv SaveDispatchOrder(EntDoctoPv order)
+		{
+			return new PetProvider().SaveDispatchOrder(order);
+		}
+	}
 }

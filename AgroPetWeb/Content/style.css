@@ -14,16 +14,16 @@
   font-weight: lighter;
 }
 .navbar {
-  margin-bottom: 0;
-  background-color: #e3752a;
-  border: 0px;
-  letter-spacing: 4px;
-  font-size: 16px !important;
-  font-style: bold;
-  opacity: 0.9;
-  min-height: 95px;
-  border-bottom: #ffffff solid 1px;
-  top: -15px;
+	margin-bottom: 0;
+	background-color: rgba(227, 117, 42, 0.6); /*#e3752a;*/
+	border: 0px;
+	letter-spacing: 4px;
+	font-size: 16px !important;
+	font-weight: bold;
+	opacity: 0.9;
+	min-height: 95px;
+	border-bottom: #ffffff solid 1px;
+	top: -15px;
 }
 .navbar-brand {
   margin-top: 20px;
@@ -46,16 +46,16 @@
   background-color: #e3752a !important;
 }
 .dropdown {
-  background-color: #e3752a !important;
+	background-color: rgba(227, 117, 42, 0.6) !important; /*#e3752a*/
 }
 .open .dropdown-toggle {
-  color: #ffffff;
-  background-color: #e3752a !important;
+	color: #ffffff;
+	background-color: rgba(227, 117, 42, 0.6) !important;/*#e3752a*/
 }
 .dropdown-menu li a {
-  color: #c2c2c2 !important;
-  background-color: #ffffff !important;
-  letter-spacing: normal;
+    color: #e3752a !important;
+    background-color: #ffffff !important;
+    letter-spacing: normal;
 }
 .dropdown-menu li a:hover {
   color: #070a70 !important;
@@ -90,6 +90,9 @@ li.dropdown-header a {
   /* Set width to 100% */
   margin: auto;
 }
+.carousel-inner > .item > img {
+	height: 800px;
+}
 .carousel-caption h3 {
   color: #fff !important;
 }
@@ -114,10 +117,10 @@ li.dropdown-header a {
 }
 /* Remove border and add padding to thumbnails */
 .thumbnail {
-  padding: 0 0 15px 0;
-  border: none;
-  border-radius: 0;
-  background-image: -webkit-linear-gradient(#fff,#feeebd);
+	padding: 15px 0 0 0;
+	border: none;
+	border-radius: 0;
+	background-image: -webkit-linear-gradient(#fff,#feeebd);
 }
 .thumbnail p {
   max-height: 50px;
@@ -147,9 +150,9 @@ li.dropdown-header a {
   /* Set the height to 400 pixels */
 }
 footer {
-  background-color: #070a70;
-  color: #ffffff;
-  padding: 32px;
+	background-color: rgba(7, 10, 112, 0.6); /*#070a70;*/
+	color: #ffffff;
+	padding: 32px;
 }
 footer a {
   color: #f5f5f5;
@@ -219,3 +222,64 @@ textarea {
   color: #c2c2c2 !important;
 }
 /*Termina estilo de Articulo*/
+
+.sidenav {
+	height: 100%; /* 100% Full-height */
+	width: 200px; /* 0 width - change this with JavaScript */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Stay on top */
+	top: 80px;
+	left: 0;
+	background-color: rgba(227, 117, 42, 0.6); /*#e3752a;*/
+	padding-top: 60px; /* Place content 60px from the top */
+	transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+
+/* The navigation menu links */
+	.sidenav a {
+		padding: 8px 8px 8px 32px;
+		text-decoration: none;
+		font-size: 15px;
+		color: rgba(227, 117, 42, 0.5); /*#818181*/
+		display: block;
+		transition: 0.3s
+	}
+
+/* When you mouse over the navigation links, change their color */
+.sidenav a:hover, .offcanvas a:focus {
+    color: #070a70 !important; /*#f1f1f1*/
+}
+
+/* Position and style the close button (top right corner) */
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
+#main {
+    transition: margin-left .5s;
+    padding: 20px;
+    padding-left: 200px;
+}
+
+/* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+
+    .sidenav a {
+        font-size: 15px;
+    }
+}
+.ui-menu {
+	width: 200px;
+}
+.ui-widget {
+	font-size: 15px;
+	color: rgba(227, 117, 42, 0.5);
+}

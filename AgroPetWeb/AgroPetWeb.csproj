@@ -104,9 +104,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
+    <Content Include="Client\ClientDirection.aspx" />
+    <Content Include="images\errorDispatch.png" />
+    <Content Include="images\pedido-realizado.png" />
     <Content Include="Mascotas\Articulos.aspx" />
     <Content Include="Mascotas\ArticulosPedido.aspx" />
     <Content Include="Mascotas\DetalleArticulo.aspx" />
+    <Content Include="Mascotas\DispatchOrder.aspx" />
+    <Content Include="Mascotas\Search.aspx" />
     <Content Include="Mascotas\ShopCar.aspx" />
     <Content Include="Security\Autentica.aspx" />
     <Content Include="Contact.aspx" />
@@ -164,6 +169,7 @@
     <Content Include="Mascotas\Domesticos.aspx" />
     <Content Include="MasterPet.Master" />
     <Content Include="Content\style.less" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -227,6 +233,13 @@
     <Compile Include="About.aspx.designer.cs">
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Client\ClientDirection.aspx.cs">
+      <DependentUpon>ClientDirection.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Client\ClientDirection.aspx.designer.cs">
+      <DependentUpon>ClientDirection.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Mascotas\Articulos.aspx.cs">
       <DependentUpon>Articulos.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -247,6 +260,20 @@
     </Compile>
     <Compile Include="Mascotas\DetalleArticulo.aspx.designer.cs">
       <DependentUpon>DetalleArticulo.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mascotas\DispatchOrder.aspx.cs">
+      <DependentUpon>DispatchOrder.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mascotas\DispatchOrder.aspx.designer.cs">
+      <DependentUpon>DispatchOrder.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Mascotas\Search.aspx.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Mascotas\Search.aspx.designer.cs">
+      <DependentUpon>Search.aspx</DependentUpon>
     </Compile>
     <Compile Include="Mascotas\ShopCar.aspx.cs">
       <DependentUpon>ShopCar.aspx</DependentUpon>

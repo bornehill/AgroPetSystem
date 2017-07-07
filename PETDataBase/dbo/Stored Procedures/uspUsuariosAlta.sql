@@ -1,7 +1,7 @@
 ﻿CREATE PROCEDURE [dbo].[uspUsuariosAlta]
 (
 	@idperfil int,
-	@claveusr varchar(20),
+	@claveusr varchar(150),
 	@nombreusr varchar(100), 
 	@passwordusr varchar(20), 
 	@activo bit, 
