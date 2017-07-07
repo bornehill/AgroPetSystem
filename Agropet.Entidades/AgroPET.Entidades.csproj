@@ -58,9 +58,17 @@
     <Compile Include="Consultas\ConsultaUsuarios.cs" />
     <Compile Include="Consultas\MenuArticulos.cs" />
     <Compile Include="Especial\EntBuy.cs" />
+    <Compile Include="Especial\EntCiudad.cs" />
+    <Compile Include="Especial\EntClientWeb.cs" />
+    <Compile Include="Especial\EntDireccion.cs" />
+    <Compile Include="Especial\EntDoctoPv.cs" />
+    <Compile Include="Especial\EntDoctoPvDet.cs" />
+    <Compile Include="Especial\EntEstado.cs" />
     <Compile Include="Especial\EntidadBannersWeb.cs" />
     <Compile Include="Especial\EntidadDDLUC.cs" />
     <Compile Include="Especial\EntidadResultProceso.cs" />
+    <Compile Include="Especial\EntPais.cs" />
+    <Compile Include="Especial\PageQuery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Seguridad\EntidadDetAccesoPerfil.cs" />
     <Compile Include="Seguridad\EntidadMenuApp.cs" />

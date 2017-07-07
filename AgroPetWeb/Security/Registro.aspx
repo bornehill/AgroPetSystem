@@ -44,7 +44,45 @@
             },
             async: true
           });
-      }
+			}
+
+			function searchClient(){
+				var userName = $("#txtUser").val();
+
+				if (false)
+					$("#msg").text("Cuenta de correo invalida");
+				else
+					$.ajax({
+						type: "post",
+						url: "/Security/Registro.aspx/SearchUser",
+						contentType: "application/json; charset=utf-8",
+						data: JSON.stringify({ userName: userName}),
+						dataType: "json",
+						success: function (result) {
+							if (result.d.Client_Id == -1)
+								$("#msg").text(result.d.Nombre);
+							else {
+								$("#DataClient").css("visibility", "visible");;
+								$("#txtNombre").val(result.d.Nombre);
+								$("#txtRFC").val(result.d.RFC);
+								$("#txtCalle").val(result.d.Calle);
+								$("#txtNoExt").val(result.d.Num_Exterior);
+								$("#txtNoInt").val(result.d.Num_Interior);
+								$("#txtColonia").val(result.d.Colonia);
+								$("#txtNomEstado").val(result.d.NomEstado);
+								$("#txtCodigoPostal").val(result.d.Codigo_Postal);
+								$("#txtTelefono1").val(result.d.Telefono1);
+								$("#txtTelefono2").val(result.d.Telefono2);
+								$("#msg").text('');
+							}
+						},
+						error: function (result) {
+							alert('error occured');
+							alert(result.responseText);
+						},
+						async: true
+					});
+			}
     </script>
 </head>
 <body>
@@ -71,29 +109,67 @@
         </nav>
       </div>
       <div class="ui-widget-content row" >
-        <div class="thumbnail col-sm-6 col-md-4">
-        </div>
-        <div class="thumbnail col-sm-6 col-md-4">
+        <div class="thumbnail col-sm-6 col-md-4 col-sm-offset-4">
           <div class="form-group">
             <p id="msg" style="color:red"></p>
-            <asp:Label CssClass="glyphicon glyphicon-user" runat="server" />
-            <asp:TextBox runat="server" ID="txtUser" CssClass="form-control" placeholder="Usuario" Width="180"/>
+            <asp:Label CssClass="glyphicon glyphicon-envelope" runat="server" ToolTip="Cuenta de correo electrónico" />
+            <asp:TextBox runat="server" ID="txtUser" CssClass="form-control" placeholder="Correo electrónico" Width="180"/>
+          </div>
+          <div class="form-group">
+            <a class="btn btn-primary" role ="button" name="btnSearch" onclick="searchClient(); return false;">Buscar</a>
           </div>
 <%--          <div class="form-group">
             <asp:Label CssClass="glyphicon glyphicon-envelope" runat="server" />
             <asp:TextBox runat="server" ID="txtMail" TextMode="Email" CssClass="form-control" placeholder="Email" Width="180"/>
           </div>--%>
-          <div class="form-group">
-              <asp:Label CssClass="glyphicon glyphicon-lock" runat="server" />
-              <asp:TextBox runat="server" ID="txtPass" TextMode="Password" CssClass="form-control" placeholder="Contrase&ntilde;a" Width="180"/>
-          </div>
-          <div class="form-group">
-              <asp:Label CssClass="glyphicon glyphicon-lock" runat="server" />
-              <asp:TextBox runat="server" ID="txtPassConfirm" TextMode="Password" CssClass="form-control" placeholder="Confirmar contrase&ntilde;a" Width="180"/>
-          </div>
-          <div class="form-group">
-            <a class="btn btn-primary" role ="button" name="btnRegistrar" onclick="registrarse(); return false;" >Registrar</a>
-          </div>
+					<div id="DataClient" style="visibility:hidden">
+						<div class="form-group">
+								<asp:Label CssClass="glyphicon glyphicon-lock" runat="server" />
+								<asp:TextBox runat="server" ID="txtPass" TextMode="Password" CssClass="form-control" placeholder="Contrase&ntilde;a" Width="180"/>
+						</div>
+						<div class="form-group">
+								<asp:Label CssClass="glyphicon glyphicon-lock" runat="server" />
+								<asp:TextBox runat="server" ID="txtPassConfirm" TextMode="Password" CssClass="form-control" placeholder="Confirmar contrase&ntilde;a" Width="180"/>
+						</div>
+
+						<div class="form-group">
+								<asp:Label runat="server" Text="RFC:" />
+								<asp:TextBox runat="server" ID="txtRFC" CssClass="form-control" placeholder="RFC" Width="150"/>
+						</div>
+						<div class="form-group">
+								<asp:Label runat="server" Text="Razón social:" />
+								<asp:TextBox runat="server" ID="txtNombre" CssClass="form-control" placeholder="Razón social" Width="350"/>
+						</div>
+						<div class="form-group">
+								<asp:Label runat="server" Text="Calle:" />
+								<asp:TextBox runat="server" ID="txtCalle" CssClass="form-control" placeholder="Calle" Width="300"/>
+						</div>
+						<div class="form-group">
+								<asp:Label runat="server" Text="No ext:" />
+								<asp:TextBox runat="server" ID="txtNoExt" CssClass="form-control" placeholder="Número exterior" Width="100"/>
+								<asp:Label runat="server" Text="No int.:" />
+								<asp:TextBox runat="server" ID="txtNoInt" CssClass="form-control" placeholder="Número interior" Width="100"/>
+						</div>
+						<div class="form-group">
+								<asp:Label runat="server" Text="Colonia:" />
+								<asp:TextBox runat="server" ID="txtColonia" CssClass="form-control" placeholder="Colonia" Width="200"/>
+						</div>
+						<div class="form-group">
+								<asp:Label runat="server" Text="Estado:" />
+								<asp:TextBox runat="server" ID="txtNomEstado" CssClass="form-control" placeholder="Estado" Width="200"/>
+								<asp:Label runat="server" Text="Codigo postal:" />
+								<asp:TextBox runat="server" ID="txtCodigoPostal" CssClass="form-control" placeholder="CP." Width="100"/>
+						</div>
+						<div class="form-group">
+								<asp:Label runat="server" Text="Teléfono:" />
+								<asp:TextBox runat="server" ID="txtTelefono1" CssClass="form-control" placeholder="Teléfono" Width="200"/>
+								<asp:Label runat="server" Text="Móvil:" />
+								<asp:TextBox runat="server" ID="txtTelefono2" CssClass="form-control" placeholder="Móvil" Width="200"/>
+						</div>
+						<div class="form-group">
+							<a class="btn btn-primary" role ="button" name="btnRegistrar" onclick="registrarse(); return false;">Registrar</a>
+						</div>
+					</div>
         </div>
       </div>
       <footer class="text-center">
@@ -101,7 +177,7 @@
           <span class="glyphicon glyphicon-chevron-up"></span>
           </a>
           <br/><br/>
-          <p>Grupo Agropet <a href="http://www.petcetera.com" data-toggle="tooltip" title="Visita Petcetera">www.petcetera.com</a></p> 
+          <p>Grupo Agropet</p> 
       </footer>
     </form>
 </body>

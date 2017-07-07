@@ -22,5 +22,9 @@ namespace AgroPetWeb.website
       (this.Master as MasterPet).GetBannersWeb();
     }
 
-  }
+		protected void PrintIndicatorBanner()
+		{
+			(this.Master as MasterPet).PrintIndicatorBanner();
+		}
+	}
 }

@@ -1,6 +1,6 @@
 ﻿CREATE  PROCEDURE uspUsuarios_ValidaUsr
 ( 
-	@vNombreUsuario varchar(20),
+	@vNombreUsuario varchar(150),
 	@vPassUsuario varchar(20))
 AS
 BEGIN
@@ -25,7 +25,7 @@ SET NOCOUNT ON;
 			'No Existe' as nombre, 
 			'' as claveusuario, 
 			'' passwdusr, 
-			0 as activo,
+			cast(0 as bit) as activo,
 			 '' nombreperfil
 		FROM tbusuarios;
 	END 

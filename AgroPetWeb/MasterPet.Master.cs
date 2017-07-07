@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Configuration;
 using PetData.Pet;
 using AgroPET.Entidades.Seguridad;
+using AgroPET.Entidades.Consultas;
 using AgroPET.Entidades.Especial;
 
 namespace AgroPetWeb
@@ -20,7 +21,7 @@ namespace AgroPetWeb
       if (Session["UserWeb"] != null)
       {
         PetService service = new PetService();
-        var buy = service.GetTotalBuy(new EntBuy() { UserId = ((EntUser)Session["UserWeb"]).UserId });
+        var buy = service.GetTotalBuy(new EntBuy() { UserId = (Int32)((ConsultaUsuarios)Session["UserWeb"]).IdUsuario });
         totalBuyProd = buy!=null?(int)buy.lot:0;
       }
     }
@@ -29,27 +30,30 @@ namespace AgroPetWeb
     {
       PetService service = new PetService();
       var menus = service.GetMenuHijos(new EntidadMenuWeb() { MenuId = 0});
-      foreach (var menu in menus)
-      {
-        var submenu = service.GetMenuHijos(menu);
-        if (submenu.Count > 0)
-        {
-          Response.Write("<li class=\"dropdown\">");
-          Response.Write("<a class=\"dropdown-toggle\" data-toggle=\"dropdown\" href=\"/" + menu.MenuUrl + " \">" + menu.Menu + "<span class=\"caret\"></span></a>");
-          Response.Write("<ul class=\"dropdown-menu\">");
-          foreach (var sub in submenu)
-          {
-            Response.Write("<li><a href=\"/" + sub.MenuUrl +".aspx?MenuId="+ sub.MenuId.ToString()+ " \">" + sub.Menu + "</a></li>");
-          }
-          Response.Write("</ul>");
-          Response.Write("</li>");
-        }
-        else
-        {
-          Response.Write("<li><a href=\"/" + menu.MenuId + ".aspx?MenuId=" + menu.MenuId.ToString() + " \">" + menu.Menu + "</a></li>");
-        }
-      }
+			foreach (var menu in menus)
+				PrintMenu(menu);
     }
+
+		internal void PrintMenu(EntidadMenuWeb menu) {
+			PetService service = new PetService();
+			var submenu = service.GetMenuHijos(menu);
+			if (submenu.Count > 0)
+			{
+				Response.Write("				<li><div>" + menu.Menu + "</div>");
+				Response.Write("				<ul>");
+				foreach (var sub in submenu)
+				{
+					PrintMenu(sub);
+				}
+				Response.Write("				</ul>");
+				Response.Write("				</li>");
+			}
+			else
+			{
+				Response.Write("<li><div><a href=\"/" + menu.MenuUrl + ".aspx?MenuId=" + menu.MenuId.ToString() + " \">" + menu.Menu + "</a></div></li>");
+			}
+		}
+
 
     public void GetBannersWeb()
     {
@@ -70,5 +74,20 @@ namespace AgroPetWeb
       }
     }
 
-  }
+		public void PrintIndicatorBanner()
+		{
+			PetService service = new PetService();
+			var banners = service.GetBannersWeb(new EntidadBannersWeb() { idbanner = 0, fechaini = DateTime.Now, fechafin = DateTime.Now });
+			int pos = 0;
+			foreach (var banner in banners)
+			{
+				if(pos==0)
+					Response.Write("<li data-target=\"#myCarousel\" data-slide-to=\""+pos+"\" class=\"active\"></li>");
+				else
+					Response.Write("<li data-target=\"#myCarousel\" data-slide-to=\"" + pos + "\"></li>");
+				pos = pos + 1;
+			}
+		}
+
+	}
 }

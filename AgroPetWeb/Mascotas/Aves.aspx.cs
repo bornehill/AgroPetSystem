@@ -15,17 +15,22 @@ namespace AgroPetWeb.Mascotas
   public partial class Aves : Page
   {
     private int menuId = 0;
-    protected void Page_Load(object sender, EventArgs e)
+		private int pageQuery = 0;
+		private int records = 0;
+
+		protected void Page_Load(object sender, EventArgs e)
     {
       menuId = int.Parse(Request.QueryString["MenuId"]);
-    }
+			pageQuery = int.Parse(Request.QueryString["pageQuery"] == null ? "0" : Request.QueryString["pageQuery"]);
+			records = int.Parse(Request.QueryString["cboRecords"] == null ? "10" : Request.QueryString["cboRecords"]);
+		}
 
-    public void Articulos()
+		public void Articulos()
     {
       PetService service = new PetService();
-      int tot = service.GetTotalMenuArt(new MenuArticulos() { MenuId = menuId });
+      int tot = service.GetTotalMenuArt(new MenuArticulos() { MenuId = menuId }, (EntClientWeb)Session["ClientWeb"], null);
       int rec = 0, recRow = 0;
-      var menus = service.GetMenuArticulos(new MenuArticulos() { MenuId = menuId });
+      var menus = service.GetMenuArticulos(new MenuArticulos() { MenuId = menuId }, new PageQuery() { page = pageQuery, records = this.records }, (EntClientWeb)Session["ClientWeb"], null);
       foreach (var menu in menus)
       {
         if(rec!=0 && recRow==0)
@@ -61,7 +66,7 @@ namespace AgroPetWeb.Mascotas
         Response.Write("</div>");
 
       if (Session["UserWeb"] != null)
-        Response.Write("<input type=\"hidden\" id = \"UserId\" value = \"" + ((EntUser)Session["UserWeb"]).UserId + "\">");
+        Response.Write("<input type=\"hidden\" id = \"UserId\" value = \"" + ((ConsultaUsuarios)Session["UserWeb"]).IdUsuario + "\">");
     }
 
     [WebMethod]
