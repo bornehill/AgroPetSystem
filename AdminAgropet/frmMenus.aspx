@@ -308,7 +308,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="overflow-y: scroll; overflow-x: hidden; max-height: 600px;" >
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="overflow-y: scroll; overflow-x: hidden; max-height: 600px; Width:500px" >
                                     <asp:GridView ID="grdLibArt" runat="server" AutoGenerateColumns="False" DataKeyNames="articulo_id" Font-Size="10px" Width="500px" 
                                         CssClass="table table-striped table-bordered table-hover" AllowPaging="false" PageSize="10">
                                         <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
