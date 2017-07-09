@@ -94,7 +94,8 @@ namespace AdminAgropet
 
             if (string.IsNullOrEmpty(sBuscar))
                 CrearArbol(tvwConsulta, lstMenu);
-            
+
+            tvwConsulta.CollapseAll();
         }
 
         protected void btn_Nuevo_Click(object sender, EventArgs e)
@@ -815,7 +816,7 @@ namespace AdminAgropet
             string vMensaje = string.Empty;
             tArbol.Nodes.Clear();
             CargarHojas(lstObjs, tArbol.Nodes);
-            tArbol.ExpandAll();
+            //tArbol.ExpandAll();
         }
 
         public void CargarHojas(List<ConsultaLibresArticulos> lstMenus, TreeNodeCollection tncNodos)
@@ -892,7 +893,7 @@ namespace AdminAgropet
             string vMensaje = string.Empty;
             tArbol.Nodes.Clear();
             CargarMenu(lstObjs, tArbol.Nodes);
-            tArbol.ExpandAll();
+            //tArbol.ExpandAll();
         }
 
         public void CargarMenu(List<EntidadMenuWeb> lstMenus, TreeNodeCollection tncNodos)

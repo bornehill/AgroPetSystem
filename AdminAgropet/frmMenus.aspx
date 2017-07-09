@@ -43,7 +43,7 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                         <div class="panel panel-default">
                                             <div class="panel-heading" style="font-weight: bold;">Arbol Menus</div>
-                                            <div class="panel-body" style="max-height: 600px; min-height: 81px; padding: 0px">
+                                            <div class="panel-body" style="min-height: 81px; padding: 0px">
                                                 <asp:TreeView CssClass="treeview" ID="tvwConsulta" runat="server" ShowLines="True" BorderStyle="None"
                                                     NodeStyle-CssClass="nodoTreeView" SelectedNodeStyle-BackColor="LightSkyBlue"
                                                     EnableViewState="true" ExpandImageUrl="~/Images/arrow_right.png" CollapseImageUrl="~/Images/bullet.png" ImageSet="Custom">
@@ -98,7 +98,7 @@
                                     <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
                                         <div class="panel panel-default">
                                             <div class="panel-heading" style="font-weight: bold">Arbol Menus</div>
-                                            <div class="panel-body" style="max-height: 600px; min-height: 81px">
+                                            <div class="panel-body" style="min-height: 81px">
                                                 <asp:TreeView CssClass="treeview" ID="tvw_Editar" runat="server" ShowLines="True" TabIndex="7" OnSelectedNodeChanged="tvw_Editar_SelectedNodeChanged"
                                                     NodeStyle-CssClass="nodoTreeView" SelectedNodeStyle-BackColor="LightSkyBlue" ShowExpandCollapse="true"
                                                     EnableViewState="true" ExpandImageUrl="~/Images/arrow_right.png" CollapseImageUrl="~/Images/bullet.png" ImageSet="Custom">
@@ -202,9 +202,9 @@
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <div class="panel panel-default" style="min-width: 220px">
                                         <div class="panel-heading" style="font-weight: bold">Arbol Menus</div>
-                                        <div class="panel-body" style="max-height: 600px; font-size: 10px">
+                                        <div class="panel-body" style="font-size: 10px">
                                             <asp:TreeView CssClass="treeview" ID="tvwAsignar" runat="server" ShowLines="True" TabIndex="7" OnSelectedNodeChanged="tvwAsignar_SelectedNodeChanged"
-                                                NodeStyle-CssClass="nodoTreeView" SelectedNodeStyle-BackColor="LightSkyBlue" ShowExpandCollapse="false"
+                                                NodeStyle-CssClass="nodoTreeView" SelectedNodeStyle-BackColor="LightSkyBlue" ShowExpandCollapse="true"
                                                 EnableViewState="true" ExpandImageUrl="~/Images/arrow_right.png" CollapseImageUrl="~/Images/bullet.png" ImageSet="Custom">
                                             </asp:TreeView>
                                         </div>
@@ -285,7 +285,7 @@
                                  <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <div class="panel panel-default" style="min-width: 220px">
                                         <div class="panel-heading" style="font-weight: bold">Arbol Menus</div>
-                                        <div class="panel-body" style="max-height: 600px; font-size: 10px">
+                                        <div class="panel-body" style="font-size: 10px">
                                             <asp:TreeView CssClass="treeview" ID="trvMenuLibres" runat="server" ShowLines="True" TabIndex="7" OnSelectedNodeChanged="trvMenuLibres_SelectedNodeChanged"
                                                 NodeStyle-CssClass="nodoTreeView" SelectedNodeStyle-BackColor="LightSkyBlue"
                                                 EnableViewState="true" ExpandImageUrl="~/Images/arrow_right.png" CollapseImageUrl="~/Images/bullet.png" ImageSet="Custom">
@@ -296,7 +296,7 @@
                                 <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
                                     <div class="panel panel-default" style="min-width: 220px">
                                         <div class="panel-heading" style="font-weight: bold">Arbol Libres</div>
-                                        <div class="panel-body" style="max-height: 600px; font-size: 10px">
+                                        <div class="panel-body" style="font-size: 10px">
                                             <asp:TreeView CssClass="treeview" ID="trvLibArt" runat="server" ShowLines="True" TabIndex="7" OnSelectedNodeChanged="trvLibArt_SelectedNodeChanged"
                                                 NodeStyle-CssClass="nodoTreeView" SelectedNodeStyle-BackColor="LightSkyBlue"
                                                 EnableViewState="true" ExpandImageUrl="~/Images/arrow_right.png" CollapseImageUrl="~/Images/bullet.png" ImageSet="Custom">
@@ -304,8 +304,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="overflow-y: scroll; overflow-x: hidden; max-height: 300px; Width:635px" >
-                                    <asp:GridView ID="grdLibArt" runat="server" AutoGenerateColumns="False" DataKeyNames="articulo_id" Font-Size="10px" Width="635px" 
+                                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3" style="overflow-y: scroll; overflow-x: hidden; max-height: 600px;" >
+                                    <asp:GridView ID="grdLibArt" runat="server" AutoGenerateColumns="False" DataKeyNames="articulo_id" Font-Size="10px" Width="500px" 
                                         CssClass="table table-striped table-bordered table-hover" AllowPaging="false" PageSize="10">
                                         <HeaderStyle BackColor="#337ab7" Font-Bold="True" ForeColor="White" />
                                         <EditRowStyle BackColor="#ffffcc" Height="10px" />

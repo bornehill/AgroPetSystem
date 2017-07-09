@@ -1,8 +1,8 @@
 ﻿div.treeview {
     min-width: 100px;
     min-height: 100px;
-    max-height: 250px;
-    overflow: auto;
+    /*max-height: 250px;
+    overflow: auto;*/
     padding: 8px;
     border-color: lightgray !important;
     border: solid 1px;
