@@ -31,7 +31,7 @@ namespace AdminAgropet
             set { bAccion = value; }
         }
 
-       
+
         //////Comandos
         //private const string ComandoEditar = "Editar";
 
@@ -176,22 +176,49 @@ namespace AdminAgropet
 
             //if (!string.IsNullOrEmpty(hdnIdSeleccionado.Value))
             //{
-                EntidadMenuWeb lst = new NegocioMenuWeb().ObtenerMenus(Convert.ToInt32(hdnIdSeleccionado.Value)).FirstOrDefault();
-                txt_Menu_Editar.Value = lst.Menu;
-                txt_MenuUrl_Editar.Value = lst.MenuUrl;
-                chk_Estado_Editar.Checked = lst.Activo;
-                txtOrden.Value = lst.Orden.ToString();
-                if (lst.Padre.ToString() != "0")
-                    ddl_ListaMenus_Editar.SelectedValue = lst.Padre.ToString();
-                else
-                    ddl_ListaMenus_Editar.ClearSelection();
+            EntidadMenuWeb lst = new NegocioMenuWeb().ObtenerMenus(Convert.ToInt32(hdnIdSeleccionado.Value)).FirstOrDefault();
+            txt_Menu_Editar.Value = lst.Menu;
+            txt_MenuUrl_Editar.Value = lst.MenuUrl;
+            chk_Estado_Editar.Checked = lst.Activo;
+            txtOrden.Value = lst.Orden.ToString();
+            if (lst.Padre.ToString() != "0")
+                ddl_ListaMenus_Editar.SelectedValue = lst.Padre.ToString();
+            else
+                ddl_ListaMenus_Editar.ClearSelection();
             //}
+        }
+
+        protected void SelectByValue(TreeView tv, string ValueToSelect)
+        {
+            foreach (TreeNode np in tv.Nodes)
+            {
+                if(SelectNodeByValue(np, ValueToSelect))
+                    np.ExpandAll();
+            }
+        }
+        protected bool SelectNodeByValue(TreeNode Node, string ValueToSelect)
+        {
+            bool expande = false;
+            foreach (TreeNode n in Node.ChildNodes)
+            {
+                if (n.Value == ValueToSelect)
+                {
+                    //n.Select();
+                    expande = true;
+                }
+                else
+                {
+                    SelectNodeByValue(n, ValueToSelect);
+                }
+            }
+
+            return expande;
         }
 
         private void nodoSeleccionado()
         {
             //if(string.IsNullOrEmpty(hdnIdSeleccionado.Value) || hdnIdSeleccionado.Value != tvw_Editar.SelectedValue)
-                hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
+            hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
             //else
             //{
             //    hdnIdSeleccionado.Value = null;
@@ -251,20 +278,21 @@ namespace AdminAgropet
 
         protected void btn_Guardar_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value)) 
+            if (!string.IsNullOrEmpty(txt_Menu_Editar.Value))
             {
                 InsertarEditar(BAccion);
 
                 LlenalListaMenusBuscar(0);
 
-                //valorSeleccionado = hdnIdSeleccionado.Value;
-
                 CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
+
+                SelectByValue(tvw_Editar, hdnIdSeleccionado.Value);
 
                 txt_Menu_Editar.Value = string.Empty;
                 txtOrden.Value = string.Empty;
                 chk_Estado_Editar.Checked = true;
                 BAccion = false;
+                hdnIdSeleccionado.Value = null;
             }
             else
             {
@@ -283,7 +311,7 @@ namespace AdminAgropet
                 EntidadMenuWeb OMenu = new EntidadMenuWeb();
                 OMenu.Menu = txt_Menu_Editar.Value;
                 OMenu.MenuUrl = txt_MenuUrl_Editar.Value;
-                if(!string.IsNullOrEmpty(txtOrden.Value))
+                if (!string.IsNullOrEmpty(txtOrden.Value))
                     OMenu.Orden = Convert.ToInt32(txtOrden.Value);
                 OMenu.Activo = chk_Estado_Editar.Checked;
                 OMenu.CreacionUsuarioId = GetUserLoggedID();
@@ -292,7 +320,7 @@ namespace AdminAgropet
                 OMenu.FechaModificacion = new DateTime(1900, 01, 01);
                 OMenu.MenuId = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value);
 
-                if(ddl_ListaMenus_Editar.SelectedItem.Value != string.Empty)
+                if (ddl_ListaMenus_Editar.SelectedItem.Value != string.Empty)
                     OMenu.Padre = string.IsNullOrEmpty(ddl_ListaMenus_Editar.SelectedItem.Value) ? 0 : Convert.ToInt32(ddl_ListaMenus_Editar.SelectedItem.Value);
                 else
                     OMenu.Padre = string.IsNullOrEmpty(hdnIdSeleccionado.Value) ? 0 : Convert.ToInt32(hdnIdSeleccionado.Value);
@@ -302,9 +330,6 @@ namespace AdminAgropet
                     if (new NegocioMenuWeb().InsertarEditar(bAccion, OMenu))
                         MostrarMensaje(Page, "Menu Web", cgs_MensajeOk, 3);
                 }
-
-                BAccion = false;
-                hdnIdSeleccionado.Value = null;
             }
             catch (Exception ex)
             {
@@ -319,7 +344,7 @@ namespace AdminAgropet
         //    try
         //    {
         //        var oObj = new EntidadMenuWeb();
-                
+
         //        oObj.Menu = txt_Menu_Editar.Value;
         //        oObj.MenuUrl = txt_MenuUrl_Editar.Value;
         //        if (!string.IsNullOrEmpty(hdnIdSeleccionado.Value))
@@ -469,7 +494,7 @@ namespace AdminAgropet
         {
             limpiarGrids();
             hdnIdSeleccionado.Value = tvwAsignar.SelectedValue;
-            CargaGridElementoSeleccionado();       
+            CargaGridElementoSeleccionado();
         }
 
         private void CargaGridElementoSeleccionado()
@@ -491,7 +516,7 @@ namespace AdminAgropet
 
                 foreach (var item in lstGrupos)
                 {
-                    if(item.IdGrupo_Linea == idGpoLinea)
+                    if (item.IdGrupo_Linea == idGpoLinea)
                         chk.Checked = item.Activo;
                 }
             }
