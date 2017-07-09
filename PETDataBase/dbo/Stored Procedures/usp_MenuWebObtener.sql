@@ -21,6 +21,8 @@ BEGIN
 	LEFT JOIN tbmenuweb AS P ON H.Padre = P.MenuId   
 	where H.MenuId = ISNULL(@MenuId, H.MenuId)
 		and H.Menu = ISNULL(@Menu, H.Menu) OR (H.Menu LIKE '%' + @Menu + '%') 
+
+    order by H.Orden 
 	--WHERE (@MenuId IS NULL AND H.MenuId = H.MenuId) OR (H.MenuId = @MenuId)
 	--AND  (@Menu IS NULL AND H.Menu = H.Menu) OR (H.Menu LIKE '%' + @Menu + '%');
 

@@ -4,8 +4,8 @@ CREATE PROCEDURE [dbo].[uspmenuWeb_Actualiza](
 	,@Menu varchar(100)    
 	,@MenuUrl varchar(250)    
 	,@Padre int    
-	/*,IN Nivel int    
-	,in Orden int*/    
+	/*,IN Nivel int*/    
+	,@Orden int    
 	,@Activo bit    
 	/*,IN FechaCreacion datetime    
 	,IN CreacionUsuarioId int*/    
@@ -13,8 +13,8 @@ CREATE PROCEDURE [dbo].[uspmenuWeb_Actualiza](
 	,@ModificacionUsuarioId int )
 AS	
 BEGIN
-	DECLARE @Nivel INT;
-	DECLARE @Orden INT;
+	--DECLARE @Nivel INT;
+	--DECLARE @Orden INT;
 	
 	--select @Orden=dbo.ufn_MenuObtenerOrden(@Padre);
 	--select @Nivel=dbo.ufn_MenuObtenerNivel(@Padre);
@@ -27,7 +27,7 @@ BEGIN
 	,MenuUrl = 'Mascotas/ArticulosPedido'    
 	,Padre = @Padre    
 	--,Nivel = @Nivel    
-	--,Orden = @Orden    
+	,Orden = @Orden    
 	,Activo = @Activo    
 	,FechaModificacion = GETDATE()
 	,ModificacionUsuarioId = @ModificacionUsuarioId    
