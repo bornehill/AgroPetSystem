@@ -194,6 +194,9 @@ namespace AdminAgropet
             {
                 if(SelectNodeByValue(np, ValueToSelect))
                     np.ExpandAll();
+
+                if (np.Value == ValueToSelect)
+                    np.Expand();
             }
         }
         protected bool SelectNodeByValue(TreeNode Node, string ValueToSelect)
