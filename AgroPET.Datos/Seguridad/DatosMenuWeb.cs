@@ -83,6 +83,7 @@ namespace AgroPET.Datos.Seguridad
                 accesoDatos.parametros.Agrega("@Id", menu.MenuId, true);
                 accesoDatos.parametros.Agrega("@Menu", menu.Menu, true);
                 accesoDatos.parametros.Agrega("@MenuUrl", menu.MenuUrl, true);
+                accesoDatos.parametros.Agrega("@Orden", menu.Orden, true);
                 accesoDatos.parametros.Agrega("@Padre", menu.Padre, true);
                 accesoDatos.parametros.Agrega("@Activo", menu.Activo, true);
                 accesoDatos.parametros.Agrega("@ModificacionUsuarioId", menu.CreacionUsuarioId, true);

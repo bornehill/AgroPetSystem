@@ -116,6 +116,10 @@
                                                 <label style="text-align: left; width: 100%; font-size: small">URL Menu</label>
                                                 <input id="txt_MenuUrl_Editar" runat="server" class="form-control" type="text" placeholder="Ingresa URL del Menu" />
                                             </div>
+                                             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                                                <label style="text-align: left; width: 100%; font-size: small">Orden</label>
+                                                <input id="txtOrden" runat="server" style="width:150px" class="form-control" type="text" placeholder="Orden Menu" />
+                                            </div>
                                         </div>
 
                                         <div style="padding-bottom: 5px"></div>

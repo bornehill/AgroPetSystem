@@ -139,6 +139,15 @@ namespace AdminAgropet {
         protected global::System.Web.UI.HtmlControls.HtmlInputText txt_MenuUrl_Editar;
         
         /// <summary>
+        /// txtOrden control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtOrden;
+        
+        /// <summary>
         /// ddl_ListaMenus_Editar control.
         /// </summary>
         /// <remarks>

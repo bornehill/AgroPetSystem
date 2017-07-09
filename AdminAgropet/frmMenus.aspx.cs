@@ -103,6 +103,7 @@ namespace AdminAgropet
             hdnIdSeleccionado.Value = string.Empty;
             txt_Menu_Editar.Value = string.Empty;
             txt_MenuUrl_Editar.Value = string.Empty;
+            txtOrden.Value = string.Empty;
             chk_Estado_Editar.Checked = true;
 
             LlenalListaMenusBuscar(0);
@@ -168,6 +169,9 @@ namespace AdminAgropet
 
         protected void tvw_Editar_SelectedNodeChanged(object sender, EventArgs e)
         {
+            BAccion = false;
+            txtOrden.Disabled = false;
+
             nodoSeleccionado();
 
             //if (!string.IsNullOrEmpty(hdnIdSeleccionado.Value))
@@ -176,6 +180,7 @@ namespace AdminAgropet
                 txt_Menu_Editar.Value = lst.Menu;
                 txt_MenuUrl_Editar.Value = lst.MenuUrl;
                 chk_Estado_Editar.Checked = lst.Activo;
+                txtOrden.Value = lst.Orden.ToString();
                 if (lst.Padre.ToString() != "0")
                     ddl_ListaMenus_Editar.SelectedValue = lst.Padre.ToString();
                 else
@@ -204,6 +209,8 @@ namespace AdminAgropet
         {
             txt_Menu_Editar.Value = string.Empty;
             txt_MenuUrl_Editar.Value = string.Empty;
+            txtOrden.Value = string.Empty;
+            txtOrden.Disabled = true;
             chk_Estado_Editar.Checked = true;
             ddl_ListaMenus_Editar.ClearSelection();
 
@@ -255,6 +262,7 @@ namespace AdminAgropet
                 CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
 
                 txt_Menu_Editar.Value = string.Empty;
+                txtOrden.Value = string.Empty;
                 chk_Estado_Editar.Checked = true;
                 BAccion = false;
             }
@@ -274,7 +282,9 @@ namespace AdminAgropet
             {
                 EntidadMenuWeb OMenu = new EntidadMenuWeb();
                 OMenu.Menu = txt_Menu_Editar.Value;
-                OMenu.MenuUrl = txt_MenuUrl_Editar.Value;                  
+                OMenu.MenuUrl = txt_MenuUrl_Editar.Value;
+                if(!string.IsNullOrEmpty(txtOrden.Value))
+                    OMenu.Orden = Convert.ToInt32(txtOrden.Value);
                 OMenu.Activo = chk_Estado_Editar.Checked;
                 OMenu.CreacionUsuarioId = GetUserLoggedID();
                 OMenu.ModificacionUsuarioId = GetUserLoggedID();
