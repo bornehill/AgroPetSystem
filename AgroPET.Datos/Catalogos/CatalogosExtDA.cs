@@ -8,7 +8,6 @@ using System.Reflection;
 using AgroPET.Entidades.Especial;
 using AgroPET.Entidades.Consultas;
 using AgroPET.Entidades.Seguridad;
-using AgroPET.Datos.Comun;
 using Utilidades;
 
 namespace AgroPET.Datos.Catalogos
@@ -66,12 +65,14 @@ namespace AgroPET.Datos.Catalogos
             return accesoDatos.ConsultaDataList<EntidadBannersWeb>();
         }
 
-        public List<MenuArticulos> GetMenuArticulos(MenuArticulos tMenuArticulo)
+        public List<MenuArticulos> GetMenuArticulos(MenuArticulos tMenuArticulo, PageQuery pag)
         {
-            accesoDatos.parametros.listaParametros.Clear();
-            accesoDatos.comandoSP = "usp_GetMenuArticulos";
-            accesoDatos.parametros.Agrega("@Menuid", tMenuArticulo.MenuId, true);
-            return accesoDatos.ConsultaDataList<MenuArticulos>();
+          accesoDatos.parametros.listaParametros.Clear();
+          accesoDatos.comandoSP = "usp_GetMenuArticulos";
+          accesoDatos.parametros.Agrega("@Menuid", tMenuArticulo.MenuId, true);
+					//accesoDatos.parametros.Agrega("@pag", pag.page, true);
+					//accesoDatos.parametros.Agrega("@records", pag.records, true);
+					return accesoDatos.ConsultaDataList<MenuArticulos>();
         }
 
         public EntUser GetUser(EntUser user)
@@ -103,24 +104,38 @@ namespace AgroPET.Datos.Catalogos
 
         public EntBuy AddBuy(EntBuy item)
         {
-            accesoDatos.parametros.listaParametros.Clear();
-            accesoDatos.comandoSP = "uspAddBuy";
-            accesoDatos.parametros.Agrega("@userId", item.UserId, true);
-            accesoDatos.parametros.Agrega("@itemId", item.ItemId, true);
-            accesoDatos.parametros.Agrega("@lot", item.lot, true);
-            accesoDatos.parametros.Agrega("@price", item.price, true);
+          accesoDatos.parametros.listaParametros.Clear();
+          accesoDatos.comandoSP = "uspAddBuy";
+          accesoDatos.parametros.Agrega("@userId", item.UserId, true);
+          accesoDatos.parametros.Agrega("@itemId", item.ItemId, true);
+          accesoDatos.parametros.Agrega("@lot", item.lot, true);
+          accesoDatos.parametros.Agrega("@price", item.price, true);
+					accesoDatos.parametros.Agrega("@off", item.off, true);
+					accesoDatos.parametros.Agrega("@tax", item.tax, true);
 
-            return accesoDatos.ConsultaDataList<EntBuy>().FirstOrDefault();
+					return accesoDatos.ConsultaDataList<EntBuy>().FirstOrDefault();
         }
 
-        public List<EntBuyView> GetBuyView(EntBuyView item)
-        {
-            accesoDatos.parametros.listaParametros.Clear();
-            accesoDatos.comandoSP = "uspGetBuyView";
-            accesoDatos.parametros.Agrega("@userId", item.UserId, true);
+				public EntBuy UpdateBuy(EntBuy item)
+				{
+					accesoDatos.parametros.listaParametros.Clear();
+					accesoDatos.comandoSP = "uspUpdateBuy";
+					accesoDatos.parametros.Agrega("@userId", item.UserId, true);
+					accesoDatos.parametros.Agrega("@itemId", item.ItemId, true);
+					accesoDatos.parametros.Agrega("@lot", item.lot, true);
+					accesoDatos.parametros.Agrega("@notes", item.notes, true);
 
-            return accesoDatos.ConsultaDataList<EntBuyView>();
-        }
+					return accesoDatos.ConsultaDataList<EntBuy>().FirstOrDefault();
+				}
+
+				public List<EntBuyView> GetBuyView(EntBuyView item)
+				{
+					accesoDatos.parametros.listaParametros.Clear();
+					accesoDatos.comandoSP = "uspGetBuyView";
+					accesoDatos.parametros.Agrega("@userId", item.UserId, true);
+
+					return accesoDatos.ConsultaDataList<EntBuyView>();
+				}
 
         public int GetTotalMenuArt(MenuArticulos menu)
         {

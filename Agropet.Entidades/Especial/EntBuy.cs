@@ -12,7 +12,13 @@ namespace AgroPET.Entidades.Especial
     public Decimal lot { get; set; }
 
     public Decimal price { get; set; }
-  }
+
+		public string notes { get; set; }
+
+		public Decimal off { get; set; }
+
+		public Decimal tax { get; set; }
+	}
 
   [Serializable]
   public class EntBuyView : EntBuy {

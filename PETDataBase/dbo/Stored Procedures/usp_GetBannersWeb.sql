@@ -1,8 +1,8 @@
 ﻿
 CREATE PROCEDURE usp_GetBannersWeb(
     @idbanner INT
-    , @fechaini DATETIME
-    , @fechafin DATETIME)
+    , @fechaini DATE
+    , @fechafin DATE)
 AS	
 BEGIN
     select 

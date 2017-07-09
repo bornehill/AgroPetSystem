@@ -196,8 +196,11 @@
     <Build Include="dbo\Stored Procedures\uspArticulosObtenerDropDown.sql" />
     <Build Include="dbo\Stored Procedures\uspImagenesArticulosElimina.sql" />
     <Build Include="dbo\Stored Procedures\uspImagenesArticulosActualizar.sql" />
-    <Build Include="dbo\Tables\tbusuarios.sql" />
     <Build Include="dbo\Stored Procedures\uspRelacionMenuArticulosObtener.sql" />
     <Build Include="dbo\Stored Procedures\uspMenuWeb_Eliminar.sql" />
+    <Build Include="dbo\Stored Procedures\uspUpdateBuy.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="PETDataBase.refactorlog" />
   </ItemGroup>
 </Project>
