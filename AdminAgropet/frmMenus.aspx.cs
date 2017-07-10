@@ -31,6 +31,20 @@ namespace AdminAgropet
             set { bAccion = value; }
         }
 
+        public static TreeNode Tn
+        {
+            get
+            {
+                return tn;
+            }
+
+            set
+            {
+                tn = value;
+            }
+        }
+
+        private static TreeNode tn;
 
         //////Comandos
         //private const string ComandoEditar = "Editar";
@@ -192,35 +206,55 @@ namespace AdminAgropet
         {
             foreach (TreeNode np in tv.Nodes)
             {
-                if(SelectNodeByValue(np, ValueToSelect))
-                    np.ExpandAll();
+                SelectNodeByValue(np, ValueToSelect);
+                //if(SelectNodeByValue(np, ValueToSelect))
+                //    np.ExpandAll();
 
-                if (np.Value == ValueToSelect)
-                    np.Expand();
+                //if (np.Value == ValueToSelect)
+                //    np.Expand();
             }
         }
-        protected bool SelectNodeByValue(TreeNode Node, string ValueToSelect)
+        protected void SelectNodeByValue(TreeNode Node, string ValueToSelect)
         {
-            bool expande = false;
-            foreach (TreeNode n in Node.ChildNodes)
+            //bool expande = false;
+            string[] x = Tn.ValuePath.Split('/');
+            foreach (string s in x)
             {
-                if (n.Value == ValueToSelect)
+                if (s == Node.Value)
                 {
-                    //n.Select();
-                    expande = true;
-                }
-                else
-                {
-                    SelectNodeByValue(n, ValueToSelect);
+                    Node.Expand();
                 }
             }
 
-            return expande;
+
+            foreach (TreeNode n in Node.ChildNodes)
+            {
+                foreach (string s in x)
+                {
+                    if (s == n.Value)
+                    {
+                        n.Expand();
+                    }
+                }
+
+                //if (n.Value == ValueToSelect)
+                //{
+                //    //n.Select();
+                //    //expande = true;
+                //}
+                //else
+                //{
+                //    SelectNodeByValue(n, ValueToSelect);
+                //}
+            }
+
+            //return expande;
         }
 
         private void nodoSeleccionado()
         {
             //if(string.IsNullOrEmpty(hdnIdSeleccionado.Value) || hdnIdSeleccionado.Value != tvw_Editar.SelectedValue)
+            Tn = tvw_Editar.SelectedNode;
             hdnIdSeleccionado.Value = tvw_Editar.SelectedValue;
             //else
             //{
@@ -289,6 +323,7 @@ namespace AdminAgropet
 
                 CrearArbol(tvw_Editar, ObtenerMenus(string.Empty));
 
+           //     tvw_Editar.FindNode(Tn.ValuePath).Expand();
                 SelectByValue(tvw_Editar, hdnIdSeleccionado.Value);
 
                 txt_Menu_Editar.Value = string.Empty;
