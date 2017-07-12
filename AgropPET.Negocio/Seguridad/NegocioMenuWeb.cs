@@ -131,7 +131,7 @@ namespace AgropPET.Negocio.Seguridad
             }
         }
 
-        public bool AsignarArticulosMicrosip(EntidadMenuArticulos ent)
+        public bool AsignarArticulosMicrosip(List<EntidadMenuArticulos> ent)
         {
             try
             {

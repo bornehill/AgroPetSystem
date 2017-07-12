@@ -8,6 +8,7 @@ using AgroPET.Datos.Comun;
 using AgroPET.Datos.Catalogos;
 using AgroPET.Entidades.Consultas;
 using Agropet.Entidades.Consultas;
+using AccesoDatos.Comun;
 
 namespace AgroPET.Datos.Seguridad
 {
@@ -101,18 +102,28 @@ namespace AgroPET.Datos.Seguridad
             }
         }
 
-        public void AsignarArticulosMicrosip(EntidadMenuArticulos ent)
+        public void AsignarArticulosMicrosip(List<EntidadMenuArticulos> ent)
         {
-            int Linea_articulo_id = new DatosGruposLineas().Firebird_ObtenerIdLineaArticulo(ent.IdArticulo);
-            int grupo_linea_id = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea(Linea_articulo_id);
+            List<Parametros> param = new List<Parametros>();
 
-            accesoDatos.parametros.listaParametros.Clear();
             accesoDatos.comandoSP = "uspAsignarArticulosMenuWeb_Insertar";
-            accesoDatos.parametros.Agrega("@MenId", ent.MenuId, true);
-            accesoDatos.parametros.Agrega("@idGpo_Lin", grupo_linea_id, true);
-            accesoDatos.parametros.Agrega("@idLin_Art", Linea_articulo_id, true);
-            accesoDatos.parametros.Agrega("@idArt", ent.IdArticulo, true);
-            int afectados = accesoDatos.EjecutaNQuery();
+            accesoDatos.parametros.listaParametros.Clear();
+
+            foreach (var item in ent)
+            {
+                Parametros p = new Parametros();
+                int Linea_articulo_id = new DatosGruposLineas().Firebird_ObtenerIdLineaArticulo(item.IdArticulo);
+                int grupo_linea_id = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea(Linea_articulo_id);
+
+                p.Agrega("@MenId", item.MenuId, true);
+                p.Agrega("@idGpo_Lin", grupo_linea_id, true);
+                p.Agrega("@idLin_Art", Linea_articulo_id, true);
+                p.Agrega("@idArt", item.IdArticulo, true);
+
+                param.Add(p);
+            }
+
+            int afectados = accesoDatos.EjecutaNQuery(param);
         }
 
         public bool EliminarMenu(int idMenu)

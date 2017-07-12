@@ -254,7 +254,7 @@ namespace AdminAgropet
                         entMenArt = new EntidadMenuArticulos();
                         entMenArt.MenuId = Convert.ToInt32(hdnIdSeleccionado.Value);
                         entMenArt.IdArticulo = art;
-                        negMenuWeb.AsignarArticulosMicrosip(entMenArt);
+                       // negMenuWeb.AsignarArticulosMicrosip(entMenArt);
                     }
 
                     foreach (int artb in LstArticulosBorrar)

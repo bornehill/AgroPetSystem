@@ -448,13 +448,18 @@ namespace AdminAgropet
                         }
                     }
 
+                    List<EntidadMenuArticulos> lstMenu = new List<EntidadMenuArticulos>();
+
                     foreach (int art in LstArticulos)
                     {
                         entMenArt = new EntidadMenuArticulos();
                         entMenArt.MenuId = Convert.ToInt32(hdnIdSeleccionado.Value);
                         entMenArt.IdArticulo = art;
-                        negMenuWeb.AsignarArticulosMicrosip(entMenArt);
+                        lstMenu.Add(entMenArt);
+                        ///negMenuWeb.AsignarArticulosMicrosip(entMenArt);
                     }
+
+                    negMenuWeb.AsignarArticulosMicrosip(lstMenu);
 
 
                     MostrarMensaje(Page, string.Concat(cgs_ScriptsMensajes, cgs_EncabezadoModulo.Replace(" ", "_")),
