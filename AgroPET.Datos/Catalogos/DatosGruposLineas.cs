@@ -94,6 +94,41 @@ namespace AgroPET.Datos.Catalogos
             }
         }
 
-        
+        public DataTable Firebird_ObtenerIdLineaArticuloTodos()
+        {
+            try
+            {
+                string Consulta = "select Linea_articulo_id, ARTICULO_ID from articulos";
+                DataTable dt = new DataTable();
+                FbDataAdapter da = new FbDataAdapter(Consulta, ConexionFireBird);
+                //da.SelectCommand.Parameters.Add("@id", 123);
+                da.Fill(dt);
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
+        public DataTable Firebird_ObtenerIdGrupoLineaTodos()
+        {
+            try
+            {
+                string Consulta = "SELECT grupo_linea_id, LINEA_ARTICULO_ID FROM lineas_articulos";
+                DataTable dt = new DataTable();
+                FbDataAdapter da = new FbDataAdapter(Consulta, ConexionFireBird);
+                //da.SelectCommand.Parameters.Add("@id", 123);
+                da.Fill(dt);
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return new DataTable();
+            }
+        }
+
+
     }
 }

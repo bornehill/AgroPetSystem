@@ -9,6 +9,7 @@ using AgroPET.Datos.Catalogos;
 using AgroPET.Entidades.Consultas;
 using Agropet.Entidades.Consultas;
 using AccesoDatos.Comun;
+using System.Data;
 
 namespace AgroPET.Datos.Seguridad
 {
@@ -109,15 +110,23 @@ namespace AgroPET.Datos.Seguridad
             accesoDatos.comandoSP = "uspAsignarArticulosMenuWeb_Insertar";
             accesoDatos.parametros.listaParametros.Clear();
 
+            DataTable dtLineas = new DatosGruposLineas().Firebird_ObtenerIdLineaArticuloTodos();
+            DataTable dtGposLineas = new DatosGruposLineas().Firebird_ObtenerIdGrupoLineaTodos();
+
             foreach (var item in ent)
             {
                 Parametros p = new Parametros();
-                int Linea_articulo_id = new DatosGruposLineas().Firebird_ObtenerIdLineaArticulo(item.IdArticulo);
-                int grupo_linea_id = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea(Linea_articulo_id);
+                 //int Linea_articulo_id = new DatosGruposLineas().Firebird_ObtenerIdLineaArticulo(item.IdArticulo);
+                 //int grupo_linea_id = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea(Linea_articulo_id);
+
+                var LineaArticuloId = dtLineas.AsEnumerable().Where(f => f.Field<int>("ARTICULO_ID") == item.IdArticulo).Select(s => s.Field<int>("LINEA_ARTICULO_ID")).ToList().FirstOrDefault(); //from Linea_articulo_id in dtLineas.AsEnumerable() where Linea_articulo_id.Field<int>("ARTICULO_ID") == item.IdArticulo select Linea_articulo_id;
+                var Grupolineaid = dtGposLineas.AsEnumerable().Where(f=> f.Field<int>("LINEA_ARTICULO_ID") == LineaArticuloId).Select(i => i.Field<int>("GRUPO_LINEA_ID")).ToList().FirstOrDefault();      //from grupo_linea_id in dtGposLineas.AsEnumerable() where Linea_articulo_id .Field<int>("LINEA_ARTICULO_ID") == LineaArticuloId select grupo_linea_id;
+
+                // int  = new DatosGruposLineas().Firebird_ObtenerIdGrupoLinea();
 
                 p.Agrega("@MenId", item.MenuId, true);
-                p.Agrega("@idGpo_Lin", grupo_linea_id, true);
-                p.Agrega("@idLin_Art", Linea_articulo_id, true);
+                p.Agrega("@idGpo_Lin", Grupolineaid, true);
+                p.Agrega("@idLin_Art", LineaArticuloId, true);
                 p.Agrega("@idArt", item.IdArticulo, true);
 
                 param.Add(p);
